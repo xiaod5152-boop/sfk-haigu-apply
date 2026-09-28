@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>斯芬克教育展</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    background: #EDEDED;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 24px 12px 40px;
+  }
+  .phone {
+    width: 390px;
+    min-height: 844px;
+    background: #fff;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,.12);
+    position: relative;
+  }
+  .status {
+    height: 44px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 20px 6px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .nav {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .nav .back { position: absolute; left: 16px; font-size: 22px; color: #333; }
+  .nav .right { position: absolute; right: 14px; display: flex; gap: 12px; color: #333; font-size: 18px; }
+
+  .banner {
+    height: 200px;
+    background: #E8E8E8;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 8%;
+    display: block;
+  }
+
+  .entry {
+    display: block;
+    margin: 10px 12px 8px;
+    padding: 12px 14px;
+    background: #F3E8FF;
+    color: #1A1A1A;
+    border-radius: 12px;
+    cursor: default;
+    border: 0;
+    width: calc(100% - 24px);
+    text-align: left;
+    font: inherit;
+  }
+  .entry-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .entry em {
+    display: inline-block;
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 700;
+    color: #7C3AED;
+  }
+  .entry strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+  .entry-dates {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .entry-dates span {
+    display: block;
+    background: #fff;
+    border-radius: 8px;
+    padding: 6px 0 5px;
+    text-align: center;
+  }
+  .entry-dates em {
+    display: block;
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 600;
+    color: #8B7AA8;
+  }
+  .entry-dates b {
+    display: block;
+    margin-top: 2px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #5B3FD6;
+    letter-spacing: .3px;
+  }
+  .entry-go {
+    flex-shrink: 0;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 12px;
+    border: 0;
+    background: #7C3AED;
+    color: #fff;
+    border-radius: 16px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .entry-go.draft { background: #EA580C; }
+  .entry-go.done { background: #16A34A; }
+  .fair-st {
+    display: none;
+    margin-top: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    pointer-events: none;
+  }
+  .fair-st.on { display: block; }
+  .fair-st.draft { color: #C2410C; }
+  .fair-st.done { color: #15803D; }
+  .entry.inner {
+    background: linear-gradient(135deg, #2B0A18 0%, #5C1238 55%, #8B1A4A 100%);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(91, 18, 52, .28);
+  }
+  .entry.inner em { color: #FFB7D5; }
+  .entry.inner strong { letter-spacing: .2px; }
+  .entry.inner .entry-go {
+    background: #FF2D8A;
+    height: auto;
+    line-height: 1.25;
+    padding: 8px 10px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .entry.inner .entry-dates span { background: rgba(255,255,255,.12); }
+  .entry.inner .entry-dates em { color: rgba(255,255,255,.75); }
+  .entry.inner .entry-dates b { color: #fff; }
+  .entry.inner .entry-link { color: #FFD0E4; border-top-color: rgba(255,176,208,.35); }
+  .entry-note {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.45;
+    color: rgba(255,255,255,.82);
+    text-align: left;
+  }
+  .tools {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 0 12px 8px;
+  }
+  .tools.on { display: grid; }
+  .tools.solo { grid-template-columns: 1fr; }
+  .tool {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+    padding: 12px 12px 10px;
+    min-height: 118px;
+    border: 0;
+    border-radius: 12px;
+    background: #FFEFF6;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+    color: #1A1A1A;
+  }
+  .tool.on { display: flex; }
+  .tool u {
+    font-style: normal;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .4px;
+    color: #FF2D8A;
+  }
+  .tool b {
+    display: block;
+    margin-top: 6px;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+  .tool span {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #999;
+    line-height: 1.4;
+  }
+  .tool em {
+    display: block;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 10px;
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF2D8A;
+    text-align: right;
+  }
+  .iv-bar {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 0 12px 8px;
+    width: calc(100% - 24px);
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 12px;
+    background: #FFEFF6;
+    color: #1A1A1A;
+    font: inherit;
+    cursor: pointer;
+    text-align: left;
+  }
+  .iv-bar.on { display: flex; }
+  .iv-bar span {
+    font-size: 11px;
+    font-weight: 700;
+    color: #FF2D8A;
+  }
+  .iv-bar b {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .iv-bar em {
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF2D8A;
+    white-space: nowrap;
+  }
+
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 14px 16px 6px;
+    letter-spacing: .2px;
+    color: #1A1A1A;
+    text-align: center;
+  }
+
+  .main {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    padding: 8px 12px 8px 10px;
+    align-items: start;
+    gap: 8px;
+  }
+  .tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 54px;
+    border: 0;
+    background: #F4F4F4;
+    color: #555;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 6px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 1.35;
+    border-radius: 10px;
+  }
+  .tab.on {
+    background: #FF4FA0;
+    color: #fff;
+    font-weight: 800;
+    box-shadow: 0 6px 14px rgba(255,79,160,.35);
+  }
+
+  .content { padding: 0 2px 0 4px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .city {
+    position: relative;
+    border: 0;
+    background: none;
+    padding: 8px 4px 7px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 6px;
+    min-height: 54px;
+  }
+  .city .name {
+    display: block;
+    font-size: 14px;
+    color: #666;
+  }
+  .city .date {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin-top: 4px;
+    white-space: nowrap;
+  }
+  .city.on { background: #FF4FA0; }
+  .city.on .name,
+  .city.on .date { color: #fff; font-weight: 500; }
+  .city .ok {
+    display: none;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #3DDC84;
+    color: #fff;
+    font-size: 8px;
+    line-height: 12px;
+  }
+  .city.on .ok { display: block; }
+
+  .hall-row {
+    margin: 8px 50px 20px 10px;
+  }
+  .hall-row.off { display: none; }
+  .hall-row .label {
+    font-size: 14px;
+    font-weight: 800;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+  }
+  .halls {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    justify-content: flex-start;
+  }
+  .hall {
+    flex: 0 0 auto;
+    border: 1.5px solid #FFD0E6;
+    background: #FFF4F9;
+    color: #C2186A;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    min-height: 38px;
+    white-space: nowrap;
+  }
+  .hall.on {
+    background: #FF2D8A;
+    border-color: #FF2D8A;
+    color: #fff;
+  }
+
+  .fair-card {
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 4px 10px 10px;
+  }
+  .fair-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F0F0F0;
+    font-size: 13px;
+  }
+  .fair-row:last-of-type { border-bottom: 0; }
+  .fair-row b {
+    flex: 0 0 36px;
+    color: #C2410C;
+    font-size: 13px;
+    padding-top: 1px;
+  }
+  .fair-row span { color: #333; line-height: 1.45; }
+  .fair-card .go {
+    width: 100%;
+    margin-top: 8px;
+    border: 0;
+    background: #FF2D8A;
+    color: #fff;
+    border-radius: 8px;
+    min-height: 40px;
+    height: auto;
+    padding: 8px 10px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 1.35;
+  }
+
+  .side {
+    position: absolute;
+    right: 0;
+    bottom: 108px;
+    z-index: 8;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    touch-action: none;
+    cursor: grab;
+    user-select: none;
+  }
+  .side.dragging { cursor: grabbing; z-index: 12; }
+  .side.left { align-items: flex-start; }
+  .dock {
+    width: 46px;
+    border: 0;
+    color: #fff;
+    padding: 10px 0 12px;
+    cursor: grab;
+    border-radius: 12px 0 0 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font: inherit;
+    pointer-events: auto;
+  }
+  .side.left .dock { border-radius: 0 12px 12px 0; }
+  .dock svg { display: block; pointer-events: none; }
+  .dock b {
+    font-size: 13px;
+    font-weight: 700;
+    writing-mode: vertical-rl;
+    letter-spacing: 3px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .dock.share { background: #FF2D8A; }
+  .dock.book { background: #111; padding: 12px 0 14px; }
+  .dock.book svg { margin-bottom: 2px; }
+
+  .place {
+    position: relative;
+    margin: 4px 50px 8px 10px;
+    z-index: 5;
+    background: #F3F3F5;
+    border-radius: 16px;
+    padding: 12px 16px 10px;
+    text-align: center;
+  }
+  .place.dock-left {
+    margin-left: 50px;
+    margin-right: 10px;
+  }
+  .place #addr {
+    display: block;
+    width: 100%;
+    font-size: 12px;
+    line-height: 1.3;
+    color: #222;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .place #copy {
+    position: absolute;
+    right: 22px;
+    top: 10px;
+    border: 0;
+    background: #DEDDE2;
+    color: #333;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 13px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .place.dock-left #copy { right: auto; left: 22px; }
+  .place-km {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+  .place-km i { font-style: normal; color: #666; }
+  .place .plane {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    color: #FF4FA0;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .place.dock-left .plane {
+    right: auto;
+    left: 4px;
+    transform: translateY(-50%) scaleX(-1);
+  }
+
+  .toast {
+    position: absolute;
+    left: 50%;
+    top: 46%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.72);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    z-index: 20;
+    display: none;
+    white-space: nowrap;
+  }
+  .toast.on { display: block; }
+  .sheet {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.4);
+    z-index: 15;
+    align-items: flex-end;
+  }
+  .sheet.on { display: flex; }
+  .sheet .box {
+    width: 100%;
+    background: #fff;
+    border-radius: 16px 16px 0 0;
+    padding: 20px 16px 28px;
+  }
+  .sheet h4 { font-size: 16px; margin-bottom: 8px; }
+  .sheet p { font-size: 13px; color: #888; line-height: 1.5; }
+  .sheet .close {
+    margin-top: 16px;
+    width: 100%;
+    height: 40px;
+    border: 0;
+    background: #FF4FA0;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="status"><span>15:51</span><span>5G</span></div>
+  <div class="nav">
+    <span class="back">‹</span>
+    斯芬克教育展
+    <span class="right">···  ⌖</span>
+  </div>
+  <div class="banner">
+    <img src="art-tour-autumn.jpg" alt="斯芬克秋季艺术教育展">
+  </div>
+  <div class="entry" id="fairEntry">
+    <span class="entry-top">
+      <span>
+        <em>留学生秋招专属通道</em>
+        <strong>中国海归艺术创意人才专场招聘会</strong>
+      </span>
+      <button class="entry-go" id="fairGo" type="button">立即投递</button>
+    </span>
+    <div class="entry-dates">
+      <span><em>上海</em><b>10/24</b></span>
+      <span><em>北京</em><b>10/31</b></span>
+      <span><em>广州</em><b>10/25</b></span>
+      <span><em>成都</em><b>11/14</b></span>
+    </div>
+    <p class="fair-st" id="fairSt"></p>
+  </div>
+  <div class="main">
+    <aside class="tabs" id="tabs"></aside>
+    <section class="content">
+      <div class="grid" id="grid"></div>
+    </section>
+  </div>
+  <div class="place">
+    <p id="addr"></p>
+    <button type="button" id="copy">复制</button>
+    <div class="place-km">
+      <svg width="12" height="12" viewBox="0 0 24 24"><path fill="#FF4FA0" d="M12 2c-4 0-7 3.1-7 7 0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+      距你<span id="km"></span>km
+    </div>
+    <svg class="plane" viewBox="0 0 24 24" fill="currentColor"><path d="M21 3.2 3.5 11.4c-.6.2-.5 1.2.2 1.4l7.2 2.3 2.3 7.2c.2.7 1.2.8 1.5.1L21.9 4.1c.3-.6-.3-1.2-.9-.9zM10.2 13.1l6-6-4.7 10-1.3-4z"/></svg>
+  </div>
+  <div class="hall-row" id="halls"></div>
+  <aside class="side" id="side">
+    <button class="dock share" type="button" id="shareBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="10" height="10" rx="1.5" stroke="#fff" stroke-width="2"/><path d="M10 14h6v6H10z" fill="none" stroke="#fff" stroke-width="2"/><path d="M14 10l6-6M20 4v5M20 4h-5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      <b>分享</b>
+    </button>
+    <button class="dock book" type="button" id="bookBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="2" stroke="#FF4FA0" stroke-width="2"/><path d="M8 3v4M16 3v4M4 10h16" stroke="#FF4FA0" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="15" r="1.6" fill="#FF4FA0"/></svg>
+      <b>我的预约</b>
+    </button>
+  </aside>
+  <div class="toast" id="toast"></div>
+  <div class="sheet" id="bookSheet">
+    <div class="box">
+      <h4>我的预约</h4>
+      <p>还没有预约记录。选好城市站后即可报名。</p>
+      <button class="close" type="button" id="bookClose">知道了</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TRACKS = [
+  { id: "ug", name: "中学生专场", tab: "中学生<br>专场" },
+  { id: "pg", name: "大学生专场", tab: "大学生<br>专场" },
+  { id: "music", name: "音乐留学专场", tab: "音乐<br>专场" },
+  { id: "krjp", name: "日韩艺术留学专场", tab: "日韩<br>专场" }
+];
+
+const TITLES = {
+  ug: "中学生专场",
+  pg: "大学生专场",
+  music: "音乐留学专场",
+  krjp: "日韩艺术留学专场"
+};
+
+/* 12城都在配置里；null = 这场未定，格子不出现
+   日期按 2026秋展排期；未标专场的城市沿用该日已开专场 */
+function slot(date, halls) {
+  const week = {
+    "10.17": "周六", "10.18": "周日",
+    "10.24": "周六", "10.25": "周日",
+    "10.31": "周六", "11.01": "周日",
+    "11.07": "周六", "11.08": "周日",
+    "11.14": "周六", "11.15": "周日"
+  }[date];
+  return { date, week, halls };
+}
+const CITIES = {
+  北京: {
+    ug: slot("10.25", ["艺术爬藤厅", "多元升学规划厅"]),
+    pg: slot("10.31", ["校招/社招专场", "留学就业规划", "就业专场", "实习面试"]),
+    music: slot("10.24", ["音乐厅"]),
+    krjp: null
+  },
+  武汉: {
+    ug: slot("10.18", ["本科厅"]),
+    pg: slot("10.18", ["留学就业规划", "就业专场", "实习面试"]),
+    music: null, krjp: null
+  },
+  广州: {
+    ug: slot("10.24", ["本科厅"]),
+    pg: slot("10.25", ["校招/社招专场", "留学就业规划", "就业专场", "实习面试"]),
+    music: slot("10.24", ["音乐厅"]),
+    krjp: null
+  },
+  上海: {
+    ug: slot("11.14", ["艺术爬藤厅", "多元升学规划厅"]),
+    pg: slot("10.24", ["校招/社招专场", "留学就业规划", "就业专场", "实习面试"]),
+    music: slot("11.14", ["音乐厅"]),
+    krjp: null
+  },
+  成都: {
+    ug: slot("11.07", ["本科厅"]),
+    pg: slot("11.14", ["校招/社招专场", "留学就业规划", "就业专场", "实习面试"]),
+    music: slot("11.07", ["音乐厅"]),
+    krjp: slot("11.07", ["日韩厅"])
+  },
+  重庆: {
+    ug: slot("11.15", ["本科厅"]),
+    pg: null, music: null, krjp: null
+  },
+  苏州: {
+    ug: slot("11.15", ["本科厅"]),
+    pg: null, music: null, krjp: null
+  },
+  深圳: {
+    ug: slot("11.08", ["本科厅"]),
+    pg: slot("11.08", ["留学就业规划", "就业专场", "实习面试"]),
+    music: slot("11.08", ["音乐厅"]),
+    krjp: null
+  },
+  郑州: {
+    ug: null,
+    pg: slot("11.07", ["留学就业规划", "就业专场", "实习面试"]),
+    music: null,
+    krjp: slot("11.07", ["日韩厅"])
+  },
+  西安: {
+    ug: slot("11.08", ["本科厅"]),
+    pg: slot("11.08", ["留学就业规划", "就业专场", "实习面试"]),
+    music: null, krjp: null
+  },
+  南京: {
+    ug: slot("10.17", ["艺术爬藤厅", "多元升学规划厅"]),
+    pg: slot("10.17", ["留学就业规划", "就业专场", "实习面试"]),
+    music: slot("10.17", ["音乐厅"]),
+    krjp: null
+  },
+  杭州: {
+    ug: slot("10.25", ["艺术爬藤厅", "多元升学规划厅"]),
+    pg: slot("11.07", ["留学就业规划", "就业专场", "实习面试"]),
+    music: null, krjp: null
+  }
+};
+
+const ORDER = ["北京","武汉","广州","上海","成都","重庆","苏州","深圳","郑州","西安","南京","杭州"];
+const FAIR_DATES = { 上海: "10/24", 北京: "10/31", 广州: "10/25", 成都: "11/14" };
+const VENUES = {
+  北京: { addr: "北京市 朝阳区 酒仙桥路4号 798艺术中心 展厅", km: "12.40" },
+  武汉: { addr: "武汉市 武昌区 中南路99号 洪山宾馆 3层", km: "762.18" },
+  广州: { addr: "广州市 天河区 天河路208号 天河城酒店 8层", km: "1892.05" },
+  上海: { addr: "上海市 黄浦区 南京东路 100号 国际饭店 会议层", km: "1088.60" },
+  成都: { addr: "成都市 锦江区 红星路三段1号 成都国际饭店 6层", km: "1516.22" },
+  重庆: { addr: "重庆市 渝中区 民权路28号 重庆饭店 5层", km: "1458.90" },
+  苏州: { addr: "苏州市 姑苏区 干将东路 168号 苏州饭店 4层", km: "1042.11" },
+  深圳: { addr: "深圳市 福田区 深南大道 6008号 五洲宾馆 7层", km: "1960.44" },
+  郑州: { addr: "郑州市 金水区 花园路 3号 黄河迎宾馆 2层", km: "658.30" },
+  西安: { addr: "西安市 雁塔区 长安南路 西安宾馆 3层", km: "920.18" },
+  南京: { addr: "南京市 秦淮区 新街口汉中路101号 金鹰国际酒店 11层", km: "899.04" },
+  杭州: { addr: "杭州市 西湖区 杨公堤 1号 西湖国宾馆 会议厅", km: "1126.55" }
+};
+
+function goFair() {
+  const name = FAIR_DATES[city] ? city : "北京";
+  location.href = "job-apply.html?pub=1&city=" + encodeURIComponent(name);
+}
+function paintFair() {
+  const q = new URLSearchParams(location.search).get("apply");
+  let st = q === "done" || q === "draft" ? q : "";
+  if (!st) {
+    try { st = (JSON.parse(localStorage.getItem("sfk-fair-apply") || "{}").status) || ""; } catch (e) { st = ""; }
+  }
+  const go = document.getElementById("fairGo");
+  const line = document.getElementById("fairSt");
+  go.classList.remove("draft", "done");
+  if (st === "done") {
+    go.textContent = "查看报名";
+    go.classList.add("done");
+    line.textContent = "报名成功，点右上角查看或修改";
+    line.className = "fair-st on done";
+  } else if (st === "draft") {
+    go.textContent = "继续填写";
+    go.classList.add("draft");
+    line.textContent = "未填写完，点右上角继续完善";
+    line.className = "fair-st on draft";
+  } else {
+    go.textContent = "立即投递";
+    line.textContent = "";
+    line.className = "fair-st";
+  }
+}
+
+let track = "pg";
+let city = "北京";
+let hall = "";
+(function () {
+  const q = new URLSearchParams(location.search).get("track");
+  if (["ug", "pg", "music", "krjp"].includes(q)) track = q;
+})();
+
+function opened() {
+  return ORDER.filter(name => CITIES[name][track]);
+}
+function item() {
+  return CITIES[city] && CITIES[city][track];
+}
+
+function render() {
+  const list = opened();
+  if (!list.includes(city)) city = list[0] || "";
+  const cur = item();
+  if (cur && !cur.halls.includes(hall)) hall = cur.halls[0];
+
+  document.getElementById("tabs").innerHTML = TRACKS.map(t =>
+    `<button class="tab ${t.id === track ? "on" : ""}" data-track="${t.id}">${t.tab}</button>`
+  ).join("");
+
+  paintFair();
+
+  document.getElementById("grid").innerHTML = list.map(name => {
+    const d = CITIES[name][track];
+    return `<button class="city ${name === city ? "on" : ""}" data-city="${name}">
+      <span class="name">${name}站</span>
+      <span class="date">${d.date} ${d.week}</span>
+      <span class="ok">✓</span>
+    </button>`;
+  }).join("");
+
+  const venue = VENUES[city];
+  if (venue) {
+    document.getElementById("addr").textContent = venue.addr;
+    document.getElementById("km").textContent = venue.km;
+  }
+
+  const box = document.getElementById("halls");
+  if (!cur || cur.halls.length < 2 || track === "pg") {
+    box.innerHTML = "";
+    box.classList.add("off");
+    return;
+  }
+  box.classList.remove("off");
+  const fair = hall === "校招/社招专场" && FAIR_DATES[city]
+    ? `<div class="fair-card">
+        <div class="fair-row"><b>时间</b><span>${FAIR_DATES[city].replace(/^0?(\d+)\/0?(\d+)$/, "$1月$2日")}-上午</span></div>
+        <div class="fair-row"><b>对象</b><span>25-27届全球海归应届生、准毕业生</span></div>
+        <div class="fair-row"><b>形式</b><span>HR 1v1 现场面谈</span></div>
+        <button class="go" type="button" id="goFair">立即投递岗位</button>
+      </div>`
+    : "";
+  box.innerHTML = `<div class="label">本场厅</div>
+    <div class="halls">${cur.halls.map(h =>
+      `<button class="hall ${h === hall ? "on" : ""}" data-hall="${h}">${h}</button>`
+    ).join("")}</div>${fair}`;
+}
+
+document.getElementById("tabs").addEventListener("click", e => {
+  const btn = e.target.closest("[data-track]");
+  if (!btn) return;
+  track = btn.dataset.track;
+  render();
+});
+document.getElementById("grid").addEventListener("click", e => {
+  const btn = e.target.closest("[data-city]");
+  if (!btn) return;
+  city = btn.dataset.city;
+  render();
+});
+document.getElementById("halls").addEventListener("click", e => {
+  if (e.target.closest("#goFair")) {
+    goFair();
+    return;
+  }
+  const btn = e.target.closest("[data-hall]");
+  if (!btn) return;
+  hall = btn.dataset.hall;
+  render();
+});
+document.getElementById("fairGo").addEventListener("click", goFair);
+
+function toast(text) {
+  const el = document.getElementById("toast");
+  el.textContent = text;
+  el.classList.add("on");
+  clearTimeout(toast.t);
+  toast.t = setTimeout(() => el.classList.remove("on"), 1400);
+}
+document.getElementById("copy").addEventListener("click", () => {
+  const text = document.getElementById("addr").textContent;
+  if (navigator.clipboard) navigator.clipboard.writeText(text).catch(() => {});
+  toast("地址已复制");
+});
+document.getElementById("shareBtn").addEventListener("click", () => toast("分享海报已生成"));
+document.getElementById("bookBtn").addEventListener("click", () => {
+  document.getElementById("bookSheet").classList.add("on");
+});
+document.getElementById("bookClose").addEventListener("click", () => {
+  document.getElementById("bookSheet").classList.remove("on");
+});
+document.getElementById("bookSheet").addEventListener("click", e => {
+  if (e.target.id === "bookSheet") e.target.classList.remove("on");
+});
+
+(function () {
+  const phone = document.querySelector(".phone");
+  const side = document.getElementById("side");
+  const place = document.querySelector(".place");
+  let drag = null;
+
+  function bounds() {
+    return phone.getBoundingClientRect();
+  }
+  function snap(y) {
+    const p = bounds();
+    const leftSide = (parseFloat(side.style.left) || 0) + side.offsetWidth / 2 < p.width / 2;
+    side.classList.toggle("left", leftSide);
+    place.classList.toggle("dock-left", leftSide);
+    side.style.left = leftSide ? "0px" : (p.width - side.offsetWidth) + "px";
+    const maxY = p.height - side.offsetHeight - 12;
+    side.style.top = Math.max(88, Math.min(maxY, y)) + "px";
+    side.style.right = "auto";
+    side.style.bottom = "auto";
+  }
+
+  side.addEventListener("pointerdown", e => {
+    if (e.button) return;
+    const r = side.getBoundingClientRect();
+    const p = bounds();
+    drag = {
+      id: e.pointerId,
+      dx: e.clientX - r.left,
+      dy: e.clientY - r.top,
+      x0: e.clientX,
+      y0: e.clientY,
+      moved: false
+    };
+    side.classList.add("dragging");
+    try { side.setPointerCapture(e.pointerId); } catch (err) {}
+  });
+  side.addEventListener("pointermove", e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    if (Math.hypot(e.clientX - drag.x0, e.clientY - drag.y0) > 8) drag.moved = true;
+    if (!drag.moved) return;
+    const p = bounds();
+    let x = e.clientX - p.left - drag.dx;
+    let y = e.clientY - p.top - drag.dy;
+    x = Math.max(0, Math.min(p.width - side.offsetWidth, x));
+    y = Math.max(88, Math.min(p.height - side.offsetHeight - 8, y));
+    side.style.left = x + "px";
+    side.style.top = y + "px";
+    side.style.right = "auto";
+    side.style.bottom = "auto";
+    const leftSide = x + side.offsetWidth / 2 < p.width / 2;
+    side.classList.toggle("left", leftSide);
+    place.classList.toggle("dock-left", leftSide);
+  });
+  function end(e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    const moved = drag.moved;
+    const y = parseFloat(side.style.top) || (side.getBoundingClientRect().top - bounds().top);
+    drag = null;
+    side.classList.remove("dragging");
+    if (moved) {
+      snap(y);
+      side.dataset.skipClick = "1";
+    }
+  }
+  side.addEventListener("pointerup", end);
+  side.addEventListener("pointercancel", end);
+  side.addEventListener("click", e => {
+    if (side.dataset.skipClick === "1") {
+      e.preventDefault();
+      e.stopPropagation();
+      side.dataset.skipClick = "";
+    }
+  }, true);
+})();
+
+render();
+</script>
+</body>
+</html>
