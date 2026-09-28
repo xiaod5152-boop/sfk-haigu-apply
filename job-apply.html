@@ -1,0 +1,2879 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国海归艺术创意人才专场招聘会</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    background: #EDEDED;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 24px 12px 40px;
+    color: #1A1A1A;
+  }
+  .phone {
+    position: relative;
+    width: 390px;
+    height: 844px;
+    background: #F6F6F6;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0,0,0,.1);
+  }
+  .status {
+    height: 44px; background: #fff;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    padding: 0 16px 6px; font-size: 13px; font-weight: 600; flex-shrink: 0;
+  }
+  .nav {
+    height: 44px; background: #fff; display: flex; align-items: center;
+    justify-content: center; font-size: 16px; font-weight: 600;
+    position: relative; border-bottom: 1px solid #F0F0F0; flex-shrink: 0;
+  }
+  .nav.long {
+    height: 48px;
+    font-size: 12px;
+  }
+  .nav.long #navTitle {
+    max-width: 220px;
+    text-align: center;
+    line-height: 1.25;
+  }
+  .nav .back {
+    position: absolute; left: 10px; border: 0; background: none;
+    font-size: 22px; cursor: pointer;
+  }
+  .nav .cap {
+    position: absolute; right: 12px; width: 84px; height: 30px;
+    border: 1px solid #E5E5E5; border-radius: 15px;
+  }
+  .screen { display: none; flex: 1; overflow: auto; padding-bottom: 20px; }
+  .screen.on { display: block; }
+  .hero {
+    position: relative;
+    height: 186px;
+    overflow: hidden;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .hero.inner {
+    height: 196px;
+  }
+  .hero-copy .pass.long {
+    font-size: 13px;
+    padding: 6px 14px;
+  }
+  body.inner-ch #innerChannel .b-info .field.only-inner {
+    display: block !important;
+  }
+  .hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 28%;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20,12,24,.08) 0%, rgba(255,79,160,.5) 100%);
+  }
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 20px 20px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+  }
+  .hero-copy em {
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    line-height: 1.4;
+    text-shadow: 0 1px 8px rgba(80,20,50,.35);
+  }
+  .hero-copy h1 {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    line-height: 1.4;
+    text-shadow: 0 2px 12px rgba(80,20,50,.4);
+  }
+  .hero.inner .hero-copy em {
+    display: block;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: .4px;
+  }
+  .hero.inner .hero-copy h1,
+  .hero.inner .hero-copy h1.long {
+    font-size: 13px;
+    letter-spacing: 0;
+    max-width: none;
+    white-space: nowrap;
+    background: #fff;
+    color: #FF2D8A;
+    text-shadow: none;
+    border-radius: 10px;
+    padding: 8px 12px;
+    box-shadow: 0 4px 12px rgba(80,20,50,.16);
+  }
+  .hero-copy .pass {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    border: 0;
+    border-radius: 99px;
+    padding: 5px 14px;
+    background: #fff;
+    color: #FF2D8A;
+  }
+  .about {
+    margin: 12px 32px 0;
+    background: linear-gradient(180deg, #EEF4FF 0%, #F6EAFF 100%);
+    border-radius: 14px;
+    padding: 14px 12px 14px;
+    scroll-margin-top: 8px;
+  }
+  .hl-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #1A1A1A;
+  }
+  .hl-title i {
+    display: block;
+    width: 36px;
+    height: 4px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #C4B5FD, #F0ABFC);
+  }
+  .hl-title i:first-child {
+    background: linear-gradient(90deg, #F0ABFC, #C4B5FD);
+  }
+  .hl-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .hl-list p {
+    margin: 0;
+    padding: 11px 12px;
+    border-radius: 99px;
+    background: rgba(255,255,255,.92);
+    box-shadow: 0 2px 8px rgba(90,60,140,.06);
+    font-size: 12px;
+    font-weight: 800;
+    color: #1A1A1A;
+    text-align: center;
+    line-height: 1.45;
+  }
+  .iv-entry {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    padding-top: 10px;
+    border: 0;
+    border-top: 1px dashed #F3C2DA;
+    background: none;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: #FF2D8A;
+    text-align: center;
+    cursor: pointer;
+  }
+  .card { background: #fff; margin: 12px 32px 0; border-radius: 12px; padding: 4px 16px 8px; }
+  .card h3 { font-size: 16px; font-weight: 700; padding: 14px 0 2px; }
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 2px 0;
+    border-bottom: 1px solid #F2F2F2;
+  }
+  .row:last-child { border-bottom: 0; }
+  .row > span {
+    flex: 0 0 40px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #555;
+  }
+  .row input {
+    flex: 1;
+    min-width: 0;
+    height: 36px;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    padding: 0 10px;
+    font: inherit;
+    font-size: 14px;
+    background: #fff;
+    outline: none;
+    white-space: nowrap;
+  }
+  .row input:focus {
+    border-color: #FF4FA0;
+    box-shadow: 0 0 0 3px rgba(255,79,160,.12);
+  }
+  .row.duo {
+    display: grid;
+    grid-template-columns: 40px 1fr 40px 1fr;
+    gap: 8px 12px;
+  }
+  .opts {
+    display: grid;
+    flex: 1;
+    gap: 6px;
+  }
+  .opts.g5 { grid-template-columns: repeat(5, 1fr); }
+  .opts.g4 { grid-template-columns: repeat(4, 1fr); }
+  .opts.g3 { grid-template-columns: repeat(3, 1fr); }
+  .opts.g2 { grid-template-columns: repeat(2, 1fr); }
+  .opts.wrap {
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: none;
+  }
+  .opts.wrap .chip {
+    height: auto;
+    min-height: 32px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  .opts.stack { grid-template-columns: 1fr; }
+  .opts.stack .chip, .opts.g2 .chip, .opts.g3 .chip {
+    height: auto;
+    min-height: 34px;
+    padding: 6px 6px;
+    font-size: 12px;
+    line-height: 1.3;
+    white-space: normal;
+  }
+  #want .chip {
+    white-space: nowrap;
+    padding: 6px 4px;
+    font-size: 12px;
+    line-height: 1;
+  }
+  .dir-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    padding: 4px;
+    margin: 0 0 10px;
+    background: #fff;
+    border: 1px solid #F3C2DA;
+    border-radius: 12px;
+  }
+  .dir-tabs button {
+    height: 32px;
+    border: 0;
+    background: transparent;
+    border-radius: 8px;
+    padding: 0 4px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    color: #888;
+    cursor: pointer;
+  }
+  .dir-tabs button.on {
+    background: #FF2D8A;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(255,45,138,.25);
+  }
+  .dir-sub {
+    background: #fff;
+    border: 1px solid #F0F0F0;
+    border-radius: 10px;
+    padding: 8px;
+  }
+  .dir-group { display: none; }
+  .dir-group.on { display: block; }
+  .dir-sub .chip,
+  .dir-sub .opts.g2 .chip,
+  .dir-sub .opts.g3 .chip {
+    height: auto;
+    min-height: 32px;
+    border: 0;
+    background: #F7F7F8;
+    border-radius: 99px;
+    padding: 6px 10px 6px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #444;
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    white-space: normal;
+    line-height: 1.35;
+    word-break: keep-all;
+    line-break: strict;
+    overflow-wrap: normal;
+  }
+  .dir-sub .chip > span {
+    flex: 1;
+    min-width: 0;
+    word-break: keep-all;
+  }
+  .dir-sub .chip::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    margin-top: 2px;
+    border: 1.5px solid #C9C9C9;
+    border-radius: 4px;
+    background: #fff;
+    box-sizing: border-box;
+  }
+  .dir-sub .chip.on {
+    background: #FFF0F6;
+    color: #C2186A;
+    font-weight: 700;
+  }
+  .dir-sub .chip.on::before {
+    border-color: #FF2D8A;
+    background: #FF2D8A url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M2.5 6.2l2.4 2.4 4.6-5' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/10px no-repeat;
+  }
+  .picked {
+    margin-top: 10px;
+    background: #fff;
+    border: 1px solid #F3C2DA;
+    border-radius: 12px;
+    padding: 10px 12px;
+    min-height: 44px;
+  }
+  .picked-lab {
+    display: block;
+    font-size: 12px;
+    font-weight: 800;
+    color: #FF2D8A;
+    margin-bottom: 6px;
+  }
+  .picked-lab em {
+    font-style: normal;
+    font-weight: 600;
+    color: #FF4FA0;
+    margin-left: 4px;
+  }
+  .picked-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-height: 24px;
+  }
+  .picked-list em {
+    font-style: normal;
+    font-size: 12px;
+    color: #C9A0B4;
+  }
+  .picked-list button {
+    border: 0;
+    background: #FFF0F6;
+    color: #C2186A;
+    border-radius: 99px;
+    padding: 4px 8px 4px 10px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .picked-list button i {
+    font-style: normal;
+    margin-left: 4px;
+    color: #FF4FA0;
+  }
+  .edu-filter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .edu-filter button {
+    height: 36px;
+    border: 1px solid #E4D4F5;
+    background: #fff;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: #555;
+    cursor: pointer;
+  }
+  .edu-filter button.wide {
+    grid-column: 1 / -1;
+    font-size: 12px;
+  }
+  .edu-filter button.on {
+    border-color: #7C3AED;
+    background: #F3E8FF;
+    color: #6D28D9;
+  }
+  .field.tint {
+    border-bottom: 0;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 0 0 8px;
+  }
+  .edu-pack {
+    background: #F3EEFF;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 0 0 8px;
+  }
+  .edu-pack.pg { background: #EEF6FF; }
+  .edu-pack.ot { background: #F4F4F5; }
+  .edu-pack .subhead {
+    margin: 0 0 10px;
+    color: #6D28D9;
+    font-size: 13px;
+  }
+  .edu-pack.pg .subhead { color: #1A6BB5; }
+  .edu-pack .field,
+  .edu-pack .field.tint {
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 8px;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+  }
+  .edu-pack .field:last-child,
+  .edu-pack .field.tint:last-child { margin-bottom: 0; }
+  .edu-pack .lab,
+  .edu-pack .field.tint .lab {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: #555;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+  .edu-pack .subhead em {
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 600;
+    color: #A78BFA;
+    margin-left: 6px;
+  }
+  .edu-pack.pg .subhead em { color: #7AB0DC; }
+  .edu-pack.ot .subhead { color: #555; }
+  .edu-pack.ot .subhead em { color: #999; }
+  #otLv {
+    display: flex;
+    grid-template-columns: none;
+    min-width: 0;
+  }
+  #otLv .chip {
+    flex: 1;
+    height: 32px;
+    min-height: 32px;
+    padding: 0 4px;
+    font-size: 12px;
+    line-height: 32px;
+    white-space: nowrap;
+  }
+  .field.tint-name { background: #EEF6FF; }
+  .field.tint-teacher { background: #FFF0F6; }
+  .field.tint-alumni { background: #FFF8E8; }
+  .field.tint-campus { background: #EEF8F3; }
+  .field.tint-fair { background: #EEF0FF; }
+  .field.tint-mode { background: #FFF4E8; }
+  .field.tint-phone { background: #F3EEFF; }
+  .field.tint-mail { background: #F3FBFF; }
+  .field.tint-edu { background: #F3EEFF; }
+  .field.tint-nation { background: #EEF8F3; }
+  .field.tint-school { background: #EEF6FF; }
+  .field.tint-major { background: #FFF0F6; }
+  .field.tint-dates { background: #FFF8E8; }
+  .field.tint-other { background: #F4F4F5; }
+  .field.tint-want { background: #FFF0F6; }
+  .field.tint-dir { background: #FFF4E8; }
+  .field.tint-city { background: #EEF8F3; }
+  .field.tint-pay { background: #F3EEFF; }
+  .field.tint-arrive { background: #EEF6FF; }
+  .field.tint-intern { background: #FFF8E8; }
+  .field.tint-artist { background: #F4F4F5; }
+  .field.tint-file { background: #F3FBFF; }
+  .field.tint-want .lab,
+  .field.tint-teacher .lab,
+  .field.tint-major .lab { color: #C2186A; }
+  .field.tint-dir .lab,
+  .field.tint-mode .lab { color: #C56A12; }
+  .field.tint-campus .lab,
+  .field.tint-nation .lab { color: #1B7A52; }
+  .field.tint-fair .lab { color: #3B5BDB; }
+  .field.tint-name .lab,
+  .field.tint-school .lab,
+  .field.tint-arrive .lab { color: #1A6BB5; }
+  .field.tint-phone .lab,
+  .field.tint-edu .lab,
+  .field.tint-pay .lab { color: #6B3CC4; }
+  .field.tint-dates .lab,
+  .field.tint-intern .lab { color: #A16800; }
+  .field.tint-mail .lab { color: #1A6BB5; }
+  .field.tint-other .lab,
+  .field.tint-artist .lab { color: #555; }
+  .field .lab {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .field .lab em {
+    font-style: normal;
+    font-weight: 500;
+    color: #999;
+    font-size: 11px;
+    margin-left: 4px;
+  }
+  .field > input, .field > select, .field textarea {
+    width: 100%;
+    height: 36px;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    padding: 0 10px;
+    font: inherit;
+    font-size: 14px;
+    background: #fff;
+    outline: none;
+  }
+  .field textarea { height: 64px; padding: 8px 10px; resize: none; }
+  .field > input:focus, .field > select:focus, .field textarea:focus {
+    border-color: #FF4FA0;
+    box-shadow: 0 0 0 3px rgba(255,79,160,.12);
+  }
+  .field .err { border-color: #F87171 !important; }
+  .dates {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dates input { flex: 1; min-width: 0; height: 36px; border: 1px solid #D8D8D8; border-radius: 8px; padding: 0 8px; font: inherit; font-size: 13px; }
+  .dates i { font-style: normal; color: #999; font-size: 12px; flex-shrink: 0; }
+  .subhead {
+    font-size: 12px;
+    font-weight: 800;
+    color: #888;
+    margin: 10px 0 6px;
+  }
+  .pick-full {
+    width: 100%;
+    min-width: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid #D8D8D8;
+    background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>") no-repeat right 10px center;
+    border-radius: 8px;
+    padding: 8px 28px 8px 12px;
+    font: inherit;
+    font-size: 14px;
+    color: #333;
+    height: 36px;
+  }
+  .b-edu {
+    background:
+      radial-gradient(circle at 8% -10%, rgba(167,139,250,.28), transparent 44%),
+      linear-gradient(180deg, #F3E8FF 0%, #FAF5FF 100%);
+    padding: 12px;
+  }
+  .b-edu .mark { color: #6D28D9; margin-bottom: 10px; }
+  .field .link {
+    margin: 0;
+    width: 100%;
+    max-width: none;
+    display: block;
+  }
+  .opts.wrap .subhead { flex: 1 0 100%; margin: 10px 0 4px; }
+  .chip {
+    height: 32px;
+    border: 1px solid #D8D8D8;
+    background: #fff;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #555;
+    cursor: pointer;
+  }
+  .chip.on {
+    border-color: #FF4FA0;
+    color: #FF4FA0;
+    background: #FFF0F6;
+    font-weight: 600;
+  }
+  .link {
+    margin-left: auto;
+    border: 1px dashed #FF4FA0;
+    background: #FFF7FA;
+    color: #FF4FA0;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    max-width: 180px;
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .val {
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .block {
+    margin: 10px 32px 0;
+    border-radius: 12px;
+    padding: 12px 12px 14px;
+    position: relative;
+    overflow: hidden;
+    scroll-margin-top: 16px;
+  }
+  .block .mark {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .b-info {
+    background:
+      radial-gradient(circle at 12% -8%, rgba(56,189,248,.32), transparent 42%),
+      linear-gradient(180deg, #DFF6FF 0%, #F3FBFF 100%);
+    padding: 12px;
+  }
+  .b-info .mark { color: #0369A1; margin-bottom: 10px; }
+  .b-info .sheet { padding: 8px 14px 12px; }
+  #innerChannel .b-info .sheet { padding: 8px; }
+  #innerChannel .b-info .field.tint {
+    display: block;
+    padding: 10px;
+    margin: 0 0 6px;
+    border-radius: 10px;
+  }
+  #innerChannel .b-info .field.tint[hidden],
+  #innerChannel .b-info .field.only-inner.off {
+    display: none !important;
+  }
+  body.inner-ch #innerChannel .b-info .field.only-inner {
+    display: block !important;
+  }
+  #innerChannel .b-info .field.tint .lab {
+    display: block;
+    margin: 0 0 8px;
+    width: auto;
+    font-size: 12px;
+    line-height: 1.35;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    pointer-events: none;
+  }
+  #innerChannel .b-info .field.tint-teacher .lab,
+  #innerChannel .b-info .field.tint-mail .lab,
+  #innerChannel .b-info .field.tint-alumni .lab {
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+  #innerChannel .b-info .field.tint .lab em {
+    display: inline;
+    font-style: normal;
+    font-weight: 600;
+    color: #888;
+    margin-left: 4px;
+  }
+  #innerChannel .b-info .field > input,
+  #innerChannel .b-info .pick-full {
+    width: 100%;
+    height: 32px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+  }
+  #innerChannel .b-info .opts {
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+  }
+  #innerChannel .b-info .opts.g2 .chip {
+    min-height: 32px;
+    padding: 0 4px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #innerChannel .b-info .field.tint.tint-fair,
+  #innerChannel .b-info .field.tint.tint-mode {
+    display: block;
+    padding: 10px;
+  }
+  #innerChannel .b-info .field.tint.tint-fair .lab,
+  #innerChannel .b-info .field.tint.tint-mode .lab {
+    display: block;
+    width: auto;
+    margin: 0 0 8px;
+  }
+  #fairCity {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  #fairCity .chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    min-height: 48px;
+    padding: 6px 2px 5px;
+    line-height: 1.2;
+    border-radius: 10px;
+  }
+  #fairCity .chip b {
+    font-size: 12px;
+    font-weight: 800;
+  }
+  #fairCity .chip em {
+    font-style: normal;
+    margin-top: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #3B5BDB;
+  }
+  #fairCity .chip.on em { color: inherit; }
+  .spot {
+    margin-top: 8px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(59,91,219,.08);
+  }
+  .spot-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 12px 8px;
+    background: linear-gradient(90deg, #EEF0FF, #F7F8FF);
+  }
+  .spot-head strong {
+    font-size: 16px;
+    font-weight: 800;
+    color: #3B5BDB;
+  }
+  .spot-head em {
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 800;
+    color: #FF2D8A;
+    white-space: nowrap;
+  }
+  .spot-addr {
+    display: flex;
+    gap: 10px;
+    padding: 10px 12px 12px;
+    align-items: center;
+  }
+  .spot-addr p {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: #222;
+    line-height: 1.45;
+  }
+  .spot-nav {
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 10px;
+    background: #FF2D8A;
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 0;
+  }
+  .spot-nav svg { display: block; }
+  .city-h {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 800;
+    color: #888;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+  .wish-row {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr);
+    align-items: start;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  #wishCity .wish-row:first-child { margin-top: 0; }
+  .wish-row .city-h { padding-top: 12px; }
+  #cityOther {
+    margin: 0;
+    width: 100%;
+    height: 36px;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    padding: 0 12px;
+    font: inherit;
+    font-size: 13px;
+    background: #fff;
+  }
+  #wishOs {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  #wishOs .chip {
+    height: 36px;
+    min-height: 36px;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .msel { position: relative; }
+  .msel-btn {
+    width: 100%;
+    min-height: 36px;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>") no-repeat right 10px center;
+    padding: 8px 28px 8px 12px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    text-align: left;
+    line-height: 1.35;
+    cursor: pointer;
+  }
+  .msel.open .msel-btn { border-color: #FF4FA0; }
+  .msel-btn em {
+    font-style: normal;
+    font-weight: 600;
+    color: #AAA;
+  }
+  .msel-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 4px);
+    z-index: 24;
+    max-height: 220px;
+    overflow: auto;
+    padding: 6px;
+    background: #fff;
+    border: 1px solid #EEE;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+  .msel.open .msel-menu { display: grid; }
+  .msel-menu button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    border: 0;
+    background: none;
+    border-radius: 8px;
+    padding: 0 8px;
+    font: inherit;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+    text-align: left;
+  }
+  .msel-menu button::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    border: 1.5px solid #C9C9C9;
+    border-radius: 4px;
+    background: #fff;
+  }
+  .msel-menu button.on {
+    background: #FFF0F6;
+    color: #C2186A;
+    font-weight: 700;
+  }
+  .msel-menu button.on::before {
+    border-color: #FF2D8A;
+    box-shadow: inset 0 0 0 2px #fff;
+    background: #FF2D8A;
+  }
+  .b-info .row { min-height: 52px; padding: 8px 0; }
+  .b-info .row.tint { padding: 10px 12px; }
+  .b-info .row > span { flex: 0 0 44px; }
+  .row.tint {
+    border-bottom: 0;
+    border-radius: 10px;
+    margin: 0 0 8px;
+    align-items: center;
+  }
+  .row.tint:last-child { margin-bottom: 0; }
+  .row.tint-name { background: #EEF6FF; }
+  .row.tint-school { background: #EEF8F3; }
+  .row.tint-major { background: #FFF0F6; }
+  .row.tint-grade { background: #F3EEFF; }
+  .row.tint-intern { background: #FFF8E8; }
+  .row.tint-file { background: #F3FBFF; }
+  .row.tint-phone { background: #F3EEFF; }
+  .row.tint-name > span { color: #1A6BB5; }
+  .row.tint-school > span { color: #1B7A52; }
+  .row.tint-major > span { color: #C2186A; }
+  .row.tint-grade > span { color: #6B3CC4; }
+  .row.tint-intern > span { color: #A16800; }
+  .row.tint-file > span { color: #1A6BB5; }
+  .row.tint-phone > span { color: #6B3CC4; }
+  .sec.tint {
+    border-top: 0;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 0 0 8px;
+  }
+  .sec.tint:last-child { margin-bottom: 0; }
+  .sec.tint-ind { background: #FFF0F6; }
+  .sec.tint-co { background: #FFF4E8; }
+  .sec.tint-job { background: #EEF8F3; }
+  .sec.tint-ind .sec-h { color: #C2186A; }
+  .sec.tint-co .sec-h { color: #C56A12; }
+  .sec.tint-job .sec-h { color: #1B7A52; }
+  .b-info .link {
+    flex: 1;
+    margin: 0;
+    height: 36px;
+    width: 100%;
+    max-width: none;
+  }
+  .b-info .val {
+    flex: 1;
+    margin: 0;
+    height: 36px;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 500;
+    background: #FAFAFA;
+    color: #333;
+  }
+  .sheet {
+    position: relative;
+    z-index: 1;
+    background: rgba(255,255,255,.92);
+    border-radius: 10px;
+    padding: 4px 14px 10px;
+  }
+  .line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 6px 0;
+    border-bottom: 1px solid #F2F2F2;
+  }
+  .line .lab {
+    flex: 0 0 72px;
+    width: 72px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #555;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .line .opts, .line .tabs { flex: 1; min-width: 0; }
+  .chip, .tab { white-space: nowrap; }
+  .sec {
+    padding: 12px 0 4px;
+    border-top: 1px solid #F2F2F2;
+  }
+  .sec-h {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  .b-wish {
+    background:
+      radial-gradient(circle at 90% -12%, rgba(251,146,60,.30), transparent 44%),
+      linear-gradient(180deg, #FFE8D6 0%, #FFF7F0 100%);
+    padding: 12px;
+  }
+  .b-wish .mark { color: #C2410C; margin-bottom: 10px; }
+  .b-info .mark { margin-bottom: 10px; }
+  .job-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .city-pick {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid #D8D8D8;
+    background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>") no-repeat right 10px center;
+    border-radius: 8px;
+    padding: 8px 28px 8px 12px;
+    font: inherit;
+    font-size: 13px;
+    color: #333;
+    min-width: 96px;
+    cursor: pointer;
+  }
+  .city-pick:focus {
+    border-color: #FF4FA0;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255,79,160,.12);
+  }
+  .tabs { display: flex; gap: 8px; width: 100%; }
+  .tab {
+    flex: 1;
+    border: 0;
+    background: #FF2D8A;
+    color: #fff;
+    border-radius: 999px;
+    padding: 12px 4px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    opacity: .42;
+  }
+  .tab.on { opacity: 1; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; position: relative; z-index: 1; }
+  .cell {
+    border: 1px solid #D8D8D8; background: #fff; padding: 10px 6px;
+    text-align: center; cursor: pointer; border-radius: 8px;
+    min-height: 40px;
+  }
+  .cell .n { display: block; font-size: 13px; color: #666; line-height: 1.3; }
+  .cell.on { background: #FF4FA0; border-color: #FF4FA0; }
+  .cell.on .n { color: #fff; }
+  .sub { font-size: 12px; color: #999; margin: 12px 0 8px; }
+  .phone-row {
+    display: flex; gap: 8px; align-items: center;
+    border: 1px solid #EEE; border-radius: 8px; padding: 10px 12px;
+  }
+  .phone-row span { color: #999; font-size: 13px; }
+  .phone-row b { font-size: 14px; }
+  .btn {
+    display: block; width: calc(100% - 32px); margin: 14px 16px 0;
+    background: #FF4FA0; color: #fff; border: 0; border-radius: 10px;
+    height: 44px; font-size: 15px; font-weight: 700; cursor: pointer;
+  }
+  .btn.ghost {
+    background: #fff;
+    color: #FF2D8A;
+    border: 1.5px solid #FF2D8A;
+  }
+  .dock .btn { width: 100%; margin: 0; font-size: 14px; }
+  .btn.long {
+    height: auto;
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+  .hint { text-align: center; font-size: 11px; color: #AAA; margin: 10px 16px 0; line-height: 1.5; }
+  .load { padding: 90px 28px 0; text-align: center; }
+  .ring {
+    width: 64px; height: 64px; margin: 0 auto 16px;
+    border: 4px solid #FFE0EE; border-top-color: #FF4FA0;
+    border-radius: 50%; animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  #pass { padding-bottom: 12px; }
+  .ticket {
+    position: relative;
+    margin: 16px 32px 0;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(40,16,32,.1);
+  }
+  .ticket-top {
+    padding: 16px 16px 14px;
+    background: linear-gradient(135deg, #FF2D8A 0%, #FF6BB3 100%);
+    color: #fff;
+    text-align: left;
+  }
+  .ticket-top .k {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    opacity: .9;
+  }
+  .ticket-top h3 {
+    margin: 6px 0 0;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+  .ticket-stamp {
+    position: absolute;
+    top: 16px;
+    right: 14px;
+    width: 54px;
+    height: 54px;
+    border: 2px solid rgba(255,255,255,.95);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transform: rotate(-12deg);
+    background: rgba(255,255,255,.12);
+  }
+  .ticket-cut {
+    height: 14px;
+    background:
+      radial-gradient(circle at 0 50%, #F6F6F6 7px, transparent 8px),
+      radial-gradient(circle at 100% 50%, #F6F6F6 7px, transparent 8px),
+      repeating-linear-gradient(90deg, #E5E5E5 0 6px, transparent 6px 12px);
+    background-color: #fff;
+    background-repeat: no-repeat, no-repeat, repeat-x;
+    background-position: left center, right center, center;
+    background-size: 14px 14px, 14px 14px, 100% 1px;
+  }
+  .ticket-body { padding: 14px 16px 8px; text-align: left; }
+  .ticket-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .ticket-row .lab {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #999;
+    margin-bottom: 4px;
+  }
+  .ticket-row b {
+    font-size: 15px;
+    font-weight: 800;
+    color: #1A1A1A;
+  }
+  .ticket-note {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #555;
+    line-height: 1.5;
+  }
+  .ticket-note em {
+    font-style: normal;
+    color: #FF2D8A;
+    font-weight: 800;
+  }
+  .ticket-addr {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 10px;
+    background: #F7F8FA;
+    border-radius: 8px;
+    text-align: left;
+  }
+  .ticket-addr .txt { flex: 1; min-width: 0; }
+  .ticket-addr span {
+    display: block;
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 4px;
+  }
+  .ticket-addr p {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: #222;
+    line-height: 1.45;
+  }
+  .ticket-addr .spot-nav {
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 10px;
+    background: #FF2D8A;
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 0;
+  }
+  .ticket-addr .spot-nav svg { display: block; }
+  .ticket-foot {
+    margin: 12px 16px 14px;
+    padding-top: 10px;
+    border-top: 1px dashed #E6E6E6;
+    font-size: 12px;
+    font-weight: 700;
+    color: #888;
+    text-align: center;
+  }
+  .ticket-foot b { color: #FF2D8A; }
+  .ok {
+    width: 56px; height: 56px; margin: 0 auto 12px; border-radius: 50%;
+    background: #3DDC84; color: #fff; display: grid; place-items: center; font-size: 28px;
+  }
+  .fail {
+    width: 56px; height: 56px; margin: 28px auto 12px; border-radius: 50%;
+    background: #F3F3F3; color: #888; display: grid; place-items: center; font-size: 22px;
+  }
+  .sms {
+    background: #F7F7F7; border-radius: 10px; padding: 12px;
+    font-size: 12px; line-height: 1.7; color: #555; margin-top: 10px; text-align: left;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .sms b { display: block; font-weight: 800; color: #1A1A1A; margin-bottom: 6px; }
+  .sms .hit {
+    color: #FF2D8A;
+    font-weight: 800;
+    background: #FFF0F6;
+    border-radius: 4px;
+    padding: 0 3px;
+    white-space: nowrap;
+  }
+  .inner {
+    position: relative;
+    z-index: 1;
+    margin-top: 8px;
+    background: #F3F3F3;
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+  .inner .k { font-size: 11px; color: #AAA; margin-bottom: 4px; font-weight: 400; }
+  .inner p { font-size: 12px; color: #888; line-height: 1.65; font-weight: 400; }
+  .jobs { display: flex; flex-direction: column; gap: 6px; position: relative; z-index: 1; }
+  .job {
+    width: 100%;
+    border: 1px solid #D8D8D8;
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px 14px;
+    text-align: left;
+    cursor: pointer;
+  }
+  .job .n { display: block; font-size: 13px; font-weight: 600; color: #222; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .job .d { display: block; font-size: 11px; color: #999; margin-top: 2px; }
+  .job.on { border-color: #FF4FA0; background: #FFF0F6; }
+  .job.on .n { color: #FF4FA0; }
+  .dock {
+    display: none;
+    flex-shrink: 0;
+    background: #fff;
+    padding: 8px 16px 12px;
+    border-top: 1px solid #F0F0F0;
+  }
+  .dock.on { display: block; }
+  .dock-acts {
+    display: block;
+  }
+  .dock-acts .btn { width: 100%; }
+  .dock-tip {
+    margin: 0 0 8px;
+  }
+  #innerChannel .b-info .link {
+    margin: 0;
+    width: 100%;
+    height: 32px;
+    max-width: none;
+  }
+  .info-act {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .act-hint, .dock-tip, .note-line {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 600;
+    color: #888;
+    line-height: 1.4;
+    text-align: center;
+  }
+  .note-line { margin: 8px 0 4px; }
+  .dock-tip { margin: 0 0 8px; }
+  #innerChannel .b-info .field.tint-file .lab { color: #1A6BB5; }
+  .need::after {
+    content: "*";
+    color: #FF2D8A;
+    margin-left: 2px;
+    font-weight: 800;
+  }
+  .b-info .mark em {
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF2D8A;
+    margin-left: 6px;
+  }
+  .iv-tip {
+    margin: 0 0 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #FFF4E8;
+    color: #C56A12;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .btn-mini {
+    height: 34px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 8px;
+    background: #FF4FA0;
+    color: #fff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-mini:disabled { background: #F3C2DA; }
+  .pop {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 18px;
+  }
+  .pop.on { display: flex; }
+  .pop-mask {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 12, 18, .46);
+  }
+  .pop-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    background: #fff;
+    border-radius: 16px;
+    padding: 22px 16px 16px;
+    text-align: center;
+  }
+  .pop-card .ok, .pop-card .fail, .pop-card .ring { margin: 0 auto 12px; }
+  .pop-card h3 { font-size: 18px; font-weight: 800; }
+  .pop-card .desc { font-size: 13px; color: #888; margin-top: 6px; line-height: 1.5; }
+  .pop-card .sms { margin-top: 12px; }
+  .pop-card .btn { width: 100%; margin: 14px 0 0; }
+  .keep-acts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .keep-acts .btn { width: 100%; margin: 0; }
+  .pop-load h3 { margin-top: 4px; font-size: 16px; }
+  .rail {
+    display: none;
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-42%);
+    z-index: 50;
+    flex-direction: column;
+    gap: 6px;
+    pointer-events: none;
+  }
+  .rail.on { display: flex !important; }
+  #book { padding: 12px 32px 28px; }
+  .book-pack {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(40,16,32,.1);
+    position: relative;
+  }
+  .book-pack .ticket-top {
+    padding: 16px 64px 14px 16px;
+  }
+  .book-pack .ticket-top h3 {
+    font-size: 13px;
+    letter-spacing: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .book-pack .ticket-stamp {
+    z-index: 1;
+    width: 48px;
+    height: 48px;
+    font-size: 11px;
+    top: 14px;
+    right: 10px;
+  }
+  .book-pack .ticket-cut {
+    background-color: #fff;
+    background-image:
+      radial-gradient(circle at 0 50%, #F6F6F6 7px, transparent 8px),
+      radial-gradient(circle at 100% 50%, #F6F6F6 7px, transparent 8px),
+      repeating-linear-gradient(90deg, #E5E5E5 0 6px, transparent 6px 12px);
+  }
+  .book-pack .book-tb .book-sec td {
+    padding: 12px 12px 6px;
+    font-size: 12px;
+    font-weight: 800;
+    border-bottom: 0;
+  }
+  .book-pack .book-tb .book-sec.meet td { color: #FF2D8A; }
+  .book-pack .book-tb .book-sec.info td { color: #0369A1; }
+  .book-pack .book-tb .book-sec.edu td { color: #6D28D9; }
+  .book-pack .book-tb .book-sec.wish td { color: #C2410C; }
+  .book-pack .book-tb .book-tip td {
+    padding: 4px 12px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #555;
+    line-height: 1.5;
+  }
+  .book-pack .book-tb .book-tip em {
+    font-style: normal;
+    color: #FF2D8A;
+    font-weight: 800;
+  }
+  .book-pack .book-tb .book-addr {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .book-pack .book-tb .book-addr .txt { flex: 1; min-width: 0; }
+  .book-pack .book-tb .book-addr p { margin: 0; }
+  .book-pack .book-tb .spot-nav {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 8px;
+    background: #FF2D8A;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 0;
+  }
+  .sum-hero {
+    margin: 4px 0 12px;
+  }
+  .sum-hero h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #C2186A;
+  }
+  .sum-hero p {
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+  }
+  .sum-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .sum-card h4 {
+    margin: 0;
+    padding: 10px 12px 8px;
+    font-size: 13px;
+    font-weight: 800;
+    border-bottom: 1px solid #F4F4F4;
+  }
+  .sum-card.info h4 { color: #0369A1; }
+  .sum-card.edu h4 { color: #6D28D9; }
+  .sum-card.wish h4 { color: #C2410C; }
+  .sum-card.meet h4 { color: #FF2D8A; }
+  .book-tb {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .book-tb th,
+  .book-tb td {
+    padding: 9px 12px;
+    font-size: 12px;
+    vertical-align: top;
+    border-bottom: 1px solid #F4F4F4;
+  }
+  .book-tb tr:last-child th,
+  .book-tb tr:last-child td { border-bottom: 0; }
+  .book-tb th {
+    width: 86px;
+    font-weight: 700;
+    color: #999;
+    text-align: left;
+  }
+  .book-tb td {
+    font-weight: 800;
+    color: #222;
+    text-align: left;
+    line-height: 1.45;
+    word-break: break-word;
+  }
+  .toast {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 96px;
+    transform: translateX(-50%);
+    z-index: 70;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: rgba(26,26,26,.88);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .toast.on { display: block; }
+  .anchor {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    pointer-events: none;
+  }
+  .anchor button {
+    pointer-events: auto;
+    width: 26px;
+    padding: 8px 0;
+    border: 0;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    font: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    color: #888;
+    line-height: 1.2;
+    letter-spacing: 0;
+    cursor: pointer;
+    text-align: center;
+  }
+  .anchor button.on {
+    background: #FF2D8A;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(255,45,138,.28);
+  }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="status"><span>10:28</span><span>5G</span></div>
+  <div class="nav">
+    <button class="back" id="back" type="button">‹</button>
+    <span id="navTitle">中国海归艺术创意人才专场招聘会</span>
+    <span class="cap"></span>
+  </div>
+
+  <section class="screen on" id="form">
+    <div class="hero">
+      <img src="art-tour-banner.jpg" alt="">
+      <div class="hero-copy">
+        <em id="heroEm">2026 秋招季斯芬克专场 · 企业 HR 1v1</em>
+        <h1 id="heroTitle">中国海归艺术创意人才专场招聘会</h1>
+        <span class="pass" id="heroPass">留学生秋招专属通道</span>
+      </div>
+    </div>
+    <div class="about" id="sec-about">
+      <h3 class="hl-title"><i></i>活动亮点<i></i></h3>
+      <div class="hl-list">
+        <p>头部名企现场设展，简历直达招聘官</p>
+        <p>设计 / 创意 / AIGC / 游戏 等专属岗位</p>
+        <p>全球本硕博海归与名企面对面交流</p>
+      </div>
+    </div>
+    <div id="publicChannel">
+      <div class="block b-info" id="sec-pub-info">
+        <div class="mark">基本信息</div>
+        <div class="sheet">
+          <div class="row tint tint-name"><span>姓名</span><input id="pubName" value="王同学" /></div>
+          <div class="row tint tint-school"><span>院校</span><input id="pubSchool" value="中央美术学院" /></div>
+          <div class="row tint tint-major"><span>专业</span><input id="pubMajor" value="视觉传达" /></div>
+          <div class="row tint tint-grade">
+            <span>年级</span>
+            <div class="opts g5" id="grade">
+              <button class="chip" type="button">大二</button>
+              <button class="chip on" type="button">大三</button>
+              <button class="chip" type="button">大四</button>
+              <button class="chip" type="button">研一</button>
+              <button class="chip" type="button">研二</button>
+            </div>
+          </div>
+          <div class="row tint tint-intern"><span>实习</span><input id="exp" value="新消费视觉实习 3 个月；大广赛优秀奖" /></div>
+          <div class="row tint tint-phone">
+            <span>手机</span>
+            <b class="val">138****8007</b>
+          </div>
+        </div>
+      </div>
+      <div class="block b-wish" id="sec-pub-jobs">
+        <div class="mark">投递岗位</div>
+        <div class="sheet">
+          <div class="sec tint tint-ind">
+            <div class="sec-h">期望行业</div>
+            <div class="tabs" id="tabs"></div>
+          </div>
+          <div class="sec tint tint-co">
+            <div class="sec-h">意向企业</div>
+            <div class="grid" id="cos"></div>
+            <div class="inner">
+              <div class="k">公司介绍</div>
+              <p id="introAbout"></p>
+            </div>
+          </div>
+          <div class="sec tint tint-job">
+            <div class="sec-h">
+              <span>热门岗位推荐</span>
+              <select class="city-pick" id="cityPick" aria-label="城市"></select>
+            </div>
+            <div class="jobs" id="jobs"></div>
+            <div class="inner">
+              <div class="k">职位描述</div>
+              <p id="introJd"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="innerChannel" hidden>
+    <div class="block b-info" id="sec-info">
+      <div class="mark">基本信息登记<em>必填</em></div>
+      <div class="sheet">
+        <p class="iv-tip">面试小贴士：请着正装到场，并携带纸质简历与作品集</p>
+        <div class="field tint tint-name"><span class="lab need">学生的姓名全名</span><input id="name" placeholder="请填写全名" value="王乐言" /></div>
+        <div class="field tint tint-phone"><span class="lab need">您的手机号码<em>11位数字</em></span>
+          <input id="phone" type="tel" inputmode="numeric" maxlength="11" placeholder="请填写11位手机号" value="13800138007" />
+        </div>
+        <div class="field tint tint-mail">
+          <span class="lab need">您的邮箱号码<em>务必填写准确，用于后续通知面试结果</em></span>
+          <input id="email" type="email" placeholder="请填写邮箱" value="wangle@example.com" />
+        </div>
+        <div class="field tint tint-teacher only-inner" id="teacherRow"><span class="lab need">推荐您的教务老师全名</span><input id="teacher" placeholder="请填写全名" value="李敏" /></div>
+        <div class="field tint tint-alumni only-inner" id="alumniRow"><span class="lab">【选填】推荐的 SFK 校友全名</span><input id="alumni" placeholder="选填，请填写全名" value="" /></div>
+        <div class="field tint tint-campus only-inner" id="campusRow">
+          <span class="lab need">所在 SFK 校区</span>
+          <select class="pick-full" id="campus">
+            <option>北京CBD</option>
+            <option>北京海淀</option>
+            <option>北京音乐</option>
+            <option>上海设计</option>
+            <option>上海音乐</option>
+            <option>成都</option>
+            <option>杭州</option>
+            <option>广州</option>
+            <option>深圳</option>
+            <option>南京</option>
+            <option>武汉</option>
+            <option>郑州</option>
+            <option>重庆</option>
+            <option>西安</option>
+            <option>苏州</option>
+          </select>
+        </div>
+        <div class="field tint tint-fair">
+          <span class="lab need">参展城市</span>
+          <div class="opts" id="fairCity">
+            <button class="chip" type="button" data-city="上海" data-date="10/24" data-val="上海"><b>上海</b><em>10/24</em></button>
+            <button class="chip on" type="button" data-city="北京" data-date="10/31" data-val="北京"><b>北京</b><em>10/31</em></button>
+            <button class="chip" type="button" data-city="广州" data-date="10/25" data-val="广州"><b>广州</b><em>10/25</em></button>
+            <button class="chip" type="button" data-city="成都" data-date="11/14" data-val="成都"><b>成都</b><em>11/14</em></button>
+          </div>
+          <div class="spot" id="passVenue">
+            <div class="spot-head">
+              <strong id="spotCity">北京站</strong>
+              <em id="spotDate">10月31日 · 上午</em>
+            </div>
+            <div class="spot-addr">
+              <p id="passAddr">北京市朝阳区酒仙桥路4号<br>798艺术中心展厅</p>
+              <button class="spot-nav" id="passNav" type="button" aria-label="导航">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l8.5 18-8.5-4.5L3.5 21 12 3z" fill="#fff"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="field tint tint-mode">
+          <span class="lab need">本次面试您的参与模式<em>请勾选</em></span>
+          <div class="opts g2" id="mode">
+            <button class="chip on" type="button">本人参与</button>
+            <button class="chip" type="button">家长代为参与</button>
+          </div>
+        </div>
+        <p class="note-line" id="noteLine">简历、作品集请携带纸质版，或请教务老师代交</p>
+        <div class="info-act">
+          <p class="act-hint">带 * 为必填，提交后可继续填写</p>
+          <button class="btn-mini" id="submitMini" type="button" disabled>提交基本信息</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="block b-edu" id="sec-edu">
+      <div class="mark">教育背景<em style="font-style:normal;font-size:12px;font-weight:700;color:#A78BFA;margin-left:6px">选填</em></div>
+      <div class="sheet">
+        <div class="field tint tint-edu">
+          <span class="lab">你目前是</span>
+          <div class="edu-filter" id="edu">
+            <button class="on" type="button" data-lv="ug">本科在读</button>
+            <button type="button" data-lv="ug-out">本科已毕业</button>
+            <button type="button" data-lv="pg">硕士在读</button>
+            <button type="button" data-lv="pg-out">硕士已毕业</button>
+            <button class="wide" type="button" data-lv="other">其他 · 专科 / 博士 / 博士后</button>
+          </div>
+        </div>
+        <div id="ugBox" class="edu-pack">
+          <div class="subhead">本科信息<em>选填</em></div>
+          <div class="field"><span class="lab">国家/地区</span><input id="ugNation" value="中国" /></div>
+          <div class="field"><span class="lab">学校全称</span><input id="ugSchool" value="中央美术学院" /></div>
+          <div class="field"><span class="lab">所学专业</span><input id="ugMajor" value="视觉传达" /></div>
+          <div class="field">
+            <span class="lab">入学/毕业</span>
+            <div class="dates">
+              <input id="ugFrom" type="month" value="2023-09" />
+              <i>—</i>
+              <input id="ugTo" type="month" value="2027-06" />
+            </div>
+          </div>
+        </div>
+        <div id="masterBox" class="edu-pack pg" hidden>
+          <div class="subhead">硕士信息<em>选填</em></div>
+          <div class="field"><span class="lab">国家/地区</span><input id="pgNation" value="" /></div>
+          <div class="field"><span class="lab">学校全称</span><input id="pgSchool" value="" /></div>
+          <div class="field"><span class="lab">所学专业</span><input id="pgMajor" value="" /></div>
+          <div class="field">
+            <span class="lab">入学/毕业</span>
+            <div class="dates">
+              <input id="pgFrom" type="month" />
+              <i>—</i>
+              <input id="pgTo" type="month" />
+            </div>
+          </div>
+        </div>
+        <div id="otherBox" class="edu-pack ot" hidden>
+          <div class="subhead">其他学历<em>选填</em></div>
+          <div class="field" id="otherEdu">
+            <span class="lab">学历类型</span>
+            <div class="opts g3" id="otLv">
+              <button class="chip on" type="button">专科</button>
+              <button class="chip" type="button">博士</button>
+              <button class="chip" type="button">博士后</button>
+            </div>
+          </div>
+          <div class="field"><span class="lab">国家/地区</span><input id="otNation" placeholder="例如：中国" /></div>
+          <div class="field"><span class="lab">学校全称</span><input id="otSchool" placeholder="例如：××学院" /></div>
+          <div class="field"><span class="lab">所学专业</span><input id="otMajor" placeholder="例如：数字媒体" /></div>
+          <div class="field">
+            <span class="lab">入学/毕业</span>
+            <div class="dates">
+              <input id="otFrom" type="month" />
+              <i>—</i>
+              <input id="otTo" type="month" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block b-wish" id="sec-wish">
+      <div class="mark">求职意向<em style="font-style:normal;font-size:12px;font-weight:700;color:#E8A070;margin-left:6px">选填</em></div>
+      <div class="sheet">
+        <div class="field tint tint-want">
+          <span class="lab">你现在主要想找<em>可多选</em></span>
+          <div class="opts g3" id="want">
+            <button class="chip on" type="button">校招/应届</button>
+            <button class="chip" type="button">社招/已毕业</button>
+            <button class="chip on" type="button">实习</button>
+          </div>
+        </div>
+        <div class="field tint tint-dir">
+          <span class="lab">意向求职方向<em>多选，至多 5 个</em></span>
+          <div class="dir-tabs" id="dirTabs">
+            <button class="on" type="button" data-dir="0">设计类</button>
+            <button type="button" data-dir="1">产品类</button>
+            <button type="button" data-dir="2">运营类</button>
+            <button type="button" data-dir="3">市场营销</button>
+            <button type="button" data-dir="4">游戏类</button>
+            <button type="button" data-dir="5">文化艺术</button>
+          </div>
+          <div class="dir-sub" id="dirs">
+            <div class="dir-group on">
+              <div class="opts g2">
+                <button class="chip" type="button">AIGC视觉设计</button>
+                <button class="chip" type="button">交互设计</button>
+                <button class="chip on" type="button">UI/UX</button>
+                <button class="chip on" type="button">产品设计</button>
+                <button class="chip" type="button">品牌设计</button>
+                <button class="chip" type="button">IP设计</button>
+                <button class="chip" type="button"><span>视频/<wbr>动效设计</span></button>
+              </div>
+            </div>
+            <div class="dir-group">
+              <div class="opts g2">
+                <button class="chip" type="button">产品经理</button>
+                <button class="chip" type="button">AI产品经理</button>
+                <button class="chip" type="button">产品策划</button>
+              </div>
+            </div>
+            <div class="dir-group">
+              <div class="opts g2">
+                <button class="chip" type="button">用户运营</button>
+                <button class="chip" type="button">内容运营</button>
+                <button class="chip" type="button">新媒体运营</button>
+                <button class="chip" type="button">电商运营</button>
+                <button class="chip" type="button">活动运营</button>
+                <button class="chip" type="button">直播运营</button>
+                <button class="chip" type="button">用户增长</button>
+              </div>
+            </div>
+            <div class="dir-group">
+              <div class="opts g2">
+                <button class="chip" type="button">整合营销</button>
+                <button class="chip" type="button">品牌营销</button>
+                <button class="chip" type="button">市场推广</button>
+                <button class="chip" type="button">广告创意</button>
+                <button class="chip" type="button">公关</button>
+                <button class="chip" type="button">商务拓展BD</button>
+                <button class="chip" type="button">海外营销</button>
+              </div>
+            </div>
+            <div class="dir-group">
+              <div class="opts g2">
+                <button class="chip" type="button">游戏策划</button>
+                <button class="chip" type="button"><span>游戏美术<wbr>（角色/场景）</span></button>
+                <button class="chip" type="button">游戏UI设计</button>
+                <button class="chip" type="button">技术美术TA</button>
+                <button class="chip" type="button">游戏运营</button>
+                <button class="chip" type="button">游戏美宣</button>
+              </div>
+            </div>
+            <div class="dir-group">
+              <div class="opts g2">
+                <button class="chip" type="button"><span>室内/<wbr>空间设计</span></button>
+                <button class="chip" type="button">服装设计</button>
+                <button class="chip" type="button">时尚买手</button>
+                <button class="chip" type="button">插画</button>
+                <button class="chip" type="button"><span>策展/<wbr>美术馆运营</span></button>
+                <button class="chip" type="button">文创开发</button>
+                <button class="chip" type="button"><span>音乐制作<wbr>（作词/作曲）</span></button>
+                <button class="chip" type="button">编剧</button>
+                <button class="chip" type="button">导演</button>
+                <button class="chip" type="button">制片</button>
+                <button class="chip" type="button"><span>AIGC制作/<wbr>导演</span></button>
+                <button class="chip" type="button">AI漫剧制作</button>
+              </div>
+            </div>
+          </div>
+          <div class="picked">
+            <span class="picked-lab">已选择 <em id="dirCount">0/5</em></span>
+            <div class="picked-list" id="dirPickedList"></div>
+          </div>
+        </div>
+        <div class="field tint tint-city">
+          <span class="lab">意向求职城市<em>可多选</em></span>
+          <div id="wishCity">
+            <div class="wish-row">
+              <span class="city-h">国内</span>
+              <div class="msel" id="wishCnBox">
+                <button class="msel-btn" id="wishCnBtn" type="button"><em>请选择，可多选</em></button>
+                <div class="msel-menu" id="wishCnMenu"></div>
+              </div>
+            </div>
+            <div class="wish-row">
+              <span class="city-h">海外</span>
+              <div class="opts" id="wishOs">
+                <button class="chip" type="button">英国</button>
+                <button class="chip" type="button">美国</button>
+              </div>
+            </div>
+            <div class="wish-row">
+              <span class="city-h">其他</span>
+              <input id="cityOther" placeholder="自行填写" />
+            </div>
+          </div>
+        </div>
+        <div class="field tint tint-pay">
+          <span class="lab">期望薪资</span>
+          <div class="opts g3" id="pay">
+            <button class="chip" type="button">6-8k</button>
+            <button class="chip" type="button">8-12k</button>
+            <button class="chip on" type="button">12-18k</button>
+            <button class="chip" type="button">18-25k</button>
+            <button class="chip" type="button">25k以上</button>
+          </div>
+        </div>
+        <div class="field tint tint-arrive">
+          <span class="lab">到岗 / 入职时间</span>
+          <div class="opts g2" id="arrive">
+            <button class="chip" type="button">随时</button>
+            <button class="chip on" type="button">1-3个月</button>
+            <button class="chip" type="button">3个月以上</button>
+            <button class="chip" type="button">毕业回国后</button>
+          </div>
+        </div>
+        <div class="field tint tint-intern">
+          <span class="lab">过往已有几段实习经历</span>
+          <div class="opts g3" id="intern">
+            <button class="chip" type="button">0段</button>
+            <button class="chip" type="button">1段</button>
+            <button class="chip on" type="button">2段</button>
+            <button class="chip" type="button">3段</button>
+            <button class="chip" type="button">4段</button>
+            <button class="chip" type="button">5段及以上</button>
+          </div>
+        </div>
+        <div class="field tint tint-artist">
+          <span class="lab">未来是否考虑做独立艺术家/设计师或创业</span>
+          <div class="opts g2" id="artist">
+            <button class="chip" type="button">是</button>
+            <button class="chip" type="button">否</button>
+            <button class="chip on" type="button" style="grid-column:1/-1">有意向，但暂未考虑</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </section>
+
+  <section class="screen" id="load">
+    <div class="load">
+      <div class="ring"></div>
+      <h3>正在筛选</h3>
+    </div>
+  </section>
+
+  <section class="screen" id="pass">
+    <div class="ticket" id="ticket">
+      <div class="ticket-stamp">已通过</div>
+      <div class="ticket-top">
+        <div class="k">入场凭证</div>
+        <h3 id="tkTitle">中国海归艺术创意人才专场招聘会</h3>
+      </div>
+      <div class="ticket-cut"></div>
+      <div class="ticket-body">
+        <div class="ticket-row">
+          <div><span class="lab">参展城市</span><b id="tkCity">北京站</b></div>
+          <div><span class="lab">到场时间</span><b id="tkWhen">10月31日上午</b></div>
+        </div>
+        <p class="ticket-note">请<em>持短信</em>到现场参加<em>斯芬克创意人才专场</em></p>
+        <div class="ticket-addr">
+          <div class="txt">
+            <span>展会地址</span>
+            <p id="tkAddr">北京市朝阳区酒仙桥路4号<br>798艺术中心展厅</p>
+          </div>
+          <button class="spot-nav" id="ticketNav" type="button" aria-label="导航">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l8.5 18-8.5-4.5L3.5 21 12 3z" fill="#fff"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="ticket-foot">短信已发送至 <b id="tkSms">138****8007</b></div>
+    </div>
+  </section>
+
+  <section class="screen" id="fail">
+    <div class="card" style="margin-top:20px;text-align:center;padding:22px 16px">
+      <div class="fail">!</div>
+      <h3 style="font-size:18px">暂未通过</h3>
+      <p style="font-size:13px;color:#888;margin-top:6px;line-height:1.6">未通过，可改投其他岗位。</p>
+    </div>
+    <button class="btn" id="again2" type="button">返回</button>
+  </section>
+
+  <section class="screen" id="book">
+    <div class="sum-page" id="bookTable"></div>
+  </section>
+
+  <div class="dock on" id="dock">
+    <p class="dock-tip" id="dockTip" hidden>选填完善后，点此提交整份报名</p>
+    <div class="dock-acts">
+      <button class="btn" id="submit" type="button" disabled>提交报名</button>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <div class="pop" id="pop">
+    <div class="pop-mask" id="popMask"></div>
+    <div class="pop-card">
+      <div class="ok">✓</div>
+      <h3 id="popTitle">基本信息已提交</h3>
+      <p class="desc" id="popDesc">必填项已保存，可继续填写教育背景、求职意向。</p>
+      <div class="sms" id="popSms">短信已发送至 138****8007</div>
+      <button class="btn" id="popOk" type="button">继续填写</button>
+    </div>
+  </div>
+  <div class="pop" id="keepPop">
+    <div class="pop-mask" id="keepMask"></div>
+    <div class="pop-card">
+      <h3>还要再想想吗？</h3>
+      <p class="desc">现在离开的话，未提交的信息可能丢失。建议继续填写完整再走。</p>
+      <div class="keep-acts">
+        <button class="btn ghost" id="keepLeave" type="button">确认离开</button>
+        <button class="btn" id="keepStay" type="button">继续填写</button>
+      </div>
+    </div>
+  </div>
+  <div class="rail on" id="rail">
+    <div class="anchor" id="anchor">
+      <button type="button" data-sec="sec-info" class="on">基<br>本<br>信<br>息</button>
+      <button type="button" data-sec="sec-edu">教<br>育<br>背<br>景</button>
+      <button type="button" data-sec="sec-wish">求<br>职<br>意<br>向</button>
+      <button type="button" data-sec="book">预<br>约<br>信<br>息</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const ABOUT = {
+  "东方甄选": "新东方体系电商直播品牌，内容与视觉向设计类学生开放。",
+  "阿里国际": "跨境电商业务，视觉设计服务全球市场商品与活动。",
+  "58同城": "本地生活平台，品牌与营销视觉岗位常年校招。",
+  "农夫山泉": "快消品牌，包装与物料设计要求完整作品集。",
+  "百丽": "时尚零售集团，鞋履与服饰视觉、陈列相关岗位。",
+  "银泰": "商业零售，商场美陈与活动视觉。",
+  "山下有松": "新消费家居品牌，产品与内容视觉。",
+  "小鹏汽车": "智能汽车，座舱界面与品牌视觉。",
+  "追觅": "智能硬件，工业设计与 CMF。",
+  "TCL": "消费电子，品牌视觉与终端物料。",
+  "justfoto": "影像科技，平面与影像设计。",
+  "十里芳菲": "空间与生活方式品牌，空间视觉。",
+  "TEA": "科技产品品牌，平面与包装。",
+  "今日美术馆": "当代艺术机构，展览视觉与物料。",
+  "摩登天空": "音乐厂牌，演出与宣发视觉。",
+  "完美世界": "游戏公司，原画与视觉概念。",
+  "wuhu 动画": "动画工作室，分镜与角色设计。",
+  "与光同尘": "品牌设计公司，全案视觉。",
+  "洛可可": "设计咨询，工业与平面设计。"
+};
+const JD = {
+  "内容视觉设计师": "负责直播间主 KV、短视频封面与活动主视觉；PS / AI 熟练，有电商视觉实习优先。",
+  "直播视觉实习生": "协助直播物料、字幕条与切片封面；能适应节奏，有作品即可。",
+  "电商视觉设计": "商品详情、大促主视觉；需跨境或电商相关作品。",
+  "品牌设计师": "品牌规范落地、投放物料；需完整品牌项目。",
+  "包装设计": "产品包装与礼盒；需结构或快消包装作品。",
+  "时尚视觉设计": "新品视觉与店铺物料。",
+  "商场美陈设计": "节庆美陈方案与现场物料。",
+  "产品视觉": "产品图与内容图，需静物或家居作品。",
+  "智能座舱 UI": "车机界面与交互视觉，需 UI 作品集。",
+  "工业设计助理": "外观与 CMF 辅助，需工业设计作品。",
+  "品牌视觉设计": "品牌系统与终端物料。",
+  "影像设计": "影像调性与平面延展。",
+  "空间视觉": "空间导视与装置视觉。",
+  "产品平面设计": "包装与平面物料。",
+  "展览视觉设计": "展览主视觉、导览与物料。",
+  "音乐视觉 / 物料": "演出主视觉、周边与宣发。",
+  "游戏原画实习": "角色或场景原画，需原画作品。",
+  "动画分镜": "分镜与动态预览。",
+  "品牌设计": "品牌全案与延展。",
+  "工业 / 平面设计": "产品外观或平面项目。"
+};
+const CATS = ["全部", "互联网 / 新消费", "科技 / 智能", "文化 / 创意"];
+const POSTS = [
+  { id: "dfzx-nj", co: "东方甄选", tag: "新东方体系", cat: "互联网 / 新消费", job: "内容视觉设计师", city: "北京", date: "10.31" },
+  { id: "dfzx-bj", co: "东方甄选", tag: "新东方体系", cat: "互联网 / 新消费", job: "直播视觉实习生", city: "北京", date: "10.31" },
+  { id: "ali-sh", co: "阿里国际", cat: "互联网 / 新消费", job: "电商视觉设计", city: "上海", date: "10.24" },
+  { id: "58-bj", co: "58同城", cat: "互联网 / 新消费", job: "品牌设计师", city: "北京", date: "10.31" },
+  { id: "nfsq-hz", co: "农夫山泉", cat: "互联网 / 新消费", job: "包装设计", city: "上海", date: "10.24" },
+  { id: "bl-gz", co: "百丽", cat: "互联网 / 新消费", job: "时尚视觉设计", city: "广州", date: "10.25" },
+  { id: "yt-hz", co: "银泰", cat: "互联网 / 新消费", job: "商场美陈设计", city: "上海", date: "10.24" },
+  { id: "xss-cd", co: "山下有松", cat: "互联网 / 新消费", job: "产品视觉", city: "成都", date: "11.14" },
+  { id: "xp-gz", co: "小鹏汽车", cat: "科技 / 智能", job: "智能座舱 UI", city: "广州", date: "10.25" },
+  { id: "zm-sz", co: "追觅", cat: "科技 / 智能", job: "工业设计助理", city: "广州", date: "10.25" },
+  { id: "tcl-sz", co: "TCL", cat: "科技 / 智能", job: "品牌视觉设计", city: "广州", date: "10.25" },
+  { id: "jft-sh", co: "justfoto", cat: "科技 / 智能", job: "影像设计", city: "上海", date: "10.24" },
+  { id: "slff-cd", co: "十里芳菲", cat: "科技 / 智能", job: "空间视觉", city: "成都", date: "11.14" },
+  { id: "tea-bj", co: "TEA", cat: "科技 / 智能", job: "产品平面设计", city: "北京", date: "10.31" },
+  { id: "jr-bj", co: "今日美术馆", cat: "文化 / 创意", job: "展览视觉设计", city: "北京", date: "10.31" },
+  { id: "md-bj", co: "摩登天空", cat: "文化 / 创意", job: "音乐视觉 / 物料", city: "北京", date: "10.31" },
+  { id: "wmsj-sh", co: "完美世界", cat: "文化 / 创意", job: "游戏原画实习", city: "上海", date: "10.24" },
+  { id: "wuhu-su", co: "wuhu 动画", cat: "文化 / 创意", job: "动画分镜", city: "广州", date: "10.25" },
+  { id: "yg-nj", co: "与光同尘", cat: "文化 / 创意", job: "品牌设计", city: "北京", date: "10.31" },
+  { id: "lk-sz", co: "洛可可", cat: "文化 / 创意", job: "工业 / 平面设计", city: "广州", date: "10.25" }
+];
+
+let cat = "互联网 / 新消费";
+let co = "东方甄选";
+let city = "北京";
+const WISH_CN = ["北京","上海","深圳","广州","杭州","成都","重庆","武汉","西安","南京","苏州"];
+let wishCn = ["北京"];
+let postId = "dfzx-bj";
+let file = false;
+let INNER = (() => {
+  const q = new URLSearchParams(location.search);
+  const hash = (location.hash || "").replace(/^#/, "");
+  if (q.get("pub") === "1" || q.get("inner") === "0" || hash === "pub" || hash.indexOf("pub=1") === 0) return false;
+  if (q.has("inner") && q.get("inner") !== "false") return true;
+  return true;
+})();
+const INNER_NAME = "中国海归艺术创意人才专场招聘会";
+const VENUES = {
+  北京: { nav: "北京市朝阳区酒仙桥路4号798艺术中心展厅", html: "北京市朝阳区酒仙桥路4号<br>798艺术中心展厅" },
+  上海: { nav: "上海市黄浦区南京东路100号国际饭店会议层", html: "上海市黄浦区南京东路100号<br>国际饭店会议层" },
+  广州: { nav: "广州市天河区天河路208号天河城酒店8层", html: "广州市天河区天河路208号<br>天河城酒店8层" },
+  成都: { nav: "成都市锦江区红星路三段1号成都国际饭店6层", html: "成都市锦江区红星路三段1号<br>成都国际饭店6层" }
+};
+(function () {
+  const q = new URLSearchParams(location.search).get("city");
+  if (!["北京", "上海", "广州", "成都"].includes(q)) return;
+  city = q;
+  const hit = POSTS.find(p => p.city === city);
+  if (hit) { cat = hit.cat; co = hit.co; postId = hit.id; }
+})();
+function fairGet() {
+  try { return JSON.parse(localStorage.getItem("sfk-fair-apply") || "{}"); } catch (e) { return {}; }
+}
+function collectForm() {
+  const val = id => { const el = document.getElementById(id); return el ? el.value : ""; };
+  const one = id => {
+    const c = document.querySelector("#" + id + " .chip.on");
+    if (!c) return "";
+    return (c.dataset.val || c.textContent || "").trim();
+  };
+  const many = sel => [...document.querySelectorAll(sel)].map(x => x.textContent.trim());
+  const js = document.querySelector(".js-up");
+  return {
+    inner: INNER,
+    file: file,
+    fileName: js ? js.textContent : "",
+    cat: cat,
+    co: co,
+    city: city,
+    postId: postId,
+    pubName: val("pubName"),
+    pubSchool: val("pubSchool"),
+    pubMajor: val("pubMajor"),
+    exp: val("exp"),
+    name: val("name"),
+    teacher: val("teacher"),
+    alumni: val("alumni"),
+    campus: val("campus"),
+    fairCity: one("fairCity"),
+    fairDate: ((document.querySelector("#fairCity .chip.on") || {}).dataset.date) || "",
+    phone: val("phone"),
+    email: val("email"),
+    ugNation: val("ugNation"),
+    ugSchool: val("ugSchool"),
+    ugMajor: val("ugMajor"),
+    ugFrom: val("ugFrom"),
+    ugTo: val("ugTo"),
+    pgNation: val("pgNation"),
+    pgSchool: val("pgSchool"),
+    pgMajor: val("pgMajor"),
+    pgFrom: val("pgFrom"),
+    pgTo: val("pgTo"),
+    otLv: one("otLv"),
+    otNation: val("otNation"),
+    otSchool: val("otSchool"),
+    otMajor: val("otMajor"),
+    otFrom: val("otFrom"),
+    otTo: val("otTo"),
+    otherEdu: [one("otLv"), val("otNation"), val("otSchool"), val("otMajor"), [val("otFrom"), val("otTo")].filter(Boolean).join("—")].filter(Boolean).join(" · "),
+    cityOther: val("cityOther"),
+    grade: one("grade"),
+    mode: one("mode"),
+    edu: (document.querySelector("#edu .on") || {}).dataset.lv || "ug",
+    pay: one("pay"),
+    arrive: one("arrive"),
+    intern: one("intern"),
+    artist: one("artist"),
+    want: many("#want .chip.on"),
+    wishCity: wishCn.concat(many("#wishOs .chip.on")),
+    dirs: many("#dirs .chip.on")
+  };
+}
+function applyForm(d) {
+  if (!d) return;
+  const set = (id, v) => { const el = document.getElementById(id); if (el && v != null) el.value = v; };
+  ["pubName","pubSchool","pubMajor","exp","name","teacher","alumni","campus","phone","email","ugNation","ugSchool","ugMajor","ugFrom","ugTo","pgNation","pgSchool","pgMajor","pgFrom","pgTo","otNation","otSchool","otMajor","otFrom","otTo","cityOther"].forEach(id => set(id, d[id]));
+  const pick = (id, text) => {
+    if (!text) return;
+    document.querySelectorAll("#" + id + " .chip").forEach(c => {
+      const v = (c.dataset.val || c.textContent || "").trim();
+      c.classList.toggle("on", v === text);
+    });
+  };
+  pick("grade", d.grade);
+  pick("mode", d.mode);
+  pick("otLv", d.otLv);
+  pick("fairCity", d.fairCity || d.city);
+  pick("pay", d.pay);
+  pick("arrive", d.arrive);
+  pick("intern", d.intern);
+  pick("artist", d.artist);
+  if (d.edu) {
+    document.querySelectorAll("#edu button").forEach(b => b.classList.toggle("on", b.dataset.lv === d.edu));
+    eduMode();
+  }
+  const multi = (sel, arr) => {
+    if (!arr) return;
+    document.querySelectorAll(sel).forEach(c => c.classList.toggle("on", arr.indexOf(c.textContent.trim()) >= 0));
+  };
+  multi("#want .chip", d.want);
+  multi("#wishOs .chip", d.wishCity);
+  multi("#dirs .chip", d.dirs);
+  if (d.wishCity) wishCn = d.wishCity.filter(c => WISH_CN.indexOf(c) >= 0);
+  if (typeof paintWishCn === "function") paintWishCn();
+  if (d.file) {
+    file = true;
+    document.querySelectorAll(".js-up").forEach(b => { b.textContent = d.fileName || b.textContent; });
+  }
+  if (d.cat) cat = d.cat;
+  if (d.co) co = d.co;
+  if (d.city) city = d.city;
+  if (d.postId) postId = d.postId;
+  if (typeof paintPicked === "function") paintPicked();
+  if (typeof paintBook === "function") paintBook();
+}
+function fairSave(status) {
+  const prev = fairGet();
+  const data = collectForm();
+  data.status = status || prev.status || "draft";
+  data.at = Date.now();
+  localStorage.setItem("sfk-fair-apply", JSON.stringify(data));
+}
+function paintEditBar() {
+  document.getElementById("submit").textContent = "提交报名";
+  document.getElementById("submitMini").textContent = "提交基本信息";
+  paintAnchor();
+}
+function applyChannel() {
+  document.getElementById("publicChannel").hidden = true;
+  document.getElementById("innerChannel").hidden = false;
+  document.querySelectorAll(".only-inner").forEach(el => {
+    el.hidden = !INNER;
+    el.classList.toggle("off", !INNER);
+  });
+  const note = document.getElementById("noteLine");
+  if (note) {
+    note.hidden = false;
+    note.textContent = INNER
+      ? "简历、作品集请携带纸质版，或请教务老师代交"
+      : "简历、作品集请携带纸质版";
+  }
+  if (INNER) {
+    document.body.classList.add("inner-ch");
+    document.querySelector(".hero").classList.add("inner");
+    document.getElementById("heroEm").hidden = false;
+    document.getElementById("heroEm").textContent = "海归艺术创意人才专场招聘会";
+    const title = document.getElementById("heroTitle");
+    title.hidden = false;
+    title.textContent = "内部专属通道-斯芬克学员报名通道";
+    title.classList.add("long");
+    const pass = document.getElementById("heroPass");
+    pass.hidden = true;
+    pass.classList.remove("long", "bubble");
+    document.querySelector(".hero-copy").appendChild(pass);
+    document.getElementById("navTitle").textContent = INNER_NAME;
+    document.querySelector(".nav").classList.add("long");
+    document.title = INNER_NAME;
+    const teacherRow = document.getElementById("teacherRow");
+    const campusRow = document.getElementById("campusRow");
+    const alumniRow = document.getElementById("alumniRow");
+    if (teacherRow) { teacherRow.hidden = false; teacherRow.classList.remove("off"); }
+    if (campusRow) { campusRow.hidden = false; campusRow.classList.remove("off"); }
+    if (alumniRow) { alumniRow.hidden = false; alumniRow.classList.remove("off"); }
+  } else {
+    document.querySelector(".hero").classList.remove("inner");
+    document.body.classList.remove("inner-ch");
+    document.getElementById("heroEm").hidden = false;
+    document.getElementById("heroEm").textContent = "海归艺术创意人才专场招聘会";
+    const title = document.getElementById("heroTitle");
+    title.hidden = true;
+    title.classList.remove("long");
+    const pass = document.getElementById("heroPass");
+    pass.hidden = false;
+    pass.classList.remove("long", "bubble");
+    pass.textContent = "公开报名通道";
+    document.querySelector(".hero-copy").appendChild(pass);
+    document.getElementById("navTitle").textContent = "中国海归艺术创意人才专场招聘会";
+    document.querySelector(".nav").classList.add("long");
+    document.title = "中国海归艺术创意人才专场招聘会";
+    const name = document.getElementById("name");
+    if (name && name.value === "王乐言") name.value = "王同学";
+    ["teacherRow", "campusRow", "alumniRow"].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.hidden = true;
+      el.classList.add("off");
+    });
+  }
+  const sub = document.getElementById("submit");
+  if (sub) sub.textContent = "提交报名";
+  const tip = document.getElementById("dockTip");
+  if (tip) tip.hidden = false;
+  paintAnchor();
+}
+function paintAnchor(active) {
+  const list = [
+    ["sec-info", "基本信息"],
+    ["sec-edu", "教育背景"],
+    ["sec-wish", "求职意向"],
+    ["book", "预约信息"]
+  ];
+  const on = active || (document.querySelector("#anchor button.on") || {}).dataset.sec || list[0][0];
+  document.getElementById("anchor").innerHTML = list.map(x =>
+    `<button type="button" data-sec="${x[0]}" class="${x[0] === on ? "on" : ""}">${x[1].split("").join("<br>")}</button>`
+  ).join("");
+  document.getElementById("rail").classList.add("on");
+}
+function setAnchorOn(id) {
+  const btns = document.querySelectorAll("#anchor button[data-sec]");
+  if (![...btns].some(b => b.dataset.sec === id)) return;
+  btns.forEach(b => b.classList.toggle("on", b.dataset.sec === id));
+}
+function spyAnchor() {
+  const form = document.getElementById("form");
+  if (!form || !form.classList.contains("on")) return;
+  const ids = ["sec-info", "sec-edu", "sec-wish"];
+  const line = form.getBoundingClientRect().top + 48;
+  let current = ids[0];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el || el.closest("[hidden]")) return;
+    if (el.getBoundingClientRect().top <= line) current = id;
+  });
+  setAnchorOn(current);
+}
+applyChannel();
+applyForm(fairGet());
+document.querySelectorAll("#fairCity .chip").forEach(c => c.classList.toggle("on", c.dataset.city === city));
+paintFairTip();
+let spyTick = 0;
+document.getElementById("form").addEventListener("scroll", () => {
+  if (spyTick) return;
+  spyTick = requestAnimationFrame(() => {
+    spyTick = 0;
+    spyAnchor();
+  });
+});
+document.getElementById("anchor").addEventListener("click", e => {
+  const b = e.target.closest("[data-sec]");
+  if (!b) return;
+  const sec = b.dataset.sec;
+  if (sec === "book") {
+    paintAnchor("book");
+    paintBook();
+    show("book");
+    return;
+  }
+  const jump = () => {
+    paintAnchor(sec);
+    const el = document.getElementById(sec);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  if (show.id !== "form") {
+    show("form");
+    requestAnimationFrame(() => requestAnimationFrame(jump));
+    return;
+  }
+  jump();
+});
+
+function inCat() {
+  return POSTS.filter(p => p.cat === cat);
+}
+function companies() {
+  const seen = [];
+  inCat().forEach(p => { if (!seen.includes(p.co)) seen.push(p.co); });
+  return seen;
+}
+function jobsOf() {
+  return POSTS.filter(p => p.cat === cat && p.co === co && p.city === city);
+}
+function citiesOf() {
+  const seen = [];
+  POSTS.filter(p => p.cat === cat && p.co === co).forEach(p => {
+    if (!seen.includes(p.city)) seen.push(p.city);
+  });
+  return seen;
+}
+function cur() {
+  return POSTS.find(p => p.id === postId) || jobsOf()[0];
+}
+function paint() {
+  document.getElementById("tabs").innerHTML = CATS.slice(1).map(c =>
+    `<button class="tab ${c === cat ? "on" : ""}" type="button" data-cat="${c}">${c}</button>`
+  ).join("");
+  const cos = companies();
+  if (!cos.includes(co)) co = cos[0];
+  document.getElementById("cos").innerHTML = cos.map(name =>
+    `<button class="cell ${name === co ? "on" : ""}" type="button" data-co="${name}"><span class="n">${name}</span></button>`
+  ).join("");
+  const cities = citiesOf();
+  if (!cities.includes(city)) city = cities[0] || "";
+  const pick = document.getElementById("cityPick");
+  pick.innerHTML = cities.map(c =>
+    `<option value="${c}" ${c === city ? "selected" : ""}>${c}站</option>`
+  ).join("");
+  pick.disabled = cities.length === 0;
+  const jobs = jobsOf();
+  if (!jobs.some(p => p.id === postId)) postId = jobs[0] ? jobs[0].id : "";
+  document.getElementById("jobs").innerHTML = jobs.map(p =>
+    `<button class="job ${p.id === postId ? "on" : ""}" type="button" data-id="${p.id}">
+      <span class="n">${p.job}</span>
+      <span class="d">${p.date}</span>
+    </button>`
+  ).join("");
+  const p = cur();
+  if (p) {
+    document.getElementById("introAbout").textContent = ABOUT[p.co] || "";
+    document.getElementById("introJd").textContent = JD[p.job] || "";
+  }
+}
+function phoneOk() {
+  return /^1\d{10}$/.test((document.getElementById("phone").value || "").trim());
+}
+function emailOk() {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((document.getElementById("email").value || "").trim());
+}
+function ready() {
+  const phone = document.getElementById("phone");
+  if (phone) phone.classList.toggle("err", phone.value.length > 0 && !phoneOk());
+  const fairOn = document.querySelector("#fairCity .chip.on");
+  const ok = phoneOk() && emailOk()
+    && document.getElementById("name").value.trim()
+    && (!INNER || document.getElementById("teacher").value.trim())
+    && !!fairOn;
+  const submit = document.getElementById("submit");
+  const mini = document.getElementById("submitMini");
+  if (submit) submit.disabled = !ok;
+  if (mini) mini.disabled = !ok;
+  if (typeof paintBook === "function") paintBook();
+}
+function eduMode() {
+  const lv = (document.querySelector("#edu .on") || {}).dataset.lv || "ug";
+  document.getElementById("ugBox").hidden = lv === "other";
+  document.getElementById("masterBox").hidden = lv !== "pg" && lv !== "pg-out";
+  document.getElementById("otherBox").hidden = lv !== "other";
+}
+function paintBook() {
+  const box = document.getElementById("bookTable");
+  if (!box) return;
+  const txt = id => {
+    const el = document.getElementById(id);
+    return el && String(el.value || "").trim() ? el.value.trim() : "未填";
+  };
+  const one = id => {
+    const c = document.querySelector("#" + id + " .chip.on");
+    return c ? (c.dataset.val || c.textContent || "").replace(/\s+/g, " ").trim() : "未填";
+  };
+  const many = sel => {
+    const a = [...document.querySelectorAll(sel)].map(x => x.textContent.replace(/\s+/g, " ").trim()).filter(Boolean);
+    return a.length ? a.join("、") : "未填";
+  };
+  const ym = id => {
+    const v = (document.getElementById(id) || {}).value || "";
+    return v ? v.replace("-", ".") : "";
+  };
+  const span = (a, b) => {
+    const x = ym(a);
+    const y = ym(b);
+    return x || y ? (x || "未填") + " — " + (y || "未填") : "未填";
+  };
+  const fair = document.querySelector("#fairCity .chip.on");
+  const cityName = fair ? fair.dataset.city + "站" : "未选站";
+  const date = fair
+    ? (fair.dataset.date || "").replace(/^0?(\d+)\/0?(\d+)$/, "$1月$2日") + "上午"
+    : "未选时间";
+  const addrEl = document.getElementById("passAddr");
+  const eduBtn = document.querySelector("#edu .on");
+  const eduLv = (eduBtn && eduBtn.dataset.lv) || "ug";
+  const eduLab = eduBtn ? eduBtn.textContent.trim() : "未填";
+  const os = [...document.querySelectorAll("#wishOs .chip.on")].map(x => x.textContent.trim());
+  const other = (document.getElementById("cityOther") || {}).value;
+  const wish = wishCn.concat(os).concat(other ? [String(other).trim()] : []).filter(Boolean);
+  const eduRows = [
+    ["目前身份", eduLab, "edu"]
+  ];
+  if (eduLv !== "other") {
+    eduRows.push(
+      ["本科国家", txt("ugNation"), "ugNation"],
+      ["本科学校", txt("ugSchool"), "ugSchool"],
+      ["本科专业", txt("ugMajor"), "ugMajor"],
+      ["本科时间", span("ugFrom", "ugTo"), "ugFrom"]
+    );
+  }
+  if (eduLv === "pg" || eduLv === "pg-out") {
+    eduRows.push(
+      ["硕士国家", txt("pgNation"), "pgNation"],
+      ["硕士学校", txt("pgSchool"), "pgSchool"],
+      ["硕士专业", txt("pgMajor"), "pgMajor"],
+      ["硕士时间", span("pgFrom", "pgTo"), "pgFrom"]
+    );
+  }
+  if (eduLv === "other") eduRows.push(
+    ["学历类型", one("otLv"), "otLv"],
+    ["国家/地区", txt("otNation"), "otNation"],
+    ["学校全称", txt("otSchool"), "otSchool"],
+    ["所学专业", txt("otMajor"), "otMajor"],
+    ["入学/毕业", span("otFrom", "otTo"), "otFrom"]
+  );
+  const venue = VENUES[(fair && fair.dataset.city) || "北京"] || VENUES["北京"];
+  const addrHtml = addrEl ? addrEl.innerHTML : venue.html;
+  const status = fairGet().status;
+  const stamp = status === "done" ? "已提交" : "已预约";
+  const title = INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会";
+  const phoneDigits = ((document.getElementById("phone") || {}).value || "").replace(/\s/g, "");
+  const phoneMask = phoneDigits.length >= 7
+    ? phoneDigits.slice(0, 3) + "****" + phoneDigits.slice(-4)
+    : (phoneDigits || "未填");
+  const line = (k, v) => "<tr><th>" + k + "</th><td>" + v + "</td></tr>";
+  const sec = (cls, t) => "<tr class=\"book-sec " + cls + "\"><td colspan=\"2\">" + t + "</td></tr>";
+  const navBtn = "<button class=\"spot-nav\" id=\"bookNav\" type=\"button\" aria-label=\"导航\">" +
+    "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M12 3l8.5 18-8.5-4.5L3.5 21 12 3z\" fill=\"#fff\"/></svg>" +
+    "</button>";
+  const block = (cls, title, rows) =>
+    sec(cls, title) + rows.filter(Boolean).map(r => line(r[0], r[1])).join("");
+  box.innerHTML =
+    "<div class=\"book-pack\" id=\"bookTicket\" data-addr=\"" + venue.nav + "\">" +
+      "<div class=\"ticket-stamp\">" + stamp + "</div>" +
+      "<div class=\"ticket-top\">" +
+        "<div class=\"k\">预约信息票据</div>" +
+        "<h3>" + title + "</h3>" +
+      "</div>" +
+      "<div class=\"ticket-cut\"></div>" +
+      "<table class=\"book-tb\">" +
+        block("meet", "场次预约", [
+          ["学生姓名", txt("name")],
+          ["参展城市", cityName],
+          ["到场时间", date],
+          ["参与模式", one("mode")]
+        ]) +
+        "<tr><th>展会地址</th><td><div class=\"book-addr\"><div class=\"txt\">" + addrHtml + "</div>" + navBtn + "</div></td></tr>" +
+        "<tr class=\"book-tip\"><td colspan=\"2\">请<em>着正装</em>到场，并携带<em>纸质简历与作品集</em></td></tr>" +
+        block("info", "基本信息", [
+          ["手机号码", phoneMask],
+          ["邮箱", txt("email")],
+          INNER ? ["教务老师", txt("teacher")] : null,
+          INNER ? ["所在校区", txt("campus")] : null,
+          INNER ? ["SFK校友", txt("alumni")] : null
+        ]) +
+        block("edu", "教育背景", eduRows) +
+        block("wish", "求职意向", [
+          ["想找类型", many("#want .chip.on")],
+          ["求职方向", many("#dirs .chip.on")],
+          ["意向城市", wish.length ? wish.join("、") : "未填"],
+          ["期望薪资", one("pay")],
+          ["到岗时间", one("arrive")],
+          ["实习经历", one("intern")],
+          ["独立/创业", one("artist")]
+        ]) +
+      "</table>" +
+    "</div>";
+}
+function paintFairTip() {
+  const b = document.querySelector("#fairCity .chip.on");
+  if (!b) return;
+  const d = (b.dataset.date || "").replace(/^0?(\d+)\/0?(\d+)$/, "$1月$2日");
+  const cityEl = document.getElementById("spotCity");
+  const dateEl = document.getElementById("spotDate");
+  if (cityEl) cityEl.textContent = b.dataset.city + "站";
+  if (dateEl) dateEl.textContent = d + " · 上午";
+  const venue = VENUES[b.dataset.city] || VENUES["北京"];
+  const el = document.getElementById("passAddr");
+  const box = document.getElementById("passVenue");
+  if (el) el.innerHTML = venue.html;
+  if (box) box.dataset.addr = venue.nav;
+  if (typeof paintBook === "function") paintBook();
+}
+function bindChips() {
+  const root = document.querySelector(".phone");
+  if (!root || root.dataset.chipBound) return;
+  root.dataset.chipBound = "1";
+  root.addEventListener("click", e => {
+    const chip = e.target.closest(".chip");
+    if (!chip || chip.closest("#dirs, .msel-menu")) return;
+    const one = chip.closest("#mode, #fairCity, #grade, #pay, #arrive, #intern, #artist, #otLv");
+    if (one) {
+      one.querySelectorAll(".chip").forEach(c => c.classList.remove("on"));
+      chip.classList.add("on");
+      if (one.id === "fairCity" && chip.dataset.city) {
+        city = chip.dataset.city;
+        paintFairTip();
+      }
+      ready();
+      return;
+    }
+    if (chip.closest("#want, #wishOs")) chip.classList.toggle("on");
+  });
+}
+function show(id) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("on"));
+  document.getElementById(id).classList.add("on");
+  document.getElementById("navTitle").textContent = id === "book"
+    ? "预约信息"
+    : (INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会");
+  document.getElementById("dock").classList.toggle("on", id === "form");
+  document.getElementById("rail").classList.toggle("on", id === "form" || id === "book" || id === "pass");
+  show.id = id;
+  if (id === "book") paintAnchor("book");
+  else if (id === "pass" || id === "form") paintAnchor();
+}
+
+bindChips();
+paint();
+ready();
+if (!fairGet().status) fairSave("draft");
+paintEditBar();
+
+document.getElementById("edu").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  document.querySelectorAll("#edu button").forEach(c => c.classList.remove("on"));
+  b.classList.add("on");
+  eduMode();
+});
+document.getElementById("dirTabs").addEventListener("click", e => {
+  const b = e.target.closest("[data-dir]");
+  if (!b) return;
+  document.querySelectorAll("#dirTabs button").forEach(c => c.classList.remove("on"));
+  b.classList.add("on");
+  document.querySelectorAll("#dirs .dir-group").forEach((g, i) => {
+    g.classList.toggle("on", String(i) === b.dataset.dir);
+  });
+});
+function paintWishCn() {
+  const menu = document.getElementById("wishCnMenu");
+  const btn = document.getElementById("wishCnBtn");
+  if (!menu || !btn) return;
+  menu.innerHTML = WISH_CN.map(c =>
+    "<button type=\"button\" data-cn=\"" + c + "\" class=\"" + (wishCn.indexOf(c) >= 0 ? "on" : "") + "\">" + c + "</button>"
+  ).join("");
+  btn.innerHTML = wishCn.length ? wishCn.join("、") : "<em>请选择，可多选</em>";
+  if (typeof paintBook === "function") paintBook();
+}
+document.getElementById("wishCnBtn").addEventListener("click", e => {
+  e.stopPropagation();
+  document.getElementById("wishCnBox").classList.toggle("open");
+});
+document.getElementById("wishCnMenu").addEventListener("click", e => {
+  const b = e.target.closest("[data-cn]");
+  if (!b) return;
+  e.stopPropagation();
+  const c = b.dataset.cn;
+  if (wishCn.indexOf(c) >= 0) wishCn = wishCn.filter(x => x !== c);
+  else wishCn.push(c);
+  paintWishCn();
+});
+document.addEventListener("click", e => {
+  const box = document.getElementById("wishCnBox");
+  if (box && !box.contains(e.target)) box.classList.remove("open");
+});
+paintWishCn();
+function paintPicked() {
+  const ons = [...document.querySelectorAll("#dirs .chip.on")];
+  document.getElementById("dirCount").textContent = ons.length + "/5";
+  const box = document.getElementById("dirPickedList");
+  if (!ons.length) {
+    box.innerHTML = "<em>还没选方向</em>";
+    return;
+  }
+  box.innerHTML = ons.map(c => "<button type=\"button\" data-pick=\"" + c.textContent + "\">" + c.textContent + "<i>×</i></button>").join("");
+}
+document.getElementById("dirs").addEventListener("click", e => {
+  const b = e.target.closest(".chip");
+  if (!b) return;
+  if (b.classList.contains("on")) b.classList.remove("on");
+  else if (document.querySelectorAll("#dirs .chip.on").length < 5) b.classList.add("on");
+  paintPicked();
+});
+document.getElementById("dirPickedList").addEventListener("click", e => {
+  const b = e.target.closest("[data-pick]");
+  if (!b) return;
+  document.querySelectorAll("#dirs .chip").forEach(c => {
+    if (c.textContent === b.dataset.pick) c.classList.remove("on");
+  });
+  paintPicked();
+});
+paintPicked();
+document.getElementById("phone").addEventListener("input", () => {
+  const el = document.getElementById("phone");
+  el.value = el.value.replace(/\D/g, "").slice(0, 11);
+  ready();
+});
+document.getElementById("email").addEventListener("input", ready);
+document.getElementById("name").addEventListener("input", ready);
+document.getElementById("teacher").addEventListener("input", ready);
+const campusEl = document.getElementById("campus");
+if (campusEl) campusEl.addEventListener("change", ready);
+eduMode();
+
+document.getElementById("tabs").addEventListener("click", e => {
+  const b = e.target.closest("[data-cat]");
+  if (!b) return;
+  cat = b.dataset.cat;
+  paint();
+});
+document.getElementById("cos").addEventListener("click", e => {
+  const b = e.target.closest("[data-co]");
+  if (!b) return;
+  co = b.dataset.co;
+  paint();
+  ready();
+});
+document.getElementById("cityPick").addEventListener("change", e => {
+  city = e.target.value;
+  paint();
+  ready();
+});
+document.getElementById("jobs").addEventListener("click", e => {
+  const b = e.target.closest("[data-id]");
+  if (!b) return;
+  postId = b.dataset.id;
+  paint();
+  ready();
+});
+function closePop() {
+  document.getElementById("pop").classList.remove("on");
+}
+function closeKeep() {
+  document.getElementById("keepPop").classList.remove("on");
+}
+function leavePage() {
+  if (fairGet().status && fairGet().status !== "done") fairSave("draft");
+  else if (fairGet().status === "done") fairSave("done");
+  location.href = "signup-preview.html";
+}
+function doSubmit(from) {
+  const tag = INNER ? "【" + INNER_NAME + "】" : "【中国海归艺术创意人才专场招聘会】";
+  const phoneEl = document.getElementById("phone");
+  const phone = phoneEl && phoneEl.value ? phoneEl.value : "13800138007";
+  const mask = phone.slice(0, 3) + "****" + phone.slice(-4);
+  const fairDate = (document.querySelector("#fairCity .chip.on") || {}).dataset.date || "";
+  const fairDay = (fairDate || "").replace(/^0?(\d+)\/0?(\d+)$/, "$1月$2日");
+  if (from === "mini") {
+    if (document.getElementById("submitMini").disabled) return;
+    fairSave("draft");
+    paintEditBar();
+    document.getElementById("popTitle").textContent = "基本信息已提交";
+    document.getElementById("popDesc").textContent = "必填项已保存，可继续填写教育背景、求职意向。";
+    document.getElementById("popSms").textContent = "短信已发送至 " + mask + " · " + city + "站 " + fairDate;
+    document.getElementById("pop").classList.add("on");
+    return;
+  }
+  if (document.getElementById("submit").disabled) return;
+  show("load");
+  setTimeout(() => {
+    const venue = VENUES[city] || VENUES["北京"];
+    document.getElementById("tkTitle").textContent = INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会";
+    document.getElementById("tkCity").textContent = city + "站";
+    document.getElementById("tkWhen").textContent = fairDay + "上午";
+    document.getElementById("tkAddr").innerHTML = venue.html;
+    document.getElementById("tkSms").textContent = mask;
+    document.getElementById("ticket").dataset.addr = venue.nav;
+    fairSave("done");
+    paintEditBar();
+    show("pass");
+  }, 900);
+}
+document.getElementById("submit").addEventListener("click", () => doSubmit("dock"));
+document.getElementById("submitMini").addEventListener("click", () => doSubmit("mini"));
+document.getElementById("popOk").addEventListener("click", () => {
+  closePop();
+  const edu = document.getElementById("sec-edu");
+  if (edu) edu.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+document.getElementById("popMask").addEventListener("click", closePop);
+function toast(msg) {
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("on");
+  clearTimeout(toast.t);
+  toast.t = setTimeout(() => el.classList.remove("on"), 1800);
+}
+function openNav(addr) {
+  if (!addr) return;
+  location.href = "https://uri.amap.com/search?keyword=" + encodeURIComponent(addr) + "&callnative=1";
+}
+document.getElementById("passNav").addEventListener("click", () => {
+  openNav(document.getElementById("passVenue").dataset.addr);
+});
+document.getElementById("ticketNav").addEventListener("click", () => {
+  openNav(document.getElementById("ticket").dataset.addr);
+});
+document.getElementById("book").addEventListener("click", e => {
+  if (!e.target.closest("#bookNav")) return;
+  const t = document.getElementById("bookTicket");
+  if (t) openNav(t.dataset.addr);
+});
+document.getElementById("again2").addEventListener("click", () => show("form"));
+document.getElementById("back").addEventListener("click", () => {
+  if (document.getElementById("pop").classList.contains("on")) {
+    closePop();
+    return;
+  }
+  if (document.getElementById("keepPop").classList.contains("on")) {
+    closeKeep();
+    return;
+  }
+  if (show.id === "book") {
+    show("form");
+    return;
+  }
+  if (!show.id || show.id === "form") {
+    if (fairGet().status !== "done") {
+      document.getElementById("keepPop").classList.add("on");
+      return;
+    }
+  }
+  if (fairGet().status && fairGet().status !== "done") fairSave("draft");
+  else if (fairGet().status === "done") fairSave("done");
+  if (show.id && show.id !== "form") show("form");
+  else leavePage();
+});
+document.getElementById("keepStay").addEventListener("click", closeKeep);
+document.getElementById("keepLeave").addEventListener("click", leavePage);
+document.getElementById("keepMask").addEventListener("click", closeKeep);
+window.addEventListener("pagehide", () => {
+  const st = fairGet().status;
+  if (st === "done") fairSave("done");
+  else fairSave("draft");
+});
+</script>
+</body>
+</html>
