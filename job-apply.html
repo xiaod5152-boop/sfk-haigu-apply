@@ -2204,8 +2204,10 @@
     font-size: 11px;
     font-weight: 600;
     color: #888;
-    line-height: 1.55;
+    line-height: 1.7;
     text-align: center;
+    word-break: keep-all;
+    line-break: strict;
   }
   .note-line {
     width: 100%;
@@ -2841,7 +2843,7 @@
         </div>
         <div class="info-act">
           <p class="note-line" id="noteLine">到场携带：纸质简历 10–15 份、纸质作品集</p>
-          <p class="act-hint">填写说明：* 为必填；保存后可继续补充教育背景、求职意向</p>
+          <p class="act-hint">填写说明：* 为必填；<br>保存后可继续补充教育背景、求职意向</p>
           <button class="btn-mini" id="submitMini" type="button">保存进入下一页</button>
         </div>
       </div>
@@ -3396,7 +3398,7 @@ function applyChannel() {
   if (note) {
     note.hidden = false;
     note.innerHTML = INNER
-      ? "到场携带：纸质简历 10–15 份、纸质作品集（也可请教务老师代交）"
+      ? "到场携带：纸质简历 10–15 份、纸质作品集<br>（也可请教务老师代交）"
       : "到场携带：纸质简历 10–15 份、纸质作品集";
   }
   if (INNER) {
