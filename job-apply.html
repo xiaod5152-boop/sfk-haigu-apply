@@ -510,6 +510,36 @@
     text-align: center;
   }
   body.pub-ch .hook-solve { color: #3730A3; }
+  .grad-once {
+    margin: 0 0 14px;
+    padding: 14px 12px 13px;
+    border-radius: 12px;
+    background: #FFF7FA;
+    text-align: center;
+  }
+  body.pub-ch .grad-once { background: #F5F6FF; }
+  .grad-once-t {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #1A1A1A;
+    line-height: 1.35;
+  }
+  .grad-once-eq {
+    margin: 0 0 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #555;
+    line-height: 1.55;
+  }
+  .grad-once-f {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 800;
+    color: #C2186A;
+    line-height: 1.5;
+  }
+  body.pub-ch .grad-once-f { color: #3730A3; }
   .info-dl { margin: 0; }
   .info-dl > div {
     display: grid;
@@ -671,7 +701,11 @@
     z-index: 1;
   }
   .tl-rail-1 { grid-row: 1; }
-  .tl-rail-2 { grid-row: 3; }
+  .tl-rail-2 {
+    grid-row: 3;
+    grid-template-columns: 1fr 1fr;
+  }
+  .tl-rail-2::before { left: 25%; }
   .tl-rail::before {
     content: "";
     position: absolute;
@@ -695,11 +729,19 @@
   .tl-caps-1 { grid-row: 2; padding-bottom: 18px; }
   .tl-caps-2 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     list-style: none;
     margin: 0;
     padding: 8px 0 0;
     column-gap: 8px;
+  }
+  .tl-caps span {
+    display: block;
+    margin-top: 4px;
+    font-size: 9px;
+    font-weight: 600;
+    color: #888;
+    line-height: 1.4;
   }
   .tl-caps > li,
   .tl-caps-2 > li { text-align: center; padding: 0 2px; }
@@ -842,6 +884,7 @@
     border-radius: 10px;
     padding: 12px 10px 11px;
   }
+  .e4 li.wide { grid-column: 1 / -1; }
   body.pub-ch .e4 li { background: #F7F8FC; border: 0; }
   .e4 b {
     font-size: 10px;
@@ -2401,6 +2444,11 @@
           <p><b>留学生</b><span>只能海投</span></p>
         </div>
         <p class="hook-solve">本场专场跳过初筛，直接对话招聘官</p>
+        <div class="grad-once">
+          <p class="grad-once-t">你的应届身份，只有一次</p>
+          <p class="grad-once-eq">应届生 = 专属校招岗位 + 落户或补贴 + 较低竞争</p>
+          <p class="grad-once-f">这是很多人一生中进大厂名企最容易的一次机会</p>
+        </div>
         <dl class="info-dl">
           <div>
             <dt>面向人群</dt>
@@ -2443,7 +2491,7 @@
             </div>
             <ul class="tl-caps tl-caps-1">
               <li>
-                <em>2026年9—10月</em>
+                <em>2026年8—10月</em>
                 <strong>秋招正式批发力</strong>
               </li>
               <li class="star">
@@ -2452,11 +2500,10 @@
               </li>
               <li>
                 <em>2026年12月—<br>2027年2月</em>
-                <strong>秋招补录 +<br>央国企校招</strong>
+                <strong>秋招补录</strong>
               </li>
             </ul>
             <div class="tl-rail tl-rail-2">
-              <i class="n"></i>
               <i class="n"></i>
               <i class="n"></i>
             </div>
@@ -2464,15 +2511,12 @@
           <ul class="tl-caps tl-caps-2">
             <li>
               <em>2027年7月起</em>
-              <strong>毕业入职 /<br>转入社招</strong>
+              <strong>毕业入职</strong>
             </li>
             <li>
-              <em>2027年5—6月</em>
-              <strong>春招补录期</strong>
-            </li>
-            <li>
-              <em>2027年3—4月</em>
-              <strong>春招爆发期</strong>
+              <em>2027年2—5月</em>
+              <strong>春招补录</strong>
+              <span>岗位为秋招的30%-40%，部分核心岗位不开放春招招聘</span>
             </li>
           </ul>
         </div>
@@ -2494,8 +2538,9 @@
           <ul class="e4">
             <li><b>E1</b><strong>教育背景</strong><em>Education</em><span>学校 · 专业 · 学术基础</span></li>
             <li><b>E2</b><strong>实践经验</strong><em>Experience</em><span>实习 · 项目 · 业务经历</span></li>
-            <li><b>E3</b><strong>专业能力</strong><em>Expertise</em><span>技能 · 解决问题</span></li>
+            <li><b>E3</b><strong>专业能力</strong><em>Expertise</em><span>技能 · 解决问题 · 有AI工作流及应用能力</span></li>
             <li><b>E4</b><strong>执行力</strong><em>Execution</em><span>将知识转化为结果</span></li>
+            <li class="wide"><b>E5</b><strong>职业能力</strong><span>主动沟通 高效协作 强逻辑分析能力</span></li>
           </ul>
         </div>
         <div class="m-block">
