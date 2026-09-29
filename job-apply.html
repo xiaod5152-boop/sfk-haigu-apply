@@ -75,7 +75,7 @@
     position: relative;
     height: 186px;
     overflow: hidden;
-    color: #fff;
+    color: #1A1A1A;
     flex-shrink: 0;
   }
   .hero.inner {
@@ -94,13 +94,13 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 28%;
+    object-position: center center;
   }
   .hero::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(20,12,24,.08) 0%, rgba(255,79,160,.5) 100%);
+    background: linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(255,240,246,.28) 100%);
   }
   .hero-copy {
     position: relative;
@@ -120,14 +120,15 @@
     font-weight: 600;
     letter-spacing: .5px;
     line-height: 1.4;
-    text-shadow: 0 1px 8px rgba(80,20,50,.35);
+    text-shadow: none;
+    color: #C2186A;
   }
   .hero-copy h1 {
     font-size: 18px;
     font-weight: 800;
     letter-spacing: .5px;
     line-height: 1.4;
-    text-shadow: 0 2px 12px rgba(80,20,50,.4);
+    text-shadow: none;
   }
   .hero.inner .hero-copy em {
     display: block;
@@ -152,18 +153,30 @@
     height: 200px;
   }
   .hero.pub::after {
-    background: linear-gradient(180deg, rgba(30,41,90,.18) 0%, rgba(79,70,229,.58) 100%);
+    background: linear-gradient(180deg, rgba(255,255,255,.1) 0%, rgba(238,242,255,.35) 100%);
+  }
+  .hero.pub .hero-copy {
+    gap: 12px;
+    padding: 22px 18px 20px;
   }
   .hero.pub .hero-copy em {
     display: block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2.4px;
+    color: #4F46E5;
+    padding: 5px 12px;
+    border: 1px solid rgba(79,70,229,.28);
+    border-radius: 99px;
+    background: rgba(255,255,255,.62);
   }
   .hero.pub .hero-copy h1 {
-    font-size: 18px;
-    max-width: 86%;
-    letter-spacing: .4px;
+    font-size: 16px;
+    font-weight: 900;
+    max-width: none;
+    letter-spacing: .15px;
+    line-height: 1.3;
+    white-space: nowrap;
   }
   .hero.pub .hero-copy .pass {
     color: #4338CA;
@@ -190,6 +203,40 @@
   }
   body.pub-ch .btn-mini {
     background: #4F46E5;
+  }
+  .view-tabs {
+    position: sticky;
+    top: 0;
+    z-index: 25;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 6px 32px 0;
+    background: #F6F6F6;
+  }
+  body.pub-ch .view-tabs,
+  .phone.pub-ch .view-tabs { background: #F3F4FB; }
+  .view-tabs button {
+    height: 38px;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    color: #999;
+    cursor: pointer;
+    position: relative;
+  }
+  .view-tabs button.on { color: #C2186A; }
+  body.pub-ch .view-tabs button.on { color: #4F46E5; }
+  .view-tabs button.on::after {
+    content: "";
+    position: absolute;
+    left: 22%;
+    right: 22%;
+    bottom: 0;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
   }
   .about {
     margin: 12px 32px 0;
@@ -372,6 +419,417 @@
   .pub-who .jobs {
     font-weight: 700;
   }
+  .story {
+    margin: 12px 32px 0;
+  }
+  .story-sec {
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px 14px;
+    margin: 0 0 10px;
+    box-shadow: 0 2px 10px rgba(40,20,60,.06);
+  }
+  .story-sec:last-child { margin-bottom: 0; }
+  .story-sec > h3 {
+    margin: 0 0 12px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #C2186A;
+    letter-spacing: .4px;
+  }
+  body.pub-ch .story-sec > h3 { color: #4338CA; }
+  .story-sec .lead {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #5b5b66;
+    line-height: 1.65;
+  }
+  .story-sec .sub {
+    margin: 16px 0 8px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #1A1A1A;
+  }
+  .v-hero {
+    margin: 0 0 12px;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #1A1A1A;
+    letter-spacing: -.3px;
+    text-align: center;
+  }
+  .v-hero i {
+    font-style: normal;
+    color: #C2186A;
+  }
+  body.pub-ch .v-hero i { color: #4F46E5; }
+  .hook-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin: 0 0 14px;
+  }
+  .hook-cols p {
+    margin: 0;
+    padding: 12px 6px 11px;
+    text-align: center;
+    background: #F7F7F8;
+    border-radius: 12px;
+    min-height: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+  }
+  body.pub-ch .hook-cols p { background: #F4F5FC; }
+  .hook-cols b {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    color: #1A1A1A;
+    line-height: 1.25;
+  }
+  .hook-cols span {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: #888;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+  .hook-solve {
+    margin: 0 0 4px;
+    padding: 0 0 12px;
+    border-bottom: 1px solid #F0F0F2;
+    color: #C2186A;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.45;
+    text-align: center;
+  }
+  body.pub-ch .hook-solve { color: #3730A3; }
+  .info-dl { margin: 0; }
+  .info-dl > div {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 8px;
+    padding: 10px 0;
+    border-bottom: 1px solid #F0F0F2;
+    align-items: start;
+  }
+  .info-dl dt {
+    font-size: 11px;
+    font-weight: 800;
+    color: #C2186A;
+  }
+  body.pub-ch .info-dl dt { color: #4338CA; }
+  .info-dl dd {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: #444;
+    line-height: 1.55;
+  }
+  .co-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 12px 0 8px;
+  }
+  .co-head h4 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 800;
+    color: #1A1A1A;
+  }
+  .co-head span {
+    font-size: 10px;
+    color: #AAA;
+  }
+  .story-shot {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #EEE;
+  }
+  .story-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+  }
+  .co-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin: 0;
+  }
+  .co-grid span {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #333;
+    background: #FAFAFA;
+    border-radius: 8px;
+    padding: 8px 4px;
+  }
+  .perk {
+    margin: 12px 0 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #FF2D8A, #FF6B9D);
+    color: #fff;
+  }
+  .perk b {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+  .perk p {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.5;
+    opacity: .95;
+  }
+  #innerChannel .perk {
+    margin: 10px 32px 0;
+  }
+  .tl-board {
+    position: relative;
+    margin: 10px 0 0;
+    padding: 0 14px 2px 0;
+  }
+  .tl-h {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+    column-gap: 8px;
+  }
+  .tl-h::before {
+    content: "";
+    position: absolute;
+    left: 16.66%;
+    right: -14px;
+    top: 7px;
+    height: 2px;
+    background: #E6E6EA;
+    z-index: 0;
+  }
+  .tl-h-back {
+    direction: rtl;
+    margin-top: 28px;
+  }
+  .tl-h-back > li { direction: ltr; }
+  .tl-join {
+    position: absolute;
+    right: 0;
+    top: 7px;
+    width: 12px;
+    height: 58px;
+    border: 2px solid #E6E6EA;
+    border-left: 0;
+    border-radius: 0 12px 12px 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .tl-h > li {
+    position: relative;
+    text-align: center;
+    padding: 0 2px;
+  }
+  .tl-h .node {
+    position: relative;
+    z-index: 1;
+    width: 10px;
+    height: 10px;
+    margin: 2px auto 8px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #D4D4D8;
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    color: #FF2D8A;
+    font-size: 0;
+  }
+  body.pub-ch .tl-h .node { color: #4F46E5; }
+  .tl-h > li.star .node {
+    width: 16px;
+    height: 16px;
+    margin: -1px auto 6px;
+    background: none;
+    border: 0;
+    font-size: 13px;
+    line-height: 1;
+  }
+  .tl-h > li.star .node::after { content: "★"; }
+  .tl-h em {
+    display: block;
+    font-style: normal;
+    font-size: 9px;
+    font-weight: 700;
+    color: #999;
+    margin-bottom: 3px;
+    line-height: 1.35;
+  }
+  .tl-h strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    color: #1A1A1A;
+    line-height: 1.35;
+  }
+  .tl-h > li.star strong { color: #C2186A; }
+  body.pub-ch .tl-h > li.star strong { color: #3730A3; }
+  .story-note {
+    margin: 12px 0 0;
+    font-size: 10px;
+    color: #888;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+  .method > .lead { margin: 0 0 14px; }
+  .m-block { margin: 0 0 14px; }
+  .m-block .sub {
+    margin: 0 0 8px;
+    padding-left: 8px;
+    border-left: 3px solid #C2186A;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+  body.pub-ch .m-block .sub { border-left-color: #4F46E5; }
+  .m-block .lead { margin: 0 0 8px; font-size: 11px; }
+  .iv3 { display: flex; flex-direction: column; gap: 0; margin: 0; padding: 0; background: #F7F7F9; border-radius: 12px; overflow: hidden; }
+  body.pub-ch .iv3 { background: #F4F5FC; }
+  .iv3 li {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 2px 8px;
+    align-items: start;
+    padding: 10px 10px 10px 8px;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+  }
+  .iv3 li:last-child { border-bottom: 0; }
+  .iv3 em {
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 800;
+    color: #C2186A;
+    padding-top: 1px;
+  }
+  body.pub-ch .iv3 em { color: #4F46E5; }
+  .iv3 strong { display: block; font-size: 12px; margin-bottom: 2px; }
+  .iv3 span { display: block; font-size: 11px; font-weight: 500; color: #666; line-height: 1.45; }
+  .e4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+  }
+  .e4 li {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    grid-template-rows: auto auto auto;
+    column-gap: 6px;
+    background: #F7F7F9;
+    border-radius: 10px;
+    padding: 8px;
+    min-height: 0;
+  }
+  body.pub-ch .e4 li { background: #F4F5FC; }
+  .e4 b {
+    grid-row: 1 / span 3;
+    align-self: start;
+    font-size: 11px;
+    font-weight: 800;
+    color: #C2186A;
+    letter-spacing: 0;
+    margin: 0;
+    padding-top: 1px;
+  }
+  body.pub-ch .e4 b { color: #4338CA; }
+  .e4 strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 800;
+    color: #1A1A1A;
+    line-height: 1.25;
+  }
+  .e4 em {
+    display: block;
+    font-style: normal;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    color: #AAA;
+    text-transform: uppercase;
+    margin: 1px 0 3px;
+  }
+  .e4 span {
+    display: block;
+    font-size: 10px;
+    color: #777;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+  .why-nums {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    margin: 0 0 8px;
+    background: #F7F7F9;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  body.pub-ch .why-nums { background: #F4F5FC; }
+  .why-nums div {
+    text-align: center;
+    padding: 10px 4px;
+    border-right: 1px solid rgba(0,0,0,.06);
+  }
+  .why-nums div:last-child { border-right: 0; }
+  .why-nums strong {
+    display: block;
+    font-size: 18px;
+    font-weight: 800;
+    color: #C2186A;
+  }
+  body.pub-ch .why-nums strong { color: #4338CA; }
+  .why-nums span {
+    display: block;
+    margin-top: 2px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #666;
+    line-height: 1.3;
+  }
+  .m-callout {
+    margin: 0;
+    padding: 10px 12px 12px;
+    border-radius: 12px;
+    background: #FFF0F6;
+  }
+  body.pub-ch .m-callout { background: #EEF2FF; }
+  .m-callout .sub {
+    margin: 0 0 6px;
+    font-size: 12px;
+    color: #C2186A;
+  }
+  body.pub-ch .m-callout .sub { color: #4338CA; }
+  .m-callout .lead { margin: 0; font-size: 12px; color: #444; }
   .iv-entry {
     display: block;
     width: 100%;
@@ -1803,62 +2261,137 @@
 
   <section class="screen on" id="form">
     <div class="hero">
-      <img src="art-tour-banner.jpg" alt="">
+      <img src="fair-kv.png" alt="">
       <div class="hero-copy">
         <em id="heroEm">2026 秋招季斯芬克专场 · 企业 HR 1v1</em>
         <h1 id="heroTitle">中国海归艺术创意人才专场招聘会</h1>
         <span class="pass" id="heroPass">留学生秋招专属通道</span>
       </div>
     </div>
-    <div class="about" id="aboutInner">
-      <h3 class="hl-title"><i></i>活动亮点<i></i></h3>
-      <div class="hl-list">
-        <p>头部名企现场设展，简历直达招聘官</p>
-        <p>设计 / 创意 / AIGC / 游戏 等专属岗位</p>
-        <p>全球本硕博海归与名企面对面交流</p>
-      </div>
+    <div class="view-tabs" id="viewTabs">
+      <button type="button" class="on" data-view="intro">活动介绍</button>
+      <button type="button" data-view="apply">立即报名</button>
     </div>
-    <div class="about pub-intro" id="aboutPub" hidden>
-      <header>
-        <h3>27届秋季校园招聘+社招专场</h3>
-        <p class="pub-lead">新东方斯芬克联合东方甄选、阿里银泰、农夫山泉、摩登天空、UCCA等20+企业，首次面向海归创意人才举办招聘专场。</p>
-      </header>
-      <div class="pub-card">
-        <h4>这场专场为什么重要</h4>
-        <ol>
-          <li><b>海归创意专场</b>国内少有，一次集中对接名企招聘官</li>
-          <li><b>赶上秋招窗口</b>27 届校招 / 社招 / 实习同步开放</li>
-          <li><b>现场有反馈</b>作品集面对面，比海投网申更有效</li>
-        </ol>
-      </div>
-      <div class="pub-card">
-        <h4>为什么选择斯芬克</h4>
-        <ol>
-          <li><b>新东方体系</b>深耕艺术留学与创意就业</li>
-          <li><b>双边都懂</b>既懂海归作品集，也懂国内名企标准</li>
-          <li><b>四城落地</b>上海、广州、北京、成都巡回组织</li>
-        </ol>
-      </div>
-      <div class="pub-card">
-        <h4>秋招时间轴</h4>
-        <div class="pub-dates">
-          <span><i></i><em>上海</em><b>10/24</b></span>
-          <span><i></i><em>广州</em><b>10/25</b></span>
-          <span><i></i><em>北京</em><b>10/31</b></span>
-          <span><i></i><em>成都</em><b>11/14</b></span>
+    <div id="viewIntro">
+    <div class="story" id="fairStory">
+      <section class="story-sec intro">
+        <p class="v-hero">你的简历，<i>可能一次都没被打开</i></p>
+        <div class="hook-cols">
+          <p><b>AI 初筛</b><span>HR 见不到</span></p>
+          <p><b>国内生</b><span>专场抢破头</span></p>
+          <p><b>留学生</b><span>只能海投</span></p>
         </div>
-      </div>
-      <div class="pub-card pub-who">
-        <div>
-          <span class="lab">面向人群</span>
-          <p>27届应届及往届社招（2026.9—2027.9 毕业的全球本硕博）；非应届在读可参加教育展下午场实习面试会；留学生家长亦可到场了解。</p>
+        <p class="hook-solve">本场专场跳过初筛，直接对话招聘官</p>
+        <dl class="info-dl">
+          <div>
+            <dt>面向人群</dt>
+            <dd>27届应届及往届社招<br>在读可参加下午场实习面试<br>家长可到场代投</dd>
+          </div>
+          <div>
+            <dt>岗位类型</dt>
+            <dd>校招全职 · 社招全职 · 实习</dd>
+          </div>
+          <div>
+            <dt>举办城市</dt>
+            <dd>上海 · 广州 · 北京 · 成都 · 免费报名</dd>
+          </div>
+        </dl>
+        <div class="co-head">
+          <h4>企业阵容</h4>
+          <span>部分示列</span>
         </div>
-        <div>
-          <span class="lab">岗位类型</span>
-          <p class="jobs">校招全职 · 社招全职 · 实习（部分企业开放）</p>
+        <div class="co-grid">
+          <span>东方甄选</span><span>银泰商业</span>
+          <span>阿里国际</span><span>百丽</span>
+          <span>JNBY</span><span>养生堂·农夫山泉</span>
+          <span>今日美术馆</span><span>摩登天空</span>
+          <span>华策影业</span><span>ARTPRO STUDIO</span>
+          <span>网龙游戏</span><span>……</span>
         </div>
-      </div>
+        <figure class="story-shot">
+          <img src="fair-scene.jpg" alt="招聘会现场一对一面试">
+        </figure>
+      </section>
+      <section class="story-sec">
+        <h3>完整求职时间线</h3>
+        <p class="lead">秋招是一条链。中间掉队，就要等春招补录。</p>
+        <div class="tl-board">
+        <i class="tl-join"></i>
+        <ul class="tl-h">
+          <li>
+            <i class="node"></i>
+            <em>2026年9—10月</em>
+            <strong>秋招正式批发力</strong>
+          </li>
+          <li class="star">
+            <i class="node"></i>
+            <em>2026年10—11月</em>
+            <strong>笔试面试高峰期</strong>
+          </li>
+          <li>
+            <i class="node"></i>
+            <em>2026年12月—<br>2027年2月</em>
+            <strong>秋招补录 +<br>央国企校招</strong>
+          </li>
+        </ul>
+        <ul class="tl-h tl-h-back">
+          <li>
+            <i class="node"></i>
+            <em>2027年3—4月</em>
+            <strong>春招爆发期</strong>
+          </li>
+          <li>
+            <i class="node"></i>
+            <em>2027年5—6月</em>
+            <strong>春招补录期</strong>
+          </li>
+          <li>
+            <i class="node"></i>
+            <em>2027年7月起</em>
+            <strong>毕业入职 /<br>转入社招</strong>
+          </li>
+        </ul>
+        </div>
+        <p class="story-note">时间节点以企业实际安排为准，建议尽早报名，岗位名额按场次分配。</p>
+      </section>
+      <section class="story-sec method">
+        <h3>斯芬克求职方法论</h3>
+        <p class="lead">连接院校培养与企业用人标准，形成三项能力。</p>
+        <div class="m-block">
+          <h4 class="sub">问题诊断：三大求职洞察</h4>
+          <ul class="iv3">
+            <li><em>01</em><div><strong>拒绝标准化求职路径</strong><span>作品集方向与岗位匹配需按个人风格定制。</span></div></li>
+            <li><em>02</em><div><strong>创意岗「三重错位」</strong><span>职业认知｜用人标准｜时间窗口。</span></div></li>
+            <li><em>03</em><div><strong>从经历堆砌到能力沉淀</strong><span>有效经历应可复盘、可表达、可验证。</span></div></li>
+          </ul>
+        </div>
+        <div class="m-block">
+          <h4 class="sub">评价标准：4E 人才评价模型</h4>
+          <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
+          <ul class="e4">
+            <li><b>E1</b><strong>教育背景</strong><em>Education</em><span>学校 · 专业 · 学术基础</span></li>
+            <li><b>E2</b><strong>实践经验</strong><em>Experience</em><span>实习 · 项目 · 业务经历</span></li>
+            <li><b>E3</b><strong>专业能力</strong><em>Expertise</em><span>技能 · 解决问题</span></li>
+            <li><b>E4</b><strong>执行力</strong><em>Execution</em><span>将知识转化为结果</span></li>
+          </ul>
+        </div>
+        <div class="m-block">
+          <h4 class="sub">平台优势</h4>
+          <div class="why-nums">
+            <div><strong>66</strong><span>国内高校合作</span></div>
+            <div><strong>600+</strong><span>海外院校合作</span></div>
+            <div><strong>50</strong><span>头部企业合作</span></div>
+          </div>
+          <p class="lead">将人才培养延伸至就业环节，对接真实岗位需求。</p>
+        </div>
+        <div class="m-callout">
+          <h4 class="sub">现场评估机制</h4>
+          <p class="lead">现场招聘官依据 4E 模型审阅作品集，而非仅以院校背景为判断依据。请携带作品集到场。</p>
+        </div>
+      </section>
     </div>
+    </div>
+    <div id="viewApply" hidden>
     <div id="publicChannel">
       <div class="block b-info" id="sec-pub-info">
         <div class="mark">基本信息</div>
@@ -1914,6 +2447,10 @@
     </div>
 
     <div id="innerChannel" hidden>
+    <div class="perk only-inner" id="sfkPerk">
+      <b>SFK 学生及校友专属招聘权益</b>
+      <p>专属提前报名占位通道 · 专属优先入场场次 · 专属求职竞争力反馈</p>
+    </div>
     <div class="block b-info" id="sec-info">
       <div class="mark">基本信息登记<em>必填</em></div>
       <div class="sheet">
@@ -1927,7 +2464,7 @@
           <input id="email" type="email" placeholder="请填写邮箱" value="wangle@example.com" />
         </div>
         <div class="field tint tint-teacher only-inner" id="teacherRow"><span class="lab need">推荐您的教务老师全名</span><input id="teacher" placeholder="请填写全名" value="李敏" /></div>
-        <div class="field tint tint-alumni only-inner" id="alumniRow"><span class="lab">【选填】推荐的 SFK 校友全名</span><input id="alumni" placeholder="选填，请填写全名" value="" /></div>
+        <div class="field tint tint-alumni only-inner" id="alumniRow"><span class="lab">推荐的 SFK 校友全名</span><input id="alumni" placeholder="请填写全名" value="" /></div>
         <div class="field tint tint-campus only-inner" id="campusRow">
           <span class="lab need">所在 SFK 校区</span>
           <select class="pick-full" id="campus">
@@ -1985,7 +2522,7 @@
     </div>
 
     <div class="block b-edu" id="sec-edu">
-      <div class="mark">教育背景<em style="font-style:normal;font-size:12px;font-weight:700;color:#A78BFA;margin-left:6px">选填</em></div>
+      <div class="mark">教育背景</div>
       <div class="sheet">
         <div class="field tint tint-edu">
           <span class="lab">你目前是</span>
@@ -1998,7 +2535,7 @@
           </div>
         </div>
         <div id="ugBox" class="edu-pack">
-          <div class="subhead">本科信息<em>选填</em></div>
+          <div class="subhead">本科信息</div>
           <div class="field"><span class="lab">国家/地区</span><input id="ugNation" value="中国" /></div>
           <div class="field"><span class="lab">学校全称</span><input id="ugSchool" value="中央美术学院" /></div>
           <div class="field"><span class="lab">所学专业</span><input id="ugMajor" value="视觉传达" /></div>
@@ -2012,7 +2549,7 @@
           </div>
         </div>
         <div id="masterBox" class="edu-pack pg" hidden>
-          <div class="subhead">硕士信息<em>选填</em></div>
+          <div class="subhead">硕士信息</div>
           <div class="field"><span class="lab">国家/地区</span><input id="pgNation" value="" /></div>
           <div class="field"><span class="lab">学校全称</span><input id="pgSchool" value="" /></div>
           <div class="field"><span class="lab">所学专业</span><input id="pgMajor" value="" /></div>
@@ -2026,7 +2563,7 @@
           </div>
         </div>
         <div id="otherBox" class="edu-pack ot" hidden>
-          <div class="subhead">其他学历<em>选填</em></div>
+          <div class="subhead">其他学历</div>
           <div class="field" id="otherEdu">
             <span class="lab">学历类型</span>
             <div class="opts g3" id="otLv">
@@ -2051,7 +2588,7 @@
     </div>
 
     <div class="block b-wish" id="sec-wish">
-      <div class="mark">求职意向<em style="font-style:normal;font-size:12px;font-weight:700;color:#E8A070;margin-left:6px">选填</em></div>
+      <div class="mark">求职意向</div>
       <div class="sheet">
         <div class="field tint tint-want">
           <span class="lab">你现在主要想找<em>可多选</em></span>
@@ -2208,6 +2745,7 @@
       </div>
     </div>
     </div>
+    </div>
 
   </section>
 
@@ -2260,7 +2798,7 @@
   </section>
 
   <div class="dock on" id="dock">
-    <p class="dock-tip" id="dockTip" hidden>选填完善后，点此提交整份报名</p>
+    <p class="dock-tip" id="dockTip" hidden>完善后，点此提交整份报名</p>
     <div class="dock-acts">
       <button class="btn" id="submit" type="button" disabled>提交报名</button>
     </div>
@@ -2279,8 +2817,8 @@
   <div class="pop" id="keepPop">
     <div class="pop-mask" id="keepMask"></div>
     <div class="pop-card">
-      <h3>还要再想想吗？</h3>
-      <p class="desc">现在离开的话，未提交的信息可能丢失。建议继续填写完整再走。</p>
+      <h3>温馨提示</h3>
+      <p class="desc">请在参加面试场次至少提前3天完成剩余信息的登记与填写，建议继续填写完整再离开哦</p>
       <div class="keep-acts">
         <button class="btn ghost" id="keepLeave" type="button">确认离开</button>
         <button class="btn" id="keepStay" type="button">继续填写</button>
@@ -2531,8 +3069,6 @@ function applyChannel() {
     const hero = document.querySelector(".hero");
     hero.classList.add("inner");
     hero.classList.remove("pub");
-    document.getElementById("aboutInner").hidden = false;
-    document.getElementById("aboutPub").hidden = true;
     document.getElementById("heroEm").hidden = false;
     document.getElementById("heroEm").textContent = "海归艺术创意人才专场招聘会";
     const title = document.getElementById("heroTitle");
@@ -2562,8 +3098,6 @@ function applyChannel() {
     const hero = document.querySelector(".hero");
     hero.classList.remove("inner");
     hero.classList.add("pub");
-    document.getElementById("aboutInner").hidden = true;
-    document.getElementById("aboutPub").hidden = false;
     document.getElementById("heroEm").hidden = false;
     document.getElementById("heroEm").textContent = "2026 秋季 · 公开报名";
     const title = document.getElementById("heroTitle");
@@ -2593,7 +3127,7 @@ function applyChannel() {
   if (sub) sub.textContent = "提交报名";
   const tip = document.getElementById("dockTip");
   if (tip) tip.hidden = false;
-  paintAnchor();
+  showFairView(fairView || "intro");
 }
 function paintAnchor(active) {
   const list = [
@@ -2606,7 +3140,9 @@ function paintAnchor(active) {
   document.getElementById("anchor").innerHTML = list.map(x =>
     `<button type="button" data-sec="${x[0]}" class="${x[0] === on ? "on" : ""}">${x[1].split("").join("<br>")}</button>`
   ).join("");
-  document.getElementById("rail").classList.add("on");
+  const formOn = document.getElementById("form").classList.contains("on");
+  const id = show.id;
+  document.getElementById("rail").classList.toggle("on", (formOn && fairView === "apply") || id === "book" || id === "pass");
 }
 function setAnchorOn(id) {
   const btns = document.querySelectorAll("#anchor button[data-sec]");
@@ -2615,7 +3151,7 @@ function setAnchorOn(id) {
 }
 function spyAnchor() {
   const form = document.getElementById("form");
-  if (!form || !form.classList.contains("on")) return;
+  if (!form || !form.classList.contains("on") || fairView !== "apply") return;
   const ids = ["sec-info", "sec-edu", "sec-wish"];
   const line = form.getBoundingClientRect().top + 48;
   let current = ids[0];
@@ -2626,6 +3162,28 @@ function spyAnchor() {
   });
   setAnchorOn(current);
 }
+let fairView = "intro";
+function showFairView(v) {
+  fairView = v === "apply" ? "apply" : "intro";
+  const intro = document.getElementById("viewIntro");
+  const apply = document.getElementById("viewApply");
+  if (intro) intro.hidden = fairView !== "intro";
+  if (apply) apply.hidden = fairView !== "apply";
+  document.querySelectorAll("#viewTabs [data-view]").forEach(b => {
+    b.classList.toggle("on", b.dataset.view === fairView);
+  });
+  const form = document.getElementById("form");
+  const formOn = form && form.classList.contains("on");
+  if (formOn) form.scrollTop = 0;
+  document.getElementById("dock").classList.toggle("on", formOn && fairView === "apply");
+  const sid = show.id;
+  document.getElementById("rail").classList.toggle("on", (formOn && fairView === "apply") || sid === "book" || sid === "pass");
+  if (formOn && fairView === "apply") paintAnchor();
+}
+document.getElementById("viewTabs").addEventListener("click", e => {
+  const b = e.target.closest("[data-view]");
+  if (b) showFairView(b.dataset.view);
+});
 applyChannel();
 applyForm(fairGet());
 document.querySelectorAll("#fairCity .chip").forEach(c => c.classList.toggle("on", c.dataset.city === city));
@@ -2649,6 +3207,7 @@ document.getElementById("anchor").addEventListener("click", e => {
     return;
   }
   const jump = () => {
+    showFairView("apply");
     paintAnchor(sec);
     const el = document.getElementById(sec);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -2895,8 +3454,8 @@ function show(id) {
   document.getElementById("navTitle").textContent = id === "book"
     ? "预约信息"
     : (INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会");
-  document.getElementById("dock").classList.toggle("on", id === "form");
-  document.getElementById("rail").classList.toggle("on", id === "form" || id === "book" || id === "pass");
+  document.getElementById("dock").classList.toggle("on", id === "form" && fairView === "apply");
+  document.getElementById("rail").classList.toggle("on", (id === "form" && fairView === "apply") || id === "book" || id === "pass");
   show.id = id;
   if (id === "book") paintAnchor("book");
   else if (id === "pass" || id === "form") paintAnchor();
