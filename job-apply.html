@@ -202,9 +202,6 @@
     background: #4F46E5;
     box-shadow: 0 2px 8px rgba(79,70,229,.28);
   }
-  body.pub-ch .btn-mini {
-    background: #4F46E5;
-  }
   .view-tabs {
     position: sticky;
     top: 0;
@@ -2191,14 +2188,6 @@
     height: 32px;
     max-width: none;
   }
-  .info-act {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    margin-top: 12px;
-    padding: 0 4px;
-  }
   .act-hint, .dock-tip, .note-line {
     margin: 0;
     font-size: 11px;
@@ -2237,20 +2226,6 @@
     font-weight: 700;
     line-height: 1.4;
   }
-  .btn-mini {
-    height: 34px;
-    padding: 0 18px;
-    border: 0;
-    border-radius: 8px;
-    background: #FF4FA0;
-    color: #fff;
-    font: inherit;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-  .btn-mini:disabled { background: #F3C2DA; }
   .pop {
     position: absolute;
     inset: 0;
@@ -2841,11 +2816,6 @@
             <button class="chip" type="button">家长代为参与</button>
           </div>
         </div>
-        <div class="info-act">
-          <p class="note-line" id="noteLine">到场携带：纸质简历 10–15 份、纸质作品集</p>
-          <p class="act-hint">填写说明：* 为必填；<br>保存后可继续补充教育背景、求职意向</p>
-          <button class="btn-mini" id="submitMini" type="button">保存进入下一页</button>
-        </div>
       </div>
     </div>
 
@@ -3129,6 +3099,7 @@
     <p class="dock-tip" id="dockTip" hidden>完善后，点此提交整份报名</p>
     <div class="dock-acts">
       <button class="btn" id="goApply" type="button">活动报名</button>
+      <button class="btn" id="submitMini" type="button" hidden>保存进入下一页</button>
       <button class="btn" id="submit" type="button" hidden>提交报名</button>
     </div>
   </div>
@@ -3394,13 +3365,6 @@ function applyChannel() {
     el.hidden = !INNER;
     el.classList.toggle("off", !INNER);
   });
-  const note = document.getElementById("noteLine");
-  if (note) {
-    note.hidden = false;
-    note.innerHTML = INNER
-      ? "到场携带：纸质简历 10–15 份、纸质作品集<br>（也可请教务老师代交）"
-      : "到场携带：纸质简历 10–15 份、纸质作品集";
-  }
   if (INNER) {
     document.body.classList.remove("pub-ch");
     document.body.classList.add("inner-ch");
@@ -3526,15 +3490,31 @@ function syncDock() {
   const intro = fairView === "intro";
   const apply = fairView === "apply";
   const more = apply && applyStep === "edu";
-  document.getElementById("dock").classList.toggle("on", onForm && (intro || more));
+  const info = apply && applyStep === "info";
+  document.getElementById("dock").classList.toggle("on", onForm && (intro || info || more));
   const go = document.getElementById("goApply");
+  const mini = document.getElementById("submitMini");
   const sub = document.getElementById("submit");
   const share = document.getElementById("shareBtn");
   const tip = document.getElementById("dockTip");
   if (go) go.hidden = !intro;
+  if (mini) mini.hidden = !info;
   if (share) share.classList.toggle("on", onForm && intro);
   if (sub) sub.hidden = !more;
-  if (tip) tip.hidden = !more;
+  if (tip) {
+    if (info) {
+      const carry = INNER
+        ? "到场携带：纸质简历 10–15 份、纸质作品集<br>（也可请教务老师代交）"
+        : "到场携带：纸质简历 10–15 份、纸质作品集";
+      tip.innerHTML = carry + "<br>填写说明：* 为必填；<br>保存后可继续补充教育背景、求职意向";
+      tip.hidden = false;
+    } else if (more) {
+      tip.textContent = "完善后，点此提交整份报名";
+      tip.hidden = false;
+    } else {
+      tip.hidden = true;
+    }
+  }
 }
 function showFairView(v) {
   const next = v === "apply" ? "apply" : "intro";
