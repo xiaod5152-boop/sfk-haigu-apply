@@ -136,21 +136,6 @@
   }
   .entry-go.draft { background: #EA580C; }
   .entry-go.done { background: #16A34A; }
-  .entry-link {
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-    padding-top: 10px;
-    border: 0;
-    border-top: 1px dashed #D8C8F0;
-    background: none;
-    font: inherit;
-    font-size: 12px;
-    font-weight: 700;
-    color: #7C3AED;
-    text-align: center;
-    cursor: pointer;
-  }
   .fair-st {
     display: none;
     margin-top: 8px;
@@ -180,7 +165,6 @@
   .entry.inner .entry-dates span { background: rgba(255,255,255,.12); }
   .entry.inner .entry-dates em { color: rgba(255,255,255,.75); }
   .entry.inner .entry-dates b { color: #fff; }
-  .entry.inner .entry-link { color: #FFD0E4; border-top-color: rgba(255,176,208,.35); }
   .entry-note {
     display: block;
     margin-top: 10px;
@@ -625,7 +609,6 @@
       <span><em>北京</em><b>10/31</b></span>
       <span><em>成都</em><b>11/14</b></span>
     </div>
-    <button class="entry-link" id="ivEntry" type="button">展前练一练 · AI模拟面试 ›</button>
     <p class="fair-st" id="fairSt"></p>
   </div>
   <div class="main">
@@ -892,9 +875,6 @@ document.getElementById("halls").addEventListener("click", e => {
   render();
 });
 document.getElementById("fairGo").addEventListener("click", goFair);
-document.getElementById("ivEntry").addEventListener("click", () => {
-  location.href = "ai-interview.html?from=home&city=" + encodeURIComponent(city || "北京");
-});
 
 function toast(text) {
   const el = document.getElementById("toast");

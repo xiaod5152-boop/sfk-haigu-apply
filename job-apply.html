@@ -3475,7 +3475,7 @@ function paintAnchor(active) {
   ).join("");
   const formOn = document.getElementById("form").classList.contains("on");
   const id = show.id;
-  document.getElementById("rail").classList.toggle("on", (formOn && fairView === "apply") || id === "book" || id === "pass");
+  document.getElementById("rail").classList.toggle("on", (formOn && fairView === "apply") || id === "book");
 }
 function setAnchorOn(id) {
   const btns = document.querySelectorAll("#anchor button[data-sec]");
@@ -3547,7 +3547,7 @@ function showFairView(v) {
   if (fromIntro) setApplyStep("info");
   else syncDock();
   const sid = show.id;
-  document.getElementById("rail").classList.toggle("on", (formOn && fairView === "apply") || sid === "book" || sid === "pass");
+  document.getElementById("rail").classList.toggle("on", (formOn && fairView === "apply") || sid === "book");
   if (formOn && fairView === "apply") paintAnchor();
 }
 document.getElementById("viewTabs").addEventListener("click", e => {
@@ -3852,10 +3852,10 @@ function show(id) {
     ? "预约信息"
     : (INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会");
   syncDock();
-  document.getElementById("rail").classList.toggle("on", (id === "form" && fairView === "apply") || id === "book" || id === "pass");
+  document.getElementById("rail").classList.toggle("on", (id === "form" && fairView === "apply") || id === "book");
   show.id = id;
   if (id === "book") paintAnchor("book");
-  else if (id === "pass" || id === "form") paintAnchor();
+  else if (id === "form") paintAnchor();
 }
 
 bindChips();
@@ -3988,11 +3988,6 @@ function doSubmit(from) {
     showNeedPop(gaps);
     return;
   }
-  const phoneEl = document.getElementById("phone");
-  const phone = phoneEl && phoneEl.value ? phoneEl.value : "13800138007";
-  const mask = phone.slice(0, 3) + "****" + phone.slice(-4);
-  const fairDate = (document.querySelector("#fairCity .chip.on") || {}).dataset.date || "";
-  const fairDay = (fairDate || "").replace(/^0?(\d+)\/0?(\d+)$/, "$1月$2日");
   if (from === "mini") {
     fairSave("draft");
     paintEditBar();
@@ -4001,16 +3996,10 @@ function doSubmit(from) {
   }
   show("load");
   setTimeout(() => {
-    const venue = VENUES[city] || VENUES["北京"];
-    document.getElementById("tkTitle").textContent = INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会";
-    document.getElementById("tkCity").textContent = city + "站";
-    document.getElementById("tkWhen").textContent = fairDay + "上午";
-    document.getElementById("tkAddr").innerHTML = venue.html;
-    document.getElementById("tkSms").textContent = mask;
-    document.getElementById("ticket").dataset.addr = venue.nav;
     fairSave("done");
     paintEditBar();
-    show("pass");
+    paintBook();
+    show("book");
   }, 900);
 }
 document.getElementById("goApply").addEventListener("click", () => showFairView("apply"));
@@ -4120,9 +4109,6 @@ function openNav(addr) {
 }
 document.getElementById("passNav").addEventListener("click", () => {
   openNav(document.getElementById("passVenue").dataset.addr);
-});
-document.getElementById("ticketNav").addEventListener("click", () => {
-  openNav(document.getElementById("ticket").dataset.addr);
 });
 document.getElementById("book").addEventListener("click", e => {
   if (!e.target.closest("#bookNav")) return;
