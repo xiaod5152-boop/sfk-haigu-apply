@@ -868,32 +868,39 @@
     line-height: 1.55;
   }
   .e4 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
     margin: 0;
     padding: 0;
   }
   .e4 li {
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    background: #FAFAFA;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    row-gap: 3px;
+    background: none;
     border: 0;
-    border-radius: 10px;
-    padding: 12px 10px 11px;
+    border-top: 1px solid #F2F2F2;
+    border-radius: 0;
+    padding: 12px 0;
   }
-  .e4 li.wide { grid-column: 1 / -1; }
-  body.pub-ch .e4 li { background: #F7F8FC; border: 0; }
+  .e4 li:first-child { border-top: 0; padding-top: 0; }
+  .e4 li:last-child { padding-bottom: 0; }
+  body.pub-ch .e4 li { background: none; border-top-color: #EEE; }
   .e4 b {
-    font-size: 10px;
+    grid-row: 1 / span 2;
+    align-self: center;
+    font-size: 13px;
     font-weight: 800;
     color: #C2186A;
-    letter-spacing: .06em;
+    letter-spacing: .04em;
   }
   body.pub-ch .e4 b { color: #4338CA; }
   .e4 strong {
+    grid-column: 2;
     display: block;
     padding: 0;
     font-size: 13px;
@@ -903,11 +910,12 @@
   }
   .e4 em { display: none; }
   .e4 span {
+    grid-column: 2;
     display: block;
-    font-size: 10px;
-    color: #999;
+    font-size: 11px;
+    color: #888;
     font-weight: 500;
-    line-height: 1.45;
+    line-height: 1.5;
     white-space: normal;
   }
   .why-nums {
@@ -2533,14 +2541,14 @@
           </ul>
         </div>
         <div class="m-block">
-          <h4 class="sub">评价标准：4E 人才评价模型</h4>
+          <h4 class="sub">评价标准：5E 人才评价模型</h4>
           <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
           <ul class="e4">
             <li><b>E1</b><strong>教育背景</strong><em>Education</em><span>学校 · 专业 · 学术基础</span></li>
             <li><b>E2</b><strong>实践经验</strong><em>Experience</em><span>实习 · 项目 · 业务经历</span></li>
             <li><b>E3</b><strong>专业能力</strong><em>Expertise</em><span>技能 · 解决问题 · 有AI工作流及应用能力</span></li>
             <li><b>E4</b><strong>执行力</strong><em>Execution</em><span>将知识转化为结果</span></li>
-            <li class="wide"><b>E5</b><strong>职业能力</strong><span>主动沟通 高效协作 强逻辑分析能力</span></li>
+            <li><b>E5</b><strong>职业能力</strong><span>主动沟通 高效协作 强逻辑分析能力</span></li>
           </ul>
         </div>
         <div class="m-block">
