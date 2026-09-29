@@ -874,16 +874,9 @@
     --c4: #E11D48;
     --c5: #9D174D;
     --ink: #C2186A;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "n1 n1"
-      "pie pie"
-      "n5 n2"
-      "n4 n3";
-    gap: 8px;
-    align-items: stretch;
-    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     margin: 2px 0 4px;
   }
   body.pub-ch .e5-fuse {
@@ -895,11 +888,9 @@
     --ink: #4F46E5;
   }
   .e5-fuse .pie {
-    grid-area: pie;
-    width: 210px;
-    height: 210px;
-    justify-self: center;
-    align-self: center;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
   }
   .e5-fuse .pie svg { display: block; width: 100%; height: 100%; }
   .e5-fuse .s1 { fill: var(--c1); }
@@ -926,72 +917,59 @@
     font-weight: 600;
     text-anchor: middle;
   }
-  .e5-fuse .note {
-    width: auto;
-    padding: 8px 8px 8px 10px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 14px rgba(40, 16, 32, .08);
-    border: 1px solid #F3F3F5;
-    border-left-width: 3px;
-  }
-  body.pub-ch .e5-fuse .note { border-color: #EEF0F8; box-shadow: 0 4px 14px rgba(40, 40, 80, .08); }
-  .e5-fuse .note b {
-    display: inline-block;
-    margin: 0 0 3px;
+  .e5-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
     padding: 0;
-    background: none;
-    font-size: 10px;
+  }
+  .e5-list li {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    background: #F7F7F8;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 58px;
+  }
+  body.pub-ch .e5-list li { background: #F4F5FB; }
+  .e5-list b {
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 12px;
     font-weight: 800;
     letter-spacing: .04em;
-    line-height: 1;
   }
-  .e5-fuse .note strong {
+  .e5-list .n1 b { background: var(--c1); }
+  .e5-list .n2 b { background: var(--c2); }
+  .e5-list .n3 b { background: var(--c3); }
+  .e5-list .n4 b { background: var(--c4); }
+  .e5-list .n5 b { background: var(--c5); }
+  .e5-list div { padding: 9px 12px 10px; }
+  .e5-list strong {
     display: block;
     font-size: 13px;
     font-weight: 800;
     color: #1A1A1A;
     line-height: 1.3;
-    margin: 0 0 2px;
-    white-space: nowrap;
   }
-  .e5-fuse .note em {
-    display: block;
+  .e5-list em {
     font-style: normal;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 600;
     color: #AAA;
-    letter-spacing: .02em;
-    margin: 0 0 4px;
+    margin-left: 6px;
   }
-  .e5-fuse .note span {
+  .e5-list span {
     display: block;
+    margin-top: 3px;
     font-size: 11px;
     font-weight: 500;
     color: #888;
     line-height: 1.5;
-    word-break: keep-all;
-    overflow-wrap: break-word;
   }
-  .e5-fuse .n1 {
-    grid-area: n1;
-    justify-self: stretch;
-    width: auto;
-    text-align: left;
-    padding: 10px 12px;
-    border-left-width: 3px;
-    border-left-color: var(--c1);
-    border-top: 0;
-  }
-  .e5-fuse .n1 b { color: var(--c1); }
-  .e5-fuse .n2 { grid-area: n2; border-left-color: var(--c2); }
-  .e5-fuse .n2 b { color: var(--c2); }
-  .e5-fuse .n3 { grid-area: n3; border-left-color: var(--c3); }
-  .e5-fuse .n3 b { color: var(--c3); }
-  .e5-fuse .n4 { grid-area: n4; border-left-color: var(--c4); }
-  .e5-fuse .n4 b { color: var(--c4); }
-  .e5-fuse .n5 { grid-area: n5; border-left-color: var(--c5); }
-  .e5-fuse .n5 b { color: var(--c5); }
   .why-nums {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -2625,8 +2603,6 @@
           <h4 class="sub">评价标准：5E 人才评价模型</h4>
           <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
           <div class="e5-fuse" role="img" aria-label="5E 人才评价模型">
-            <div class="note n1"><b>E1</b><strong>教育背景</strong><em>Education</em><span>院校底蕴 × 专业功底 × 学术素养</span></div>
-            <div class="note n5"><b>E5</b><strong>职业素养</strong><em>Employability</em><span>主动沟通 × 高效协作 × 逻辑思辨</span></div>
             <div class="pie">
               <svg viewBox="0 0 200 200">
                 <path class="s1" d="M 45.76 20.79 A 96 96 0 0 1 154.24 20.79 L 128.25 58.74 A 50 50 0 0 0 71.75 58.74 Z"/>
@@ -2649,9 +2625,13 @@
                 <text class="hub-s" x="100" y="114" font-size="7">综合竞争力</text>
               </svg>
             </div>
-            <div class="note n2"><b>E2</b><strong>实践经验</strong><em>Experience</em><span>实习历练 × 项目沉淀 × 业务实战</span></div>
-            <div class="note n4"><b>E4</b><strong>执行力</strong><em>Execution</em><span>结果导向 × 闭环思维 × 推进韧性</span></div>
-            <div class="note n3"><b>E3</b><strong>专业能力</strong><em>Expertise</em><span>岗位硬技能 × 问题解决力 × AI应用力</span></div>
+            <ol class="e5-list">
+              <li class="n1"><b>E1</b><div><strong>教育背景<em>Education</em></strong><span>院校底蕴 × 专业功底 × 学术素养</span></div></li>
+              <li class="n2"><b>E2</b><div><strong>实践经验<em>Experience</em></strong><span>实习历练 × 项目沉淀 × 业务实战</span></div></li>
+              <li class="n3"><b>E3</b><div><strong>专业能力<em>Expertise</em></strong><span>岗位硬技能 × 问题解决力 × AI应用力</span></div></li>
+              <li class="n4"><b>E4</b><div><strong>执行力<em>Execution</em></strong><span>结果导向 × 闭环思维 × 推进韧性</span></div></li>
+              <li class="n5"><b>E5</b><div><strong>职业素养<em>Employability</em></strong><span>主动沟通 × 高效协作 × 逻辑思辨</span></div></li>
+            </ol>
           </div>
         </div>
         <div class="m-block">
