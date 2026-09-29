@@ -71,6 +71,7 @@
   }
   .screen { display: none; flex: 1; overflow: auto; padding-bottom: 12px; }
   .screen.on { display: block; }
+  #form.screen { padding-bottom: 76px; }
   .hero {
     position: relative;
     height: 186px;
@@ -2792,8 +2793,8 @@
         </div>
         <div class="info-act">
           <p class="note-line" id="noteLine">请准备足量纸质简历（建议至少 10–15 份）<br>与作品集，或请教务老师代交</p>
-          <p class="act-hint">带 * 为必填，提交后可继续填写</p>
-          <button class="btn-mini" id="submitMini" type="button">提交基本信息</button>
+          <p class="act-hint">带 * 为必填，保存后进入教育背景</p>
+          <button class="btn-mini" id="submitMini" type="button">保存进入下一页</button>
         </div>
       </div>
     </div>
@@ -3077,7 +3078,8 @@
   <div class="dock on" id="dock">
     <p class="dock-tip" id="dockTip" hidden>完善后，点此提交整份报名</p>
     <div class="dock-acts">
-      <button class="btn" id="submit" type="button">提交报名</button>
+      <button class="btn" id="goApply" type="button">活动报名</button>
+      <button class="btn" id="submit" type="button" hidden>提交报名</button>
     </div>
   </div>
   <div class="toast" id="toast"></div>
@@ -3323,7 +3325,7 @@ function fairSave(status) {
 }
 function paintEditBar() {
   document.getElementById("submit").textContent = "提交报名";
-  document.getElementById("submitMini").textContent = "提交基本信息";
+  document.getElementById("submitMini").textContent = "保存进入下一页";
   paintAnchor();
 }
 function applyChannel() {
@@ -3441,6 +3443,18 @@ function spyAnchor() {
   setAnchorOn(current);
 }
 let fairView = "intro";
+function syncDock() {
+  const onForm = document.getElementById("form").classList.contains("on");
+  const intro = fairView === "intro";
+  const apply = fairView === "apply";
+  document.getElementById("dock").classList.toggle("on", onForm && (intro || apply));
+  const go = document.getElementById("goApply");
+  const sub = document.getElementById("submit");
+  const tip = document.getElementById("dockTip");
+  if (go) go.hidden = !intro;
+  if (sub) sub.hidden = !apply;
+  if (tip) tip.hidden = !apply;
+}
 function showFairView(v) {
   fairView = v === "apply" ? "apply" : "intro";
   const intro = document.getElementById("viewIntro");
@@ -3453,7 +3467,7 @@ function showFairView(v) {
   const form = document.getElementById("form");
   const formOn = form && form.classList.contains("on");
   if (formOn) form.scrollTop = 0;
-  document.getElementById("dock").classList.toggle("on", formOn && fairView === "apply");
+  syncDock();
   const sid = show.id;
   document.getElementById("rail").classList.toggle("on", (formOn && fairView === "apply") || sid === "book" || sid === "pass");
   if (formOn && fairView === "apply") paintAnchor();
@@ -3759,7 +3773,7 @@ function show(id) {
   document.getElementById("navTitle").textContent = id === "book"
     ? "预约信息"
     : (INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会");
-  document.getElementById("dock").classList.toggle("on", id === "form" && fairView === "apply");
+  syncDock();
   document.getElementById("rail").classList.toggle("on", (id === "form" && fairView === "apply") || id === "book" || id === "pass");
   show.id = id;
   if (id === "book") paintAnchor("book");
@@ -3904,15 +3918,8 @@ function doSubmit(from) {
   if (from === "mini") {
     fairSave("draft");
     paintEditBar();
-    document.getElementById("popMarkOk").hidden = false;
-    document.getElementById("popMarkFail").hidden = true;
-    document.getElementById("popTitle").textContent = "基本信息已提交";
-    document.getElementById("popDesc").textContent = "必填项已保存，可继续填写教育背景、求职意向。";
-    document.getElementById("popSms").hidden = false;
-    document.getElementById("popSms").textContent = "短信已发送至 " + mask + " · " + city + "站 " + fairDate;
-    document.getElementById("popOk").textContent = "继续填写";
-    document.getElementById("pop").dataset.mode = "ok";
-    document.getElementById("pop").classList.add("on");
+    const edu = document.getElementById("sec-edu");
+    if (edu) edu.scrollIntoView({ behavior: "smooth", block: "start" });
     return;
   }
   show("load");
@@ -3929,6 +3936,7 @@ function doSubmit(from) {
     show("pass");
   }, 900);
 }
+document.getElementById("goApply").addEventListener("click", () => showFairView("apply"));
 document.getElementById("submit").addEventListener("click", () => doSubmit("dock"));
 document.getElementById("submitMini").addEventListener("click", () => doSubmit("mini"));
 document.getElementById("popOk").addEventListener("click", () => {
