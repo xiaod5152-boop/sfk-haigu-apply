@@ -675,9 +675,14 @@
     font-size: 9px;
     line-height: 1.45;
   }
-  #innerChannel .perk {
-    margin: 10px 32px 0;
-  }
+  #innerChannel[data-step="info"] #sec-edu,
+  #innerChannel[data-step="info"] #sec-wish { display: none; }
+  #innerChannel[data-step="edu"] #sfkPerk,
+  #innerChannel[data-step="edu"] #sec-info,
+  #innerChannel[data-step="edu"] #sec-wish { display: none; }
+  #innerChannel[data-step="wish"] #sfkPerk,
+  #innerChannel[data-step="wish"] #sec-info,
+  #innerChannel[data-step="wish"] #sec-edu { display: none; }
   .tl-board {
     margin: 10px 0 0;
     padding: 0;
@@ -2722,7 +2727,7 @@
       </div>
     </div>
 
-    <div id="innerChannel" hidden>
+    <div id="innerChannel" hidden data-step="info">
     <div class="perk only-inner" id="sfkPerk" data-gold="1">
       <p class="perk-k">斯芬克学生及校友专属通道权益</p>
       <ul>
@@ -2863,6 +2868,9 @@
               <input id="otTo" type="month" />
             </div>
           </div>
+        </div>
+        <div class="info-act">
+          <button class="btn-mini" id="submitEdu" type="button">保存进入下一页</button>
         </div>
       </div>
     </div>
@@ -3432,33 +3440,39 @@ function setAnchorOn(id) {
   btns.forEach(b => b.classList.toggle("on", b.dataset.sec === id));
 }
 function spyAnchor() {
-  const form = document.getElementById("form");
-  if (!form || !form.classList.contains("on") || fairView !== "apply") return;
-  const ids = ["sec-info", "sec-edu", "sec-wish"];
-  const line = form.getBoundingClientRect().top + 48;
-  let current = ids[0];
-  ids.forEach(id => {
-    const el = document.getElementById(id);
-    if (!el || el.closest("[hidden]")) return;
-    if (el.getBoundingClientRect().top <= line) current = id;
-  });
-  setAnchorOn(current);
+  if (!document.getElementById("form").classList.contains("on") || fairView !== "apply") return;
+  const map = { info: "sec-info", edu: "sec-edu", wish: "sec-wish" };
+  setAnchorOn(map[applyStep] || "sec-info");
 }
 let fairView = "intro";
+let applyStep = "info";
+function setApplyStep(step) {
+  applyStep = step === "edu" ? "edu" : step === "wish" ? "wish" : "info";
+  const wrap = document.getElementById("innerChannel");
+  if (wrap) wrap.setAttribute("data-step", applyStep);
+  const form = document.getElementById("form");
+  if (form) form.scrollTop = 0;
+  const map = { info: "sec-info", edu: "sec-edu", wish: "sec-wish" };
+  paintAnchor(map[applyStep]);
+  syncDock();
+}
 function syncDock() {
   const onForm = document.getElementById("form").classList.contains("on");
   const intro = fairView === "intro";
   const apply = fairView === "apply";
-  document.getElementById("dock").classList.toggle("on", onForm && (intro || apply));
+  const wish = apply && applyStep === "wish";
+  document.getElementById("dock").classList.toggle("on", onForm && (intro || wish));
   const go = document.getElementById("goApply");
   const sub = document.getElementById("submit");
   const tip = document.getElementById("dockTip");
   if (go) go.hidden = !intro;
-  if (sub) sub.hidden = !apply;
-  if (tip) tip.hidden = !apply;
+  if (sub) sub.hidden = !wish;
+  if (tip) tip.hidden = !wish;
 }
 function showFairView(v) {
-  fairView = v === "apply" ? "apply" : "intro";
+  const next = v === "apply" ? "apply" : "intro";
+  const fromIntro = fairView !== "apply" && next === "apply";
+  fairView = next;
   const intro = document.getElementById("viewIntro");
   const apply = document.getElementById("viewApply");
   if (intro) intro.hidden = fairView !== "intro";
@@ -3469,7 +3483,8 @@ function showFairView(v) {
   const form = document.getElementById("form");
   const formOn = form && form.classList.contains("on");
   if (formOn) form.scrollTop = 0;
-  syncDock();
+  if (fromIntro) setApplyStep("info");
+  else syncDock();
   const sid = show.id;
   document.getElementById("rail").classList.toggle("on", (formOn && fairView === "apply") || sid === "book" || sid === "pass");
   if (formOn && fairView === "apply") paintAnchor();
@@ -3502,9 +3517,9 @@ document.getElementById("anchor").addEventListener("click", e => {
   }
   const jump = () => {
     showFairView("apply");
-    paintAnchor(sec);
-    const el = document.getElementById(sec);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (sec === "sec-edu") setApplyStep("edu");
+    else if (sec === "sec-wish") setApplyStep("wish");
+    else setApplyStep("info");
   };
   if (show.id !== "form") {
     show("form");
@@ -3920,8 +3935,7 @@ function doSubmit(from) {
   if (from === "mini") {
     fairSave("draft");
     paintEditBar();
-    const edu = document.getElementById("sec-edu");
-    if (edu) edu.scrollIntoView({ behavior: "smooth", block: "start" });
+    setApplyStep("edu");
     return;
   }
   show("load");
@@ -3941,6 +3955,10 @@ function doSubmit(from) {
 document.getElementById("goApply").addEventListener("click", () => showFairView("apply"));
 document.getElementById("submit").addEventListener("click", () => doSubmit("dock"));
 document.getElementById("submitMini").addEventListener("click", () => doSubmit("mini"));
+document.getElementById("submitEdu").addEventListener("click", () => {
+  fairSave("draft");
+  setApplyStep("wish");
+});
 document.getElementById("popOk").addEventListener("click", () => {
   const pop = document.getElementById("pop");
   const needEl = pop._needEl;
