@@ -71,7 +71,8 @@
   }
   .screen { display: none; flex: 1; overflow: auto; padding-bottom: 12px; }
   .screen.on { display: block; }
-  #form.screen { padding-bottom: 76px; }
+  #form.screen { padding-bottom: 28px; }
+  .phone.has-dock #form.screen { padding-bottom: 76px; }
   .hero {
     position: relative;
     height: 186px;
@@ -643,7 +644,8 @@
     line-height: 1.45;
   }
   #innerChannel[data-step="info"] #sec-edu,
-  #innerChannel[data-step="info"] #sec-wish { display: none; }
+  #innerChannel[data-step="info"] #sec-wish,
+  #innerChannel[data-step="info"] #eduFoot { display: none; }
   #innerChannel[data-step="edu"] #sfkPerk,
   #innerChannel[data-step="edu"] #sec-info { display: none; }
   .tl-board {
@@ -2158,6 +2160,11 @@
     height: 32px;
     max-width: none;
   }
+  .page-foot {
+    margin: 4px 0 0;
+    padding: 16px 16px 8px;
+  }
+  .page-foot .btn { width: 100%; margin: 10px 0 0; }
   .act-hint, .dock-tip, .note-line {
     margin: 0;
     font-size: 11px;
@@ -2266,6 +2273,12 @@
     pointer-events: none;
   }
   .rail.on { display: flex !important; }
+  .rail.solo {
+    top: auto;
+    bottom: 22%;
+    transform: none;
+    right: 10px;
+  }
   .share-side {
     display: none;
     position: absolute;
@@ -2782,6 +2795,11 @@
           </div>
         </div>
       </div>
+      <div class="page-foot" id="infoFoot">
+        <p class="note-line" id="noteLine">到场携带：纸质简历 10–15 份、纸质作品集</p>
+        <p class="act-hint">填写说明：* 为必填；<br>保存后可继续补充教育背景、求职意向</p>
+        <button class="btn" id="submitMini" type="button">保存进入下一页</button>
+      </div>
     </div>
 
     <div class="block b-edu" id="sec-edu">
@@ -3007,6 +3025,10 @@
         </div>
       </div>
     </div>
+      <div class="page-foot" id="eduFoot">
+        <p class="act-hint">完善后，点此提交整份报名</p>
+        <button class="btn" id="submit" type="button">提交报名</button>
+      </div>
     </div>
     </div>
 
@@ -3064,8 +3086,6 @@
     <p class="dock-tip" id="dockTip" hidden>完善后，点此提交整份报名</p>
     <div class="dock-acts">
       <button class="btn" id="goApply" type="button">活动报名</button>
-      <button class="btn" id="submitMini" type="button" hidden>保存进入下一页</button>
-      <button class="btn" id="submit" type="button" hidden>提交报名</button>
     </div>
   </div>
   <div class="toast" id="toast"></div>
@@ -3330,6 +3350,12 @@ function applyChannel() {
     el.hidden = !INNER;
     el.classList.toggle("off", !INNER);
   });
+  const note = document.getElementById("noteLine");
+  if (note) {
+    note.innerHTML = INNER
+      ? "到场携带：纸质简历 10–15 份、纸质作品集<br>（也可请教务老师代交）"
+      : "到场携带：纸质简历 10–15 份、纸质作品集";
+  }
   if (INNER) {
     document.body.classList.remove("pub-ch");
     document.body.classList.add("inner-ch");
@@ -3398,19 +3424,24 @@ function applyChannel() {
   showFairView(fairView || "intro");
 }
 function paintAnchor(active) {
-  const list = [
-    ["sec-info", "基本信息"],
-    ["sec-edu", "教育背景"],
-    ["sec-wish", "求职意向"],
-    ["book", "预约信息"]
-  ];
-  const on = active || (document.querySelector("#anchor button.on") || {}).dataset.sec || list[0][0];
+  const formOn = document.getElementById("form").classList.contains("on");
+  const introRail = formOn && fairView === "intro";
+  const list = introRail
+    ? [["book", "预约信息"]]
+    : [
+        ["sec-info", "基本信息"],
+        ["sec-edu", "教育背景"],
+        ["sec-wish", "求职意向"],
+        ["book", "预约信息"]
+      ];
+  const on = active || (introRail ? "" : ((document.querySelector("#anchor button.on") || {}).dataset.sec || list[0][0]));
   document.getElementById("anchor").innerHTML = list.map(x =>
     `<button type="button" data-sec="${x[0]}" class="${x[0] === on ? "on" : ""}">${x[1].split("").join("<br>")}</button>`
   ).join("");
-  const formOn = document.getElementById("form").classList.contains("on");
   const id = show.id;
-  document.getElementById("rail").classList.toggle("on", (formOn && fairView === "apply") || id === "book");
+  const rail = document.getElementById("rail");
+  rail.classList.toggle("on", introRail || (formOn && fairView === "apply") || id === "book");
+  rail.classList.toggle("solo", introRail);
 }
 function setAnchorOn(id) {
   const btns = document.querySelectorAll("#anchor button[data-sec]");
@@ -3453,33 +3484,14 @@ function setApplyStep(step, scrollId) {
 function syncDock() {
   const onForm = document.getElementById("form").classList.contains("on");
   const intro = fairView === "intro";
-  const apply = fairView === "apply";
-  const more = apply && applyStep === "edu";
-  const info = apply && applyStep === "info";
-  document.getElementById("dock").classList.toggle("on", onForm && (intro || info || more));
+  document.getElementById("dock").classList.toggle("on", onForm && intro);
+  document.querySelector(".phone").classList.toggle("has-dock", onForm && intro);
   const go = document.getElementById("goApply");
-  const mini = document.getElementById("submitMini");
-  const sub = document.getElementById("submit");
   const share = document.getElementById("shareBtn");
   const tip = document.getElementById("dockTip");
   if (go) go.hidden = !intro;
-  if (mini) mini.hidden = !info;
   if (share) share.classList.toggle("on", onForm && intro);
-  if (sub) sub.hidden = !more;
-  if (tip) {
-    if (info) {
-      const carry = INNER
-        ? "到场携带：纸质简历 10–15 份、纸质作品集<br>（也可请教务老师代交）"
-        : "到场携带：纸质简历 10–15 份、纸质作品集";
-      tip.innerHTML = carry + "<br>填写说明：* 为必填；<br>保存后可继续补充教育背景、求职意向";
-      tip.hidden = false;
-    } else if (more) {
-      tip.textContent = "完善后，点此提交整份报名";
-      tip.hidden = false;
-    } else {
-      tip.hidden = true;
-    }
-  }
+  if (tip) tip.hidden = true;
 }
 function showFairView(v) {
   const next = v === "apply" ? "apply" : "intro";
@@ -3498,8 +3510,8 @@ function showFairView(v) {
   if (fromIntro) setApplyStep("info");
   else syncDock();
   const sid = show.id;
-  document.getElementById("rail").classList.toggle("on", (formOn && fairView === "apply") || sid === "book");
-  if (formOn && fairView === "apply") paintAnchor();
+  document.getElementById("rail").classList.toggle("on", (formOn && (fairView === "intro" || fairView === "apply")) || sid === "book");
+  if (formOn) paintAnchor();
 }
 document.getElementById("viewTabs").addEventListener("click", e => {
   const b = e.target.closest("[data-view]");
@@ -3803,7 +3815,7 @@ function show(id) {
     ? "预约信息"
     : (INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会");
   syncDock();
-  document.getElementById("rail").classList.toggle("on", (id === "form" && fairView === "apply") || id === "book");
+  document.getElementById("rail").classList.toggle("on", (id === "form" && (fairView === "intro" || fairView === "apply")) || id === "book");
   show.id = id;
   if (id === "book") paintAnchor("book");
   else if (id === "form") paintAnchor();
