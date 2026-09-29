@@ -2464,7 +2464,7 @@
 
     <div id="innerChannel" hidden>
     <div class="perk only-inner" id="sfkPerk">
-      <p class="perk-k">SFK 学生及校友专属招聘权益</p>
+      <p class="perk-k">斯芬克 学生及校友专属招聘权益</p>
       <ul>
         <li>专属提前报名占位通道</li>
         <li>专属优先入场场次</li>
@@ -2484,9 +2484,9 @@
           <input id="email" type="email" placeholder="请填写邮箱" value="wangle@example.com" />
         </div>
         <div class="field tint tint-teacher only-inner" id="teacherRow"><span class="lab need">推荐您的教务老师全名</span><input id="teacher" placeholder="请填写全名" value="李敏" /></div>
-        <div class="field tint tint-alumni only-inner" id="alumniRow"><span class="lab">推荐的 SFK 校友全名</span><input id="alumni" placeholder="请填写全名" value="" /></div>
+        <div class="field tint tint-alumni only-inner" id="alumniRow"><span class="lab">推荐的斯芬克校友全名</span><input id="alumni" placeholder="请填写全名" value="" /></div>
         <div class="field tint tint-campus only-inner" id="campusRow">
-          <span class="lab need">所在 SFK 校区</span>
+          <span class="lab need">所在斯芬克校区</span>
           <select class="pick-full" id="campus">
             <option>北京CBD</option>
             <option>北京海淀</option>
@@ -3417,7 +3417,7 @@ function paintBook() {
           ["邮箱", txt("email")],
           INNER ? ["教务老师", txt("teacher")] : null,
           INNER ? ["所在校区", txt("campus")] : null,
-          INNER ? ["SFK校友", txt("alumni")] : null
+          INNER ? ["斯芬克校友", txt("alumni")] : null
         ]) +
         block("edu", "教育背景", eduRows) +
         block("wish", "求职意向", [
