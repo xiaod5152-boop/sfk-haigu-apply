@@ -2322,23 +2322,30 @@
   .share-side {
     display: none;
     position: absolute;
-    right: 4px;
-    top: 38%;
+    right: 0;
+    top: 36%;
     z-index: 50;
-    width: 26px;
-    padding: 10px 0;
+    width: 46px;
+    padding: 12px 6px 14px;
     border: 0;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,.12);
-    color: #C2186A;
-    font-size: 11px;
-    font-weight: 800;
-    line-height: 1.25;
+    border-radius: 12px 0 0 12px;
+    background: #FF4FA0;
+    color: #fff;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
     cursor: pointer;
   }
-  .share-side.on { display: block; }
-  body.pub-ch .share-side { color: #4F46E5; }
+  .share-side.on { display: flex; }
+  .share-side svg { display: block; width: 20px; height: 20px; }
+  .share-side span {
+    writing-mode: vertical-rl;
+    letter-spacing: .18em;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  body.pub-ch .share-side { background: #4F46E5; }
   #book { padding: 12px 32px 28px; }
   .book-pack {
     background: #fff;
@@ -3128,7 +3135,14 @@
       </div>
     </div>
   </div>
-  <button class="share-side on" id="shareBtn" type="button">分<br>享</button>
+  <button class="share-side on" id="shareBtn" type="button" aria-label="分享">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M14 5h6v6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M20 5l-9 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M11 6H8a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>分享</span>
+  </button>
   <div class="rail" id="rail">
     <div class="anchor" id="anchor">
       <button type="button" data-sec="sec-info" class="on">基<br>本<br>信<br>息</button>
