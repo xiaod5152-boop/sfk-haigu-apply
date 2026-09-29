@@ -35,15 +35,32 @@
     justify-content: center; font-size: 16px; font-weight: 600;
     position: relative; border-bottom: 1px solid #F0F0F0; flex-shrink: 0;
   }
-  .nav.long {
-    height: 48px;
-    font-size: 12px;
+  .nav .ch-tag {
+    display: none;
+    margin: 0 auto 2px;
+    width: fit-content;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .4px;
+    border-radius: 4px;
+    padding: 1px 6px;
+    line-height: 1.4;
   }
+  .nav.long {
+    height: 52px;
+    font-size: 12px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+  }
+  .nav.long .ch-tag { display: inline-block; }
   .nav.long #navTitle {
-    max-width: 220px;
+    max-width: 240px;
     text-align: center;
     line-height: 1.25;
   }
+  .nav.pub-nav .ch-tag { background: #EEF2FF; color: #4338CA; }
+  .nav.inner-nav .ch-tag { background: #FFF0F6; color: #C2186A; }
   .nav .back {
     position: absolute; left: 10px; border: 0; background: none;
     font-size: 22px; cursor: pointer;
@@ -131,15 +148,48 @@
     padding: 8px 12px;
     box-shadow: 0 4px 12px rgba(80,20,50,.16);
   }
-  .hero-copy .pass {
+  .hero.pub {
+    height: 200px;
+  }
+  .hero.pub::after {
+    background: linear-gradient(180deg, rgba(30,41,90,.18) 0%, rgba(79,70,229,.58) 100%);
+  }
+  .hero.pub .hero-copy em {
+    display: block;
     font-size: 12px;
-    font-weight: 800;
-    letter-spacing: .5px;
-    border: 0;
-    border-radius: 99px;
-    padding: 5px 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  .hero.pub .hero-copy h1 {
+    font-size: 18px;
+    max-width: 86%;
+    letter-spacing: .4px;
+  }
+  .hero.pub .hero-copy .pass {
+    color: #4338CA;
+  }
+  .phone.pub-ch {
+    background: #F3F4FB;
+  }
+  body.pub-ch .btn {
+    background: #4F46E5;
+  }
+  body.pub-ch .btn.ghost {
     background: #fff;
-    color: #FF2D8A;
+    color: #4F46E5;
+    border-color: #4F46E5;
+  }
+  body.pub-ch .chip.on {
+    border-color: #4F46E5;
+    color: #4F46E5;
+    background: #EEF2FF;
+  }
+  body.pub-ch .anchor button.on {
+    background: #4F46E5;
+    box-shadow: 0 2px 8px rgba(79,70,229,.28);
+  }
+  body.pub-ch .btn-mini {
+    background: #4F46E5;
   }
   .about {
     margin: 12px 32px 0;
@@ -184,6 +234,143 @@
     color: #1A1A1A;
     text-align: center;
     line-height: 1.45;
+  }
+  .pub-intro {
+    background: #EEF2FF;
+    padding: 16px 12px 14px;
+  }
+  .pub-intro > header {
+    margin: 0 4px 12px;
+    text-align: center;
+  }
+  .pub-intro h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #312E81;
+    line-height: 1.35;
+  }
+  .pub-intro .pub-lead {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: #4C47A0;
+    line-height: 1.7;
+    text-align: left;
+  }
+  .pub-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 12px 12px;
+    margin: 0 0 8px;
+  }
+  .pub-card:last-child { margin-bottom: 0; }
+  .pub-card h4 {
+    margin: 0 0 10px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #4338CA;
+    letter-spacing: .3px;
+  }
+  .pub-card ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: n;
+  }
+  .pub-card ol li {
+    counter-increment: n;
+    position: relative;
+    padding: 0 0 8px 28px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #312E81;
+    line-height: 1.55;
+  }
+  .pub-card ol li:last-child { padding-bottom: 0; }
+  .pub-card ol li::before {
+    content: counter(n, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 1px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #4F46E5;
+    letter-spacing: 0;
+  }
+  .pub-card ol li b {
+    display: block;
+    margin-bottom: 1px;
+    font-weight: 800;
+  }
+  .pub-dates {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 2px 0 0;
+    padding: 6px 0 0;
+    position: relative;
+  }
+  .pub-dates::before {
+    content: "";
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    top: 10px;
+    height: 2px;
+    background: #C7D2FE;
+  }
+  .pub-dates span {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .pub-dates span i {
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin-bottom: 8px;
+    border-radius: 50%;
+    background: #4F46E5;
+    box-shadow: 0 0 0 3px #fff;
+  }
+  .pub-dates em {
+    display: block;
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 800;
+    color: #4338CA;
+  }
+  .pub-dates b {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #312E81;
+  }
+  .pub-who {
+    display: grid;
+    gap: 10px;
+  }
+  .pub-who .lab {
+    display: block;
+    margin: 0 0 4px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #4338CA;
+  }
+  .pub-who p {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: #312E81;
+    line-height: 1.55;
+  }
+  .pub-who .jobs {
+    font-weight: 700;
   }
   .iv-entry {
     display: block;
@@ -1609,6 +1796,7 @@
   <div class="status"><span>10:28</span><span>5G</span></div>
   <div class="nav">
     <button class="back" id="back" type="button">‹</button>
+    <span class="ch-tag" id="chTag">内部通道</span>
     <span id="navTitle">中国海归艺术创意人才专场招聘会</span>
     <span class="cap"></span>
   </div>
@@ -1622,12 +1810,53 @@
         <span class="pass" id="heroPass">留学生秋招专属通道</span>
       </div>
     </div>
-    <div class="about" id="sec-about">
+    <div class="about" id="aboutInner">
       <h3 class="hl-title"><i></i>活动亮点<i></i></h3>
       <div class="hl-list">
         <p>头部名企现场设展，简历直达招聘官</p>
         <p>设计 / 创意 / AIGC / 游戏 等专属岗位</p>
         <p>全球本硕博海归与名企面对面交流</p>
+      </div>
+    </div>
+    <div class="about pub-intro" id="aboutPub" hidden>
+      <header>
+        <h3>27届秋季校园招聘+社招专场</h3>
+        <p class="pub-lead">新东方斯芬克联合东方甄选、阿里银泰、农夫山泉、摩登天空、UCCA等20+企业，首次面向海归创意人才举办招聘专场。</p>
+      </header>
+      <div class="pub-card">
+        <h4>这场专场为什么重要</h4>
+        <ol>
+          <li><b>海归创意专场</b>国内少有，一次集中对接名企招聘官</li>
+          <li><b>赶上秋招窗口</b>27 届校招 / 社招 / 实习同步开放</li>
+          <li><b>现场有反馈</b>作品集面对面，比海投网申更有效</li>
+        </ol>
+      </div>
+      <div class="pub-card">
+        <h4>为什么选择斯芬克</h4>
+        <ol>
+          <li><b>新东方体系</b>深耕艺术留学与创意就业</li>
+          <li><b>双边都懂</b>既懂海归作品集，也懂国内名企标准</li>
+          <li><b>四城落地</b>上海、广州、北京、成都巡回组织</li>
+        </ol>
+      </div>
+      <div class="pub-card">
+        <h4>秋招时间轴</h4>
+        <div class="pub-dates">
+          <span><i></i><em>上海</em><b>10/24</b></span>
+          <span><i></i><em>广州</em><b>10/25</b></span>
+          <span><i></i><em>北京</em><b>10/31</b></span>
+          <span><i></i><em>成都</em><b>11/14</b></span>
+        </div>
+      </div>
+      <div class="pub-card pub-who">
+        <div>
+          <span class="lab">面向人群</span>
+          <p>27届应届及往届社招（2026.9—2027.9 毕业的全球本硕博）；非应届在读可参加教育展下午场实习面试会；留学生家长亦可到场了解。</p>
+        </div>
+        <div>
+          <span class="lab">岗位类型</span>
+          <p class="jobs">校招全职 · 社招全职 · 实习（部分企业开放）</p>
+        </div>
       </div>
     </div>
     <div id="publicChannel">
@@ -1688,7 +1917,7 @@
     <div class="block b-info" id="sec-info">
       <div class="mark">基本信息登记<em>必填</em></div>
       <div class="sheet">
-        <p class="iv-tip">面试小贴士：请着正装到场，并携带纸质简历与作品集</p>
+        <p class="iv-tip">面试小贴士：请得体着装到场，并准备足量纸质简历（建议至少 10–15 份）</p>
         <div class="field tint tint-name"><span class="lab need">学生的姓名全名</span><input id="name" placeholder="请填写全名" value="王乐言" /></div>
         <div class="field tint tint-phone"><span class="lab need">您的手机号码<em>11位数字</em></span>
           <input id="phone" type="tel" inputmode="numeric" maxlength="11" placeholder="请填写11位手机号" value="13800138007" />
@@ -1723,8 +1952,8 @@
           <span class="lab need">参展城市</span>
           <div class="opts" id="fairCity">
             <button class="chip" type="button" data-city="上海" data-date="10/24" data-val="上海"><b>上海</b><em>10/24</em></button>
-            <button class="chip on" type="button" data-city="北京" data-date="10/31" data-val="北京"><b>北京</b><em>10/31</em></button>
             <button class="chip" type="button" data-city="广州" data-date="10/25" data-val="广州"><b>广州</b><em>10/25</em></button>
+            <button class="chip on" type="button" data-city="北京" data-date="10/31" data-val="北京"><b>北京</b><em>10/31</em></button>
             <button class="chip" type="button" data-city="成都" data-date="11/14" data-val="成都"><b>成都</b><em>11/14</em></button>
           </div>
           <div class="spot" id="passVenue">
@@ -2292,12 +2521,18 @@ function applyChannel() {
   if (note) {
     note.hidden = false;
     note.textContent = INNER
-      ? "简历、作品集请携带纸质版，或请教务老师代交"
+      ? "请准备足量纸质简历（建议至少 10–15 份）与作品集，或请教务老师代交"
       : "简历、作品集请携带纸质版";
   }
   if (INNER) {
+    document.body.classList.remove("pub-ch");
     document.body.classList.add("inner-ch");
-    document.querySelector(".hero").classList.add("inner");
+    document.querySelector(".phone").classList.remove("pub-ch");
+    const hero = document.querySelector(".hero");
+    hero.classList.add("inner");
+    hero.classList.remove("pub");
+    document.getElementById("aboutInner").hidden = false;
+    document.getElementById("aboutPub").hidden = true;
     document.getElementById("heroEm").hidden = false;
     document.getElementById("heroEm").textContent = "海归艺术创意人才专场招聘会";
     const title = document.getElementById("heroTitle");
@@ -2308,8 +2543,11 @@ function applyChannel() {
     pass.hidden = true;
     pass.classList.remove("long", "bubble");
     document.querySelector(".hero-copy").appendChild(pass);
+    document.getElementById("chTag").textContent = "内部通道";
     document.getElementById("navTitle").textContent = INNER_NAME;
-    document.querySelector(".nav").classList.add("long");
+    const nav = document.querySelector(".nav");
+    nav.classList.add("long", "inner-nav");
+    nav.classList.remove("pub-nav");
     document.title = INNER_NAME;
     const teacherRow = document.getElementById("teacherRow");
     const campusRow = document.getElementById("campusRow");
@@ -2318,21 +2556,30 @@ function applyChannel() {
     if (campusRow) { campusRow.hidden = false; campusRow.classList.remove("off"); }
     if (alumniRow) { alumniRow.hidden = false; alumniRow.classList.remove("off"); }
   } else {
-    document.querySelector(".hero").classList.remove("inner");
+    document.body.classList.add("pub-ch");
     document.body.classList.remove("inner-ch");
+    document.querySelector(".phone").classList.add("pub-ch");
+    const hero = document.querySelector(".hero");
+    hero.classList.remove("inner");
+    hero.classList.add("pub");
+    document.getElementById("aboutInner").hidden = true;
+    document.getElementById("aboutPub").hidden = false;
     document.getElementById("heroEm").hidden = false;
-    document.getElementById("heroEm").textContent = "海归艺术创意人才专场招聘会";
+    document.getElementById("heroEm").textContent = "2026 秋季 · 公开报名";
     const title = document.getElementById("heroTitle");
-    title.hidden = true;
+    title.hidden = false;
     title.classList.remove("long");
+    title.textContent = "海归艺术创意人才专场招聘会";
     const pass = document.getElementById("heroPass");
-    pass.hidden = false;
+    pass.hidden = true;
     pass.classList.remove("long", "bubble");
-    pass.textContent = "公开报名通道";
     document.querySelector(".hero-copy").appendChild(pass);
+    document.getElementById("chTag").textContent = "公开通道";
     document.getElementById("navTitle").textContent = "中国海归艺术创意人才专场招聘会";
-    document.querySelector(".nav").classList.add("long");
-    document.title = "中国海归艺术创意人才专场招聘会";
+    const nav = document.querySelector(".nav");
+    nav.classList.add("long", "pub-nav");
+    nav.classList.remove("inner-nav");
+    document.title = "公开报名 · 海归艺术创意人才专场招聘会";
     const name = document.getElementById("name");
     if (name && name.value === "王乐言") name.value = "王同学";
     ["teacherRow", "campusRow", "alumniRow"].forEach(id => {
@@ -2585,7 +2832,7 @@ function paintBook() {
           ["参与模式", one("mode")]
         ]) +
         "<tr><th>展会地址</th><td><div class=\"book-addr\"><div class=\"txt\">" + addrHtml + "</div>" + navBtn + "</div></td></tr>" +
-        "<tr class=\"book-tip\"><td colspan=\"2\">请<em>着正装</em>到场，并携带<em>纸质简历与作品集</em></td></tr>" +
+        "<tr class=\"book-tip\"><td colspan=\"2\">请<em>得体着装</em>到场，并准备足量纸质简历（<em>建议至少 10–15 份</em>）</td></tr>" +
         block("info", "基本信息", [
           ["手机号码", phoneMask],
           ["邮箱", txt("email")],
