@@ -867,51 +867,77 @@
     color: #999;
     line-height: 1.55;
   }
+  .e5-radar {
+    color: #C2186A;
+    margin: 0 auto 14px;
+    max-width: 280px;
+  }
+  body.pub-ch .e5-radar { color: #4F46E5; }
+  .e5-radar svg { display: block; width: 100%; height: auto; }
+  .e5-grid { fill: none; stroke: #E8E8EC; stroke-width: 1; }
+  body.pub-ch .e5-grid { stroke: #E4E7F5; }
+  .e5-axis { stroke: #E0E0E4; stroke-width: 1; }
+  body.pub-ch .e5-axis { stroke: #DDDFF0; }
+  .e5-fill { fill: currentColor; fill-opacity: .2; stroke: currentColor; stroke-width: 1.6; }
+  .e5-dot { fill: #fff; stroke: currentColor; stroke-width: 1.6; }
+  .e5-lab {
+    fill: #1A1A1A;
+    font-size: 10px;
+    font-weight: 800;
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .e5-core {
+    fill: currentColor;
+    font-size: 13px;
+    font-weight: 800;
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
   .e4 {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0;
     margin: 0;
     padding: 0;
   }
   .e4 li {
     list-style: none;
     display: grid;
-    grid-template-columns: 50px 1fr;
+    grid-template-columns: 28px 1fr;
     grid-template-rows: auto auto;
-    column-gap: 0;
+    column-gap: 8px;
     row-gap: 2px;
-    background: #F7F7F8;
+    background: none;
     border: 0;
-    border-radius: 12px;
-    overflow: hidden;
-    padding: 0;
+    border-top: 1px solid #F2F2F2;
+    border-radius: 0;
+    overflow: visible;
+    padding: 10px 0;
   }
-  .e4 li:first-child { padding-top: 0; }
+  .e4 li:first-child { border-top: 0; padding-top: 2px; }
   .e4 li:last-child { padding-bottom: 0; }
-  body.pub-ch .e4 li { background: #F4F5FC; border: 0; }
+  body.pub-ch .e4 li { background: none; border-top-color: #EEE; }
   .e4 b {
     grid-column: 1;
     grid-row: 1 / span 2;
     display: grid;
     place-items: center;
-    margin: 0;
+    align-self: start;
+    margin-top: 1px;
     padding: 0;
-    background: #C2186A;
-    color: #fff;
-    font-size: 13px;
+    background: none;
+    color: #C2186A;
+    font-size: 11px;
     font-weight: 800;
     letter-spacing: .04em;
-    align-self: stretch;
   }
   body.pub-ch .e4 b {
-    color: #fff;
-    background: #4F46E5;
+    color: #4F46E5;
+    background: none;
   }
   .e4 strong {
     grid-column: 2;
     display: block;
-    padding: 10px 12px 0;
+    padding: 0;
     font-size: 13px;
     font-weight: 800;
     color: #1A1A1A;
@@ -921,7 +947,7 @@
   .e4 span {
     grid-column: 2;
     display: block;
-    padding: 2px 12px 10px;
+    padding: 0;
     font-size: 11px;
     color: #888;
     font-weight: 500;
@@ -2560,6 +2586,30 @@
         <div class="m-block">
           <h4 class="sub">评价标准：5E 人才评价模型</h4>
           <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
+          <div class="e5-radar">
+            <svg viewBox="0 0 260 250" role="img" aria-label="5E 人才评价模型雷达图">
+              <polygon class="e5-grid" points="130,62 194.7,109 170,185 90,185 65.3,109"/>
+              <polygon class="e5-grid" points="130,84 173.1,115.3 156.6,166.7 103.4,166.7 86.9,115.3"/>
+              <polygon class="e5-grid" points="130,106 151.6,121.7 143.3,148.3 116.7,148.3 108.4,121.7"/>
+              <line class="e5-axis" x1="130" y1="130" x2="130" y2="62"/>
+              <line class="e5-axis" x1="130" y1="130" x2="194.7" y2="109"/>
+              <line class="e5-axis" x1="130" y1="130" x2="170" y2="185"/>
+              <line class="e5-axis" x1="130" y1="130" x2="90" y2="185"/>
+              <line class="e5-axis" x1="130" y1="130" x2="65.3" y2="109"/>
+              <polygon class="e5-fill" points="130,80 177.6,114.6 159.4,170.5 100.6,170.5 82.4,114.6"/>
+              <circle class="e5-dot" cx="130" cy="80" r="3.2"/>
+              <circle class="e5-dot" cx="177.6" cy="114.6" r="3.2"/>
+              <circle class="e5-dot" cx="159.4" cy="170.5" r="3.2"/>
+              <circle class="e5-dot" cx="100.6" cy="170.5" r="3.2"/>
+              <circle class="e5-dot" cx="82.4" cy="114.6" r="3.2"/>
+              <text class="e5-core" x="130" y="135" text-anchor="middle">5E</text>
+              <text class="e5-lab" x="130" y="28" text-anchor="middle">教育背景</text>
+              <text class="e5-lab" x="232" y="104" text-anchor="middle">实践经验</text>
+              <text class="e5-lab" x="188" y="228" text-anchor="middle">专业能力</text>
+              <text class="e5-lab" x="72" y="228" text-anchor="middle">执行力</text>
+              <text class="e5-lab" x="28" y="104" text-anchor="middle">职业能力</text>
+            </svg>
+          </div>
           <ul class="e4">
             <li><b>E1</b><strong>教育背景</strong><em>Education</em><span>学校 · 专业 · 学术基础</span></li>
             <li><b>E2</b><strong>实践经验</strong><em>Experience</em><span>实习 · 项目 · 业务经历</span></li>
