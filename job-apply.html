@@ -615,15 +615,15 @@
     position: relative;
     overflow: hidden;
     background: #E21876;
-    border: 1px solid rgba(232, 196, 122, .55);
+    border: 1.5px solid #E8C47A;
     box-shadow: 0 6px 16px rgba(226, 24, 118, .22);
   }
   .perk-k {
-    margin: 0 42px 10px 0;
+    margin: 0 48px 10px 0;
     padding: 0;
     font-size: 13px;
     font-weight: 800;
-    color: #FFF8EE;
+    color: #FFE9B0;
     letter-spacing: .02em;
     background: none;
     line-height: 1.35;
@@ -637,9 +637,9 @@
     font-weight: 800;
     letter-spacing: .12em;
     color: #7A4E12;
-    background: linear-gradient(180deg, #F8E7B8 0%, #E8C47A 100%);
-    padding: 2px 7px;
-    border-radius: 6px;
+    background: linear-gradient(180deg, #FFE9B0 0%, #E8C47A 100%);
+    padding: 3px 8px;
+    border-radius: 8px;
   }
   .perk ul {
     list-style: none;
@@ -651,25 +651,28 @@
   }
   .perk li {
     margin: 0;
-    padding: 0 0 0 14px;
+    padding: 0 0 0 16px;
     position: relative;
     font-size: 12px;
     font-weight: 600;
-    color: rgba(255, 248, 238, .95);
+    color: #FFF8EE;
     line-height: 1.45;
     text-align: left;
     border: 0;
   }
   .perk li::before {
-    content: "";
+    content: "◆";
     position: absolute;
     left: 0;
-    top: 6px;
-    width: 6px;
-    height: 6px;
-    border-radius: 1px;
-    background: #E8C47A;
-    transform: rotate(45deg);
+    top: 0;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background: none;
+    transform: none;
+    color: #E8C47A;
+    font-size: 9px;
+    line-height: 1.45;
   }
   #innerChannel .perk {
     margin: 10px 32px 0;
@@ -2717,7 +2720,7 @@
     </div>
 
     <div id="innerChannel" hidden>
-    <div class="perk only-inner" id="sfkPerk">
+    <div class="perk only-inner" id="sfkPerk" data-gold="1">
       <p class="perk-k">斯芬克学生及校友专属通道权益</p>
       <ul>
         <li>专属提前报名占位通道</li>
