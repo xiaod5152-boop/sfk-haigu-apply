@@ -2183,20 +2183,9 @@
   }
   .dock.on { display: block; }
   .dock-acts {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-  .dock.intro-dock .dock-acts {
-    grid-template-columns: 1fr 92px;
+    display: block;
   }
   .dock-acts .btn { width: 100%; }
-  #shareBtn {
-    margin: 0;
-    width: 100%;
-    height: 44px;
-    font-size: 14px;
-  }
   .dock-tip {
     margin: 0 0 8px;
   }
@@ -2334,6 +2323,26 @@
     pointer-events: none;
   }
   .rail.on { display: flex !important; }
+  .share-side {
+    display: none;
+    position: absolute;
+    right: 4px;
+    top: 38%;
+    z-index: 50;
+    width: 26px;
+    padding: 10px 0;
+    border: 0;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    color: #C2186A;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.25;
+    cursor: pointer;
+  }
+  .share-side.on { display: block; }
+  body.pub-ch .share-side { color: #4F46E5; }
   #book { padding: 12px 32px 28px; }
   .book-pack {
     background: #fff;
@@ -3096,11 +3105,10 @@
     <div class="sum-page" id="bookTable"></div>
   </section>
 
-  <div class="dock on intro-dock" id="dock">
+  <div class="dock on" id="dock">
     <p class="dock-tip" id="dockTip" hidden>完善后，点此提交整份报名</p>
     <div class="dock-acts">
       <button class="btn" id="goApply" type="button">活动报名</button>
-      <button class="btn ghost" id="shareBtn" type="button">分享</button>
       <button class="btn" id="submit" type="button" hidden>提交报名</button>
     </div>
   </div>
@@ -3127,7 +3135,8 @@
       </div>
     </div>
   </div>
-  <div class="rail on" id="rail">
+  <button class="share-side on" id="shareBtn" type="button">分<br>享</button>
+  <div class="rail" id="rail">
     <div class="anchor" id="anchor">
       <button type="button" data-sec="sec-info" class="on">基<br>本<br>信<br>息</button>
       <button type="button" data-sec="sec-edu">教<br>育<br>背<br>景</button>
@@ -3474,13 +3483,12 @@ function syncDock() {
   const apply = fairView === "apply";
   const wish = apply && applyStep === "wish";
   document.getElementById("dock").classList.toggle("on", onForm && (intro || wish));
-  document.getElementById("dock").classList.toggle("intro-dock", onForm && intro);
   const go = document.getElementById("goApply");
   const sub = document.getElementById("submit");
   const share = document.getElementById("shareBtn");
   const tip = document.getElementById("dockTip");
   if (go) go.hidden = !intro;
-  if (share) share.hidden = !intro;
+  if (share) share.classList.toggle("on", onForm && intro);
   if (sub) sub.hidden = !wish;
   if (tip) tip.hidden = !wish;
 }
