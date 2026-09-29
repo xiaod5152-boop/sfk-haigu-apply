@@ -870,39 +870,48 @@
   .e4 {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 8px;
     margin: 0;
     padding: 0;
   }
   .e4 li {
     list-style: none;
     display: grid;
-    grid-template-columns: 36px 1fr;
+    grid-template-columns: 50px 1fr;
     grid-template-rows: auto auto;
-    column-gap: 10px;
-    row-gap: 3px;
-    background: none;
+    column-gap: 0;
+    row-gap: 2px;
+    background: #F7F7F8;
     border: 0;
-    border-top: 1px solid #F2F2F2;
-    border-radius: 0;
-    padding: 12px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 0;
   }
-  .e4 li:first-child { border-top: 0; padding-top: 0; }
+  .e4 li:first-child { padding-top: 0; }
   .e4 li:last-child { padding-bottom: 0; }
-  body.pub-ch .e4 li { background: none; border-top-color: #EEE; }
+  body.pub-ch .e4 li { background: #F4F5FC; border: 0; }
   .e4 b {
+    grid-column: 1;
     grid-row: 1 / span 2;
-    align-self: center;
+    display: grid;
+    place-items: center;
+    margin: 0;
+    padding: 0;
+    background: #C2186A;
+    color: #fff;
     font-size: 13px;
     font-weight: 800;
-    color: #C2186A;
     letter-spacing: .04em;
+    align-self: stretch;
   }
-  body.pub-ch .e4 b { color: #4338CA; }
+  body.pub-ch .e4 b {
+    color: #fff;
+    background: #4F46E5;
+  }
   .e4 strong {
     grid-column: 2;
     display: block;
-    padding: 0;
+    padding: 10px 12px 0;
     font-size: 13px;
     font-weight: 800;
     color: #1A1A1A;
@@ -912,6 +921,7 @@
   .e4 span {
     grid-column: 2;
     display: block;
+    padding: 2px 12px 10px;
     font-size: 11px;
     color: #888;
     font-weight: 500;
@@ -1529,7 +1539,14 @@
     display: block;
     padding: 10px;
   }
-  #innerChannel .b-info .field.tint.tint-fair .lab,
+  #innerChannel .b-info .field.tint.tint-fair .lab {
+    display: block;
+    width: auto;
+    margin: 0 0 8px;
+    white-space: normal;
+    font-size: 12px;
+    line-height: 1.4;
+  }
   #innerChannel .b-info .field.tint.tint-mode .lab {
     display: block;
     width: auto;
@@ -2666,7 +2683,7 @@
           </select>
         </div>
         <div class="field tint tint-fair">
-          <span class="lab need">参展城市</span>
+          <span class="lab need">斯芬克独家招聘会·参会场次</span>
           <div class="opts" id="fairCity">
             <button class="chip" type="button" data-city="上海" data-date="10/24" data-val="上海"><b>上海</b><em>10/24</em></button>
             <button class="chip" type="button" data-city="广州" data-date="10/25" data-val="广州"><b>广州</b><em>10/25</em></button>
