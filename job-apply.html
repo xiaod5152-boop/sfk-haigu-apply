@@ -867,149 +867,106 @@
     color: #999;
     line-height: 1.55;
   }
-  .e5-loop {
-    --e5: #C2186A;
+  .e5-fuse {
+    --c1: #C2186A;
+    --c2: #EC4899;
+    --c3: #86198F;
+    --c4: #E11D48;
+    --c5: #9D174D;
+    --ink: #C2186A;
     position: relative;
-    width: 268px;
-    height: 252px;
-    margin: 2px auto 14px;
+    height: 348px;
+    margin: 4px -4px 4px;
   }
-  body.pub-ch .e5-loop { --e5: #4F46E5; }
-  .e5-loop .orbit {
-    display: block;
-    font-style: normal;
-    position: absolute;
-    inset: 46px 50px 50px;
-    border-radius: 50%;
-    background: conic-gradient(from -90deg, var(--e5) 0 20%, #E8A0C4 20% 40%, var(--e5) 40% 60%, #E8A0C4 60% 80%, var(--e5) 80% 100%);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 10px), #000 calc(100% - 9px));
-    mask: radial-gradient(farthest-side, transparent calc(100% - 10px), #000 calc(100% - 9px));
+  body.pub-ch .e5-fuse {
+    --c1: #4F46E5;
+    --c2: #6366F1;
+    --c3: #312E81;
+    --c4: #7C3AED;
+    --c5: #4338CA;
+    --ink: #4F46E5;
   }
-  body.pub-ch .e5-loop .orbit {
-    background: conic-gradient(from -90deg, var(--e5) 0 20%, #A5B4FC 20% 40%, var(--e5) 40% 60%, #A5B4FC 60% 80%, var(--e5) 80% 100%);
-  }
-  .e5-loop .hub {
+  .e5-fuse .pie {
     position: absolute;
     left: 50%;
-    top: 48%;
-    transform: translate(-50%, -50%);
-    width: 78px;
-    height: 78px;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 0 0 6px #FDF2F8, 0 4px 16px rgba(194, 24, 106, .12);
-    display: grid;
-    place-items: center;
-    text-align: center;
-    z-index: 2;
+    top: 50%;
+    width: 196px;
+    height: 196px;
+    transform: translate(-50%, -52%);
+    z-index: 1;
   }
-  body.pub-ch .e5-loop .hub { box-shadow: 0 0 0 6px #EEF2FF, 0 4px 16px rgba(79, 70, 229, .12); }
-  .e5-loop .hub strong {
-    display: block;
-    font-size: 18px;
+  .e5-fuse .pie svg { display: block; width: 100%; height: 100%; }
+  .e5-fuse .s1 { fill: var(--c1); }
+  .e5-fuse .s2 { fill: var(--c2); }
+  .e5-fuse .s3 { fill: var(--c3); }
+  .e5-fuse .s4 { fill: var(--c4); }
+  .e5-fuse .s5 { fill: var(--c5); }
+  .e5-fuse .hub-disk { fill: #fff; }
+  .e5-fuse .sl {
+    fill: #fff;
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
     font-weight: 800;
-    color: var(--e5);
-    line-height: 1;
+    text-anchor: middle;
   }
-  .e5-loop .hub em {
-    display: block;
-    margin-top: 4px;
-    font-style: normal;
-    font-size: 9px;
+  .e5-fuse .hub-t {
+    fill: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-weight: 800;
+    text-anchor: middle;
+  }
+  .e5-fuse .hub-s {
+    fill: #999;
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
     font-weight: 600;
-    color: #999;
-    letter-spacing: .04em;
+    text-anchor: middle;
   }
-  .e5-loop .n {
+  .e5-fuse .note {
     position: absolute;
-    left: 50%;
-    top: 48%;
-    width: 86px;
-    margin-left: -43px;
-    text-align: center;
-    z-index: 3;
+    z-index: 2;
+    width: 118px;
+    padding: 8px 8px 8px 10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(40, 16, 32, .08);
+    border: 1px solid #F3F3F5;
+    border-left-width: 3px;
   }
-  .e5-loop .n b {
-    display: grid;
-    place-items: center;
-    width: 28px;
-    height: 28px;
-    margin: 0 auto 4px;
-    border-radius: 50%;
-    background: var(--e5);
-    color: #fff;
+  body.pub-ch .e5-fuse .note { border-color: #EEF0F8; box-shadow: 0 4px 14px rgba(40, 40, 80, .08); }
+  .e5-fuse .note b {
+    display: inline-block;
+    margin: 0 0 3px;
+    padding: 0;
+    background: none;
     font-size: 10px;
     font-weight: 800;
-    letter-spacing: .02em;
-    box-shadow: 0 0 0 3px #fff;
+    letter-spacing: .04em;
+    line-height: 1;
   }
-  .e5-loop .n span {
+  .e5-fuse .note strong {
     display: block;
-    font-size: 11px;
-    font-weight: 800;
-    color: #1A1A1A;
-    line-height: 1.2;
-    white-space: nowrap;
-  }
-  .e5-loop .n1 { transform: translateY(-108px); }
-  .e5-loop .n2 { transform: rotate(72deg) translateY(-108px) rotate(-72deg); }
-  .e5-loop .n3 { transform: rotate(144deg) translateY(-108px) rotate(-144deg); }
-  .e5-loop .n4 { transform: rotate(216deg) translateY(-108px) rotate(-216deg); }
-  .e5-loop .n5 { transform: rotate(288deg) translateY(-108px) rotate(-288deg); }
-  .e4 {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin: 0;
-    padding: 0;
-  }
-  .e4 li {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 46px 1fr;
-    grid-template-rows: auto auto;
-    background: #F7F7F8;
-    border: 0;
-    border-radius: 12px;
-    overflow: hidden;
-    min-height: 54px;
-    padding: 0;
-  }
-  body.pub-ch .e4 li { background: #F4F5FB; }
-  .e4 b {
-    grid-column: 1;
-    grid-row: 1 / span 2;
-    display: grid;
-    place-items: center;
-    background: #C2186A;
-    color: #fff;
     font-size: 12px;
     font-weight: 800;
-    letter-spacing: .04em;
-    margin: 0;
-    padding: 0;
-  }
-  body.pub-ch .e4 b { background: #4F46E5; color: #fff; }
-  .e4 strong {
-    grid-column: 2;
-    display: block;
-    padding: 10px 12px 0;
-    font-size: 13px;
-    font-weight: 800;
     color: #1A1A1A;
-    line-height: 1.3;
+    line-height: 1.25;
+    margin: 0 0 3px;
   }
-  .e4 em { display: none; }
-  .e4 span {
-    grid-column: 2;
+  .e5-fuse .note span {
     display: block;
-    padding: 2px 12px 10px;
-    font-size: 11px;
-    color: #888;
+    font-size: 10px;
     font-weight: 500;
-    line-height: 1.5;
-    white-space: normal;
+    color: #888;
+    line-height: 1.45;
   }
+  .e5-fuse .n1 { top: 0; left: 50%; width: 150px; margin-left: -75px; text-align: center; padding-left: 8px; border-left-width: 1px; border-top: 3px solid var(--c1); }
+  .e5-fuse .n1 b { color: var(--c1); }
+  .e5-fuse .n2 { top: 86px; right: 0; border-left-color: var(--c2); }
+  .e5-fuse .n2 b { color: var(--c2); }
+  .e5-fuse .n3 { bottom: 6px; right: 0; border-left-color: var(--c3); }
+  .e5-fuse .n3 b { color: var(--c3); }
+  .e5-fuse .n4 { bottom: 6px; left: 0; border-left-color: var(--c4); }
+  .e5-fuse .n4 b { color: var(--c4); }
+  .e5-fuse .n5 { top: 86px; left: 0; border-left-color: var(--c5); }
+  .e5-fuse .n5 b { color: var(--c5); }
   .why-nums {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -2642,22 +2599,35 @@
         <div class="m-block">
           <h4 class="sub">评价标准：5E 人才评价模型</h4>
           <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
-          <div class="e5-loop" role="img" aria-label="5E 人才评价模型：五维闭环">
-            <i class="orbit"></i>
-            <div class="hub"><strong>5E</strong><em>综合竞争力</em></div>
-            <div class="n n1"><b>E1</b><span>教育背景</span></div>
-            <div class="n n2"><b>E2</b><span>实践经验</span></div>
-            <div class="n n3"><b>E3</b><span>专业能力</span></div>
-            <div class="n n4"><b>E4</b><span>执行力</span></div>
-            <div class="n n5"><b>E5</b><span>职业能力</span></div>
+          <div class="e5-fuse" role="img" aria-label="5E 人才评价模型">
+            <div class="pie">
+              <svg viewBox="0 0 200 200">
+                <path class="s1" d="M 102.35 4.03 A 96 96 0 0 1 190.55 68.11 L 147.16 83.39 A 50 50 0 0 0 101.22 50.01 Z"/>
+                <path class="s2" d="M 192 72.57 A 96 96 0 0 1 158.31 176.26 L 130.37 139.72 A 50 50 0 0 0 147.92 85.72 Z"/>
+                <path class="s3" d="M 154.51 179.02 A 96 96 0 0 1 45.49 179.02 L 71.61 141.16 A 50 50 0 0 0 128.39 141.16 Z"/>
+                <path class="s4" d="M 41.69 176.26 A 96 96 0 0 1 8 72.57 L 52.08 85.72 A 50 50 0 0 0 69.63 139.72 Z"/>
+                <path class="s5" d="M 9.45 68.11 A 96 96 0 0 1 97.65 4.03 L 98.78 50.01 A 50 50 0 0 0 52.84 83.39 Z"/>
+                <circle class="hub-disk" cx="100" cy="100" r="48"/>
+                <text class="sl" x="142.9" y="36" font-size="8">E1</text>
+                <text class="sl" x="142.9" y="48" font-size="9">教育背景</text>
+                <text class="sl" x="169.4" y="118" font-size="8">E2</text>
+                <text class="sl" x="169.4" y="130" font-size="9">实践经验</text>
+                <text class="sl" x="100" y="168" font-size="8">E3</text>
+                <text class="sl" x="100" y="180" font-size="9">专业能力</text>
+                <text class="sl" x="30.6" y="118" font-size="8">E4</text>
+                <text class="sl" x="30.6" y="130" font-size="9">执行力</text>
+                <text class="sl" x="57.1" y="36" font-size="8">E5</text>
+                <text class="sl" x="57.1" y="48" font-size="9">职业能力</text>
+                <text class="hub-t" x="100" y="98" font-size="18">5E</text>
+                <text class="hub-s" x="100" y="114" font-size="7">综合竞争力</text>
+              </svg>
+            </div>
+            <div class="note n1"><b>E1</b><strong>教育背景</strong><span>学校 · 专业 · 学术基础</span></div>
+            <div class="note n2"><b>E2</b><strong>实践经验</strong><span>实习 · 项目 · 业务经历</span></div>
+            <div class="note n3"><b>E3</b><strong>专业能力</strong><span>技能 · 解决问题 · 有AI工作流及应用能力</span></div>
+            <div class="note n4"><b>E4</b><strong>执行力</strong><span>将知识转化为结果</span></div>
+            <div class="note n5"><b>E5</b><strong>职业能力</strong><span>主动沟通 高效协作 强逻辑分析能力</span></div>
           </div>
-          <ul class="e4">
-            <li><b>E1</b><strong>教育背景</strong><em>Education</em><span>学校 · 专业 · 学术基础</span></li>
-            <li><b>E2</b><strong>实践经验</strong><em>Experience</em><span>实习 · 项目 · 业务经历</span></li>
-            <li><b>E3</b><strong>专业能力</strong><em>Expertise</em><span>技能 · 解决问题 · 有AI工作流及应用能力</span></li>
-            <li><b>E4</b><strong>执行力</strong><em>Execution</em><span>将知识转化为结果</span></li>
-            <li><b>E5</b><strong>职业能力</strong><span>主动沟通 高效协作 强逻辑分析能力</span></li>
-          </ul>
         </div>
         <div class="m-block">
           <h4 class="sub">斯芬克核心优势</h4>
