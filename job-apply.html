@@ -511,21 +511,28 @@
     color: #C2186A;
   }
   body.pub-ch .hook-end em { color: #4338CA; }
-  .info-dl { margin: 0; }
+  .info-dl {
+    margin: 0 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
   .info-dl > div {
     display: grid;
     grid-template-columns: 64px 1fr;
     gap: 8px;
-    padding: 10px 0;
-    border-bottom: 1px solid #F0F0F2;
+    padding: 12px 12px 13px;
     align-items: start;
+    background: #F8F3F6;
+    border-radius: 12px;
+    box-shadow: inset 0 2px 0 #C2186A;
+    border: 0;
   }
   .info-dl dt {
     font-size: 11px;
     font-weight: 800;
     color: #C2186A;
   }
-  body.pub-ch .info-dl dt { color: #4338CA; }
   .info-dl dd {
     margin: 0;
     font-size: 12px;
@@ -533,17 +540,24 @@
     color: #444;
     line-height: 1.55;
   }
+  .co-pack {
+    margin: 0;
+    padding: 12px;
+    background: #F8F3F6;
+    border-radius: 12px;
+    box-shadow: inset 0 2px 0 #C2186A;
+  }
   .co-head {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin: 12px 0 8px;
+    margin: 0 0 10px;
   }
   .co-head h4 {
     margin: 0;
     font-size: 13px;
     font-weight: 800;
-    color: #1A1A1A;
+    color: #C2186A;
   }
   .co-head span {
     font-size: 10px;
@@ -575,7 +589,7 @@
     font-size: 11px;
     font-weight: 700;
     color: #333;
-    background: #FAFAFA;
+    background: #fff;
     border-radius: 8px;
     padding: 8px 4px;
   }
@@ -2553,9 +2567,10 @@
             <dd>上海 · 广州 · 北京 · 成都 · 免费报名</dd>
           </div>
         </dl>
+        <div class="co-pack">
         <div class="co-head">
           <h4>企业阵容</h4>
-          <span>部分示列</span>
+          <span>部分示例</span>
         </div>
         <div class="co-grid">
           <span>东方甄选</span><span>银泰商业</span>
@@ -2564,6 +2579,7 @@
           <span>今日美术馆</span><span>摩登天空</span>
           <span>华策影业</span><span>ARTPRO STUDIO</span>
           <span>网龙游戏</span><span>……</span>
+        </div>
         </div>
         <figure class="story-shot">
           <img src="fair-scene.jpg" alt="招聘会现场一对一面试">
