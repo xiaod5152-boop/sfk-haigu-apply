@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 模拟面试</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    background: #EDEDED;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 24px 12px 40px;
+    color: #1A1A1A;
+  }
+  .phone {
+    width: 390px;
+    height: 844px;
+    background: #F6F6F6;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0,0,0,.1);
+  }
+  .status {
+    height: 44px; background: #fff;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    padding: 0 16px 6px; font-size: 13px; font-weight: 600; flex-shrink: 0;
+  }
+  .nav {
+    height: 44px; background: #fff; display: flex; align-items: center;
+    justify-content: center; font-size: 16px; font-weight: 600;
+    position: relative; border-bottom: 1px solid #F0F0F0; flex-shrink: 0;
+  }
+  .nav .back, .nav .hist {
+    position: absolute; border: 0; background: none; cursor: pointer; font: inherit;
+    z-index: 2;
+  }
+  .nav .back { left: 10px; font-size: 22px; width: 36px; height: 36px; line-height: 36px; }
+  .nav .hist { right: 12px; font-size: 13px; color: #FF2D8A; font-weight: 700; }
+  .screen { display: none; flex: 1; overflow: auto; }
+  .screen.on { display: flex; flex-direction: column; }
+  .hero {
+    background: linear-gradient(180deg, #FFF0F6 0%, #F6F6F6 55%);
+    padding: 18px 16px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .hero .copy { flex: 1; min-width: 0; }
+  .hero h1 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.28;
+    letter-spacing: .2px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    font-size: 11px;
+    background: #FF2D8A;
+    color: #fff;
+    border-radius: 4px;
+    padding: 2px 6px;
+    margin-left: 6px;
+    vertical-align: 4px;
+    font-weight: 700;
+  }
+  .hero p {
+    font-size: 24px;
+    font-weight: 800;
+    margin-top: 8px;
+    color: #111;
+    line-height: 1.3;
+  }
+  .hero p u {
+    text-decoration: none;
+    border-bottom: 4px solid #FFB3D4;
+  }
+  .ai-mark {
+    width: 72px; height: 72px; flex-shrink: 0;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #7C5CFC, #FF4FA0);
+    color: #fff; font-size: 22px; font-weight: 800;
+    display: grid; place-items: center;
+    box-shadow: 0 8px 16px rgba(124,92,252,.25);
+  }
+  .pts {
+    margin: 10px 16px 0;
+    background: #fff;
+    border-radius: 12px;
+    padding: 4px 16px 8px;
+  }
+  .sec {
+    font-size: 14px;
+    font-weight: 800;
+    padding: 12px 0 4px;
+    color: #111;
+  }
+  .pts article {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #F2F2F2;
+  }
+  .pts article:last-child { border-bottom: 0; }
+  .pts article h4 {
+    flex: 0 0 56px;
+    font-size: 15px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .pts article:nth-child(2) h4 { color: #FF2D8A; }
+  .pts article:nth-child(3) h4 { color: #2563EB; }
+  .pts article:nth-child(4) h4 { color: #C2410C; }
+  .pts article p { font-size: 12px; color: #666; line-height: 1.45; }
+  .demo {
+    background: #fff;
+    margin: 10px 16px 0;
+    border-radius: 12px;
+    padding: 4px 12px 12px;
+  }
+  .demo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pane { border-radius: 10px; padding: 10px 8px 12px; }
+  .pane.score { background: #EAF6FF; }
+  .pane.radar { background: #F6F4FF; }
+  .radar-svg { width: 100%; height: 132px; display: block; }
+  .radar-svg text { font-size: 9px; fill: #666; }
+  .pane .lab {
+    font-size: 12px; font-weight: 800; color: #333;
+    margin-bottom: 8px; text-align: center;
+  }
+  .score { text-align: center; }
+  .ring {
+    width: 88px; height: 88px; margin: 0 auto;
+    border-radius: 50%;
+    background: conic-gradient(#FF2D8A 0 93%, #E5E5E5 93% 100%);
+    display: grid; place-items: center;
+  }
+  .ring i {
+    width: 66px; height: 66px; border-radius: 50%; background: #fff;
+    display: grid; place-items: center; font-style: normal; font-size: 22px; font-weight: 800;
+  }
+  .score small { display: block; font-size: 11px; color: #666; margin-top: 6px; }
+  .jobbox {
+    background: #FFF8F0;
+    margin: 10px 16px 0;
+    border-radius: 12px;
+    padding: 12px 14px 14px;
+  }
+  .jobbox .hd { display: flex; justify-content: space-between; align-items: center; }
+  .jobbox .hd span { font-size: 14px; font-weight: 800; }
+  .jobbox .hd button {
+    border: 0; background: #fff; color: #C2410C;
+    border-radius: 6px; height: 28px; padding: 0 10px;
+    font-size: 12px; font-weight: 700; cursor: pointer;
+  }
+  .jobbox p { font-size: 15px; margin-top: 10px; font-weight: 800; color: #111; }
+  .jobbox small { display: block; font-size: 12px; color: #888; margin-top: 4px; }
+  .foot {
+    margin-top: auto;
+    background: #fff;
+    padding: 10px 16px 16px;
+    border-top: 1px solid #F0F0F0;
+  }
+  .start {
+    margin: 0; border: 0; width: 100%;
+    height: 48px; border-radius: 10px; background: #FF2D8A; color: #fff;
+    font-size: 16px; font-weight: 800; cursor: pointer;
+  }
+  .start small { display: block; font-size: 11px; font-weight: 500; opacity: .9; margin-top: 2px; }
+  .hint { text-align: center; font-size: 11px; color: #999; margin: 0 0 8px; }
+  .mask {
+    display: none; position: absolute; inset: 0; background: rgba(0,0,0,.4);
+    z-index: 8; align-items: flex-end;
+  }
+  .mask.on { display: flex; }
+  .sheet {
+    width: 100%; background: #fff; border-radius: 16px 16px 0 0;
+    padding: 16px 16px 24px; max-height: 72%; overflow: auto;
+  }
+  .sheet h4 { font-size: 16px; margin-bottom: 12px; }
+  .pills { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; }
+  .pills button {
+    flex-shrink: 0; border: 0; background: #F4F4F4; border-radius: 16px;
+    height: 30px; padding: 0 12px; font-size: 12px; cursor: pointer;
+  }
+  .pills button.on { background: #FFE4F2; color: #C2186A; font-weight: 700; }
+  .pick {
+    width: 100%; text-align: left; border: 0; background: none;
+    padding: 12px 0; border-bottom: 1px solid #F3F3F3; cursor: pointer;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .pick .dot {
+    width: 16px; height: 16px; border-radius: 50%; border: 2px solid #DDD; margin-top: 2px; flex-shrink: 0;
+  }
+  .pick.on .dot { border-color: #FF2D8A; background: #FF2D8A; box-shadow: inset 0 0 0 3px #fff; }
+  .pick b { display: block; font-size: 13px; }
+  .pick span { display: block; font-size: 12px; color: #888; margin-top: 3px; }
+
+  .chat { flex: 1; overflow: auto; padding: 12px 14px 8px; }
+  .ai, .me {
+    max-width: 82%; padding: 10px 12px; border-radius: 12px;
+    font-size: 13px; line-height: 1.55; margin-bottom: 10px;
+  }
+  .ai { background: #fff; }
+  .ai em { display: block; font-style: normal; font-size: 11px; color: #FF2D8A; margin-bottom: 4px; font-weight: 700; }
+  .me { background: #FF2D8A; color: #fff; margin-left: auto; }
+  .look {
+    background: #FFF7E8; color: #9A4B12; font-size: 12px;
+    border-radius: 8px; padding: 8px 10px; margin-bottom: 10px;
+  }
+  .dock {
+    flex-shrink: 0; background: #fff; padding: 8px 12px 14px;
+    display: flex; gap: 8px; align-items: flex-end;
+    border-top: 1px solid #F0F0F0;
+  }
+  .dock textarea {
+    flex: 1; height: 72px; resize: none; border: 1px solid #E5E5E5;
+    border-radius: 10px; padding: 8px 10px; font: inherit; font-size: 13px;
+  }
+  .acts { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+  .dock .send {
+    height: 36px; padding: 0 14px; border: 0; border-radius: 8px;
+    background: #FF2D8A; color: #fff; font-weight: 700; cursor: pointer;
+  }
+  .dock .send:disabled { background: #F3C2DA; }
+  .dock .mic {
+    width: 36px; height: 36px; padding: 0; border: 0;
+    border-radius: 18px; background: #FFF0F6; color: #FF2D8A;
+    display: grid; place-items: center; cursor: pointer;
+  }
+  .dock .mic.on { background: #FF2D8A; color: #fff; }
+  .dock .mic svg { display: block; }
+
+  .report { padding: 12px 16px 24px; }
+  .meter { text-align: center; background: #fff; border-radius: 12px; padding: 16px; }
+  .qtabs { display: flex; gap: 8px; overflow-x: auto; margin: 12px 0; }
+  .qtabs button {
+    flex-shrink: 0; border: 0; background: #F4F4F4; border-radius: 14px;
+    height: 28px; padding: 0 12px; font-size: 12px; cursor: pointer;
+  }
+  .qtabs button.on { background: #FF2D8A; color: #fff; }
+  .block { background: #fff; border-radius: 12px; padding: 12px 14px; margin-top: 10px; font-size: 13px; line-height: 1.6; }
+  .block h4 { font-size: 13px; color: #FF2D8A; margin-bottom: 6px; }
+  .block h5 { font-size: 12px; color: #888; margin: 8px 0 4px; }
+  .rec {
+    display: block; width: 100%; text-align: left; border: 0; background: #fff;
+    border-radius: 10px; padding: 12px; margin-top: 8px; cursor: pointer;
+  }
+  .rec b { display: block; font-size: 14px; }
+  .rec span { font-size: 12px; color: #888; }
+  .ghost {
+    width: 100%; margin-top: 10px; height: 40px; border-radius: 8px;
+    border: 1px solid #FF2D8A; background: #fff; color: #FF2D8A; font-weight: 700; cursor: pointer;
+  }
+  .chat-bar {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 14px;
+    background: #fff;
+    border-bottom: 1px solid #F0F0F0;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .chat-bar em { font-style: normal; color: #FF2D8A; }
+  .hist-list { padding: 12px 16px 24px; }
+  .hist-empty { font-size: 13px; color: #888; text-align: center; padding: 40px 16px; }
+  .note-body { font-size: 13px; color: #555; line-height: 1.7; }
+  .note-body p { margin-bottom: 8px; }
+  .hint { cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="status"><span>10:28</span><span>5G</span></div>
+  <div class="nav">
+    <button class="back" id="back" type="button">‹</button>
+    <span id="navTitle">模拟面试训练</span>
+    <button class="hist" id="hist" type="button">面试记录</button>
+  </div>
+
+  <section class="screen on" id="home">
+    <div class="hero">
+      <div class="copy">
+        <h1>模拟面试训练<em>免费</em></h1>
+        <p>助你拿下满意<u>Offer</u></p>
+      </div>
+      <div class="ai-mark">AI</div>
+    </div>
+    <div class="pts">
+      <div class="sec">体验亮点</div>
+      <article><h4>出题准</h4><p>匹配目标岗位，按你选的职位出题</p></article>
+      <article><h4>体验真</h4><p>模拟真实面试节奏，现场追问</p></article>
+      <article><h4>提升快</h4><p>报告定位问题，指出可改的表达</p></article>
+    </div>
+    <div class="demo">
+      <div class="sec">报告示例</div>
+      <div class="demo-row">
+        <div class="pane score">
+          <div class="lab">总体表现</div>
+          <div class="ring"><i>93</i></div>
+          <small>超过 95% 的同学</small>
+        </div>
+        <div class="pane radar">
+          <div class="lab">优缺点分析</div>
+          <svg class="radar-svg" viewBox="0 0 160 150" aria-hidden="true">
+            <polygon points="80,32 123.7,63.8 107,115.2 53,115.2 36.3,63.8" fill="none" stroke="#E4DFF8"/>
+            <polygon points="80,48 108.5,68.7 97.6,102.3 62.4,102.3 51.5,68.7" fill="none" stroke="#E4DFF8"/>
+            <polygon points="80,62 95.2,73.1 89.4,90.9 70.6,90.9 64.8,73.1" fill="none" stroke="#E4DFF8"/>
+            <line x1="80" y1="78" x2="80" y2="32" stroke="#E4DFF8"/>
+            <line x1="80" y1="78" x2="123.7" y2="63.8" stroke="#E4DFF8"/>
+            <line x1="80" y1="78" x2="107" y2="115.2" stroke="#E4DFF8"/>
+            <line x1="80" y1="78" x2="53" y2="115.2" stroke="#E4DFF8"/>
+            <line x1="80" y1="78" x2="36.3" y2="63.8" stroke="#E4DFF8"/>
+            <polygon points="80,38.4 115,66.6 98.4,103.3 60,105.5 45.9,66.9" fill="rgba(124,92,252,.35)" stroke="#7C5CFC" stroke-width="1.2"/>
+            <text x="80" y="16" text-anchor="middle">相关性</text>
+            <text x="142" y="62" text-anchor="middle">表达力</text>
+            <text x="118" y="138" text-anchor="middle">自信度</text>
+            <text x="42" y="138" text-anchor="middle">结构性</text>
+            <text x="18" y="62" text-anchor="middle">清晰度</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="jobbox">
+      <div class="hd">
+        <span>选择面试职位</span>
+        <button type="button" id="editJob">修改职位</button>
+      </div>
+      <p id="jobName">东方甄选 · 内容视觉设计师</p>
+      <small>已根据您的求职意向生成专属面试方案</small>
+    </div>
+    <div class="foot">
+      <p class="hint">查看《AI模拟面试须知》协议</p>
+      <button class="start" id="go" type="button">即刻开始<small>平均 10–15 分钟完成</small></button>
+    </div>
+  </section>
+
+  <section class="screen" id="chat">
+    <div class="chat-bar"><span id="chatJob"></span><em id="chatStep">1 / 4</em></div>
+    <div class="chat" id="log"></div>
+    <div class="dock">
+      <textarea id="ans" placeholder="请输入你的回答"></textarea>
+      <div class="acts">
+        <button class="mic" id="mic" type="button" aria-label="语音转文字">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="2"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <button class="send" id="send" type="button">提交</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="load">
+    <div style="margin:auto;text-align:center;color:#888;font-size:14px">正在生成面试报告…</div>
+  </section>
+
+  <section class="screen" id="report">
+    <div class="report">
+      <div class="meter">
+        <div class="ring" id="finalRing"><i id="finalScore">86</i></div>
+        <p style="margin-top:8px;font-size:13px;color:#888" id="finalHint">超过 80% 的同学</p>
+      </div>
+      <div class="qtabs" id="qtabs"></div>
+      <div class="block" id="qview"></div>
+      <button class="start" id="toJobs" type="button" style="margin:14px 0 0">查看岗位推荐</button>
+    </div>
+  </section>
+
+  <section class="screen" id="jobs">
+    <div class="report">
+      <div class="block">
+        <h4>岗位推荐</h4>
+        <p>根据本轮面试表现，优先推荐这些秋招岗位。</p>
+      </div>
+      <div id="jobList"></div>
+      <button class="ghost" id="again" type="button">再练一轮</button>
+    </div>
+  </section>
+
+  <section class="screen" id="histPage">
+    <div class="hist-list" id="histList"></div>
+  </section>
+
+  <div class="mask" id="mask">
+    <div class="sheet">
+      <h4>选择面试职位</h4>
+      <div class="pills" id="pills"></div>
+      <div id="picks"></div>
+    </div>
+  </div>
+  <div class="mask" id="noteMask">
+    <div class="sheet">
+      <h4>AI模拟面试须知</h4>
+      <div class="note-body">
+        <p>本工具为展前练习，内容由规则演示生成，不代表企业真实面试结果。</p>
+        <p>请用文字作答。可点麦克风做语音转文字（浏览器不支持时会填入示例）。</p>
+        <p>共 4 题，约 10–15 分钟。报告仅供参考，可再练一轮。</p>
+      </div>
+      <button class="start" id="noteOk" type="button" style="margin-top:16px">我知道了</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const CATS = ["互联网 / 新消费", "科技 / 智能", "文化 / 创意"];
+const POSTS = [
+  { id: "dfzx", cat: "互联网 / 新消费", co: "东方甄选", job: "内容视觉设计师", city: "北京", pack: "content" },
+  { id: "ali", cat: "互联网 / 新消费", co: "阿里国际", job: "电商视觉设计", city: "上海", pack: "content" },
+  { id: "belle", cat: "互联网 / 新消费", co: "百丽", job: "时尚视觉设计", city: "广州", pack: "visual" },
+  { id: "xss", cat: "互联网 / 新消费", co: "山下有松", job: "产品视觉", city: "成都", pack: "visual" },
+  { id: "xp", cat: "科技 / 智能", co: "小鹏汽车", job: "智能座舱 UI", city: "广州", pack: "ui" },
+  { id: "tcl", cat: "科技 / 智能", co: "TCL", job: "品牌视觉设计", city: "广州", pack: "visual" },
+  { id: "jr", cat: "文化 / 创意", co: "今日美术馆", job: "展览视觉设计", city: "北京", pack: "exhibit" },
+  { id: "md", cat: "文化 / 创意", co: "摩登天空", job: "音乐视觉 / 物料", city: "北京", pack: "visual" },
+  { id: "wuhu", cat: "文化 / 创意", co: "wuhu 动画", job: "动画分镜", city: "广州", pack: "anim" }
+];
+const BASE_QS = [
+  { look: "沟通表达 · 自我介绍", q: "先请你简单介绍一下自己吧。包括学校、专业、代表项目，以及为什么投这个岗位。" },
+  { look: "作品深度 · 过程", q: "选一个最能代表你的项目。你当时要解决什么问题？你具体做了哪三步？" },
+  { look: "结果意识 · 量化", q: "这个项目上线或交付后，有什么可被验证的结果？如果没有数据，现场老师会怎么判断好坏？" }
+];
+const PACK_Q = {
+  content: { look: "转化意识", q: "这条主图你希望用户停下来的理由是什么？标题、商品、利益点你怎么排？" },
+  visual: { look: "品牌规范", q: "请说一次你改过的「品牌不让用」的情况。你怎么在规范里做出差异？" },
+  ui: { look: "场景与安全", q: "座舱或 App 里这个界面，用户一手操作时，你最怕哪三个误触？" },
+  exhibit: { look: "空间阅读", q: "观众从进门到主展墙，你希望他在第几秒读懂这场展览的主题？用什么视觉手段？" },
+  anim: { look: "叙事功能", q: "这三格分镜各自要完成什么叙事任务？如果只能砍一格，你砍哪格？" },
+  game: { look: "世界观约束", q: "给一个已有世界观，你如何保证原画能进管线而不是只当插画？" }
+};
+const FALLBACK_Q = { look: "临场追问 · 岗位匹配", q: "如果让你为该品牌做一版秋招主视觉，你第一周会先对齐哪些信息和风格？" };
+
+let cat = CATS[0];
+let post = POSTS[0];
+let qi = 0;
+let answers = [];
+let roundQs = [];
+let showId = "home";
+let viewingHist = false;
+
+function qsFor(p) {
+  return BASE_QS.concat([PACK_Q[(p && p.pack) || ""] || FALLBACK_Q]);
+}
+function histGet() {
+  try { return JSON.parse(localStorage.getItem("sfk-iv-hist") || "[]"); } catch (e) { return []; }
+}
+function histSave(item) {
+  const list = histGet();
+  list.unshift(item);
+  localStorage.setItem("sfk-iv-hist", JSON.stringify(list.slice(0, 8)));
+}
+
+function show(id) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("on"));
+  document.getElementById(id).classList.add("on");
+  showId = id;
+  document.getElementById("navTitle").textContent =
+    id === "report" || id === "jobs" ? "面试报告" : id === "histPage" ? "面试记录" : "模拟面试训练";
+  document.getElementById("hist").style.display = id === "home" ? "block" : "none";
+}
+function paintJob() {
+  document.getElementById("jobName").textContent = `${post.co} · ${post.job}`;
+}
+function paintPills() {
+  document.getElementById("pills").innerHTML = CATS.map(c =>
+    `<button type="button" class="${c === cat ? "on" : ""}" data-cat="${c}">${c}</button>`
+  ).join("");
+  document.getElementById("picks").innerHTML = POSTS.filter(p => p.cat === cat).map(p =>
+    `<button class="pick ${p.id === post.id ? "on" : ""}" type="button" data-id="${p.id}">
+      <i class="dot"></i>
+      <span><b>${p.co} · ${p.job}</b><span>${p.city}站 · 海归创意专场</span></span>
+    </button>`
+  ).join("");
+}
+function paintStep() {
+  document.getElementById("chatStep").textContent = `${Math.min(qi + 1, roundQs.length)} / ${roundQs.length}`;
+  document.getElementById("chatJob").textContent = `${post.co} · ${post.job}`;
+}
+function addAi(text, look) {
+  const log = document.getElementById("log");
+  if (look) {
+    const l = document.createElement("div");
+    l.className = "look";
+    l.textContent = "面试官会考察：" + look;
+    log.appendChild(l);
+  }
+  const d = document.createElement("div");
+  d.className = "ai";
+  d.innerHTML = `<em>AI 面试官</em>${text}`;
+  log.appendChild(d);
+  log.scrollTop = log.scrollHeight;
+}
+function addMe(text) {
+  const d = document.createElement("div");
+  d.className = "me";
+  d.textContent = text;
+  document.getElementById("log").appendChild(d);
+  document.getElementById("log").scrollTop = 9999;
+}
+function scoreOf(text) {
+  const n = (text || "").trim().length;
+  if (n < 12) return 62;
+  if (n < 40) return 74;
+  if (n < 80) return 82;
+  return 88;
+}
+
+document.getElementById("editJob").addEventListener("click", () => {
+  paintPills();
+  document.getElementById("mask").classList.add("on");
+});
+document.getElementById("mask").addEventListener("click", e => {
+  if (e.target.id === "mask") e.target.classList.remove("on");
+});
+document.getElementById("pills").addEventListener("click", e => {
+  const b = e.target.closest("[data-cat]");
+  if (!b) return;
+  cat = b.dataset.cat;
+  paintPills();
+});
+document.getElementById("picks").addEventListener("click", e => {
+  const b = e.target.closest("[data-id]");
+  if (!b) return;
+  post = POSTS.find(p => p.id === b.dataset.id);
+  cat = post.cat;
+  paintJob();
+  document.getElementById("mask").classList.remove("on");
+});
+document.querySelector(".hint").addEventListener("click", () => {
+  document.getElementById("noteMask").classList.add("on");
+});
+document.getElementById("noteOk").addEventListener("click", () => {
+  document.getElementById("noteMask").classList.remove("on");
+});
+document.getElementById("noteMask").addEventListener("click", e => {
+  if (e.target.id === "noteMask") e.target.classList.remove("on");
+});
+
+document.getElementById("go").addEventListener("click", () => {
+  viewingHist = false;
+  qi = 0;
+  answers = [];
+  roundQs = qsFor(post);
+  document.getElementById("log").innerHTML = "";
+  show("chat");
+  paintStep();
+  addAi(`本场面试针对「${post.co} · ${post.job} · ${post.city}站」。您好，欢迎来到今天的面试。`, "");
+  addAi(roundQs[0].q, roundQs[0].look);
+});
+let rec = null;
+let recBase = "";
+function stopVoice() {
+  if (rec) {
+    rec.onend = null;
+    rec.stop();
+    rec = null;
+  }
+  document.getElementById("mic").classList.remove("on");
+}
+document.getElementById("mic").addEventListener("click", () => {
+  const box = document.getElementById("ans");
+  const btn = document.getElementById("mic");
+  if (rec) {
+    stopVoice();
+    return;
+  }
+  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!Rec) {
+    btn.classList.add("on");
+    setTimeout(() => {
+      const demo = "我在中央美院读视觉传达，代表项目是品牌主视觉，这次想投内容设计岗。";
+      box.value = (box.value ? box.value.replace(/\s+$/, "") + " " : "") + demo;
+      btn.classList.remove("on");
+    }, 800);
+    return;
+  }
+  recBase = box.value;
+  rec = new Rec();
+  rec.lang = "zh-CN";
+  rec.continuous = true;
+  rec.interimResults = true;
+  rec.onresult = e => {
+    let out = recBase ? recBase.replace(/\s+$/, "") + " " : "";
+    for (let i = 0; i < e.results.length; i++) out += e.results[i][0].transcript;
+    box.value = out;
+  };
+  rec.onend = () => stopVoice();
+  rec.onerror = () => stopVoice();
+  btn.classList.add("on");
+  rec.start();
+});
+document.getElementById("send").addEventListener("click", () => {
+  stopVoice();
+  const t = document.getElementById("ans").value.trim();
+  if (!t) return;
+  addMe(t);
+  answers.push({ q: roundQs[qi].q, look: roundQs[qi].look, a: t, s: scoreOf(t) });
+  document.getElementById("ans").value = "";
+  qi += 1;
+  paintStep();
+  if (qi >= roundQs.length) {
+    show("load");
+    setTimeout(() => {
+      const avg = Math.round(answers.reduce((s, x) => s + x.s, 0) / answers.length);
+      renderReport(avg);
+      histSave({
+        at: Date.now(),
+        co: post.co,
+        job: post.job,
+        city: post.city,
+        pack: post.pack,
+        score: avg,
+        answers: answers
+      });
+      show("report");
+    }, 1000);
+    return;
+  }
+  setTimeout(() => addAi(roundQs[qi].q, roundQs[qi].look), 400);
+});
+function renderReport(avg) {
+  document.getElementById("finalScore").textContent = avg;
+  document.getElementById("finalRing").style.background =
+    `conic-gradient(#FF2D8A 0 ${avg}%, #F1F1F1 ${avg}% 100%)`;
+  document.getElementById("finalHint").textContent = avg >= 80 ? "超过 80% 的同学" : "还有提升空间，建议再练一轮作品讲解";
+  document.getElementById("qtabs").innerHTML = answers.map((_, i) =>
+    `<button type="button" class="${i === 0 ? "on" : ""}" data-i="${i}">问题${["一","二","三","四"][i]}</button>`
+  ).join("");
+  paintQview(0);
+}
+function paintQview(i) {
+  const x = answers[i];
+  if (!x) return;
+  document.getElementById("qview").innerHTML =
+    `<h4>问题回顾 · 内容由 AI 生成</h4>
+     <p>${x.q}</p>
+     <h5>面试官要考察的是</h5>
+     <p>${x.look}</p>
+     <h5>你的回答 · ${x.s} 分</h5>
+     <p>${x.a}</p>
+     <h5>优缺点分析</h5>
+     <p>${x.s >= 82 ? "结构清楚，有项目动作。下一步把结果写成可验证的数字或现场反馈。" : "信息偏散。建议按「问题—动作—结果」三段写，每段不超过两句。"}</p>`;
+}
+document.getElementById("qtabs").addEventListener("click", e => {
+  const b = e.target.closest("[data-i]");
+  if (!b) return;
+  document.querySelectorAll("#qtabs button").forEach(x => x.classList.remove("on"));
+  b.classList.add("on");
+  paintQview(+b.dataset.i);
+});
+document.getElementById("toJobs").addEventListener("click", () => {
+  const list = POSTS.filter(p => p.cat === post.cat);
+  document.getElementById("jobList").innerHTML = list.map(p =>
+    `<button class="rec" type="button" data-go="${p.city}">
+      <b>${p.co} · ${p.job}</b>
+      <span>${p.city}站 · 与本轮面试方向接近</span>
+    </button>`
+  ).join("");
+  show("jobs");
+});
+document.getElementById("jobList").addEventListener("click", e => {
+  const b = e.target.closest("[data-go]");
+  if (!b) return;
+  location.href = "job-apply.html?pub=1&city=" + encodeURIComponent(b.dataset.go);
+});
+document.getElementById("again").addEventListener("click", () => show("home"));
+document.getElementById("hist").addEventListener("click", () => {
+  const list = histGet();
+  const box = document.getElementById("histList");
+  if (!list.length) {
+    box.innerHTML = `<p class="hist-empty">还没有面试记录。练完一轮后会显示在这里。</p>`;
+  } else {
+    box.innerHTML = list.map((h, i) =>
+      `<button class="rec" type="button" data-hist="${i}">
+        <b>${h.co} · ${h.job} · ${h.score} 分</b>
+        <span>${new Date(h.at).toLocaleString("zh-CN", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" })} · ${h.city}站</span>
+      </button>`
+    ).join("");
+  }
+  show("histPage");
+});
+document.getElementById("histList").addEventListener("click", e => {
+  const b = e.target.closest("[data-hist]");
+  if (!b) return;
+  const h = histGet()[+b.dataset.hist];
+  if (!h) return;
+  viewingHist = true;
+  answers = h.answers || [];
+  post = POSTS.find(p => p.co === h.co && p.job === h.job) || post;
+  renderReport(h.score);
+  show("report");
+});
+document.getElementById("back").addEventListener("click", () => {
+  if (showId === "chat" || showId === "report" || showId === "jobs" || showId === "histPage" || showId === "load") {
+    show("home");
+    return;
+  }
+  const q = new URLSearchParams(location.search);
+  if (q.get("from") === "apply") {
+    const city = q.get("city");
+    location.href = city
+      ? "job-apply.html?pub=1&city=" + encodeURIComponent(city)
+      : "job-apply.html?pub=1";
+    return;
+  }
+  location.href = "signup-preview.html";
+});
+document.getElementById("ans").addEventListener("keydown", e => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    document.getElementById("send").click();
+  }
+});
+
+(function boot() {
+  const q = new URLSearchParams(location.search);
+  const city = q.get("city");
+  if (city) {
+    const hit = POSTS.find(p => p.city === city);
+    if (hit) { post = hit; cat = hit.cat; }
+  }
+  paintJob();
+})();
+</script>
+</body>
+</html>
