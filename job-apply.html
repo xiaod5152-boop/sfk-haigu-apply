@@ -875,12 +875,13 @@
     --c5: #9D174D;
     --ink: #C2186A;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 158px minmax(0, 1fr);
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      "n1 n1 n1"
-      "n5 pie n2"
-      "n4 pie n3";
-    gap: 8px 8px;
+      "n1 n1"
+      "pie pie"
+      "n5 n2"
+      "n4 n3";
+    gap: 8px;
     align-items: stretch;
     height: auto;
     margin: 2px 0 4px;
@@ -895,8 +896,8 @@
   }
   .e5-fuse .pie {
     grid-area: pie;
-    width: 158px;
-    height: 158px;
+    width: 210px;
+    height: 210px;
     justify-self: center;
     align-self: center;
   }
@@ -947,36 +948,40 @@
   }
   .e5-fuse .note strong {
     display: block;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 800;
     color: #1A1A1A;
-    line-height: 1.25;
+    line-height: 1.3;
     margin: 0 0 3px;
+    white-space: nowrap;
   }
   .e5-fuse .note span {
     display: block;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 500;
     color: #888;
-    line-height: 1.45;
+    line-height: 1.5;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
   .e5-fuse .n1 {
     grid-area: n1;
-    justify-self: center;
-    width: min(100%, 220px);
-    text-align: center;
-    padding-left: 8px;
-    border-left-width: 1px;
-    border-top: 3px solid var(--c1);
+    justify-self: stretch;
+    width: auto;
+    text-align: left;
+    padding: 10px 12px;
+    border-left-width: 3px;
+    border-left-color: var(--c1);
+    border-top: 0;
   }
   .e5-fuse .n1 b { color: var(--c1); }
-  .e5-fuse .n2 { grid-area: n2; align-self: start; border-left-color: var(--c2); }
+  .e5-fuse .n2 { grid-area: n2; border-left-color: var(--c2); }
   .e5-fuse .n2 b { color: var(--c2); }
-  .e5-fuse .n3 { grid-area: n3; align-self: end; border-left-color: var(--c3); }
+  .e5-fuse .n3 { grid-area: n3; border-left-color: var(--c3); }
   .e5-fuse .n3 b { color: var(--c3); }
-  .e5-fuse .n4 { grid-area: n4; align-self: end; border-left-color: var(--c4); }
+  .e5-fuse .n4 { grid-area: n4; border-left-color: var(--c4); }
   .e5-fuse .n4 b { color: var(--c4); }
-  .e5-fuse .n5 { grid-area: n5; align-self: start; border-left-color: var(--c5); }
+  .e5-fuse .n5 { grid-area: n5; border-left-color: var(--c5); }
   .e5-fuse .n5 b { color: var(--c5); }
   .why-nums {
     display: grid;
