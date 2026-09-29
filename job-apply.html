@@ -578,23 +578,36 @@
     padding: 8px 4px;
   }
   .perk {
-    margin: 12px 0 0;
-    padding: 10px 12px;
-    border-radius: 10px;
-    background: linear-gradient(90deg, #FF2D8A, #FF6B9D);
-    color: #fff;
+    margin: 10px 32px 0;
+    padding: 12px;
+    border-radius: 12px;
+    background: #fff;
+    color: #222;
   }
-  .perk b {
-    display: block;
-    font-size: 12px;
-    margin-bottom: 4px;
+  .perk-k {
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #C2186A;
+    letter-spacing: .02em;
   }
-  .perk p {
+  .perk ul {
+    list-style: none;
     margin: 0;
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 1.5;
-    opacity: .95;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .perk li {
+    margin: 0;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: #FFF0F6;
+    font-size: 12px;
+    font-weight: 700;
+    color: #9D174D;
+    line-height: 1.4;
   }
   #innerChannel .perk {
     margin: 10px 32px 0;
@@ -2448,8 +2461,12 @@
 
     <div id="innerChannel" hidden>
     <div class="perk only-inner" id="sfkPerk">
-      <b>SFK 学生及校友专属招聘权益</b>
-      <p>专属提前报名占位通道 · 专属优先入场场次 · 专属求职竞争力反馈</p>
+      <p class="perk-k">SFK 学生及校友专属招聘权益</p>
+      <ul>
+        <li>专属提前报名占位通道</li>
+        <li>专属优先入场场次</li>
+        <li>专属求职竞争力反馈</li>
+      </ul>
     </div>
     <div class="block b-info" id="sec-info">
       <div class="mark">基本信息登记<em>必填</em></div>
