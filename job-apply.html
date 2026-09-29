@@ -678,11 +678,7 @@
   #innerChannel[data-step="info"] #sec-edu,
   #innerChannel[data-step="info"] #sec-wish { display: none; }
   #innerChannel[data-step="edu"] #sfkPerk,
-  #innerChannel[data-step="edu"] #sec-info,
-  #innerChannel[data-step="edu"] #sec-wish { display: none; }
-  #innerChannel[data-step="wish"] #sfkPerk,
-  #innerChannel[data-step="wish"] #sec-info,
-  #innerChannel[data-step="wish"] #sec-edu { display: none; }
+  #innerChannel[data-step="edu"] #sec-info { display: none; }
   .tl-board {
     margin: 10px 0 0;
     padding: 0;
@@ -2889,9 +2885,6 @@
             </div>
           </div>
         </div>
-        <div class="info-act">
-          <button class="btn-mini" id="submitEdu" type="button">保存进入下一页</button>
-        </div>
       </div>
     </div>
 
@@ -3462,35 +3455,51 @@ function setAnchorOn(id) {
 }
 function spyAnchor() {
   if (!document.getElementById("form").classList.contains("on") || fairView !== "apply") return;
-  const map = { info: "sec-info", edu: "sec-edu", wish: "sec-wish" };
-  setAnchorOn(map[applyStep] || "sec-info");
+  if (applyStep !== "edu") {
+    setAnchorOn("sec-info");
+    return;
+  }
+  const form = document.getElementById("form");
+  const ids = ["sec-edu", "sec-wish"];
+  const line = form.getBoundingClientRect().top + 48;
+  let current = "sec-edu";
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (el.getBoundingClientRect().top <= line) current = id;
+  });
+  setAnchorOn(current);
 }
 let fairView = "intro";
 let applyStep = "info";
-function setApplyStep(step) {
-  applyStep = step === "edu" ? "edu" : step === "wish" ? "wish" : "info";
+function setApplyStep(step, scrollId) {
+  applyStep = step === "edu" ? "edu" : "info";
   const wrap = document.getElementById("innerChannel");
   if (wrap) wrap.setAttribute("data-step", applyStep);
   const form = document.getElementById("form");
-  if (form) form.scrollTop = 0;
-  const map = { info: "sec-info", edu: "sec-edu", wish: "sec-wish" };
-  paintAnchor(map[applyStep]);
+  if (form && !scrollId) form.scrollTop = 0;
+  const map = { info: "sec-info", edu: "sec-edu" };
+  paintAnchor(scrollId || map[applyStep]);
   syncDock();
+  if (scrollId) {
+    const el = document.getElementById(scrollId);
+    if (el) requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth", block: "start" }));
+  }
 }
 function syncDock() {
   const onForm = document.getElementById("form").classList.contains("on");
   const intro = fairView === "intro";
   const apply = fairView === "apply";
-  const wish = apply && applyStep === "wish";
-  document.getElementById("dock").classList.toggle("on", onForm && (intro || wish));
+  const more = apply && applyStep === "edu";
+  document.getElementById("dock").classList.toggle("on", onForm && (intro || more));
   const go = document.getElementById("goApply");
   const sub = document.getElementById("submit");
   const share = document.getElementById("shareBtn");
   const tip = document.getElementById("dockTip");
   if (go) go.hidden = !intro;
   if (share) share.classList.toggle("on", onForm && intro);
-  if (sub) sub.hidden = !wish;
-  if (tip) tip.hidden = !wish;
+  if (sub) sub.hidden = !more;
+  if (tip) tip.hidden = !more;
 }
 function showFairView(v) {
   const next = v === "apply" ? "apply" : "intro";
@@ -3541,7 +3550,7 @@ document.getElementById("anchor").addEventListener("click", e => {
   const jump = () => {
     showFairView("apply");
     if (sec === "sec-edu") setApplyStep("edu");
-    else if (sec === "sec-wish") setApplyStep("wish");
+    else if (sec === "sec-wish") setApplyStep("edu", "sec-wish");
     else setApplyStep("info");
   };
   if (show.id !== "form") {
@@ -3991,10 +4000,6 @@ document.getElementById("shareBtn").addEventListener("click", () => {
 });
 document.getElementById("submit").addEventListener("click", () => doSubmit("dock"));
 document.getElementById("submitMini").addEventListener("click", () => doSubmit("mini"));
-document.getElementById("submitEdu").addEventListener("click", () => {
-  fairSave("draft");
-  setApplyStep("wish");
-});
 document.getElementById("popOk").addEventListener("click", () => {
   const pop = document.getElementById("pop");
   const needEl = pop._needEl;
