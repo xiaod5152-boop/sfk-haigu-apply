@@ -2322,21 +2322,25 @@
   .share-side {
     display: none;
     position: absolute;
-    right: 0;
+    right: 10px;
     top: 36%;
     z-index: 50;
-    width: 42px;
-    padding: 10px 5px 12px;
+    width: 46px;
+    padding: 10px 6px 12px;
     border: 0;
-    border-radius: 10px 0 0 10px;
+    border-radius: 16px;
     background: #FF4FA8;
-    color: #fff;
+    color: #111;
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    cursor: pointer;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    box-shadow: 0 6px 16px rgba(255,79,168,.28);
   }
   .share-side.on { display: flex; }
+  .share-side.dragging { cursor: grabbing; z-index: 80; }
   .share-side-ico {
     width: 26px;
     height: 26px;
@@ -2353,6 +2357,7 @@
     font-size: 13px;
     font-weight: 600;
     line-height: 1;
+    color: #111;
   }
   body.pub-ch .share-side { background: #4F46E5; }
   #book { padding: 12px 32px 28px; }
@@ -4009,19 +4014,81 @@ function doSubmit(from) {
   }, 900);
 }
 document.getElementById("goApply").addEventListener("click", () => showFairView("apply"));
-document.getElementById("shareBtn").addEventListener("click", () => {
-  const url = location.href.split("#")[0];
-  const title = INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会";
-  if (navigator.share) {
-    navigator.share({ title, url }).catch(() => {});
-    return;
+(function bindShareFab() {
+  const btn = document.getElementById("shareBtn");
+  const phone = document.querySelector(".phone");
+  if (!btn || !phone) return;
+  let dragging = false;
+  let moved = false;
+  let startX = 0;
+  let startY = 0;
+  let origL = 0;
+  let origT = 0;
+  const THRESH = 8;
+  const PAD = 8;
+  function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+  function onDown(e) {
+    if (!btn.classList.contains("on")) return;
+    const p = phone.getBoundingClientRect();
+    const b = btn.getBoundingClientRect();
+    const pt = e.touches ? e.touches[0] : e;
+    dragging = true;
+    moved = false;
+    startX = pt.clientX;
+    startY = pt.clientY;
+    origL = b.left - p.left;
+    origT = b.top - p.top;
+    btn.style.right = "auto";
+    btn.style.left = origL + "px";
+    btn.style.top = origT + "px";
+    btn.classList.add("dragging");
   }
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(url).then(() => toast("链接已复制")).catch(() => toast("请复制地址栏链接"));
-    return;
+  function onMove(e) {
+    if (!dragging) return;
+    const pt = e.touches ? e.touches[0] : e;
+    const dx = pt.clientX - startX;
+    const dy = pt.clientY - startY;
+    if (Math.abs(dx) > THRESH || Math.abs(dy) > THRESH) moved = true;
+    const p = phone.getBoundingClientRect();
+    const l = clamp(origL + dx, PAD, p.width - btn.offsetWidth - PAD);
+    const t = clamp(origT + dy, PAD + 88, p.height - btn.offsetHeight - 84);
+    btn.style.left = l + "px";
+    btn.style.top = t + "px";
+    if (e.cancelable) e.preventDefault();
   }
-  toast("请复制地址栏链接");
-});
+  function onUp() {
+    if (!dragging) return;
+    dragging = false;
+    btn.classList.remove("dragging");
+    const p = phone.getBoundingClientRect();
+    const b = btn.getBoundingClientRect();
+    const left = (b.left - p.left + b.width / 2) < p.width / 2;
+    btn.style.left = (left ? PAD : p.width - b.width - PAD) + "px";
+  }
+  btn.addEventListener("pointerdown", onDown);
+  window.addEventListener("pointermove", onMove);
+  window.addEventListener("pointerup", onUp);
+  btn.addEventListener("click", (e) => {
+    if (moved) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      moved = false;
+    }
+  }, true);
+  btn.addEventListener("click", () => {
+    const url = location.href.split("#")[0];
+    const title = INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会";
+    if (navigator.share) {
+      navigator.share({ title, url }).catch(() => {});
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => toast("链接已复制")).catch(() => toast("请复制地址栏链接"));
+      return;
+    }
+    toast("请复制地址栏链接");
+  });
+})();
 document.getElementById("submit").addEventListener("click", () => doSubmit("dock"));
 document.getElementById("submitMini").addEventListener("click", () => doSubmit("mini"));
 document.getElementById("popOk").addEventListener("click", () => {
