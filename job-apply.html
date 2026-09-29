@@ -69,7 +69,7 @@
     position: absolute; right: 12px; width: 84px; height: 30px;
     border: 1px solid #E5E5E5; border-radius: 15px;
   }
-  .screen { display: none; flex: 1; overflow: auto; padding-bottom: 20px; }
+  .screen { display: none; flex: 1; overflow: auto; padding-bottom: 12px; }
   .screen.on { display: block; }
   .hero {
     position: relative;
@@ -554,7 +554,8 @@
     margin-top: 14px;
     border-radius: 12px;
     overflow: hidden;
-    background: #EEE;
+    background: #EEE url("fair-scene.jpg") center/cover no-repeat;
+    min-height: 168px;
   }
   .story-shot img {
     display: block;
@@ -643,58 +644,71 @@
     margin: 10px 32px 0;
   }
   .tl-board {
-    position: relative;
     margin: 10px 0 0;
-    padding: 0 14px 2px 0;
+    padding: 0;
   }
-  .tl-h {
+  .tl-hook {
+    display: grid;
+    grid-template-columns: 1fr 12px;
+    grid-template-rows: 16px auto 16px;
+  }
+  .tl-hook::after {
+    content: "";
+    grid-column: 2;
+    grid-row: 1 / 4;
+    margin: 7px 0;
+    border: 2px solid #E6E6EA;
+    border-left: 0;
+    border-radius: 0 10px 10px 0;
+    pointer-events: none;
+  }
+  .tl-rail {
+    grid-column: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .tl-rail-1 { grid-row: 1; }
+  .tl-rail-2 { grid-row: 3; }
+  .tl-rail::before {
+    content: "";
+    position: absolute;
+    left: 16.666%;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    margin-top: -1px;
+    background: #E6E6EA;
+    z-index: 0;
+  }
+  .tl-caps {
+    grid-column: 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     list-style: none;
     margin: 0;
-    padding: 0;
-    position: relative;
-    z-index: 1;
+    padding: 8px 0 0;
     column-gap: 8px;
   }
-  .tl-h::before {
-    content: "";
-    position: absolute;
-    left: 16.66%;
-    right: -14px;
-    top: 7px;
-    height: 2px;
-    background: #E6E6EA;
-    z-index: 0;
+  .tl-caps-1 { grid-row: 2; padding-bottom: 18px; }
+  .tl-caps-2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    list-style: none;
+    margin: 0;
+    padding: 8px 0 0;
+    column-gap: 8px;
   }
-  .tl-h-back {
-    direction: rtl;
-    margin-top: 28px;
-  }
-  .tl-h-back > li { direction: ltr; }
-  .tl-join {
-    position: absolute;
-    right: 0;
-    top: 7px;
-    width: 12px;
-    height: 58px;
-    border: 2px solid #E6E6EA;
-    border-left: 0;
-    border-radius: 0 12px 12px 0;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .tl-h > li {
-    position: relative;
-    text-align: center;
-    padding: 0 2px;
-  }
-  .tl-h .node {
+  .tl-caps > li,
+  .tl-caps-2 > li { text-align: center; padding: 0 2px; }
+  .tl-rail .n {
     position: relative;
     z-index: 1;
     width: 10px;
     height: 10px;
-    margin: 2px auto 8px;
+    margin: 0 auto;
     border-radius: 50%;
     background: #fff;
     border: 2px solid #D4D4D8;
@@ -704,18 +718,17 @@
     color: #FF2D8A;
     font-size: 0;
   }
-  body.pub-ch .tl-h .node { color: #4F46E5; }
-  .tl-h > li.star .node {
+  body.pub-ch .tl-rail .n { color: #4F46E5; }
+  .tl-rail .n.star {
     width: 16px;
     height: 16px;
-    margin: -1px auto 6px;
     background: none;
     border: 0;
     font-size: 13px;
     line-height: 1;
   }
-  .tl-h > li.star .node::after { content: "★"; }
-  .tl-h em {
+  .tl-rail .n.star::after { content: "★"; }
+  .tl-caps em {
     display: block;
     font-style: normal;
     font-size: 9px;
@@ -724,15 +737,15 @@
     margin-bottom: 3px;
     line-height: 1.35;
   }
-  .tl-h strong {
+  .tl-caps strong {
     display: block;
     font-size: 11px;
     font-weight: 800;
     color: #1A1A1A;
     line-height: 1.35;
   }
-  .tl-h > li.star strong { color: #C2186A; }
-  body.pub-ch .tl-h > li.star strong { color: #3730A3; }
+  .tl-caps > li.star strong { color: #C2186A; }
+  body.pub-ch .tl-caps > li.star strong { color: #3730A3; }
   .story-note {
     margin: 12px 0 0;
     font-size: 10px;
@@ -1222,8 +1235,10 @@
   .field.tint-dates .lab,
   .field.tint-intern .lab { color: #A16800; }
   .field.tint-mail .lab { color: #1A6BB5; }
-  .field.tint-other .lab,
-  .field.tint-artist .lab { color: #555; }
+  .field.tint-artist .lab {
+    white-space: nowrap;
+    font-size: 12px;
+  }
   .field .lab {
     display: block;
     font-size: 13px;
@@ -2015,18 +2030,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    margin-top: 10px;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 0 4px;
   }
   .act-hint, .dock-tip, .note-line {
     margin: 0;
     font-size: 11px;
     font-weight: 600;
     color: #888;
-    line-height: 1.4;
+    line-height: 1.55;
     text-align: center;
   }
-  .note-line { margin: 8px 0 4px; }
+  .note-line {
+    width: 100%;
+  }
   .dock-tip { margin: 0 0 8px; }
   #innerChannel .b-info .field.tint-file .lab { color: #1A6BB5; }
   .need::after {
@@ -2093,6 +2111,19 @@
   .pop-card .ok, .pop-card .fail, .pop-card .ring { margin: 0 auto 12px; }
   .pop-card h3 { font-size: 18px; font-weight: 800; }
   .pop-card .desc { font-size: 13px; color: #888; margin-top: 6px; line-height: 1.5; }
+  #keepPop .desc .keep-hl {
+    font-style: normal;
+    font-weight: 800;
+    color: #C2186A !important;
+    background: #FDF2F8;
+    padding: 0 3px;
+    border-radius: 3px;
+  }
+  body.pub-ch #keepPop .desc .keep-hl,
+  .phone.pub-ch #keepPop .desc .keep-hl {
+    color: #4F46E5 !important;
+    background: #EEF2FF;
+  }
   .pop-card .sms { margin-top: 12px; }
   .pop-card .btn { width: 100%; margin: 14px 0 0; }
   .keep-acts {
@@ -2359,41 +2390,46 @@
         <h3>完整求职时间线</h3>
         <p class="lead">秋招是一条链。中间掉队，就要等春招补录。</p>
         <div class="tl-board">
-        <i class="tl-join"></i>
-        <ul class="tl-h">
-          <li>
-            <i class="node"></i>
-            <em>2026年9—10月</em>
-            <strong>秋招正式批发力</strong>
-          </li>
-          <li class="star">
-            <i class="node"></i>
-            <em>2026年10—11月</em>
-            <strong>笔试面试高峰期</strong>
-          </li>
-          <li>
-            <i class="node"></i>
-            <em>2026年12月—<br>2027年2月</em>
-            <strong>秋招补录 +<br>央国企校招</strong>
-          </li>
-        </ul>
-        <ul class="tl-h tl-h-back">
-          <li>
-            <i class="node"></i>
-            <em>2027年3—4月</em>
-            <strong>春招爆发期</strong>
-          </li>
-          <li>
-            <i class="node"></i>
-            <em>2027年5—6月</em>
-            <strong>春招补录期</strong>
-          </li>
-          <li>
-            <i class="node"></i>
-            <em>2027年7月起</em>
-            <strong>毕业入职 /<br>转入社招</strong>
-          </li>
-        </ul>
+          <div class="tl-hook">
+            <div class="tl-rail tl-rail-1">
+              <i class="n"></i>
+              <i class="n star"></i>
+              <i class="n"></i>
+            </div>
+            <ul class="tl-caps tl-caps-1">
+              <li>
+                <em>2026年9—10月</em>
+                <strong>秋招正式批发力</strong>
+              </li>
+              <li class="star">
+                <em>2026年10—11月</em>
+                <strong>笔试面试高峰期</strong>
+              </li>
+              <li>
+                <em>2026年12月—<br>2027年2月</em>
+                <strong>秋招补录 +<br>央国企校招</strong>
+              </li>
+            </ul>
+            <div class="tl-rail tl-rail-2">
+              <i class="n"></i>
+              <i class="n"></i>
+              <i class="n"></i>
+            </div>
+          </div>
+          <ul class="tl-caps tl-caps-2">
+            <li>
+              <em>2027年7月起</em>
+              <strong>毕业入职 /<br>转入社招</strong>
+            </li>
+            <li>
+              <em>2027年5—6月</em>
+              <strong>春招补录期</strong>
+            </li>
+            <li>
+              <em>2027年3—4月</em>
+              <strong>春招爆发期</strong>
+            </li>
+          </ul>
         </div>
         <p class="story-note">时间节点以企业实际安排为准，建议尽早报名，岗位名额按场次分配。</p>
       </section>
@@ -2491,7 +2527,7 @@
 
     <div id="innerChannel" hidden>
     <div class="perk only-inner" id="sfkPerk">
-      <p class="perk-k">斯芬克 学生及校友专属招聘权益</p>
+      <p class="perk-k">斯芬克学生及校友专属通道权益</p>
       <ul>
         <li>专属提前报名占位通道</li>
         <li>专属优先入场场次</li>
@@ -2560,8 +2596,8 @@
             <button class="chip" type="button">家长代为参与</button>
           </div>
         </div>
-        <p class="note-line" id="noteLine">简历、作品集请携带纸质版，或请教务老师代交</p>
         <div class="info-act">
+          <p class="note-line" id="noteLine">请准备足量纸质简历（建议至少 10–15 份）<br>与作品集，或请教务老师代交</p>
           <p class="act-hint">带 * 为必填，提交后可继续填写</p>
           <button class="btn-mini" id="submitMini" type="button" disabled>提交基本信息</button>
         </div>
@@ -2865,7 +2901,7 @@
     <div class="pop-mask" id="keepMask"></div>
     <div class="pop-card">
       <h3>温馨提示</h3>
-      <p class="desc">请在参加面试场次至少提前3天完成剩余信息的登记与填写，建议继续填写完整再离开哦</p>
+      <p class="desc" id="keepDesc">请在参加面试场次<span class="keep-hl">至少提前3天</span>完成剩余信息的登记与填写，建议<span class="keep-hl">继续填写完整</span>再离开哦</p>
       <div class="keep-acts">
         <button class="btn ghost" id="keepLeave" type="button">确认离开</button>
         <button class="btn" id="keepStay" type="button">继续填写</button>
@@ -3105,9 +3141,9 @@ function applyChannel() {
   const note = document.getElementById("noteLine");
   if (note) {
     note.hidden = false;
-    note.textContent = INNER
-      ? "请准备足量纸质简历（建议至少 10–15 份）与作品集，或请教务老师代交"
-      : "简历、作品集请携带纸质版";
+    note.innerHTML = INNER
+      ? "请准备足量纸质简历（建议至少 10–15 份）<br>与作品集，或请教务老师代交"
+      : "请准备足量纸质简历（建议至少 10–15 份）<br>作品集请携带纸质版";
   }
   if (INNER) {
     document.body.classList.remove("pub-ch");
@@ -3327,6 +3363,8 @@ function emailOk() {
 function ready() {
   const phone = document.getElementById("phone");
   if (phone) phone.classList.toggle("err", phone.value.length > 0 && !phoneOk());
+  const email = document.getElementById("email");
+  if (email) email.classList.toggle("err", email.value.length > 0 && !emailOk());
   const fairOn = document.querySelector("#fairCity .chip.on");
   const ok = phoneOk() && emailOk()
     && document.getElementById("name").value.trim()
