@@ -579,36 +579,39 @@
   }
   .perk {
     margin: 10px 32px 0;
-    padding: 12px;
+    padding: 0;
     border-radius: 12px;
+    overflow: hidden;
     background: #fff;
-    color: #222;
+    border: 1px solid #F3D0E0;
   }
   .perk-k {
-    margin: 0 0 8px;
-    font-size: 13px;
+    margin: 0;
+    padding: 8px 12px;
+    font-size: 12px;
     font-weight: 800;
-    color: #C2186A;
-    letter-spacing: .02em;
+    color: #fff;
+    background: #C2186A;
+    letter-spacing: .04em;
   }
   .perk ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
   }
   .perk li {
     margin: 0;
-    padding: 9px 12px;
-    border-radius: 8px;
-    background: #FFF0F6;
-    font-size: 12px;
+    padding: 10px 8px;
+    font-size: 11px;
     font-weight: 700;
     color: #9D174D;
-    line-height: 1.4;
+    line-height: 1.45;
+    text-align: center;
+    border-right: 1px solid #F8E4ED;
   }
+  .perk li:last-child { border-right: 0; }
   #innerChannel .perk {
     margin: 10px 32px 0;
   }
