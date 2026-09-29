@@ -792,32 +792,31 @@
   .story-sec.method { padding: 18px 16px 20px; }
   .story-sec.method > h3 {
     margin: 0 0 14px;
-    padding: 16px 16px 16px 14px;
-    font-size: 20px;
+    padding: 18px 16px;
+    font-size: 18px;
     font-weight: 900;
     color: #fff;
-    letter-spacing: .04em;
+    letter-spacing: .18em;
     line-height: 1.3;
     background: #E21876;
     border: 0;
     border-radius: 14px;
-    box-shadow: none;
+    box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.32);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
   }
+  .story-sec.method > h3::before,
+  .story-sec.method > h3::after {
+    content: "";
+    width: 16px;
+    height: 1.5px;
+    background: rgba(255,255,255,.7);
+    flex: 0 0 16px;
+  }
   .story-sec.method > h3 .method-star {
-    flex: 0 0 26px;
-    width: 26px;
-    height: 26px;
-    border: 1.4px solid rgba(255, 233, 176, .9);
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    color: #FFE9B0;
-    font-size: 13px;
-    line-height: 1;
-    font-weight: 700;
+    display: none;
   }
   .method > .lead {
     margin: 0 0 20px;
@@ -2682,7 +2681,7 @@
         <p class="story-note">时间节点以企业实际安排为准，建议尽早报名，岗位名额按场次分配。</p>
       </section>
       <section class="story-sec method">
-        <h3><span class="method-star" aria-hidden="true">★</span>斯芬克求职方法论</h3>
+        <h3>斯芬克求职方法论</h3>
         <div class="m-block spec-board">
           <h4 class="sub">核心优势</h4>
           <div class="why-nums">
