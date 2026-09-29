@@ -2259,10 +2259,31 @@
   }
   .rail.on { display: flex !important; }
   .rail.solo {
-    top: auto;
-    bottom: 22%;
-    transform: none;
+    top: 36%;
     right: 10px;
+    bottom: auto;
+    transform: translateY(96px);
+  }
+  .rail.solo .anchor button,
+  .rail.solo .anchor button.on {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 46px;
+    padding: 10px 6px 12px;
+    border-radius: 16px;
+    background: #FF4FA8;
+    color: #111;
+    box-shadow: 0 6px 16px rgba(255,79,168,.28);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .22em;
+    line-height: 1;
+    writing-mode: horizontal-tb;
+  }
+  .rail.solo .anchor button span:last-child {
+    writing-mode: vertical-rl;
   }
   .share-side {
     display: none;
@@ -3432,9 +3453,18 @@ function paintAnchor(active) {
         ["book", "预约信息"]
       ];
   const on = active || (introRail ? "" : ((document.querySelector("#anchor button.on") || {}).dataset.sec || list[0][0]));
-  document.getElementById("anchor").innerHTML = list.map(x =>
-    `<button type="button" data-sec="${x[0]}" class="${x[0] === on ? "on" : ""}">${x[1].split("").join("<br>")}</button>`
-  ).join("");
+  document.getElementById("anchor").innerHTML = list.map(x => {
+    const label = x[1].split("").join("<br>");
+    if (introRail && x[0] === "book") {
+      return `<button type="button" data-sec="book" aria-label="预约信息">` +
+        `<span class="share-side-ico" aria-hidden="true">` +
+        `<svg viewBox="0 0 24 24" fill="none">` +
+        `<rect x="4.5" y="6" width="15" height="14" rx="2.2" stroke="#111" stroke-width="2"/>` +
+        `<path d="M8 4.5v3.5M16 4.5v3.5M5 10.5h14" stroke="#111" stroke-width="2" stroke-linecap="round"/>` +
+        `</svg></span><span>预约信息</span></button>`;
+    }
+    return `<button type="button" data-sec="${x[0]}" class="${x[0] === on ? "on" : ""}">${label}</button>`;
+  }).join("");
   const id = show.id;
   const rail = document.getElementById("rail");
   rail.classList.toggle("on", introRail || (formOn && fairView === "apply") || id === "book");
