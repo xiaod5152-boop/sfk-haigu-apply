@@ -511,41 +511,52 @@
     color: #C2186A;
   }
   body.pub-ch .hook-end em { color: #4338CA; }
-  .info-dl {
+  .spec-board {
     margin: 0 0 10px;
+    background: #F6EAF1;
+    border-radius: 14px;
+    overflow: hidden;
+    border-top: 3px solid #C2186A;
+  }
+  .info-dl {
+    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0;
   }
   .info-dl > div {
     display: grid;
-    grid-template-columns: 64px 1fr;
-    gap: 8px;
-    padding: 12px 12px 13px;
+    grid-template-columns: 72px 1fr;
+    gap: 10px;
+    padding: 14px;
     align-items: start;
-    background: #F8F3F6;
-    border-radius: 12px;
-    box-shadow: inset 0 2px 0 #C2186A;
+    background: transparent;
     border: 0;
+    border-bottom: 1px solid rgba(194, 24, 106, .12);
+    box-shadow: none;
+    border-radius: 0;
   }
+  .info-dl > div:last-child { border-bottom: 0; }
   .info-dl dt {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 800;
     color: #C2186A;
+    line-height: 1.4;
   }
   .info-dl dd {
     margin: 0;
-    font-size: 12px;
-    font-weight: 500;
-    color: #444;
-    line-height: 1.55;
+    font-size: 13px;
+    font-weight: 600;
+    color: #222;
+    line-height: 1.6;
   }
   .co-pack {
     margin: 0;
-    padding: 12px;
-    background: #F8F3F6;
-    border-radius: 12px;
-    box-shadow: inset 0 2px 0 #C2186A;
+    padding: 14px;
+    background: #F6EAF1;
+    border-radius: 14px;
+    border-top: 3px solid #C2186A;
+    box-shadow: none;
   }
   .co-head {
     display: flex;
@@ -561,7 +572,7 @@
   }
   .co-head span {
     font-size: 10px;
-    color: #AAA;
+    color: #B0909C;
   }
   .story-shot {
     display: block;
@@ -586,12 +597,12 @@
   }
   .co-grid span {
     text-align: center;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
-    color: #333;
+    color: #222;
     background: #fff;
-    border-radius: 8px;
-    padding: 8px 4px;
+    border-radius: 10px;
+    padding: 10px 6px;
   }
   .perk {
     margin: 10px 32px 0;
@@ -2553,6 +2564,7 @@
           </ul>
           <p class="hook-end">本专场<em>跳过初筛</em>，直接对话招聘官</p>
         </div>
+        <div class="spec-board">
         <dl class="info-dl">
           <div>
             <dt>面向人群</dt>
@@ -2567,6 +2579,7 @@
             <dd>上海 · 广州 · 北京 · 成都 · 免费报名</dd>
           </div>
         </dl>
+        </div>
         <div class="co-pack">
         <div class="co-head">
           <h4>企业阵容</h4>
