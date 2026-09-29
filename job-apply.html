@@ -874,9 +874,16 @@
     --c4: #E11D48;
     --c5: #9D174D;
     --ink: #C2186A;
-    position: relative;
-    height: 372px;
-    margin: 4px -4px 4px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 158px minmax(0, 1fr);
+    grid-template-areas:
+      "n1 n1 n1"
+      "n5 pie n2"
+      "n4 pie n3";
+    gap: 8px 8px;
+    align-items: stretch;
+    height: auto;
+    margin: 2px 0 4px;
   }
   body.pub-ch .e5-fuse {
     --c1: #4F46E5;
@@ -887,13 +894,11 @@
     --ink: #4F46E5;
   }
   .e5-fuse .pie {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 196px;
-    height: 196px;
-    transform: translate(-50%, -52%);
-    z-index: 1;
+    grid-area: pie;
+    width: 158px;
+    height: 158px;
+    justify-self: center;
+    align-self: center;
   }
   .e5-fuse .pie svg { display: block; width: 100%; height: 100%; }
   .e5-fuse .s1 { fill: var(--c1); }
@@ -921,9 +926,7 @@
     text-anchor: middle;
   }
   .e5-fuse .note {
-    position: absolute;
-    z-index: 2;
-    width: 124px;
+    width: auto;
     padding: 8px 8px 8px 10px;
     background: #fff;
     border-radius: 10px;
@@ -957,15 +960,23 @@
     color: #888;
     line-height: 1.45;
   }
-  .e5-fuse .n1 { top: 0; left: 50%; width: 150px; margin-left: -75px; text-align: center; padding-left: 8px; border-left-width: 1px; border-top: 3px solid var(--c1); }
+  .e5-fuse .n1 {
+    grid-area: n1;
+    justify-self: center;
+    width: min(100%, 220px);
+    text-align: center;
+    padding-left: 8px;
+    border-left-width: 1px;
+    border-top: 3px solid var(--c1);
+  }
   .e5-fuse .n1 b { color: var(--c1); }
-  .e5-fuse .n2 { top: 86px; right: 0; border-left-color: var(--c2); }
+  .e5-fuse .n2 { grid-area: n2; align-self: start; border-left-color: var(--c2); }
   .e5-fuse .n2 b { color: var(--c2); }
-  .e5-fuse .n3 { bottom: 6px; right: 0; border-left-color: var(--c3); }
+  .e5-fuse .n3 { grid-area: n3; align-self: end; border-left-color: var(--c3); }
   .e5-fuse .n3 b { color: var(--c3); }
-  .e5-fuse .n4 { bottom: 6px; left: 0; border-left-color: var(--c4); }
+  .e5-fuse .n4 { grid-area: n4; align-self: end; border-left-color: var(--c4); }
   .e5-fuse .n4 b { color: var(--c4); }
-  .e5-fuse .n5 { top: 86px; left: 0; border-left-color: var(--c5); }
+  .e5-fuse .n5 { grid-area: n5; align-self: start; border-left-color: var(--c5); }
   .e5-fuse .n5 b { color: var(--c5); }
   .why-nums {
     display: grid;
@@ -2600,33 +2611,33 @@
           <h4 class="sub">评价标准：5E 人才评价模型</h4>
           <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
           <div class="e5-fuse" role="img" aria-label="5E 人才评价模型">
+            <div class="note n1"><b>E1</b><strong>教育背景</strong><span>学校、专业与学术基础</span></div>
+            <div class="note n5"><b>E5</b><strong>职业能力</strong><span>主动沟通 高效协作 强逻辑分析能力</span></div>
             <div class="pie">
               <svg viewBox="0 0 200 200">
-                <path class="s1" d="M 102.35 4.03 A 96 96 0 0 1 190.55 68.11 L 147.16 83.39 A 50 50 0 0 0 101.22 50.01 Z"/>
-                <path class="s2" d="M 192 72.57 A 96 96 0 0 1 158.31 176.26 L 130.37 139.72 A 50 50 0 0 0 147.92 85.72 Z"/>
-                <path class="s3" d="M 154.51 179.02 A 96 96 0 0 1 45.49 179.02 L 71.61 141.16 A 50 50 0 0 0 128.39 141.16 Z"/>
-                <path class="s4" d="M 41.69 176.26 A 96 96 0 0 1 8 72.57 L 52.08 85.72 A 50 50 0 0 0 69.63 139.72 Z"/>
-                <path class="s5" d="M 9.45 68.11 A 96 96 0 0 1 97.65 4.03 L 98.78 50.01 A 50 50 0 0 0 52.84 83.39 Z"/>
+                <path class="s1" d="M 45.76 20.79 A 96 96 0 0 1 154.24 20.79 L 128.25 58.74 A 50 50 0 0 0 71.75 58.74 Z"/>
+                <path class="s2" d="M 158.57 23.94 A 96 96 0 0 1 192.09 127.1 L 147.97 114.12 A 50 50 0 0 0 130.51 60.39 Z"/>
+                <path class="s3" d="M 190.44 132.2 A 96 96 0 0 1 102.68 195.96 L 101.4 149.98 A 50 50 0 0 0 147.1 116.77 Z"/>
+                <path class="s4" d="M 97.32 195.96 A 96 96 0 0 1 9.56 132.2 L 52.9 116.77 A 50 50 0 0 0 98.6 149.98 Z"/>
+                <path class="s5" d="M 7.91 127.1 A 96 96 0 0 1 41.43 23.94 L 69.49 60.39 A 50 50 0 0 0 52.03 114.12 Z"/>
                 <circle class="hub-disk" cx="100" cy="100" r="48"/>
-                <text class="sl" x="142.9" y="36" font-size="8">E1</text>
-                <text class="sl" x="142.9" y="48" font-size="9">教育背景</text>
-                <text class="sl" x="169.4" y="118" font-size="8">E2</text>
-                <text class="sl" x="169.4" y="130" font-size="9">实践经验</text>
-                <text class="sl" x="100" y="168" font-size="8">E3</text>
-                <text class="sl" x="100" y="180" font-size="9">专业能力</text>
-                <text class="sl" x="30.6" y="118" font-size="8">E4</text>
-                <text class="sl" x="30.6" y="130" font-size="9">执行力</text>
-                <text class="sl" x="57.1" y="36" font-size="8">E5</text>
-                <text class="sl" x="57.1" y="48" font-size="9">职业能力</text>
+                <text class="sl" x="100" y="22" font-size="8">E1</text>
+                <text class="sl" x="100" y="34" font-size="9">教育背景</text>
+                <text class="sl" x="169.4" y="74" font-size="8">E2</text>
+                <text class="sl" x="169.4" y="86" font-size="9">实践经验</text>
+                <text class="sl" x="142.9" y="154" font-size="8">E3</text>
+                <text class="sl" x="142.9" y="166" font-size="9">专业能力</text>
+                <text class="sl" x="57.1" y="154" font-size="8">E4</text>
+                <text class="sl" x="57.1" y="166" font-size="9">执行力</text>
+                <text class="sl" x="30.6" y="74" font-size="8">E5</text>
+                <text class="sl" x="30.6" y="86" font-size="9">职业能力</text>
                 <text class="hub-t" x="100" y="98" font-size="18">5E</text>
                 <text class="hub-s" x="100" y="114" font-size="7">综合竞争力</text>
               </svg>
             </div>
-            <div class="note n1"><b>E1</b><strong>教育背景</strong><span>学校、专业与学术基础</span></div>
             <div class="note n2"><b>E2</b><strong>实践经验</strong><span>实习、项目与真实业务经历</span></div>
-            <div class="note n3"><b>E3</b><strong>专业能力</strong><span>岗位所需专业技能与解决问题能力、有AI工作流及应用能力</span></div>
             <div class="note n4"><b>E4</b><strong>执行力</strong><span>把知识转化为结果，推动事情真正落地</span></div>
-            <div class="note n5"><b>E5</b><strong>职业能力</strong><span>主动沟通 高效协作 强逻辑分析能力</span></div>
+            <div class="note n3"><b>E3</b><strong>专业能力</strong><span>岗位所需专业技能与解决问题能力、有AI工作流及应用能力</span></div>
           </div>
         </div>
         <div class="m-block">
