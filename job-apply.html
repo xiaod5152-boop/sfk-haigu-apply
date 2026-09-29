@@ -450,50 +450,72 @@
     font-weight: 800;
     color: #1A1A1A;
   }
-  .talk {
-    margin: 0 0 16px;
-    padding: 14px 14px 6px;
-    background: #fff;
-    border: 1px solid #EDEDED;
-    border-radius: 10px;
-  }
-  .talk-item {
+  .v-state {
     margin: 0 0 14px;
-    padding: 0 0 14px;
-    border-bottom: 1px solid #F3F3F3;
+    padding: 2px 0 14px 12px;
+    border-left: 3px solid #C2186A;
   }
-  .talk-item:last-child {
-    margin: 0;
-    padding: 0 0 8px;
-    border-bottom: 0;
-  }
-  .talk-who {
-    display: block;
-    margin: 0 0 6px;
-    font-size: 10px;
+  body.pub-ch .v-state { border-left-color: #4338CA; }
+  .v-kicker {
+    margin: 0 0 8px;
+    font-size: 11px;
     font-weight: 800;
-    letter-spacing: 1.2px;
+    letter-spacing: 2px;
     color: #888;
   }
-  .talk-item.ans .talk-who { color: #C2186A; }
-  body.pub-ch .talk-item.ans .talk-who { color: #4338CA; }
-  .talk-item p {
+  .v-hero {
     margin: 0;
-    font-size: 14px;
-    font-weight: 600;
-    color: #1A1A1A;
-    line-height: 1.65;
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.4;
+    color: #111;
+    letter-spacing: -.2px;
     word-break: keep-all;
-    line-break: strict;
   }
-  .talk-item .talk-sub {
-    margin-top: 6px;
+  .v-hero em {
+    display: block;
+    font-style: normal;
+    color: #C2186A;
+  }
+  body.pub-ch .v-hero em { color: #4338CA; }
+  .v-facts {
+    list-style: none;
+    margin: 0 0 12px;
+    padding: 0;
+    border-top: 1px solid #EFEFEF;
+    border-bottom: 1px solid #EFEFEF;
+  }
+  .v-facts li {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 8px;
+    align-items: center;
+    padding: 10px 2px;
+    border-bottom: 1px solid #F3F3F3;
+  }
+  .v-facts li:last-child { border-bottom: 0; }
+  .v-facts b {
+    font-size: 12px;
+    font-weight: 800;
+    color: #111;
+  }
+  .v-facts span {
     font-size: 12px;
     font-weight: 500;
     color: #666;
-    line-height: 1.6;
   }
-  .talk-item.ans p:first-of-type { font-weight: 800; }
+  .v-end {
+    margin: 0 0 16px;
+    padding: 10px 12px;
+    background: #FAFAFA;
+    border: 1px solid #EEEEEE;
+    font-size: 13px;
+    font-weight: 800;
+    color: #1A1A1A;
+    line-height: 1.5;
+    text-align: center;
+    word-break: keep-all;
+  }
   .info-dl { margin: 0; }
   .info-dl > div {
     display: grid;
@@ -2533,25 +2555,16 @@
     <div id="viewIntro">
     <div class="story" id="fairStory">
       <section class="story-sec intro">
-        <div class="talk">
-          <div class="talk-item">
-            <span class="talk-who">求职者</span>
-            <p>海投了好多，怎么都没回音？</p>
-          </div>
-          <div class="talk-item ans">
-            <span class="talk-who">现场招聘官</span>
-            <p>你的简历，可能一次都没被打开。</p>
-            <p class="talk-sub">AI 初筛挡在前面，国内生专场挤满，留学生只能海投。</p>
-          </div>
-          <div class="talk-item">
-            <span class="talk-who">求职者</span>
-            <p>那还有机会面对面吗？</p>
-          </div>
-          <div class="talk-item ans">
-            <span class="talk-who">现场招聘官</span>
-            <p>本专场跳过初筛，直接对话招聘官。</p>
-          </div>
-        </div>
+        <header class="v-state">
+          <p class="v-kicker">海归求职常见现实</p>
+          <h2 class="v-hero">你的简历，<em>可能一次都没被打开</em></h2>
+        </header>
+        <ul class="v-facts">
+          <li><b>AI 初筛</b><span>HR 见不到</span></li>
+          <li><b>国内生</b><span>专场已经挤满</span></li>
+          <li><b>留学生</b><span>只能海投</span></li>
+        </ul>
+        <p class="v-end">本专场跳过初筛，直接对话招聘官</p>
         <dl class="info-dl">
           <div>
             <dt>面向人群</dt>
