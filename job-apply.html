@@ -795,12 +795,12 @@
     padding: 14px 16px;
     font-size: 22px;
     font-weight: 900;
-    color: #111;
+    color: #C2186A;
     letter-spacing: -.4px;
     line-height: 1.3;
-    background: #F4F5FC;
+    background: #FFF5F8;
     border-radius: 14px;
-    border-top: 1.5px solid #4F46E5;
+    border-top: 1.5px solid #E21876;
   }
   .method > .lead {
     margin: 0 0 20px;
@@ -839,7 +839,7 @@
   }
   .iv3 th,
   .iv3 td {
-    vertical-align: top;
+    vertical-align: middle;
     padding: 12px 10px;
     word-break: keep-all;
     line-break: strict;
@@ -851,7 +851,7 @@
     font-weight: 800;
     color: #1A1A1A;
     line-height: 1.4;
-    text-align: left;
+    text-align: center;
     background: #EEF2FF;
     border-bottom: 1px solid #E6E8F0;
     border-right: 1px solid #E6E8F0;
@@ -865,24 +865,6 @@
   }
   .iv3 tr:last-child th,
   .iv3 tr:last-child td { border-bottom: 0; }
-  .iv3 em {
-    font-style: normal;
-    font-size: 11px;
-    font-weight: 700;
-    color: #4338CA;
-    background: #EEF2FF;
-    border-radius: 6px;
-    padding: 4px 8px;
-    display: inline-block;
-    line-height: 1.3;
-    white-space: nowrap;
-  }
-  body.pub-ch .iv3 em { color: #4338CA; background: #EEF2FF; }
-  .iv3 .iv-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
   .iv3 td b {
     font-weight: 800;
     color: #4338CA;
@@ -1053,6 +1035,50 @@
     font-size: 12px;
     color: #888;
     line-height: 1.6;
+  }
+  .story-sec.method .spec-board,
+  .story-sec.method .m-callout {
+    background: #FFF5F8;
+    border-top-color: #E21876;
+  }
+  body.pub-ch .story-sec.method .m-callout {
+    background: #FFF5F8;
+    border-color: #E21876;
+  }
+  .story-sec.method .iv3 {
+    border-color: #F3C2DA;
+  }
+  .story-sec.method .iv3 th {
+    background: #FFF0F6;
+    color: #C2186A;
+    border-color: #F3C2DA;
+  }
+  .story-sec.method .iv3 td {
+    border-color: #F3C2DA;
+  }
+  .story-sec.method .iv3 td b {
+    color: #C2186A;
+  }
+  .story-sec.method .e5-fuse,
+  body.pub-ch .story-sec.method .e5-fuse {
+    --c1: #E21876;
+    --c2: #EC4899;
+    --c3: #9D174D;
+    --c4: #DB2777;
+    --c5: #BE185D;
+    --ink: #C2186A;
+  }
+  .story-sec.method .e5-list li,
+  body.pub-ch .story-sec.method .e5-list li {
+    border-color: #FCE7F3;
+    box-shadow: 0 4px 14px rgba(194, 24, 106, .08);
+  }
+  .story-sec.method .why-nums strong,
+  body.pub-ch .story-sec.method .why-nums strong {
+    color: #C2186A;
+  }
+  .story-sec.method .why-nums div {
+    border-color: #F3C2DA;
   }
   .iv-entry {
     display: block;
@@ -2666,17 +2692,11 @@
           <table class="iv3">
             <tr>
               <th>拒绝标准化<br>求职路径</th>
-              <td>艺术与设计类专业没有通用模板，作品集方向、岗位匹配、表达逻辑都要按个人风格深度定制。</td>
+              <td>艺术与设计类专业没有<b>通用模板</b>，<b>作品集方向</b>、<b>岗位匹配</b>、<b>表达逻辑</b>都要按个人风格深度定制。</td>
             </tr>
             <tr>
               <th>创意岗<br>三重错位</th>
-              <td>
-                <div class="iv-tags">
-                  <em>职业认知错位</em>
-                  <em>用人标准错位</em>
-                  <em>时间窗口错位</em>
-                </div>
-              </td>
+              <td><b>职业认知</b>错位｜<b>用人标准</b>错位｜<b>时间窗口</b>错位。</td>
             </tr>
             <tr>
               <th>从堆砌转向<br>能力沉淀</th>
