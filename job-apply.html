@@ -2183,9 +2183,20 @@
   }
   .dock.on { display: block; }
   .dock-acts {
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .dock.intro-dock .dock-acts {
+    grid-template-columns: 1fr 92px;
   }
   .dock-acts .btn { width: 100%; }
+  #shareBtn {
+    margin: 0;
+    width: 100%;
+    height: 44px;
+    font-size: 14px;
+  }
   .dock-tip {
     margin: 0 0 8px;
   }
@@ -3085,10 +3096,11 @@
     <div class="sum-page" id="bookTable"></div>
   </section>
 
-  <div class="dock on" id="dock">
+  <div class="dock on intro-dock" id="dock">
     <p class="dock-tip" id="dockTip" hidden>完善后，点此提交整份报名</p>
     <div class="dock-acts">
       <button class="btn" id="goApply" type="button">活动报名</button>
+      <button class="btn ghost" id="shareBtn" type="button">分享</button>
       <button class="btn" id="submit" type="button" hidden>提交报名</button>
     </div>
   </div>
@@ -3462,10 +3474,13 @@ function syncDock() {
   const apply = fairView === "apply";
   const wish = apply && applyStep === "wish";
   document.getElementById("dock").classList.toggle("on", onForm && (intro || wish));
+  document.getElementById("dock").classList.toggle("intro-dock", onForm && intro);
   const go = document.getElementById("goApply");
   const sub = document.getElementById("submit");
+  const share = document.getElementById("shareBtn");
   const tip = document.getElementById("dockTip");
   if (go) go.hidden = !intro;
+  if (share) share.hidden = !intro;
   if (sub) sub.hidden = !wish;
   if (tip) tip.hidden = !wish;
 }
@@ -3953,6 +3968,19 @@ function doSubmit(from) {
   }, 900);
 }
 document.getElementById("goApply").addEventListener("click", () => showFairView("apply"));
+document.getElementById("shareBtn").addEventListener("click", () => {
+  const url = location.href.split("#")[0];
+  const title = INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会";
+  if (navigator.share) {
+    navigator.share({ title, url }).catch(() => {});
+    return;
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => toast("链接已复制")).catch(() => toast("请复制地址栏链接"));
+    return;
+  }
+  toast("请复制地址栏链接");
+});
 document.getElementById("submit").addEventListener("click", () => doSubmit("dock"));
 document.getElementById("submitMini").addEventListener("click", () => doSubmit("mini"));
 document.getElementById("submitEdu").addEventListener("click", () => {
