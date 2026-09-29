@@ -874,9 +874,14 @@
     --c4: #E11D48;
     --c5: #9D174D;
     --ink: #C2186A;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "n1 n1"
+      "pie pie"
+      "n5 n2"
+      "n4 n3";
+    gap: 8px;
     margin: 2px 0 4px;
   }
   body.pub-ch .e5-fuse {
@@ -888,9 +893,10 @@
     --ink: #4F46E5;
   }
   .e5-fuse .pie {
-    width: 220px;
-    height: 220px;
-    margin: 0 auto;
+    grid-area: pie;
+    width: 208px;
+    height: 208px;
+    margin: 2px auto;
   }
   .e5-fuse .pie svg { display: block; width: 100%; height: 100%; }
   .e5-fuse .s1 { fill: var(--c1); }
@@ -918,36 +924,39 @@
     text-anchor: middle;
   }
   .e5-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: contents;
     margin: 0;
     padding: 0;
   }
   .e5-list li {
     list-style: none;
-    display: grid;
-    grid-template-columns: 44px 1fr;
-    background: #F7F7F8;
+    background: #fff;
     border-radius: 12px;
-    overflow: hidden;
-    min-height: 58px;
+    box-shadow: 0 4px 14px rgba(40, 16, 32, .07);
+    border: 1px solid #F0F0F2;
+    padding: 10px 10px 10px 12px;
+    min-width: 0;
   }
-  body.pub-ch .e5-list li { background: #F4F5FB; }
+  body.pub-ch .e5-list li { border-color: #EEF0F8; box-shadow: 0 4px 14px rgba(40, 40, 80, .07); }
   .e5-list b {
-    display: grid;
-    place-items: center;
-    color: #fff;
-    font-size: 12px;
+    display: block;
+    margin: 0 0 4px;
+    font-size: 11px;
     font-weight: 800;
     letter-spacing: .04em;
+    line-height: 1;
   }
-  .e5-list .n1 b { background: var(--c1); }
-  .e5-list .n2 b { background: var(--c2); }
-  .e5-list .n3 b { background: var(--c3); }
-  .e5-list .n4 b { background: var(--c4); }
-  .e5-list .n5 b { background: var(--c5); }
-  .e5-list div { padding: 9px 12px 10px; }
+  .e5-list .n1 { grid-area: n1; justify-self: center; width: min(100%, 230px); text-align: center; }
+  .e5-list .n2 { grid-area: n2; }
+  .e5-list .n3 { grid-area: n3; }
+  .e5-list .n4 { grid-area: n4; }
+  .e5-list .n5 { grid-area: n5; }
+  .e5-list .n1 b { color: var(--c1); }
+  .e5-list .n2 b { color: var(--c2); }
+  .e5-list .n3 b { color: var(--c3); }
+  .e5-list .n4 b { color: var(--c4); }
+  .e5-list .n5 b { color: var(--c5); }
+  .e5-list div { padding: 0; }
   .e5-list strong {
     display: block;
     font-size: 13px;
@@ -957,7 +966,7 @@
   }
   .e5-list span {
     display: block;
-    margin-top: 3px;
+    margin-top: 4px;
     font-size: 11px;
     font-weight: 500;
     color: #888;
