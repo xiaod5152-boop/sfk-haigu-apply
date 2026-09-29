@@ -2280,77 +2280,60 @@
     pointer-events: none;
   }
   .rail.on { display: flex !important; }
-  .rail.solo {
-    top: 36%;
-    right: 10px;
-    bottom: auto;
-    transform: translateY(96px);
+  .side-fabs {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 34%;
+    z-index: 50;
+    flex-direction: column;
+    gap: 8px;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
   }
-  .rail.solo .anchor button,
-  .rail.solo .anchor button.on {
+  .side-fabs.on { display: flex; }
+  .side-fabs.dragging { cursor: grabbing; z-index: 80; }
+  .side-fabs.left { right: auto; left: 0; }
+  .side-fab {
+    width: 44px;
+    padding: 10px 5px 12px 7px;
+    border: 0;
+    border-radius: 12px 0 0 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    width: 46px;
-    padding: 10px 6px 12px;
-    border-radius: 16px;
-    background: #FF4FA8;
-    color: #111;
-    box-shadow: 0 6px 16px rgba(255,79,168,.28);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: .22em;
-    line-height: 1;
-    writing-mode: horizontal-tb;
+    cursor: pointer;
+    font: inherit;
   }
-  .rail.solo .anchor button span:last-child {
-    writing-mode: vertical-rl;
-  }
-  .share-side {
-    display: none;
-    position: absolute;
-    right: 10px;
-    top: 36%;
-    z-index: 50;
-    width: 46px;
-    padding: 10px 6px 12px;
-    border: 0;
-    border-radius: 16px;
-    background: #FF4FA8;
-    color: #111;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    cursor: grab;
-    touch-action: none;
-    user-select: none;
-    box-shadow: 0 6px 16px rgba(255,79,168,.28);
-  }
-  .share-side.on { display: flex; }
-  .share-side.dragging { cursor: grabbing; z-index: 80; }
-  .share-side-ico {
-    width: 26px;
-    height: 26px;
-    border: 1.7px solid #111;
-    border-radius: 7px;
+  .side-fabs.left .side-fab { border-radius: 0 12px 12px 0; padding: 10px 7px 12px 5px; }
+  .side-fab.share { background: #FF2D8A; color: #fff; }
+  .side-fab.book { background: #111; color: #fff; }
+  .side-fab.share .ico {
+    width: 24px;
+    height: 24px;
+    border: 1.6px solid #fff;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .share-side-ico svg { display: block; width: 16px; height: 16px; }
-  .share-side > span {
-    writing-mode: vertical-rl;
-    letter-spacing: .22em;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1;
-    color: #111;
+  .side-fab.book .ico {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  body.pub-ch .share-side,
-  .phone.pub-ch .share-side {
-    background: #FF4FA8;
-    box-shadow: 0 6px 16px rgba(255,79,168,.28);
+  .side-fab .ico svg { display: block; width: 16px; height: 16px; }
+  .side-fab.book .ico svg { width: 18px; height: 18px; }
+  .side-fab > span:last-child {
+    writing-mode: vertical-rl;
+    letter-spacing: .18em;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.15;
   }
   #book { padding: 12px 32px 28px; }
   .book-pack {
@@ -3142,15 +3125,28 @@
       </div>
     </div>
   </div>
-  <button class="share-side on" id="shareBtn" type="button" aria-label="分享">
-    <span class="share-side-ico" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M6.5 16.5c.6-4.4 3.6-7.2 8.4-7.2H18" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
-        <path d="M15 6.2 19.2 9.4 15 12.6" stroke="#111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </span>
-    <span>分享</span>
-  </button>
+  <div class="side-fabs on" id="sideFabs">
+    <button class="side-fab share" id="shareBtn" type="button" aria-label="分享">
+      <span class="ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M6.5 16.5c.6-4.4 3.6-7.2 8.4-7.2H18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M15 6.2 19.2 9.4 15 12.6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span>分享</span>
+    </button>
+    <button class="side-fab book" id="bookFab" type="button" aria-label="我的预约">
+      <span class="ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="3.5" y="5.5" width="13" height="13" rx="2" stroke="#FF4FA8" stroke-width="1.8"/>
+          <path d="M7 4v3M13 4v3M3.5 10h13" stroke="#FF4FA8" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="17.2" cy="17.2" r="4.2" fill="#111" stroke="#FF4FA8" stroke-width="1.6"/>
+          <path d="M17.2 15.2v2.2l1.5.9" stroke="#FF4FA8" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span>我的预约</span>
+    </button>
+  </div>
   <div class="rail" id="rail">
     <div class="anchor" id="anchor">
       <button type="button" data-sec="sec-info" class="on">基<br>本<br>信<br>息</button>
@@ -3456,32 +3452,20 @@ function applyChannel() {
 }
 function paintAnchor(active) {
   const formOn = document.getElementById("form").classList.contains("on");
-  const introRail = formOn && fairView === "intro";
-  const list = introRail
-    ? [["book", "预约信息"]]
-    : [
-        ["sec-info", "基本信息"],
-        ["sec-edu", "教育背景"],
-        ["sec-wish", "求职意向"],
-        ["book", "预约信息"]
-      ];
-  const on = active || (introRail ? "" : ((document.querySelector("#anchor button.on") || {}).dataset.sec || list[0][0]));
-  document.getElementById("anchor").innerHTML = list.map(x => {
-    const label = x[1].split("").join("<br>");
-    if (introRail && x[0] === "book") {
-      return `<button type="button" data-sec="book" aria-label="预约信息">` +
-        `<span class="share-side-ico" aria-hidden="true">` +
-        `<svg viewBox="0 0 24 24" fill="none">` +
-        `<rect x="4.5" y="6" width="15" height="14" rx="2.2" stroke="#111" stroke-width="2"/>` +
-        `<path d="M8 4.5v3.5M16 4.5v3.5M5 10.5h14" stroke="#111" stroke-width="2" stroke-linecap="round"/>` +
-        `</svg></span><span>预约信息</span></button>`;
-    }
-    return `<button type="button" data-sec="${x[0]}" class="${x[0] === on ? "on" : ""}">${label}</button>`;
-  }).join("");
+  const list = [
+    ["sec-info", "基本信息"],
+    ["sec-edu", "教育背景"],
+    ["sec-wish", "求职意向"],
+    ["book", "预约信息"]
+  ];
+  const on = active || ((document.querySelector("#anchor button.on") || {}).dataset.sec || list[0][0]);
+  document.getElementById("anchor").innerHTML = list.map(x =>
+    `<button type="button" data-sec="${x[0]}" class="${x[0] === on ? "on" : ""}">${x[1].split("").join("<br>")}</button>`
+  ).join("");
   const id = show.id;
   const rail = document.getElementById("rail");
-  rail.classList.toggle("on", introRail || (formOn && fairView === "apply") || id === "book");
-  rail.classList.toggle("solo", introRail);
+  rail.classList.toggle("on", (formOn && fairView === "apply") || id === "book");
+  rail.classList.remove("solo");
 }
 function setAnchorOn(id) {
   const btns = document.querySelectorAll("#anchor button[data-sec]");
@@ -3527,10 +3511,10 @@ function syncDock() {
   document.getElementById("dock").classList.toggle("on", onForm && intro);
   document.querySelector(".phone").classList.toggle("has-dock", onForm && intro);
   const go = document.getElementById("goApply");
-  const share = document.getElementById("shareBtn");
+  const fabs = document.getElementById("sideFabs");
   const tip = document.getElementById("dockTip");
   if (go) go.hidden = !intro;
-  if (share) share.classList.toggle("on", onForm && intro);
+  if (fabs) fabs.classList.toggle("on", onForm && intro);
   if (tip) tip.hidden = true;
 }
 function showFairView(v) {
@@ -3550,7 +3534,7 @@ function showFairView(v) {
   if (fromIntro) setApplyStep("info");
   else syncDock();
   const sid = show.id;
-  document.getElementById("rail").classList.toggle("on", (formOn && (fairView === "intro" || fairView === "apply")) || sid === "book");
+  document.getElementById("rail").classList.toggle("on", (formOn && fairView === "apply") || sid === "book");
   if (formOn) paintAnchor();
 }
 document.getElementById("viewTabs").addEventListener("click", e => {
@@ -3855,7 +3839,7 @@ function show(id) {
     ? "预约信息"
     : (INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会");
   syncDock();
-  document.getElementById("rail").classList.toggle("on", (id === "form" && (fairView === "intro" || fairView === "apply")) || id === "book");
+  document.getElementById("rail").classList.toggle("on", (id === "form" && fairView === "apply") || id === "book");
   show.id = id;
   if (id === "book") paintAnchor("book");
   else if (id === "form") paintAnchor();
@@ -4007,9 +3991,11 @@ function doSubmit(from) {
 }
 document.getElementById("goApply").addEventListener("click", () => showFairView("apply"));
 (function bindShareFab() {
+  const wrap = document.getElementById("sideFabs");
   const btn = document.getElementById("shareBtn");
+  const book = document.getElementById("bookFab");
   const phone = document.querySelector(".phone");
-  if (!btn || !phone) return;
+  if (!wrap || !btn || !phone) return;
   let dragging = false;
   let moved = false;
   let startX = 0;
@@ -4017,12 +4003,11 @@ document.getElementById("goApply").addEventListener("click", () => showFairView(
   let origL = 0;
   let origT = 0;
   const THRESH = 8;
-  const PAD = 8;
   function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
   function onDown(e) {
-    if (!btn.classList.contains("on")) return;
+    if (!wrap.classList.contains("on")) return;
     const p = phone.getBoundingClientRect();
-    const b = btn.getBoundingClientRect();
+    const b = wrap.getBoundingClientRect();
     const pt = e.touches ? e.touches[0] : e;
     dragging = true;
     moved = false;
@@ -4030,10 +4015,10 @@ document.getElementById("goApply").addEventListener("click", () => showFairView(
     startY = pt.clientY;
     origL = b.left - p.left;
     origT = b.top - p.top;
-    btn.style.right = "auto";
-    btn.style.left = origL + "px";
-    btn.style.top = origT + "px";
-    btn.classList.add("dragging");
+    wrap.style.right = "auto";
+    wrap.style.left = origL + "px";
+    wrap.style.top = origT + "px";
+    wrap.classList.add("dragging");
   }
   function onMove(e) {
     if (!dragging) return;
@@ -4042,25 +4027,27 @@ document.getElementById("goApply").addEventListener("click", () => showFairView(
     const dy = pt.clientY - startY;
     if (Math.abs(dx) > THRESH || Math.abs(dy) > THRESH) moved = true;
     const p = phone.getBoundingClientRect();
-    const l = clamp(origL + dx, PAD, p.width - btn.offsetWidth - PAD);
-    const t = clamp(origT + dy, PAD + 88, p.height - btn.offsetHeight - 84);
-    btn.style.left = l + "px";
-    btn.style.top = t + "px";
+    const l = clamp(origL + dx, 0, p.width - wrap.offsetWidth);
+    const t = clamp(origT + dy, 88, p.height - wrap.offsetHeight - 84);
+    wrap.style.left = l + "px";
+    wrap.style.top = t + "px";
     if (e.cancelable) e.preventDefault();
   }
   function onUp() {
     if (!dragging) return;
     dragging = false;
-    btn.classList.remove("dragging");
+    wrap.classList.remove("dragging");
     const p = phone.getBoundingClientRect();
-    const b = btn.getBoundingClientRect();
+    const b = wrap.getBoundingClientRect();
     const left = (b.left - p.left + b.width / 2) < p.width / 2;
-    btn.style.left = (left ? PAD : p.width - b.width - PAD) + "px";
+    wrap.classList.toggle("left", left);
+    wrap.style.left = left ? "0px" : "auto";
+    wrap.style.right = left ? "auto" : "0px";
   }
-  btn.addEventListener("pointerdown", onDown);
+  wrap.addEventListener("pointerdown", onDown);
   window.addEventListener("pointermove", onMove);
   window.addEventListener("pointerup", onUp);
-  btn.addEventListener("click", (e) => {
+  wrap.addEventListener("click", (e) => {
     if (moved) {
       e.preventDefault();
       e.stopImmediatePropagation();
@@ -4079,6 +4066,11 @@ document.getElementById("goApply").addEventListener("click", () => showFairView(
       return;
     }
     toast("请复制地址栏链接");
+  });
+  if (book) book.addEventListener("click", () => {
+    paintAnchor("book");
+    paintBook();
+    show("book");
   });
 })();
 document.getElementById("submit").addEventListener("click", () => doSubmit("dock"));
