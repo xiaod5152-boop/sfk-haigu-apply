@@ -830,24 +830,23 @@
   .m-block.spec-board > .lead:last-child { margin-bottom: 0; }
   .iv3 {
     width: 100%;
-    table-layout: fixed;
+    table-layout: auto;
     border-collapse: collapse;
     margin: 0;
     background: #fff;
     border: 1px solid #E6E8F0;
     border-radius: 10px;
-    overflow: hidden;
+    overflow: visible;
   }
   .iv3 th,
   .iv3 td {
     vertical-align: middle;
-    padding: 12px 10px;
+    padding: 12px 8px;
     word-break: break-word;
-    line-break: auto;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
   }
   .iv3 th {
-    width: 88px;
+    width: 84px;
     font-size: 12px;
     font-weight: 800;
     color: #1A1A1A;
@@ -856,20 +855,23 @@
     background: #EEF2FF;
     border-bottom: 1px solid #E6E8F0;
     border-right: 1px solid #E6E8F0;
+    white-space: normal;
   }
   .iv3 td {
     font-size: 12px;
     font-weight: 500;
     color: #555;
-    line-height: 1.6;
+    line-height: 1.65;
     border-bottom: 1px solid #E6E8F0;
+    overflow: visible;
   }
-  .iv3 tr:last-child th,
-  .iv3 tr:last-child td { border-bottom: 0; }
   .iv3 td b {
     font-weight: 800;
     color: #4338CA;
+    white-space: normal;
   }
+  .iv3 tr:last-child th,
+  .iv3 tr:last-child td { border-bottom: 0; }
   .e5-fuse {
     --c1: #4F46E5;
     --c2: #6366F1;
@@ -2679,7 +2681,7 @@
           <table class="iv3">
             <tr>
               <th>拒绝标准化<br>求职路径</th>
-              <td>艺术与设计类专业没有<b>通用模板</b>，<b>作品集方向</b>、<b>岗位匹配</b>、<b>表达逻辑</b>都要按个人风格深度定制。</td>
+              <td>艺术与设计类专业没有<b>通用模板</b>，<br><b>作品集方向</b>、<b>岗位匹配</b>、<b>表达逻辑</b><br>都要按个人风格深度定制。</td>
             </tr>
             <tr>
               <th>创意岗<br>三重错位</th>
