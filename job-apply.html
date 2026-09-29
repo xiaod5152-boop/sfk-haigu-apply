@@ -450,6 +450,13 @@
     font-weight: 800;
     color: #1A1A1A;
   }
+  .v-panel {
+    margin: 0 0 16px;
+    padding: 16px 12px 14px;
+    background: #FFF0F6;
+    border-radius: 14px;
+  }
+  body.pub-ch .v-panel { background: #EEF2FF; }
   .v-hero {
     margin: 0 0 14px;
     font-size: 20px;
@@ -463,6 +470,9 @@
   .v-hero em {
     font-style: normal;
     color: #C2186A;
+    background: #fff;
+    padding: 0 4px;
+    border-radius: 4px;
   }
   body.pub-ch .v-hero em { color: #4338CA; }
   .hook-cols {
@@ -477,9 +487,8 @@
     margin: 0;
     padding: 12px 6px 11px;
     text-align: center;
-    background: #F6F6F7;
+    background: #fff;
     border-radius: 12px;
-    border: 1px solid #ECECEE;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -487,7 +496,6 @@
     gap: 4px;
     min-height: 84px;
   }
-  body.pub-ch .hook-cols li { background: #F4F5FC; border-color: #E6E8F4; }
   .hook-cols i {
     display: block;
     font-style: normal;
@@ -506,23 +514,27 @@
   }
   .hook-cols span {
     display: block;
-    font-size: 11px;
-    font-weight: 500;
-    color: #777;
+    font-size: 12px;
+    font-weight: 800;
+    color: #C2186A;
     line-height: 1.3;
     white-space: nowrap;
   }
+  body.pub-ch .hook-cols span { color: #4338CA; }
   .v-end {
-    margin: 0 0 16px;
-    padding: 0 0 14px;
-    border-bottom: 1px solid #EFEFEF;
+    margin: 0;
     font-size: 13px;
     font-weight: 800;
-    color: #1A1A1A;
+    color: #111;
     line-height: 1.5;
     text-align: center;
     word-break: keep-all;
   }
+  .v-end em {
+    font-style: normal;
+    color: #C2186A;
+  }
+  body.pub-ch .v-end em { color: #4338CA; }
   .info-dl { margin: 0; }
   .info-dl > div {
     display: grid;
@@ -2545,13 +2557,15 @@
     <div id="viewIntro">
     <div class="story" id="fairStory">
       <section class="story-sec intro">
-        <h2 class="v-hero">你的简历，<em>可能一次都没被打开</em></h2>
-        <ul class="hook-cols">
-          <li><i>01</i><b>AI 初筛</b><span>HR 见不到</span></li>
-          <li><i>02</i><b>国内生</b><span>专场抢破头</span></li>
-          <li><i>03</i><b>留学生</b><span>只能海投</span></li>
-        </ul>
-        <p class="v-end">本专场跳过初筛，直接对话招聘官</p>
+        <div class="v-panel">
+          <h2 class="v-hero">你的简历，<em>可能一次都没被打开</em></h2>
+          <ul class="hook-cols">
+            <li><i>01</i><b>AI 初筛</b><span>HR 见不到</span></li>
+            <li><i>02</i><b>国内生</b><span>专场抢破头</span></li>
+            <li><i>03</i><b>留学生</b><span>只能海投</span></li>
+          </ul>
+          <p class="v-end">本专场<em>跳过初筛</em>，直接对话招聘官</p>
+        </div>
         <dl class="info-dl">
           <div>
             <dt>面向人群</dt>
