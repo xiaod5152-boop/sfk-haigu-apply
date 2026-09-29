@@ -2265,7 +2265,15 @@
     padding: 22px 16px 16px;
     text-align: center;
   }
-  .pop-card .ok, .pop-card .fail, .pop-card .ring { margin: 0 auto 12px; }
+  .pop-card .fail {
+    margin: 0 auto 12px;
+    background: #FFF1F2;
+    color: #E11D48;
+  }
+  body.pub-ch .pop-card .fail {
+    background: #EEF2FF;
+    color: #4F46E5;
+  }
   .pop-card h3 { font-size: 18px; font-weight: 800; }
   .pop-card .desc { font-size: 13px; color: #888; margin-top: 6px; line-height: 1.5; }
   #keepPop .desc .keep-hl {
@@ -2781,7 +2789,7 @@
         <div class="info-act">
           <p class="note-line" id="noteLine">请准备足量纸质简历（建议至少 10–15 份）<br>与作品集，或请教务老师代交</p>
           <p class="act-hint">带 * 为必填，提交后可继续填写</p>
-          <button class="btn-mini" id="submitMini" type="button" disabled>提交基本信息</button>
+          <button class="btn-mini" id="submitMini" type="button">提交基本信息</button>
         </div>
       </div>
     </div>
@@ -3065,14 +3073,15 @@
   <div class="dock on" id="dock">
     <p class="dock-tip" id="dockTip" hidden>完善后，点此提交整份报名</p>
     <div class="dock-acts">
-      <button class="btn" id="submit" type="button" disabled>提交报名</button>
+      <button class="btn" id="submit" type="button">提交报名</button>
     </div>
   </div>
   <div class="toast" id="toast"></div>
   <div class="pop" id="pop">
     <div class="pop-mask" id="popMask"></div>
     <div class="pop-card">
-      <div class="ok">✓</div>
+      <div class="ok" id="popMarkOk">✓</div>
+      <div class="fail" id="popMarkFail" hidden>!</div>
       <h3 id="popTitle">基本信息已提交</h3>
       <p class="desc" id="popDesc">必填项已保存，可继续填写教育背景、求职意向。</p>
       <div class="sms" id="popSms">短信已发送至 138****8007</div>
@@ -3552,11 +3561,36 @@ function ready() {
     && document.getElementById("name").value.trim()
     && (!INNER || document.getElementById("teacher").value.trim())
     && !!fairOn;
-  const submit = document.getElementById("submit");
-  const mini = document.getElementById("submitMini");
-  if (submit) submit.disabled = !ok;
-  if (mini) mini.disabled = !ok;
   if (typeof paintBook === "function") paintBook();
+  return ok;
+}
+function requiredGaps() {
+  const gaps = [];
+  const name = (document.getElementById("name").value || "").trim();
+  const phone = (document.getElementById("phone").value || "").trim();
+  const email = (document.getElementById("email").value || "").trim();
+  const teacher = ((document.getElementById("teacher") || {}).value || "").trim();
+  const fairOn = document.querySelector("#fairCity .chip.on");
+  if (!name) gaps.push({ label: "姓名全名", el: document.getElementById("name") });
+  if (!phone) gaps.push({ label: "手机号码", el: document.getElementById("phone") });
+  else if (!phoneOk()) gaps.push({ label: "11位正确手机号", el: document.getElementById("phone") });
+  if (!email) gaps.push({ label: "邮箱号码", el: document.getElementById("email") });
+  else if (!emailOk()) gaps.push({ label: "正确邮箱格式", el: document.getElementById("email") });
+  if (INNER && !teacher) gaps.push({ label: "教务老师全名", el: document.getElementById("teacher") });
+  if (!fairOn) gaps.push({ label: "参会场次", el: document.getElementById("fairCity") });
+  return gaps;
+}
+function showNeedPop(gaps) {
+  const pop = document.getElementById("pop");
+  document.getElementById("popMarkOk").hidden = true;
+  document.getElementById("popMarkFail").hidden = false;
+  document.getElementById("popTitle").textContent = "请完善必填信息";
+  document.getElementById("popDesc").textContent = "还差：" + gaps.map(g => g.label).join("、");
+  document.getElementById("popSms").hidden = true;
+  document.getElementById("popOk").textContent = "去填写";
+  pop.dataset.mode = "need";
+  pop._needEl = gaps[0] && gaps[0].el;
+  pop.classList.add("on");
 }
 function eduMode() {
   const lv = (document.querySelector("#edu .on") || {}).dataset.lv || "ug";
@@ -3853,23 +3887,30 @@ function leavePage() {
   location.href = "signup-preview.html";
 }
 function doSubmit(from) {
-  const tag = INNER ? "【" + INNER_NAME + "】" : "【中国海归艺术创意人才专场招聘会】";
+  const gaps = requiredGaps();
+  if (gaps.length) {
+    showNeedPop(gaps);
+    return;
+  }
   const phoneEl = document.getElementById("phone");
   const phone = phoneEl && phoneEl.value ? phoneEl.value : "13800138007";
   const mask = phone.slice(0, 3) + "****" + phone.slice(-4);
   const fairDate = (document.querySelector("#fairCity .chip.on") || {}).dataset.date || "";
   const fairDay = (fairDate || "").replace(/^0?(\d+)\/0?(\d+)$/, "$1月$2日");
   if (from === "mini") {
-    if (document.getElementById("submitMini").disabled) return;
     fairSave("draft");
     paintEditBar();
+    document.getElementById("popMarkOk").hidden = false;
+    document.getElementById("popMarkFail").hidden = true;
     document.getElementById("popTitle").textContent = "基本信息已提交";
     document.getElementById("popDesc").textContent = "必填项已保存，可继续填写教育背景、求职意向。";
+    document.getElementById("popSms").hidden = false;
     document.getElementById("popSms").textContent = "短信已发送至 " + mask + " · " + city + "站 " + fairDate;
+    document.getElementById("popOk").textContent = "继续填写";
+    document.getElementById("pop").dataset.mode = "ok";
     document.getElementById("pop").classList.add("on");
     return;
   }
-  if (document.getElementById("submit").disabled) return;
   show("load");
   setTimeout(() => {
     const venue = VENUES[city] || VENUES["北京"];
@@ -3887,7 +3928,17 @@ function doSubmit(from) {
 document.getElementById("submit").addEventListener("click", () => doSubmit("dock"));
 document.getElementById("submitMini").addEventListener("click", () => doSubmit("mini"));
 document.getElementById("popOk").addEventListener("click", () => {
+  const pop = document.getElementById("pop");
+  const needEl = pop._needEl;
+  const mode = pop.dataset.mode;
   closePop();
+  if (mode === "need") {
+    if (needEl && needEl.scrollIntoView) {
+      needEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (typeof needEl.focus === "function") needEl.focus();
+    }
+    return;
+  }
   const edu = document.getElementById("sec-edu");
   if (edu) edu.scrollIntoView({ behavior: "smooth", block: "start" });
 });
