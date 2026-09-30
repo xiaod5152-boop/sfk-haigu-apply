@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="copy-now-1838">
+<html lang="zh-CN" data-build="copy-r2-1840">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -573,23 +573,23 @@
   }
   .role-pack ul {
     list-style: none;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 8px;
     margin: 0;
     padding: 0;
   }
   .role-pack li {
-    flex: 0 0 calc((100% - 16px) / 3);
     box-sizing: border-box;
     margin: 0;
-    padding: 11px 6px;
+    padding: 10px 4px;
     text-align: center;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     color: #4338CA;
     background: #EEF2FF;
     border-radius: 999px;
+    white-space: nowrap;
   }
   .bridge-banner {
     margin: 12px 0 10px;
