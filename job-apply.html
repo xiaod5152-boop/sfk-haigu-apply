@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="36cf3b8-inner-pink">
+<html lang="zh-CN" data-build="25d52f8-book-top">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -2399,7 +2399,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 8px;
-    margin: 12px 0 0;
+    margin: 0 0 12px;
+    padding: 2px 0 10px;
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    background: #fff;
   }
   .book-act {
     height: 40px;
@@ -3986,6 +3991,11 @@ function paintBook() {
   const block = (cls, title, rows) =>
     sec(cls, title) + rows.filter(Boolean).map(r => line(r[0], r[1])).join("");
   box.innerHTML =
+    "<div class=\"book-acts\">" +
+      "<button class=\"book-act\" type=\"button\" data-book=\"dl\">下载门票</button>" +
+      "<button class=\"book-act main\" type=\"button\" data-book=\"in\"" + (saved.cancelled || saved.checkIn ? " disabled" : "") + ">现场签到</button>" +
+      "<button class=\"book-act\" type=\"button\" data-book=\"cancel\"" + (saved.cancelled ? " disabled" : "") + ">取消预约</button>" +
+    "</div>" +
     "<div class=\"book-pack\" id=\"bookTicket\" data-addr=\"" + venue.nav + "\">" +
       "<div class=\"ticket-stamp\">" + stamp + "</div>" +
       "<div class=\"ticket-top\">" +
@@ -4020,11 +4030,6 @@ function paintBook() {
           ["独立/创业", one("artist")]
         ]) +
       "</table>" +
-    "</div>" +
-    "<div class=\"book-acts\">" +
-      "<button class=\"book-act\" type=\"button\" data-book=\"dl\">下载门票</button>" +
-      "<button class=\"book-act main\" type=\"button\" data-book=\"in\"" + (saved.cancelled || saved.checkIn ? " disabled" : "") + ">现场签到</button>" +
-      "<button class=\"book-act\" type=\"button\" data-book=\"cancel\"" + (saved.cancelled ? " disabled" : "") + ">取消预约</button>" +
     "</div>";
 }
 function paintFairTip() {
