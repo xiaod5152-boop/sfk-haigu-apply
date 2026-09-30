@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="insight-5e-7">
+<html lang="zh-CN" data-build="insight-5e-8">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -931,20 +931,33 @@
   .e5-dl dt {
     width: 100%;
     padding: 10px 12px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 800;
     line-height: 1.35;
     text-align: center;
   }
-  .e5-dl .e5-fx {
+  .e5-dl dt span {
     display: block;
+    margin-top: 4px;
+    font-size: 15px;
+    font-weight: 800;
+  }
+  .e5-dl .e5-fx {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
     margin: 0;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 800;
     color: #333;
-    line-height: 1.5;
+    line-height: 1.45;
     text-align: center;
-    white-space: nowrap;
+  }
+  .e5-dl .e5-fx i {
+    font-style: normal;
+    font-weight: 800;
+    color: #999;
   }
   .why-nums {
     display: grid;
@@ -2804,24 +2817,24 @@
           <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
           <dl class="info-dl spec-dl e5-dl">
             <div>
-              <dt>E1 教育背景（Education）</dt>
-              <dd><span class="e5-fx">院校底蕴 × 专业功底 × 学术素养</span></dd>
+              <dt>E1<span>教育背景（Education）</span></dt>
+              <dd class="e5-fx"><span>院校底蕴</span><i>×</i><span>专业功底</span><i>×</i><span>学术素养</span></dd>
             </div>
             <div>
-              <dt>E2 实践经验（Experience）</dt>
-              <dd><span class="e5-fx">实习历练 × 项目沉淀 × 业务实战</span></dd>
+              <dt>E2<span>实践经验（Experience）</span></dt>
+              <dd class="e5-fx"><span>实习历练</span><i>×</i><span>项目沉淀</span><i>×</i><span>业务实战</span></dd>
             </div>
             <div>
-              <dt>E3 专业能力（Expertise）</dt>
-              <dd><span class="e5-fx">岗位硬技能 × 问题解决力 × AI应用力</span></dd>
+              <dt>E3<span>专业能力（Expertise）</span></dt>
+              <dd class="e5-fx"><span>岗位硬技能</span><i>×</i><span>问题解决力</span><i>×</i><span>AI应用力</span></dd>
             </div>
             <div>
-              <dt>E4 执行力（Execution）</dt>
-              <dd><span class="e5-fx">结果导向 × 闭环思维 × 推进韧性</span></dd>
+              <dt>E4<span>执行力（Execution）</span></dt>
+              <dd class="e5-fx">结果导向<i>×</i>闭环思维<i>×</i>推进韧性</dd>
             </div>
             <div>
-              <dt>E5 职业素养（Employability）</dt>
-              <dd><span class="e5-fx">主动沟通 × 高效协作 × 逻辑思辨</span></dd>
+              <dt>E5<span>职业素养（Employability）</span></dt>
+              <dd class="e5-fx">主动沟通<i>×</i>高效协作<i>×</i>逻辑思辨</dd>
             </div>
           </dl>
         </div>
