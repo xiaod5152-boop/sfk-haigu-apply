@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="e5-room-1501">
+<html lang="zh-CN" data-build="e5-in-1503">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -923,20 +923,20 @@
     white-space: nowrap;
   }
   .m-block.spec-board:has(.e5-tb) {
-    overflow: visible;
-    padding-left: 8px;
-    padding-right: 8px;
+    overflow: hidden;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .e5-tb {
-    width: calc(100% + 4px);
-    margin-left: -2px;
+    width: 100%;
+    margin: 0;
     border-collapse: separate;
     border-spacing: 0;
     table-layout: fixed;
     background: #fff;
     border: 1px solid #E8E8EA;
     border-radius: 12px;
-    overflow: visible;
+    overflow: hidden;
   }
   .e5-tb th,
   .e5-tb td {
@@ -957,7 +957,7 @@
     border-right: 1px solid #EEE;
   }
   .e5-tb .nm {
-    width: 78px;
+    width: 76px;
     font-size: 12px;
     font-weight: 800;
     color: #1A1A1A;
@@ -976,14 +976,22 @@
     letter-spacing: 0;
   }
   .e5-tb .fx {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 100%;
     font-size: 11px;
     font-weight: 800;
     color: #333;
-    line-height: 1.4;
+    line-height: 1.45;
     letter-spacing: 0;
-    white-space: nowrap;
-    overflow: visible;
+  }
+  .e5-tb .fx span { white-space: nowrap; }
+  .e5-tb .fx i {
+    margin: 0 3px;
+    font-style: normal;
+    font-weight: 700;
+    color: #C4C4C4;
   }
   .why-nums {
     display: grid;
@@ -2850,12 +2858,12 @@
             <tr>
               <th>E1</th>
               <td class="nm">教育背景<em>（Education）</em></td>
-              <td class="fx">院校底蕴 × 专业功底 × 学术素养</td>
+              <td class="fx"><span>院校底蕴</span><i>×</i><span>专业功底</span><i>×</i><span>学术素养</span></td>
             </tr>
             <tr>
               <th>E2</th>
               <td class="nm">实践经验<em>（Experience）</em></td>
-              <td class="fx">实习历练 × 项目沉淀 × 业务实战</td>
+              <td class="fx"><span>实习历练</span><i>×</i><span>项目沉淀</span><i>×</i><span>业务实战</span></td>
             </tr>
             <tr>
               <th>E3</th>
