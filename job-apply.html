@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="copy-p9-1915">
+<html lang="zh-CN" data-build="copy-p10-1920">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -407,8 +407,11 @@
     color: #4338CA;
     box-shadow: none;
   }
+  .story-sec.intro {
+    padding: 16px 8px;
+  }
   .spec-board.hook-board {
-    padding: 14px 0 12px;
+    padding: 12px 0 10px;
     border-top: 0;
     overflow: visible;
     background: #fff;
@@ -418,9 +421,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0;
-    margin: 0 0 14px;
-    padding: 4px 0 0;
-    align-items: start;
+    margin: 0 0 12px;
+    padding: 2px 0 0;
+    align-items: stretch;
     overflow: hidden;
   }
   .pain-list li {
@@ -429,22 +432,25 @@
     align-items: center;
     text-align: center;
     margin: 0;
-    padding: 0 6px;
+    padding: 0 5px;
     border: 0;
-    border-right: 1px solid #E8E8EE;
+    border-right: 1px solid #EDEDF2;
     min-width: 0;
     overflow: hidden;
   }
   .pain-list li:last-child { border-right: 0; }
   .pain-list i { display: none; }
   .pain-list b {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     width: 100%;
-    font-size: 13px;
+    min-height: 2.7em;
+    font-size: 12px;
     font-weight: 900;
     color: #111;
     line-height: 1.35;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.04em;
     word-break: keep-all;
     overflow-wrap: normal;
   }
@@ -452,12 +458,14 @@
     display: block;
     width: 100%;
     margin-top: 8px;
-    font-size: 11px;
+    min-height: 3.3em;
+    font-size: 10.5px;
     font-weight: 500;
     color: #8B8B96;
-    line-height: 1.55;
-    word-break: break-all;
-    overflow-wrap: anywhere;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+    overflow-wrap: normal;
   }
   body.pub-ch .pain-list i {
     background: #EEF2FF;
@@ -2909,16 +2917,16 @@
           <h2 class="hook-title">你缺的不是能力，<em>是被看见的通道</em></h2>
           <ol class="pain-list">
             <li>
-              <b>作品再好，<br>也可能输给<br>关键词</b>
-              <span>机器海投<br>筛不出来，<br>招聘官根本<br>看不见</span>
+              <b>作品再好，<br>也可能输给关键词</b>
+              <span>机器海投筛不出来，<br>招聘官根本看不见</span>
             </li>
             <li>
-              <b>秋招已开跑，<br>毕业再找<br>就晚了</b>
-              <span>你还在答辩，<br>国内应届岗<br>已经在抢</span>
+              <b>秋招已开跑，<br>毕业再找就晚了</b>
+              <span>你还在答辩，<br>国内应届岗已经在抢</span>
             </li>
             <li>
-              <b>想回国就业，<br>海外招聘会<br>却帮不上</b>
-              <span>岗位、渠道、<br>节奏都不同，<br>回国求职缺一个<br>真正的入口</span>
+              <b>想回国就业，海外<br>招聘会却帮不上</b>
+              <span>岗位、渠道、节奏都不同，<br>回国求职缺一个真正的入口</span>
             </li>
           </ol>
           <p class="hook-end">本专场<em>跳过初筛</em>，直接对话招聘官</p>
