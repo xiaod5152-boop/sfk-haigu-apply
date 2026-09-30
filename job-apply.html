@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="copy-p10-1920">
+<html lang="zh-CN" data-build="copy-p11-1930">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -408,9 +408,10 @@
     box-shadow: none;
   }
   .story-sec.intro {
-    padding: 16px 8px;
+    padding: 16px 6px 16px;
   }
   .spec-board.hook-board {
+    margin: 0 -4px;
     padding: 12px 0 10px;
     border-top: 0;
     overflow: visible;
@@ -420,11 +421,11 @@
     list-style: none;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 0;
+    column-gap: 0;
     margin: 0 0 12px;
-    padding: 2px 0 0;
+    padding: 0;
     align-items: stretch;
-    overflow: hidden;
+    overflow: visible;
   }
   .pain-list li {
     display: flex;
@@ -432,25 +433,24 @@
     align-items: center;
     text-align: center;
     margin: 0;
-    padding: 0 5px;
+    padding: 0 6px;
     border: 0;
     border-right: 1px solid #EDEDF2;
     min-width: 0;
-    overflow: hidden;
+    overflow: visible;
   }
-  .pain-list li:last-child { border-right: 0; }
+  .pain-list li:last-child { border-right: 0; padding-right: 2px; }
+  .pain-list li:first-child { padding-left: 2px; }
   .pain-list i { display: none; }
   .pain-list b {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    display: block;
     width: 100%;
-    min-height: 2.7em;
-    font-size: 12px;
+    min-height: 2.9em;
+    font-size: 11px;
     font-weight: 900;
     color: #111;
-    line-height: 1.35;
-    letter-spacing: -0.04em;
+    line-height: 1.4;
+    letter-spacing: -0.05em;
     word-break: keep-all;
     overflow-wrap: normal;
   }
@@ -458,12 +458,12 @@
     display: block;
     width: 100%;
     margin-top: 8px;
-    min-height: 3.3em;
-    font-size: 10.5px;
+    min-height: 3.4em;
+    font-size: 9.5px;
     font-weight: 500;
     color: #8B8B96;
-    line-height: 1.5;
-    letter-spacing: -0.02em;
+    line-height: 1.55;
+    letter-spacing: -0.05em;
     word-break: keep-all;
     overflow-wrap: normal;
   }
@@ -2925,7 +2925,7 @@
               <span>你还在答辩，<br>国内应届岗已经在抢</span>
             </li>
             <li>
-              <b>想回国就业，海外<br>招聘会却帮不上</b>
+              <b>想回国就业，<br>海外招聘会却帮不上</b>
               <span>岗位、渠道、节奏都不同，<br>回国求职缺一个真正的入口</span>
             </li>
           </ol>
