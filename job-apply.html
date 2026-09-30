@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="py-tidy-1812">
+<html lang="zh-CN" data-build="py-copy-1832">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -70,7 +70,7 @@
     position: absolute; right: 12px; width: 84px; height: 30px;
     border: 1px solid #E5E5E5; border-radius: 15px;
   }
-  .screen { display: none; flex: 1; overflow: auto; padding-bottom: 12px; }
+  .screen { display: none; flex: 1; overflow-x: hidden; overflow-y: auto; padding-bottom: 12px; }
   .screen.on { display: block; }
   #form.screen { padding-bottom: 28px; }
   .phone.has-dock #form.screen { padding-bottom: 62px; }
@@ -885,8 +885,8 @@
     --py-ink: #4F46E5;
     --py-edge: #4F46E5;
     --py-fill: linear-gradient(180deg, #FFFFFF 0%, #EEF2FF 46%, #C7D2FE 100%);
-    overflow: visible;
-    padding: 12px 4px 18px;
+    overflow-x: hidden;
+    padding: 12px 8px 18px;
     background: #fff;
   }
   .m-block.spec-board.insight-board .sub {
@@ -913,13 +913,18 @@
     display: flex;
     flex-direction: column;
     gap: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
   .iv-row {
     display: grid;
-    grid-template-columns: minmax(110px, 1fr) minmax(136px, 1.2fr) minmax(110px, 1fr);
-    column-gap: 8px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr);
+    column-gap: 6px;
     align-items: center;
     position: relative;
+    width: 100%;
+    max-width: 100%;
   }
   .iv-row.r1 { z-index: 3; }
   .iv-row.r2 { margin-top: -8px; z-index: 2; }
@@ -940,7 +945,7 @@
     pointer-events: none;
     background: var(--py-fill);
     clip-path: polygon(50% 0, 100% 100%, 0 100%);
-    filter: drop-shadow(4px 6px 0 var(--py-edge));
+    filter: drop-shadow(0 5px 0 var(--py-edge));
   }
   .iv-tri .ico,
   .iv-tri h5 {
@@ -968,25 +973,27 @@
   .iv-tri.t3 { padding: 40px 6px 18px; }
   .iv-tri h5 {
     margin: 0;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 800;
     color: #1A1A1A;
     text-align: center;
     line-height: 1.35;
     word-break: keep-all;
+    overflow-wrap: break-word;
   }
   .iv-n {
     margin: 0;
-    padding: 8px 9px;
+    min-width: 0;
+    padding: 8px 8px;
     background: #FAFAFC;
     border: 1px solid #E8EAF4;
     border-radius: 12px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     color: #444;
-    line-height: 1.65;
-    word-break: keep-all;
-    overflow-wrap: break-word;
+    line-height: 1.6;
+    word-break: break-word;
+    overflow-wrap: anywhere;
     text-align: left;
   }
   .iv-n b {
@@ -2956,11 +2963,11 @@
           <h4 class="sub">问题诊断：三大求职洞察</h4>
           <div class="iv-stage">
             <div class="iv-row r1">
-              <p class="iv-n">艺术与设计类专业没有<b>通用模板</b>，<br><b>作品集方向</b>、<b>岗位匹配</b>、<b>表达逻辑</b><br>都要按个人风格深度定制</p>
+              <p class="iv-n">艺术与设计没有<b>通用模板</b>，<b>方向</b>、<b>匹配</b>、<b>表达</b>都要按个人定制</p>
               <div class="iv-tri t1">
                 <i class="shade" aria-hidden="true"></i>
                 <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="3.1"/><path d="M5.6 19c.7-3.1 3.2-4.9 6.4-4.9s5.7 1.8 6.4 4.9"/></svg></span>
-                <h5>拒绝标准化求职路径</h5>
+                <h5>拒绝标准化路径</h5>
               </div>
               <span class="iv-sp"></span>
             </div>
@@ -2971,14 +2978,14 @@
                 <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.2 16.6L5.8 8.2l3.8 3.7L12 6.2l2.4 5.7 3.8-3.7 2.6 8.4H3.2z"/><rect x="4.2" y="17.4" width="15.6" height="1.7" rx=".4"/></svg></span>
                 <h5>创意岗三重错位</h5>
               </div>
-              <p class="iv-n"><b>职业认知</b>错位<br><b>用人标准</b>错位<br><b>时间窗口</b>错位</p>
+              <p class="iv-n">你以为的岗位 ≠ 企业要的岗位<br>你准备的作品 ≠ 企业看重的作品<br>你以为的时间 ≠ 企业招聘的时间</p>
             </div>
             <div class="iv-row r3">
-              <p class="iv-n">实习不是越多越好，<br>真正有效的经历要能<b>复盘</b>、<b>可表达</b>、<b>可验证</b></p>
+              <p class="iv-n">实习不在多，有效的经历要能<b>复盘</b>、<b>可表达</b>、<b>可验证</b></p>
               <div class="iv-tri t3">
                 <i class="shade" aria-hidden="true"></i>
                 <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="13" width="3.2" height="7" rx=".55"/><rect x="10.4" y="8.2" width="3.2" height="11.8" rx=".55"/><rect x="16.8" y="4.2" width="3.2" height="15.8" rx=".55"/></svg></span>
-                <h5>从堆砌转向能力沉淀</h5>
+                <h5>从堆经历到沉淀能力</h5>
               </div>
               <span class="iv-sp"></span>
             </div>
