@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="py-eq-2025">
+<html lang="zh-CN" data-build="py-eq-2030">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -911,7 +911,7 @@
   }
   .iv-stage {
     display: grid;
-    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.32fr);
+    grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.48fr);
     column-gap: 8px;
     align-items: stretch;
     width: 100%;
@@ -1002,8 +1002,16 @@
     color: var(--py-ink);
   }
   .iv-n.eq {
-    font-size: 11px;
-    line-height: 1.7;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+  .iv-n.eq span {
+    display: block;
+    white-space: nowrap;
     word-break: keep-all;
   }
   .m-block.spec-board:has(.e5-list) {
@@ -2962,7 +2970,7 @@
             </ol>
             <div class="iv-notes">
               <p class="iv-n">艺术与设计没有<b>通用模板</b>，<br><b>方向</b>、<b>匹配</b>、<b>表达</b>都要按个人定制</p>
-              <p class="iv-n eq">你以为的<b>岗位</b> ≠<b>企业要的岗位</b><br>你准备的<b>作品</b> ≠<b>企业看重的作品</b><br>你以为的<b>时间</b> ≠<b>企业招聘的时间</b></p>
+              <p class="iv-n eq"><span>你以为的<b>岗位</b> ≠<b>企业要的岗位</b></span><span>你准备的<b>作品</b> ≠<b>企业看重的作品</b></span><span>你以为的<b>时间</b> ≠<b>企业招聘的时间</b></span></p>
               <p class="iv-n">实习不在多，<br>有效的经历要能<b>复盘</b>、<b>可表达</b>、<b>可验证</b></p>
             </div>
           </div>
