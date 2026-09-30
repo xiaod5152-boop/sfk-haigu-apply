@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="pill-1118">
+<html lang="zh-CN" data-build="insight-5e-2">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -863,68 +863,78 @@
     white-space: nowrap;
     font-size: 11px;
   }
-  .iv3 {
-    width: 100%;
-    table-layout: auto;
-    border-collapse: collapse;
+  .iv-board {
     margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid #E8E8EA;
+    border-radius: 12px;
+    overflow: hidden;
     background: #fff;
-    border: 1px solid #E6E8F0;
-    border-radius: 10px;
-    overflow: visible;
   }
-  .iv3 th,
-  .iv3 td {
-    vertical-align: middle;
-    padding: 12px 8px;
-    word-break: break-word;
-    overflow-wrap: break-word;
+  .iv-board > li {
+    padding: 12px 12px 13px;
+    border-bottom: 1px solid #EEE;
   }
-  .iv3 th {
-    width: 84px;
-    font-size: 12px;
+  .iv-board > li:last-child { border-bottom: 0; }
+  .iv-h {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 8px;
+  }
+  .iv-h em {
+    flex: 0 0 auto;
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .06em;
+    color: #4F46E5;
+  }
+  .iv-h h5 {
+    margin: 0;
+    font-size: 13px;
     font-weight: 800;
     color: #1A1A1A;
-    line-height: 1.4;
-    text-align: center;
-    background: #EEF2FF;
-    border-bottom: 1px solid #E6E8F0;
-    border-right: 1px solid #E6E8F0;
-    white-space: normal;
+    line-height: 1.2;
   }
-  .iv3 td {
+  .iv-board p {
+    margin: 0;
     font-size: 12px;
     font-weight: 500;
-    color: #555;
-    line-height: 1.65;
-    border-bottom: 1px solid #E6E8F0;
-    overflow: visible;
+    color: #666;
+    line-height: 1.7;
+    word-break: keep-all;
   }
-  .iv3 td b {
+  .iv-board p b {
     font-weight: 800;
     color: #4F46E5;
     white-space: nowrap;
   }
-  .iv3 tr:last-child th,
-  .iv3 tr:last-child td { border-bottom: 0; }
-  .e5-fuse {
-    --c1: #4F46E5;
-    --c2: #6366F1;
-    --c3: #312E81;
-    --c4: #7C3AED;
-    --c5: #4338CA;
-    --ink: #4F46E5;
+  .iv-mis {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "n1 n1"
-      "pie pie"
-      "n5 n2"
-      "n4 n3";
-    gap: 8px;
-    margin: 2px 0 4px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
-  body.pub-ch .e5-fuse {
+  .iv-mis li {
+    padding: 8px 4px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #555;
+    line-height: 1.35;
+    background: #F7F8FA;
+    border-radius: 8px;
+  }
+  .iv-mis li b {
+    display: block;
+    color: #4F46E5;
+    font-weight: 800;
+  }
+  .e5-board {
     --c1: #4F46E5;
     --c2: #6366F1;
     --c3: #312E81;
@@ -932,85 +942,89 @@
     --c5: #4338CA;
     --ink: #4F46E5;
   }
-  .e5-fuse .pie {
-    grid-area: pie;
-    width: 208px;
-    height: 208px;
-    margin: 2px auto;
+  body.pub-ch .e5-board {
+    --c1: #4F46E5;
+    --c2: #6366F1;
+    --c3: #312E81;
+    --c4: #7C3AED;
+    --c5: #4338CA;
+    --ink: #4F46E5;
   }
-  .e5-fuse .pie svg { display: block; width: 100%; height: 100%; }
-  .e5-fuse .s1 { fill: var(--c1); }
-  .e5-fuse .s2 { fill: var(--c2); }
-  .e5-fuse .s3 { fill: var(--c3); }
-  .e5-fuse .s4 { fill: var(--c4); }
-  .e5-fuse .s5 { fill: var(--c5); }
-  .e5-fuse .hub-disk { fill: #fff; }
-  .e5-fuse .sl {
-    fill: #fff;
-    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-    font-weight: 800;
-    text-anchor: middle;
+  .e5-mark {
+    width: 132px;
+    height: 132px;
+    margin: 4px auto 12px;
   }
-  .e5-fuse .hub-t {
+  .e5-mark svg { display: block; width: 100%; height: 100%; }
+  .e5-mark .s1 { fill: var(--c1); }
+  .e5-mark .s2 { fill: var(--c2); }
+  .e5-mark .s3 { fill: var(--c3); }
+  .e5-mark .s4 { fill: var(--c4); }
+  .e5-mark .s5 { fill: var(--c5); }
+  .e5-mark .hub-disk { fill: #fff; }
+  .e5-mark .hub-t {
     fill: var(--ink);
     font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
     font-weight: 800;
     text-anchor: middle;
   }
-  .e5-fuse .hub-s {
+  .e5-mark .hub-s {
     fill: #999;
     font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
     font-weight: 600;
     text-anchor: middle;
   }
-  .e5-list {
-    display: contents;
+  .e5-spec {
     margin: 0;
     padding: 0;
-  }
-  .e5-list li {
     list-style: none;
-    background: #fff;
+    border: 1px solid #E8E8EA;
     border-radius: 12px;
-    box-shadow: 0 4px 14px rgba(40, 40, 80, .07);
-    border: 1px solid #EEF0F8;
-    padding: 10px 10px 10px 12px;
-    min-width: 0;
+    overflow: hidden;
+    background: #fff;
   }
-  body.pub-ch .e5-list li { border-color: #EEF0F8; box-shadow: 0 4px 14px rgba(40, 40, 80, .07); }
-  .e5-list b {
-    display: block;
-    margin: 0 0 4px;
+  .e5-spec li {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 8px;
+    padding: 9px 12px;
+    border-bottom: 1px solid #EEE;
+  }
+  .e5-spec li:last-child { border-bottom: 0; }
+  .e5-spec li b {
+    grid-row: 1 / span 2;
+    align-self: center;
     font-size: 11px;
     font-weight: 800;
-    letter-spacing: .04em;
-    line-height: 1;
+    color: var(--ink);
   }
-  .e5-list .n1 { grid-area: n1; justify-self: center; width: min(100%, 230px); text-align: center; }
-  .e5-list .n2 { grid-area: n2; }
-  .e5-list .n3 { grid-area: n3; }
-  .e5-list .n4 { grid-area: n4; }
-  .e5-list .n5 { grid-area: n5; }
-  .e5-list .n1 b { color: var(--c1); }
-  .e5-list .n2 b { color: var(--c2); }
-  .e5-list .n3 b { color: var(--c3); }
-  .e5-list .n4 b { color: var(--c4); }
-  .e5-list .n5 b { color: var(--c5); }
-  .e5-list div { padding: 0; }
-  .e5-list strong {
-    display: block;
+  .e5-spec li.n1 b { color: var(--c1); }
+  .e5-spec li.n2 b { color: var(--c2); }
+  .e5-spec li.n3 b { color: var(--c3); }
+  .e5-spec li.n4 b { color: var(--c4); }
+  .e5-spec li.n5 b { color: var(--c5); }
+  .e5-spec strong {
     font-size: 13px;
     font-weight: 800;
     color: #1A1A1A;
-    line-height: 1.35;
+    line-height: 1.3;
   }
-  .e5-list span {
+  .e5-spec strong i {
+    margin-left: 6px;
+    font-style: normal;
+    font-size: 10px;
+    font-weight: 600;
+    color: #999;
+  }
+  .e5-spec span {
     display: block;
-    margin-top: 4px;
+    margin-top: 2px;
     font-size: 11px;
     font-weight: 500;
     color: #888;
-    line-height: 1.5;
+    line-height: 1.45;
+    white-space: nowrap;
   }
   .why-nums {
     display: grid;
@@ -1091,7 +1105,7 @@
     font-weight: 600;
     letter-spacing: .06em;
   }
-  .story-sec.method .iv3 td b {
+  .story-sec.method .iv-board p b {
     white-space: nowrap;
   }
   .iv-entry {
@@ -2656,27 +2670,20 @@
     background: #E21876;
     color: #fff;
   }
-  body.inner-ch .story-sec.method .iv3 td b { color: #C2186A !important; }
-  body.inner-ch .iv3 { border-color: #E8E8EA; }
-  body.inner-ch .iv3 th {
-    background: #fff;
-    color: #C2186A;
-    border-color: #E8E8EA;
-  }
-  body.inner-ch .iv3 td { border-color: #E8E8EA; }
-  body.inner-ch .iv3 td b { color: #C2186A; }
+  body.inner-ch .iv-h em,
+  body.inner-ch .iv-board p b,
+  body.inner-ch .iv-mis li b,
+  body.inner-ch .story-sec.method .iv-board p b { color: #C2186A !important; }
+  body.inner-ch .iv-board,
+  body.inner-ch .e5-spec { border-color: #E8E8EA; }
   body.inner-ch .why-nums strong { color: #C2186A; }
-  body.inner-ch .e5-fuse {
+  body.inner-ch .e5-board {
     --c1: #E21876;
     --c2: #EC4899;
     --c3: #9D174D;
     --c4: #DB2777;
     --c5: #BE185D;
     --ink: #C2186A;
-  }
-  body.inner-ch .e5-list li {
-    border-color: #EEE;
-    box-shadow: 0 4px 14px rgba(40,16,32,.07);
   }
   body.inner-ch .tl-rail .n { color: #E21876; }
   body.inner-ch .tl-caps > li.star strong { color: #C2186A; }
@@ -2872,26 +2879,30 @@
         </div>
         <div class="m-block spec-board">
           <h4 class="sub">问题诊断：三大求职洞察</h4>
-          <table class="iv3">
-            <tr>
-              <th>拒绝标准化<br>求职路径</th>
-              <td>艺术与设计类专业没有<b>通用模板</b>，<br><b>作品集方向</b>、<b>岗位匹配</b>、<b>表达逻辑</b><br>都要按个人风格深度定制</td>
-            </tr>
-            <tr>
-              <th>创意岗<br>三重错位</th>
-              <td><b>职业认知</b>错位<br><b>用人标准</b>错位<br><b>时间窗口</b>错位</td>
-            </tr>
-            <tr>
-              <th>从堆砌转向<br>能力沉淀</th>
-              <td>实习不是越多越好，真正有效的经历要能<b>复盘</b>、<b>可表达</b>、<b>可验证</b></td>
-            </tr>
-          </table>
+          <ol class="iv-board">
+            <li>
+              <div class="iv-h"><em>01</em><h5>拒绝标准化求职路径</h5></div>
+              <p>艺术与设计类专业没有<b>通用模板</b><br>作品集方向、岗位匹配、表达逻辑<br>都要按个人风格深度定制</p>
+            </li>
+            <li>
+              <div class="iv-h"><em>02</em><h5>创意岗三重错位</h5></div>
+              <ul class="iv-mis">
+                <li><b>职业认知</b>错位</li>
+                <li><b>用人标准</b>错位</li>
+                <li><b>时间窗口</b>错位</li>
+              </ul>
+            </li>
+            <li>
+              <div class="iv-h"><em>03</em><h5>从堆砌转向能力沉淀</h5></div>
+              <p>实习不是越多越好<br>真正有效的经历要能<b>复盘</b>、<b>可表达</b>、<b>可验证</b></p>
+            </li>
+          </ol>
         </div>
         <div class="m-block spec-board">
           <h4 class="sub">评价标准：5E 人才评价模型</h4>
-          <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
-          <div class="e5-fuse" role="img" aria-label="5E 人才评价模型">
-            <div class="pie">
+          <div class="e5-board">
+            <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
+            <div class="e5-mark" role="img" aria-label="5E 人才评价模型">
               <svg viewBox="0 0 200 200">
                 <path class="s1" d="M 45.76 20.79 A 96 96 0 0 1 154.24 20.79 L 128.25 58.74 A 50 50 0 0 0 71.75 58.74 Z"/>
                 <path class="s2" d="M 158.57 23.94 A 96 96 0 0 1 192.09 127.1 L 147.97 114.12 A 50 50 0 0 0 130.51 60.39 Z"/>
@@ -2899,26 +2910,16 @@
                 <path class="s4" d="M 97.32 195.96 A 96 96 0 0 1 9.56 132.2 L 52.9 116.77 A 50 50 0 0 0 98.6 149.98 Z"/>
                 <path class="s5" d="M 7.91 127.1 A 96 96 0 0 1 41.43 23.94 L 69.49 60.39 A 50 50 0 0 0 52.03 114.12 Z"/>
                 <circle class="hub-disk" cx="100" cy="100" r="48"/>
-                <text class="sl" x="100" y="22" font-size="8">E1</text>
-                <text class="sl" x="100" y="34" font-size="9">教育背景</text>
-                <text class="sl" x="169.4" y="74" font-size="8">E2</text>
-                <text class="sl" x="169.4" y="86" font-size="9">实践经验</text>
-                <text class="sl" x="142.9" y="154" font-size="8">E3</text>
-                <text class="sl" x="142.9" y="166" font-size="9">专业能力</text>
-                <text class="sl" x="57.1" y="154" font-size="8">E4</text>
-                <text class="sl" x="57.1" y="166" font-size="9">执行力</text>
-                <text class="sl" x="30.6" y="74" font-size="8">E5</text>
-                <text class="sl" x="30.6" y="86" font-size="9">职业素养</text>
-                <text class="hub-t" x="100" y="98" font-size="18">5E</text>
-                <text class="hub-s" x="100" y="114" font-size="7">综合竞争力</text>
+                <text class="hub-t" x="100" y="97" font-size="22">5E</text>
+                <text class="hub-s" x="100" y="114" font-size="8">综合竞争力</text>
               </svg>
             </div>
-            <ol class="e5-list">
-              <li class="n1"><b>E1</b><div><strong>教育背景（Education）</strong><span>院校底蕴 × 专业功底 × 学术素养</span></div></li>
-              <li class="n2"><b>E2</b><div><strong>实践经验（Experience）</strong><span>实习历练 × 项目沉淀 × 业务实战</span></div></li>
-              <li class="n3"><b>E3</b><div><strong>专业能力（Expertise）</strong><span>岗位硬技能 × 问题解决力 × AI应用力</span></div></li>
-              <li class="n4"><b>E4</b><div><strong>执行力（Execution）</strong><span>结果导向 × 闭环思维 × 推进韧性</span></div></li>
-              <li class="n5"><b>E5</b><div><strong>职业素养（Employability）</strong><span>主动沟通 × 高效协作 × 逻辑思辨</span></div></li>
+            <ol class="e5-spec">
+              <li class="n1"><b>E1</b><div><strong>教育背景<i>Education</i></strong><span>院校底蕴 × 专业功底 × 学术素养</span></div></li>
+              <li class="n2"><b>E2</b><div><strong>实践经验<i>Experience</i></strong><span>实习历练 × 项目沉淀 × 业务实战</span></div></li>
+              <li class="n3"><b>E3</b><div><strong>专业能力<i>Expertise</i></strong><span>岗位硬技能 × 问题解决力 × AI应用力</span></div></li>
+              <li class="n4"><b>E4</b><div><strong>执行力<i>Execution</i></strong><span>结果导向 × 闭环思维 × 推进韧性</span></div></li>
+              <li class="n5"><b>E5</b><div><strong>职业素养<i>Employability</i></strong><span>主动沟通 × 高效协作 × 逻辑思辨</span></div></li>
             </ol>
           </div>
         </div>
