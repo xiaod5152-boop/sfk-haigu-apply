@@ -1,0 +1,4603 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-build="copy-p11-1930">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国海归艺术创意人才专场招聘会</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    background: #EDEDED;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 24px 12px 40px;
+    color: #1A1A1A;
+  }
+  .phone {
+    position: relative;
+    width: 390px;
+    height: 844px;
+    background: #F3F4FB;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0,0,0,.1);
+  }
+  .status {
+    height: 44px; background: #fff;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    padding: 0 16px 6px; font-size: 13px; font-weight: 600; flex-shrink: 0;
+  }
+  .nav {
+    height: 44px; background: #fff; display: flex; align-items: center;
+    justify-content: center; font-size: 16px; font-weight: 600;
+    position: relative; border-bottom: 1px solid #F0F0F0; flex-shrink: 0;
+  }
+  .nav .ch-tag {
+    display: none;
+    margin: 0 auto 2px;
+    width: fit-content;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .4px;
+    border-radius: 4px;
+    padding: 1px 6px;
+    line-height: 1.4;
+  }
+  .nav.long {
+    height: 52px;
+    font-size: 12px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+  }
+  .nav.long .ch-tag { display: inline-block; }
+  .nav.long #navTitle {
+    max-width: 240px;
+    text-align: center;
+    line-height: 1.25;
+  }
+  .nav.pub-nav .ch-tag { background: #EEF2FF; color: #4338CA; }
+  .nav.inner-nav .ch-tag { background: #EEF2FF; color: #4338CA; }
+  .nav .back {
+    position: absolute; left: 10px; border: 0; background: none;
+    font-size: 22px; cursor: pointer;
+  }
+  .nav .cap {
+    position: absolute; right: 12px; width: 84px; height: 30px;
+    border: 1px solid #E5E5E5; border-radius: 15px;
+  }
+  .screen { display: none; flex: 1; overflow-x: hidden; overflow-y: auto; padding-bottom: 12px; }
+  .screen.on { display: block; }
+  #form.screen { padding-bottom: 28px; }
+  .phone.has-dock #form.screen { padding-bottom: 62px; }
+  .hero {
+    position: relative;
+    height: 188px;
+    overflow: hidden;
+    color: #fff;
+    flex-shrink: 0;
+    background: linear-gradient(165deg, #6D5EF7 0%, #4F46E5 48%, #3730A3 100%);
+  }
+  .hero.inner,
+  .hero.pub {
+    height: 188px;
+  }
+  .hero-copy .pass {
+    display: none;
+  }
+  body.inner-ch #innerChannel .b-info .field.only-inner {
+    display: block !important;
+  }
+  .hero img {
+    display: none;
+  }
+  .hero::after {
+    display: none;
+  }
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 22px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    text-align: left;
+    gap: 14px;
+  }
+  .hero-copy em {
+    display: inline-flex;
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    line-height: 1.3;
+    color: #fff;
+    background: rgba(255,255,255,.16);
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 99px;
+    padding: 6px 12px;
+  }
+  .hero-copy h1,
+  .hero-copy h1.long {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 1.28;
+    color: #fff;
+    white-space: normal;
+    word-break: keep-all;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    max-width: 12.2em;
+  }
+  .phone.pub-ch {
+    background: #F3F4FB;
+  }
+  .view-tabs {
+    position: sticky;
+    top: 0;
+    z-index: 25;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 6px 32px 0;
+    background: #F3F4FB;
+  }
+  body.pub-ch .view-tabs,
+  .phone.pub-ch .view-tabs { background: #F3F4FB; }
+  .view-tabs button {
+    height: 38px;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    color: #999;
+    cursor: pointer;
+    position: relative;
+  }
+  .view-tabs button.on { color: #4F46E5; }
+  .view-tabs button.on::after {
+    content: "";
+    position: absolute;
+    left: 22%;
+    right: 22%;
+    bottom: 0;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+  }
+  .about {
+    margin: 12px 32px 0;
+    background: linear-gradient(180deg, #EEF2FF 0%, #E8E7FF 100%);
+    border-radius: 14px;
+    padding: 14px 12px 14px;
+    scroll-margin-top: 8px;
+  }
+  .hl-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #1A1A1A;
+  }
+  .hl-title i {
+    display: block;
+    width: 36px;
+    height: 4px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #A5B4FC, #818CF8);
+  }
+  .hl-title i:first-child {
+    background: linear-gradient(90deg, #818CF8, #A5B4FC);
+  }
+  .hl-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .hl-list p {
+    margin: 0;
+    padding: 11px 12px;
+    border-radius: 99px;
+    background: rgba(255,255,255,.92);
+    box-shadow: 0 2px 8px rgba(90,60,140,.06);
+    font-size: 12px;
+    font-weight: 800;
+    color: #1A1A1A;
+    text-align: center;
+    line-height: 1.45;
+  }
+  .pub-intro {
+    background: #EEF2FF;
+    padding: 16px 12px 14px;
+  }
+  .pub-intro > header {
+    margin: 0 4px 12px;
+    text-align: center;
+  }
+  .pub-intro h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #312E81;
+    line-height: 1.35;
+  }
+  .pub-intro .pub-lead {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: #4C47A0;
+    line-height: 1.7;
+    text-align: left;
+  }
+  .pub-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 12px 12px;
+    margin: 0 0 8px;
+  }
+  .pub-card:last-child { margin-bottom: 0; }
+  .pub-card h4 {
+    margin: 0 0 10px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #4338CA;
+    letter-spacing: .3px;
+  }
+  .pub-card ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: n;
+  }
+  .pub-card ol li {
+    counter-increment: n;
+    position: relative;
+    padding: 0 0 8px 28px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #312E81;
+    line-height: 1.55;
+  }
+  .pub-card ol li:last-child { padding-bottom: 0; }
+  .pub-card ol li::before {
+    content: counter(n, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 1px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #4F46E5;
+    letter-spacing: 0;
+  }
+  .pub-card ol li b {
+    display: block;
+    margin-bottom: 1px;
+    font-weight: 800;
+  }
+  .pub-dates {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 2px 0 0;
+    padding: 6px 0 0;
+    position: relative;
+  }
+  .pub-dates::before {
+    content: "";
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    top: 10px;
+    height: 2px;
+    background: #C7D2FE;
+  }
+  .pub-dates span {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .pub-dates span i {
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin-bottom: 8px;
+    border-radius: 50%;
+    background: #4F46E5;
+    box-shadow: 0 0 0 3px #fff;
+  }
+  .pub-dates em {
+    display: block;
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 800;
+    color: #4338CA;
+  }
+  .pub-dates b {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #312E81;
+  }
+  .pub-who {
+    display: grid;
+    gap: 10px;
+  }
+  .pub-who .lab {
+    display: block;
+    margin: 0 0 4px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #4338CA;
+  }
+  .pub-who p {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: #312E81;
+    line-height: 1.55;
+  }
+  .pub-who .jobs {
+    font-weight: 700;
+  }
+  .story {
+    margin: 12px 32px 0;
+  }
+  .story-sec {
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px 14px;
+    margin: 0 0 10px;
+    box-shadow: 0 2px 10px rgba(40,20,60,.06);
+  }
+  .story-sec:last-child { margin-bottom: 0; }
+  .story-sec > h3 {
+    margin: 0 0 12px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #4338CA;
+  }
+  .story-sec:not(.method) > h3 {
+    padding: 7px 10px;
+    background: #F4F5FC;
+    border-radius: 8px;
+  }
+  .story-sec .lead {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #5b5b66;
+    line-height: 1.65;
+  }
+  .story-sec .sub {
+    margin: 16px 0 8px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #1A1A1A;
+  }
+  .hook { margin: 0 0 10px; }
+  .hook-title {
+    margin: 0 0 16px;
+    padding: 0;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.35;
+    color: #111;
+    letter-spacing: -.6px;
+    word-break: keep-all;
+  }
+  .hook-title em {
+    font-style: normal;
+    color: #4338CA;
+    box-shadow: none;
+  }
+  .story-sec.intro {
+    padding: 16px 6px 16px;
+  }
+  .spec-board.hook-board {
+    margin: 0 -4px;
+    padding: 12px 0 10px;
+    border-top: 0;
+    overflow: visible;
+    background: #fff;
+  }
+  .pain-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 0;
+    margin: 0 0 12px;
+    padding: 0;
+    align-items: stretch;
+    overflow: visible;
+  }
+  .pain-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 0 6px;
+    border: 0;
+    border-right: 1px solid #EDEDF2;
+    min-width: 0;
+    overflow: visible;
+  }
+  .pain-list li:last-child { border-right: 0; padding-right: 2px; }
+  .pain-list li:first-child { padding-left: 2px; }
+  .pain-list i { display: none; }
+  .pain-list b {
+    display: block;
+    width: 100%;
+    min-height: 2.9em;
+    font-size: 11px;
+    font-weight: 900;
+    color: #111;
+    line-height: 1.4;
+    letter-spacing: -0.05em;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+  .pain-list span {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    min-height: 3.4em;
+    font-size: 9.5px;
+    font-weight: 500;
+    color: #8B8B96;
+    line-height: 1.55;
+    letter-spacing: -0.05em;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+  body.pub-ch .pain-list i {
+    background: #EEF2FF;
+    color: #4338CA;
+  }
+  .hook-cols { display: none; }
+  .hook-end {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.5;
+    text-align: center;
+    word-break: keep-all;
+  }
+  .hook-end em {
+    font-style: normal;
+    font-weight: 800;
+    color: #4338CA;
+  }
+  .spec-board {
+    margin: 0 0 10px;
+    padding: 14px;
+    background: #F4F5FC;
+    border-radius: 14px;
+    overflow: hidden;
+    border-top: 1.5px solid #4F46E5;
+  }
+  .info-dl {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .info-dl > div {
+    display: grid;
+    grid-template-columns: 86px 1fr;
+    gap: 10px;
+    padding: 12px 0;
+    align-items: start;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #E6E8F0;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .info-dl > div:first-child { padding-top: 0; }
+  .info-dl > div:last-child { border-bottom: 0; padding-bottom: 0; }
+  .info-dl dt {
+    font-size: 12px;
+    font-weight: 800;
+    color: #4338CA;
+    line-height: 1.4;
+    padding: 6px 8px;
+    background: #F4F5FC;
+    border-radius: 8px;
+  }
+  .info-dl dd {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: #444;
+    line-height: 1.6;
+  }
+  .co-pack {
+    margin: 0;
+    padding: 14px;
+    background: #F4F5FC;
+    border-radius: 14px;
+    border-top: 1.5px solid #4F46E5;
+    box-shadow: none;
+  }
+  .co-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 0 0 10px;
+  }
+  .co-head h4 {
+    margin: 0;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #4338CA;
+    background: #F4F5FC;
+    border-radius: 8px;
+  }
+  .co-head span {
+    font-size: 10px;
+    color: #8B8FA8;
+  }
+  .co-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin: 0;
+  }
+  .co-grid span {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #222;
+    background: #fff;
+    border: 1px solid #E6E8F0;
+    border-radius: 10px;
+    padding: 10px 6px;
+  }
+  .role-pack {
+    margin: 10px 0 0;
+    padding: 14px;
+    background: #F4F5FC;
+    border-radius: 14px;
+  }
+  .role-pack h4 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #4338CA;
+  }
+  .role-pack ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+  }
+  .role-pack li {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 10px 4px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #4338CA;
+    background: #EEF2FF;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .bridge-banner {
+    margin: 12px 0 10px;
+    padding: 14px 8px 13px;
+    border-radius: 12px;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(165deg, #6D5EF7 0%, #4F46E5 52%, #3730A3 100%);
+  }
+  .bridge-banner strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  .bridge-banner p {
+    margin: 6px 0 0;
+    font-size: 9.5px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.04em;
+    color: rgba(255,255,255,.92);
+    white-space: nowrap;
+    word-break: keep-all;
+  }
+  .story-shot {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #EEE url("fair-scene.jpg") center/cover no-repeat;
+    min-height: 168px;
+  }
+  .story-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+  }
+  .perk {
+    margin: 10px 32px 0;
+    padding: 12px 14px 14px;
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    background: #E21876;
+    border: 1.5px solid #E8C47A;
+    box-shadow: 0 6px 16px rgba(226, 24, 118, .22);
+  }
+  .perk-k {
+    margin: 0 48px 10px 0;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 800;
+    color: #FFE9B0;
+    letter-spacing: .02em;
+    background: none;
+    line-height: 1.35;
+  }
+  .perk-k::after {
+    content: "内部";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    color: #7A4E12;
+    background: linear-gradient(180deg, #FFE9B0 0%, #E8C47A 100%);
+    padding: 3px 8px;
+    border-radius: 8px;
+  }
+  .perk ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .perk li {
+    margin: 0;
+    padding: 0 0 0 16px;
+    position: relative;
+    font-size: 12px;
+    font-weight: 600;
+    color: #FFF8EE;
+    line-height: 1.45;
+    text-align: left;
+    border: 0;
+  }
+  .perk li::before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background: none;
+    transform: none;
+    color: #E8C47A;
+    font-size: 9px;
+    line-height: 1.45;
+  }
+  #innerChannel[data-step="info"] #sec-edu,
+  #innerChannel[data-step="info"] #sec-wish,
+  #innerChannel[data-step="info"] #eduFoot { display: none; }
+  #innerChannel[data-step="edu"] #sfkPerk,
+  #innerChannel[data-step="edu"] #sec-info { display: none; }
+  .tl-board {
+    margin: 10px 0 0;
+    padding: 0;
+  }
+  .tl-hook {
+    display: grid;
+    grid-template-columns: 1fr 12px;
+    grid-template-rows: 16px auto 16px;
+  }
+  .tl-hook::after {
+    content: "";
+    grid-column: 2;
+    grid-row: 1 / 4;
+    margin: 7px 0;
+    border: 2px solid #E6E6EA;
+    border-left: 0;
+    border-radius: 0 10px 10px 0;
+    pointer-events: none;
+  }
+  .tl-rail {
+    grid-column: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .tl-rail-1 { grid-row: 1; }
+  .tl-rail-2 {
+    grid-row: 3;
+    grid-template-columns: 1fr 1fr;
+  }
+  .tl-rail-2::before { left: 25%; }
+  .tl-rail::before {
+    content: "";
+    position: absolute;
+    left: 16.666%;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    margin-top: -1px;
+    background: #E6E6EA;
+    z-index: 0;
+  }
+  .tl-caps {
+    grid-column: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    list-style: none;
+    margin: 0;
+    padding: 8px 0 0;
+    column-gap: 8px;
+  }
+  .tl-caps-1 { grid-row: 2; padding-bottom: 18px; }
+  .tl-caps-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    list-style: none;
+    margin: 0;
+    padding: 8px 0 0;
+    column-gap: 8px;
+  }
+  .tl-caps span {
+    display: block;
+    margin-top: 4px;
+    font-size: 9px;
+    font-weight: 600;
+    color: #888;
+    line-height: 1.4;
+  }
+  .tl-caps > li,
+  .tl-caps-2 > li { text-align: center; padding: 0 2px; }
+  .tl-rail .n {
+    position: relative;
+    z-index: 1;
+    width: 10px;
+    height: 10px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #D4D4D8;
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    color: #4F46E5;
+    font-size: 0;
+  }
+  body.pub-ch .tl-rail .n { color: #4F46E5; }
+  .tl-rail .n.star {
+    width: 16px;
+    height: 16px;
+    background: none;
+    border: 0;
+    font-size: 13px;
+    line-height: 1;
+  }
+  .tl-rail .n.star::after { content: "★"; }
+  .tl-caps em {
+    display: block;
+    font-style: normal;
+    font-size: 9px;
+    font-weight: 700;
+    color: #999;
+    margin-bottom: 3px;
+    line-height: 1.35;
+  }
+  .tl-caps strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    color: #1A1A1A;
+    line-height: 1.35;
+  }
+  .tl-caps > li.star strong { color: #3730A3; }
+  body.pub-ch .tl-caps > li.star strong { color: #3730A3; }
+  .story-note {
+    margin: 12px 0 0;
+    font-size: 10px;
+    color: #888;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+  .story-sec.method { padding: 16px 14px 6px; }
+  .story-sec.method > h3 {
+    margin: 0 0 14px;
+    padding: 18px 16px;
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: .18em;
+    line-height: 1.3;
+    background: #4F46E5;
+    border: 0;
+    border-radius: 14px;
+    box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.32);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .story-sec.method > h3::before,
+  .story-sec.method > h3::after {
+    content: "";
+    width: 16px;
+    height: 1.5px;
+    background: rgba(255,255,255,.7);
+    flex: 0 0 16px;
+  }
+  .story-sec.method > h3 .method-star {
+    display: none;
+  }
+  .method > .lead {
+    margin: 0 0 20px;
+    color: #888;
+    font-size: 12px;
+  }
+  .m-block { margin: 0 0 10px; }
+  .m-block:last-of-type { margin-bottom: 8px; }
+  .m-block.spec-board .sub {
+    margin: 0 0 10px;
+    padding: 7px 10px;
+    border: 0;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0;
+    color: #4338CA;
+    line-height: 1.3;
+    background: #F4F5FC;
+    border-radius: 8px;
+  }
+  body.pub-ch .m-block .sub { color: #4338CA; }
+  .m-block .lead {
+    margin: 0 0 10px;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.55;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+  .m-block.spec-board > .lead:last-child { margin-bottom: 0; }
+  .m-block .lead.one-line {
+    white-space: nowrap;
+    font-size: 11px;
+  }
+  .spec-dl > div {
+    grid-template-columns: 92px 1fr;
+    align-items: center;
+  }
+  .spec-dl dt {
+    text-align: center;
+  }
+  .spec-dl dd {
+    font-size: 12px;
+    color: #666;
+    word-break: keep-all;
+    line-height: 1.7;
+  }
+  .spec-dl dd b {
+    font-weight: 800;
+    color: #4F46E5;
+    white-space: nowrap;
+  }
+  .m-block.spec-board.insight-board {
+    --py-ink: #4F46E5;
+    --py-edge: #4F46E5;
+    --py-fill: linear-gradient(180deg, #FFFFFF 0%, #EEF2FF 46%, #C7D2FE 100%);
+    overflow-x: hidden;
+    padding: 12px 8px 18px;
+    background: #fff;
+  }
+  .m-block.spec-board.insight-board .sub {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 4px 12px;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    color: #4F46E5;
+    font-size: 15px;
+    letter-spacing: 0;
+  }
+  .m-block.spec-board.insight-board .sub::before {
+    content: "";
+    flex: 0 0 4px;
+    width: 4px;
+    height: 16px;
+    border-radius: 2px;
+    background: #4F46E5;
+  }
+  .iv-stage {
+    display: grid;
+    grid-template-columns: 86px minmax(0, 1fr);
+    column-gap: 6px;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+  }
+  .iv-py {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    min-width: 0;
+  }
+  .iv-py li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+  }
+  .iv-py .t1 { padding: 22px 4px 10px; z-index: 3; }
+  .iv-py .t2 { padding: 24px 4px 10px; margin-top: -8px; z-index: 2; }
+  .iv-py .t3 { padding: 26px 4px 12px; margin-top: -8px; z-index: 1; }
+  .iv-py .shade {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: var(--py-fill);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    filter: drop-shadow(0 4px 0 var(--py-edge));
+  }
+  .iv-py .ico,
+  .iv-py h5 {
+    position: relative;
+    z-index: 1;
+  }
+  .iv-py .ico {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    margin: 0 0 4px;
+    color: var(--py-ink);
+    background: rgba(255,255,255,.94);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(79,70,229,.16);
+  }
+  .iv-py .ico svg { width: 13px; height: 13px; display: block; }
+  .iv-py h5 {
+    margin: 0;
+    font-size: 9px;
+    font-weight: 800;
+    color: #1A1A1A;
+    line-height: 1.25;
+    white-space: normal;
+    word-break: keep-all;
+  }
+  .iv-notes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+    min-width: 0;
+  }
+  .iv-n {
+    margin: 0;
+    padding: 8px 9px;
+    background: #FAFAFC;
+    border: 1px solid #E8EAF4;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #444;
+    line-height: 1.55;
+    text-align: left;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    overflow: visible;
+  }
+  .iv-n b {
+    font-weight: 800;
+    color: var(--py-ink);
+  }
+  .iv-n.eq {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 7px 6px;
+    font-size: 9px;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+  .iv-n.eq span {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: visible;
+  }
+  .m-block.spec-board:has(.e5-list) {
+    overflow: hidden;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .e5-list {
+    --e5-ink: #4F46E5;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .e5-list li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "tag nm"
+      "tag fx";
+    column-gap: 10px;
+    row-gap: 4px;
+    align-items: center;
+    padding: 12px 12px 12px 10px;
+    background: #fff;
+    border: 1px solid #E8EAF0;
+    border-left: 3px solid var(--e5-ink);
+    border-radius: 12px;
+  }
+  .e5-list .hd {
+    display: contents;
+  }
+  .e5-list .tag {
+    grid-area: tag;
+    align-self: center;
+    min-width: 32px;
+    padding: 4px 7px;
+    border-radius: 7px;
+    background: var(--e5-ink);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .e5-list .nm {
+    grid-area: nm;
+    min-width: 0;
+    font-size: 14px;
+    font-weight: 800;
+    color: #1A1A1A;
+    line-height: 1.25;
+    text-align: left;
+    word-break: keep-all;
+  }
+  .e5-list .nm em {
+    display: block;
+    margin-top: 2px;
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 700;
+    color: #888;
+    white-space: nowrap;
+  }
+  .e5-list .fx {
+    grid-area: fx;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: #555;
+    line-height: 1.45;
+    text-align: left;
+    word-break: keep-all;
+  }
+  .why-nums {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    margin: 0 0 10px;
+    background: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+  body.pub-ch .why-nums { background: none; }
+  .why-nums div {
+    text-align: center;
+    padding: 12px 4px 10px;
+    border: 1px solid #E6E8F0;
+    border-radius: 10px;
+    background: #fff;
+  }
+  body.pub-ch .why-nums div { border-right-color: #E8EAF4; }
+  .why-nums strong {
+    display: block;
+    font-size: 20px;
+    font-weight: 800;
+    color: #4338CA;
+  }
+  body.pub-ch .why-nums strong { color: #4338CA; }
+  .why-nums span {
+    display: block;
+    margin-top: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #999;
+    line-height: 1.3;
+  }
+  .m-callout {
+    margin: 0;
+    padding: 14px 16px 16px;
+    border: 0;
+    border-top: 1.5px solid #4F46E5;
+    border-radius: 14px;
+    background: #F4F5FC;
+  }
+  body.pub-ch .m-callout {
+    background: #F4F5FC;
+    border-color: #4F46E5;
+    border-left: 0;
+  }
+  .m-callout .sub {
+    margin: 0 0 6px;
+    padding: 7px 10px;
+    border: 0;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0;
+    color: #4338CA;
+    background: #EEF2FF;
+    border-radius: 8px;
+  }
+  body.pub-ch .m-callout .sub { color: #4338CA; }
+  .m-callout .lead {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+    line-height: 1.7;
+    letter-spacing: 0;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+  .m-callout .lead .one {
+    display: block;
+    white-space: nowrap;
+    font-size: 11px;
+  }
+  .m-callout .lead .tip {
+    display: block;
+    margin-top: 8px;
+    color: #666;
+    font-weight: 600;
+    letter-spacing: .06em;
+  }
+  .iv-entry {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    padding-top: 10px;
+    border: 0;
+    border-top: 1px dashed #C7D2FE;
+    background: none;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: #4F46E5;
+    text-align: center;
+    cursor: pointer;
+  }
+  .card { background: #fff; margin: 12px 32px 0; border-radius: 12px; padding: 4px 16px 8px; }
+  .card h3 { font-size: 16px; font-weight: 700; padding: 14px 0 2px; }
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 2px 0;
+    border-bottom: 1px solid #F2F2F2;
+  }
+  .row:last-child { border-bottom: 0; }
+  .row > span {
+    flex: 0 0 40px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #555;
+  }
+  .row input {
+    flex: 1;
+    min-width: 0;
+    height: 36px;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    padding: 0 10px;
+    font: inherit;
+    font-size: 14px;
+    background: #fff;
+    outline: none;
+    white-space: nowrap;
+  }
+  .row input:focus {
+    border-color: #4F46E5;
+    box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+  }
+  .row.duo {
+    display: grid;
+    grid-template-columns: 40px 1fr 40px 1fr;
+    gap: 8px 12px;
+  }
+  .opts {
+    display: grid;
+    flex: 1;
+    gap: 6px;
+  }
+  .opts.g5 { grid-template-columns: repeat(5, 1fr); }
+  .opts.g4 { grid-template-columns: repeat(4, 1fr); }
+  .opts.g3 { grid-template-columns: repeat(3, 1fr); }
+  .opts.g2 { grid-template-columns: repeat(2, 1fr); }
+  .opts.wrap {
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: none;
+  }
+  .opts.wrap .chip {
+    height: auto;
+    min-height: 32px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  .opts.stack { grid-template-columns: 1fr; }
+  .opts.stack .chip, .opts.g2 .chip, .opts.g3 .chip {
+    height: auto;
+    min-height: 34px;
+    padding: 6px 6px;
+    font-size: 12px;
+    line-height: 1.3;
+    white-space: normal;
+  }
+  #want .chip {
+    white-space: nowrap;
+    padding: 6px 4px;
+    font-size: 12px;
+    line-height: 1;
+  }
+  .dir-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    padding: 4px;
+    margin: 0 0 10px;
+    background: #fff;
+    border: 1px solid #C7D2FE;
+    border-radius: 12px;
+  }
+  .dir-tabs button {
+    height: 32px;
+    border: 0;
+    background: transparent;
+    border-radius: 8px;
+    padding: 0 4px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    color: #888;
+    cursor: pointer;
+  }
+  .dir-tabs button.on {
+    background: #4F46E5;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(79,70,229,.25);
+  }
+  .dir-sub {
+    background: #fff;
+    border: 1px solid #F0F0F0;
+    border-radius: 10px;
+    padding: 8px;
+  }
+  .dir-group { display: none; }
+  .dir-group.on { display: block; }
+  .dir-sub .chip,
+  .dir-sub .opts.g2 .chip,
+  .dir-sub .opts.g3 .chip {
+    height: auto;
+    min-height: 32px;
+    border: 0;
+    background: #F7F7F8;
+    border-radius: 99px;
+    padding: 6px 10px 6px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #444;
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    white-space: normal;
+    line-height: 1.35;
+    word-break: keep-all;
+    line-break: strict;
+    overflow-wrap: normal;
+  }
+  .dir-sub .chip > span {
+    flex: 1;
+    min-width: 0;
+    word-break: keep-all;
+  }
+  .dir-sub .chip::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    margin-top: 2px;
+    border: 1.5px solid #C9C9C9;
+    border-radius: 4px;
+    background: #fff;
+    box-sizing: border-box;
+  }
+  .dir-sub .chip.on {
+    background: #EEF2FF;
+    color: #4338CA;
+    font-weight: 700;
+  }
+  .dir-sub .chip.on::before {
+    border-color: #4F46E5;
+    background: #4F46E5 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M2.5 6.2l2.4 2.4 4.6-5' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/10px no-repeat;
+  }
+  .picked {
+    margin-top: 10px;
+    background: #fff;
+    border: 1px solid #C7D2FE;
+    border-radius: 12px;
+    padding: 10px 12px;
+    min-height: 44px;
+  }
+  .picked-lab {
+    display: block;
+    font-size: 12px;
+    font-weight: 800;
+    color: #4F46E5;
+    margin-bottom: 6px;
+  }
+  .picked-lab em {
+    font-style: normal;
+    font-weight: 600;
+    color: #818CF8;
+    margin-left: 4px;
+  }
+  .picked-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-height: 24px;
+  }
+  .picked-list em {
+    font-style: normal;
+    font-size: 12px;
+    color: #C9A0B4;
+  }
+  .picked-list button {
+    border: 0;
+    background: #EEF2FF;
+    color: #4338CA;
+    border-radius: 99px;
+    padding: 4px 8px 4px 10px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .picked-list button i {
+    font-style: normal;
+    margin-left: 4px;
+    color: #818CF8;
+  }
+  .edu-filter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .edu-filter button {
+    height: 36px;
+    border: 1px solid #E4D4F5;
+    background: #fff;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: #555;
+    cursor: pointer;
+  }
+  .edu-filter button.wide {
+    grid-column: 1 / -1;
+    font-size: 12px;
+  }
+  .edu-filter button.on {
+    border-color: #7C3AED;
+    background: #F3E8FF;
+    color: #6D28D9;
+  }
+  .field.tint {
+    border-bottom: 0;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 0 0 8px;
+  }
+  .edu-pack {
+    background: #F3EEFF;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 0 0 8px;
+  }
+  .edu-pack.pg { background: #EEF6FF; }
+  .edu-pack.ot { background: #F4F4F5; }
+  .edu-pack .subhead {
+    margin: 0 0 10px;
+    color: #6D28D9;
+    font-size: 13px;
+  }
+  .edu-pack.pg .subhead { color: #1A6BB5; }
+  .edu-pack .field,
+  .edu-pack .field.tint {
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 8px;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+  }
+  .edu-pack .field:last-child,
+  .edu-pack .field.tint:last-child { margin-bottom: 0; }
+  .edu-pack .lab,
+  .edu-pack .field.tint .lab {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: #555;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+  .edu-pack .subhead em {
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 600;
+    color: #A78BFA;
+    margin-left: 6px;
+  }
+  .edu-pack.pg .subhead em { color: #7AB0DC; }
+  .edu-pack.ot .subhead { color: #555; }
+  .edu-pack.ot .subhead em { color: #999; }
+  #otLv {
+    display: flex;
+    grid-template-columns: none;
+    min-width: 0;
+  }
+  #otLv .chip {
+    flex: 1;
+    height: 32px;
+    min-height: 32px;
+    padding: 0 4px;
+    font-size: 12px;
+    line-height: 32px;
+    white-space: nowrap;
+  }
+  .field.tint-name { background: #EEF6FF; }
+  .field.tint-teacher { background: #EEF2FF; }
+  .field.tint-alumni { background: #FFF8E8; }
+  .field.tint-campus { background: #EEF8F3; }
+  .field.tint-fair { background: #EEF0FF; }
+  .field.tint-mode { background: #FFF4E8; }
+  .field.tint-phone { background: #F3EEFF; }
+  .field.tint-mail { background: #F3FBFF; }
+  .field.tint-edu { background: #F3EEFF; }
+  .field.tint-nation { background: #EEF8F3; }
+  .field.tint-school { background: #EEF6FF; }
+  .field.tint-major { background: #EEF2FF; }
+  .field.tint-dates { background: #FFF8E8; }
+  .field.tint-other { background: #F4F4F5; }
+  .field.tint-want { background: #EEF2FF; }
+  .field.tint-dir { background: #FFF4E8; }
+  .field.tint-city { background: #EEF8F3; }
+  .field.tint-pay { background: #F3EEFF; }
+  .field.tint-arrive { background: #EEF6FF; }
+  .field.tint-intern { background: #FFF8E8; }
+  .field.tint-artist { background: #F4F4F5; }
+  .field.tint-file { background: #F3FBFF; }
+  .field.tint-want .lab,
+  .field.tint-teacher .lab,
+  .field.tint-major .lab { color: #4338CA; }
+  .field.tint-dir .lab,
+  .field.tint-mode .lab { color: #C56A12; }
+  .field.tint-campus .lab,
+  .field.tint-nation .lab { color: #1B7A52; }
+  .field.tint-fair .lab { color: #3B5BDB; }
+  .field.tint-name .lab,
+  .field.tint-school .lab,
+  .field.tint-arrive .lab { color: #1A6BB5; }
+  .field.tint-phone .lab,
+  .field.tint-edu .lab,
+  .field.tint-pay .lab { color: #6B3CC4; }
+  .field.tint-dates .lab,
+  .field.tint-intern .lab { color: #A16800; }
+  .field.tint-mail .lab { color: #1A6BB5; }
+  .field.tint-artist .lab {
+    white-space: nowrap;
+    font-size: 12px;
+  }
+  .field .lab {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .field .lab em {
+    font-style: normal;
+    font-weight: 500;
+    color: #999;
+    font-size: 11px;
+    margin-left: 4px;
+  }
+  .field > input, .field > select, .field textarea {
+    width: 100%;
+    height: 36px;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    padding: 0 10px;
+    font: inherit;
+    font-size: 14px;
+    background: #fff;
+    outline: none;
+  }
+  .field textarea { height: 64px; padding: 8px 10px; resize: none; }
+  .field > input:focus, .field > select:focus, .field textarea:focus {
+    border-color: #4F46E5;
+    box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+  }
+  .field .err { border-color: #F87171 !important; }
+  .dates {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dates input { flex: 1; min-width: 0; height: 36px; border: 1px solid #D8D8D8; border-radius: 8px; padding: 0 8px; font: inherit; font-size: 13px; }
+  .dates i { font-style: normal; color: #999; font-size: 12px; flex-shrink: 0; }
+  .subhead {
+    font-size: 12px;
+    font-weight: 800;
+    color: #888;
+    margin: 10px 0 6px;
+  }
+  .pick-full {
+    width: 100%;
+    min-width: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid #D8D8D8;
+    background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>") no-repeat right 10px center;
+    border-radius: 8px;
+    padding: 8px 28px 8px 12px;
+    font: inherit;
+    font-size: 14px;
+    color: #333;
+    height: 36px;
+  }
+  .b-edu {
+    background:
+      radial-gradient(circle at 8% -10%, rgba(167,139,250,.28), transparent 44%),
+      linear-gradient(180deg, #F3E8FF 0%, #FAF5FF 100%);
+    padding: 12px;
+  }
+  .b-edu .mark { color: #6D28D9; margin-bottom: 10px; }
+  .field .link {
+    margin: 0;
+    width: 100%;
+    max-width: none;
+    display: block;
+  }
+  .opts.wrap .subhead { flex: 1 0 100%; margin: 10px 0 4px; }
+  .chip {
+    height: 32px;
+    border: 1px solid #D8D8D8;
+    background: #fff;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #555;
+    cursor: pointer;
+  }
+  .chip.on {
+    border-color: #4F46E5;
+    color: #4F46E5;
+    background: #EEF2FF;
+    font-weight: 600;
+  }
+  .link {
+    margin-left: auto;
+    border: 1px dashed #818CF8;
+    background: #EEF2FF;
+    color: #4F46E5;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    max-width: 180px;
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .val {
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .block {
+    margin: 10px 32px 0;
+    border-radius: 12px;
+    padding: 12px 12px 14px;
+    position: relative;
+    overflow: hidden;
+    scroll-margin-top: 16px;
+  }
+  .block .mark {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .b-info {
+    background:
+      radial-gradient(circle at 12% -8%, rgba(56,189,248,.32), transparent 42%),
+      linear-gradient(180deg, #DFF6FF 0%, #F3FBFF 100%);
+    padding: 12px;
+  }
+  .b-info .mark { color: #0369A1; margin-bottom: 10px; }
+  .b-info .sheet { padding: 8px 14px 12px; }
+  #innerChannel .b-info .sheet { padding: 8px; }
+  #innerChannel .b-info .field.tint {
+    display: block;
+    padding: 10px;
+    margin: 0 0 6px;
+    border-radius: 10px;
+  }
+  #innerChannel .b-info .field.tint[hidden],
+  #innerChannel .b-info .field.only-inner.off {
+    display: none !important;
+  }
+  body.inner-ch #innerChannel .b-info .field.only-inner {
+    display: block !important;
+  }
+  #innerChannel .b-info .field.tint .lab {
+    display: block;
+    margin: 0 0 8px;
+    width: auto;
+    font-size: 12px;
+    line-height: 1.35;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    pointer-events: none;
+  }
+  #innerChannel .b-info .field.tint-teacher .lab,
+  #innerChannel .b-info .field.tint-mail .lab,
+  #innerChannel .b-info .field.tint-alumni .lab {
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+  #innerChannel .b-info .field.tint .lab em {
+    display: inline;
+    font-style: normal;
+    font-weight: 600;
+    color: #888;
+    margin-left: 4px;
+  }
+  #innerChannel .b-info .field > input,
+  #innerChannel .b-info .pick-full {
+    width: 100%;
+    height: 32px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+  }
+  #innerChannel .b-info .opts {
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+  }
+  #innerChannel .b-info .opts.g2 .chip {
+    min-height: 32px;
+    padding: 0 4px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #innerChannel .b-info .field.tint.tint-fair,
+  #innerChannel .b-info .field.tint.tint-mode {
+    display: block;
+    padding: 10px;
+  }
+  #innerChannel .b-info .field.tint.tint-fair .lab {
+    display: block;
+    width: auto;
+    margin: 0 0 8px;
+    white-space: normal;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  #innerChannel .b-info .field.tint.tint-mode .lab {
+    display: block;
+    width: auto;
+    margin: 0 0 8px;
+  }
+  #fairCity {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  #fairCity .chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    min-height: 48px;
+    padding: 6px 2px 5px;
+    line-height: 1.2;
+    border-radius: 10px;
+  }
+  #fairCity .chip b {
+    font-size: 12px;
+    font-weight: 800;
+  }
+  #fairCity .chip em {
+    font-style: normal;
+    margin-top: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #3B5BDB;
+  }
+  #fairCity .chip.on em { color: inherit; }
+  .spot {
+    margin-top: 8px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(59,91,219,.08);
+  }
+  .spot-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 12px 8px;
+    background: linear-gradient(90deg, #EEF0FF, #F7F8FF);
+  }
+  .spot-head strong {
+    font-size: 16px;
+    font-weight: 800;
+    color: #3B5BDB;
+  }
+  .spot-head em {
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 800;
+    color: #4F46E5;
+    white-space: nowrap;
+  }
+  .spot-addr {
+    display: flex;
+    gap: 10px;
+    padding: 10px 12px 12px;
+    align-items: center;
+  }
+  .spot-addr p {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: #222;
+    line-height: 1.45;
+  }
+  .spot-nav {
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 10px;
+    background: #4F46E5;
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 0;
+  }
+  .spot-nav svg { display: block; }
+  .city-h {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 800;
+    color: #888;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+  .wish-row {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr);
+    align-items: start;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  #wishCity .wish-row:first-child { margin-top: 0; }
+  .wish-row .city-h { padding-top: 12px; }
+  #cityOther {
+    margin: 0;
+    width: 100%;
+    height: 36px;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    padding: 0 12px;
+    font: inherit;
+    font-size: 13px;
+    background: #fff;
+  }
+  #wishOs {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  #wishOs .chip {
+    height: 36px;
+    min-height: 36px;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .msel { position: relative; }
+  .msel-btn {
+    width: 100%;
+    min-height: 36px;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>") no-repeat right 10px center;
+    padding: 8px 28px 8px 12px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    text-align: left;
+    line-height: 1.35;
+    cursor: pointer;
+  }
+  .msel.open .msel-btn { border-color: #4F46E5; }
+  .msel-btn em {
+    font-style: normal;
+    font-weight: 600;
+    color: #AAA;
+  }
+  .msel-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 4px);
+    z-index: 24;
+    max-height: 220px;
+    overflow: auto;
+    padding: 6px;
+    background: #fff;
+    border: 1px solid #EEE;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+  .msel.open .msel-menu { display: grid; }
+  .msel-menu button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    border: 0;
+    background: none;
+    border-radius: 8px;
+    padding: 0 8px;
+    font: inherit;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+    text-align: left;
+  }
+  .msel-menu button::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    border: 1.5px solid #C9C9C9;
+    border-radius: 4px;
+    background: #fff;
+  }
+  .msel-menu button.on {
+    background: #EEF2FF;
+    color: #4338CA;
+    font-weight: 700;
+  }
+  .msel-menu button.on::before {
+    border-color: #4F46E5;
+    box-shadow: inset 0 0 0 2px #fff;
+    background: #4F46E5;
+  }
+  .b-info .row { min-height: 52px; padding: 8px 0; }
+  .b-info .row.tint { padding: 10px 12px; }
+  .b-info .row > span { flex: 0 0 44px; }
+  .row.tint {
+    border-bottom: 0;
+    border-radius: 10px;
+    margin: 0 0 8px;
+    align-items: center;
+  }
+  .row.tint:last-child { margin-bottom: 0; }
+  .row.tint-name { background: #EEF6FF; }
+  .row.tint-school { background: #EEF8F3; }
+  .row.tint-major { background: #EEF2FF; }
+  .row.tint-grade { background: #F3EEFF; }
+  .row.tint-intern { background: #FFF8E8; }
+  .row.tint-file { background: #F3FBFF; }
+  .row.tint-phone { background: #F3EEFF; }
+  .row.tint-name > span { color: #1A6BB5; }
+  .row.tint-school > span { color: #1B7A52; }
+  .row.tint-major > span { color: #4338CA; }
+  .row.tint-grade > span { color: #6B3CC4; }
+  .row.tint-intern > span { color: #A16800; }
+  .row.tint-file > span { color: #1A6BB5; }
+  .row.tint-phone > span { color: #6B3CC4; }
+  .sec.tint {
+    border-top: 0;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 0 0 8px;
+  }
+  .sec.tint:last-child { margin-bottom: 0; }
+  .sec.tint-ind { background: #EEF2FF; }
+  .sec.tint-co { background: #FFF4E8; }
+  .sec.tint-job { background: #EEF8F3; }
+  .sec.tint-ind .sec-h { color: #4338CA; }
+  .sec.tint-co .sec-h { color: #C56A12; }
+  .sec.tint-job .sec-h { color: #1B7A52; }
+  .b-info .link {
+    flex: 1;
+    margin: 0;
+    height: 36px;
+    width: 100%;
+    max-width: none;
+  }
+  .b-info .val {
+    flex: 1;
+    margin: 0;
+    height: 36px;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 500;
+    background: #FAFAFA;
+    color: #333;
+  }
+  .sheet {
+    position: relative;
+    z-index: 1;
+    background: rgba(255,255,255,.92);
+    border-radius: 10px;
+    padding: 4px 14px 10px;
+  }
+  .line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 6px 0;
+    border-bottom: 1px solid #F2F2F2;
+  }
+  .line .lab {
+    flex: 0 0 72px;
+    width: 72px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #555;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .line .opts, .line .tabs { flex: 1; min-width: 0; }
+  .chip, .tab { white-space: nowrap; }
+  .sec {
+    padding: 12px 0 4px;
+    border-top: 1px solid #F2F2F2;
+  }
+  .sec-h {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  .b-wish {
+    background:
+      radial-gradient(circle at 90% -12%, rgba(251,146,60,.30), transparent 44%),
+      linear-gradient(180deg, #FFE8D6 0%, #FFF7F0 100%);
+    padding: 12px;
+  }
+  .b-wish .mark { color: #C2410C; margin-bottom: 10px; }
+  .b-info .mark { margin-bottom: 10px; }
+  .job-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .city-pick {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid #D8D8D8;
+    background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>") no-repeat right 10px center;
+    border-radius: 8px;
+    padding: 8px 28px 8px 12px;
+    font: inherit;
+    font-size: 13px;
+    color: #333;
+    min-width: 96px;
+    cursor: pointer;
+  }
+  .city-pick:focus {
+    border-color: #4F46E5;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+  }
+  .tabs { display: flex; gap: 8px; width: 100%; }
+  .tab {
+    flex: 1;
+    border: 0;
+    background: #4F46E5;
+    color: #fff;
+    border-radius: 999px;
+    padding: 12px 4px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    opacity: .42;
+  }
+  .tab.on { opacity: 1; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; position: relative; z-index: 1; }
+  .cell {
+    border: 1px solid #D8D8D8; background: #fff; padding: 10px 6px;
+    text-align: center; cursor: pointer; border-radius: 8px;
+    min-height: 40px;
+  }
+  .cell .n { display: block; font-size: 13px; color: #666; line-height: 1.3; }
+  .cell.on { background: #4F46E5; border-color: #4F46E5; }
+  .cell.on .n { color: #fff; }
+  .sub { font-size: 12px; color: #999; margin: 12px 0 8px; }
+  .phone-row {
+    display: flex; gap: 8px; align-items: center;
+    border: 1px solid #EEE; border-radius: 8px; padding: 10px 12px;
+  }
+  .phone-row span { color: #999; font-size: 13px; }
+  .phone-row b { font-size: 14px; }
+  .btn {
+    display: block; width: calc(100% - 32px); margin: 14px 16px 0;
+    background: #4F46E5; color: #fff; border: 0; border-radius: 10px;
+    height: 44px; font-size: 15px; font-weight: 700; cursor: pointer;
+  }
+  .btn.ghost {
+    background: #fff;
+    color: #4F46E5;
+    border: 1.5px solid #4F46E5;
+  }
+  .dock .btn { width: 100%; margin: 0; font-size: 14px; }
+  .dock .btn[hidden],
+  .dock-tip[hidden] { display: none !important; }
+  .btn.long {
+    height: auto;
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+  .hint { text-align: center; font-size: 11px; color: #AAA; margin: 10px 16px 0; line-height: 1.5; }
+  .load { padding: 90px 28px 0; text-align: center; }
+  .ring {
+    width: 64px; height: 64px; margin: 0 auto 16px;
+    border: 4px solid #E0E7FF; border-top-color: #4F46E5;
+    border-radius: 50%; animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  #pass { padding-bottom: 12px; }
+  .ticket {
+    position: relative;
+    margin: 16px 32px 0;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(40,16,32,.1);
+  }
+  .ticket-top {
+    padding: 16px 16px 14px;
+    background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+    color: #fff;
+    text-align: left;
+  }
+  .ticket-top .k {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    opacity: .9;
+  }
+  .ticket-top h3 {
+    margin: 6px 0 0;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+  .ticket-stamp {
+    position: absolute;
+    top: 16px;
+    right: 14px;
+    width: 54px;
+    height: 54px;
+    border: 2px solid rgba(255,255,255,.95);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transform: rotate(-12deg);
+    background: rgba(255,255,255,.12);
+  }
+  .ticket-cut {
+    height: 14px;
+    background:
+      radial-gradient(circle at 0 50%, #F6F6F6 7px, transparent 8px),
+      radial-gradient(circle at 100% 50%, #F6F6F6 7px, transparent 8px),
+      repeating-linear-gradient(90deg, #E5E5E5 0 6px, transparent 6px 12px);
+    background-color: #fff;
+    background-repeat: no-repeat, no-repeat, repeat-x;
+    background-position: left center, right center, center;
+    background-size: 14px 14px, 14px 14px, 100% 1px;
+  }
+  .ticket-body { padding: 14px 16px 8px; text-align: left; }
+  .ticket-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .ticket-row .lab {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #999;
+    margin-bottom: 4px;
+  }
+  .ticket-row b {
+    font-size: 15px;
+    font-weight: 800;
+    color: #1A1A1A;
+  }
+  .ticket-note {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #555;
+    line-height: 1.5;
+  }
+  .ticket-note em {
+    font-style: normal;
+    color: #4F46E5;
+    font-weight: 800;
+  }
+  .ticket-addr {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 10px;
+    background: #F7F8FA;
+    border-radius: 8px;
+    text-align: left;
+  }
+  .ticket-addr .txt { flex: 1; min-width: 0; }
+  .ticket-addr span {
+    display: block;
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 4px;
+  }
+  .ticket-addr p {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: #222;
+    line-height: 1.45;
+  }
+  .ticket-addr .spot-nav {
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 10px;
+    background: #4F46E5;
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 0;
+  }
+  .ticket-addr .spot-nav svg { display: block; }
+  .ticket-foot {
+    margin: 12px 16px 14px;
+    padding-top: 10px;
+    border-top: 1px dashed #E6E6E6;
+    font-size: 12px;
+    font-weight: 700;
+    color: #888;
+    text-align: center;
+  }
+  .ticket-foot b { color: #4F46E5; }
+  .ok {
+    width: 56px; height: 56px; margin: 0 auto 12px; border-radius: 50%;
+    background: #3DDC84; color: #fff; display: grid; place-items: center; font-size: 28px;
+  }
+  .fail {
+    width: 56px; height: 56px; margin: 28px auto 12px; border-radius: 50%;
+    background: #F3F3F3; color: #888; display: grid; place-items: center; font-size: 22px;
+  }
+  .sms {
+    background: #F7F7F7; border-radius: 10px; padding: 12px;
+    font-size: 12px; line-height: 1.7; color: #555; margin-top: 10px; text-align: left;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .sms b { display: block; font-weight: 800; color: #1A1A1A; margin-bottom: 6px; }
+  .sms .hit {
+    color: #4F46E5;
+    font-weight: 800;
+    background: #EEF2FF;
+    border-radius: 4px;
+    padding: 0 3px;
+    white-space: nowrap;
+  }
+  .inner {
+    position: relative;
+    z-index: 1;
+    margin-top: 8px;
+    background: #F3F3F3;
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+  .inner .k { font-size: 11px; color: #AAA; margin-bottom: 4px; font-weight: 400; }
+  .inner p { font-size: 12px; color: #888; line-height: 1.65; font-weight: 400; }
+  .jobs { display: flex; flex-direction: column; gap: 6px; position: relative; z-index: 1; }
+  .job {
+    width: 100%;
+    border: 1px solid #D8D8D8;
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px 14px;
+    text-align: left;
+    cursor: pointer;
+  }
+  .job .n { display: block; font-size: 13px; font-weight: 600; color: #222; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .job .d { display: block; font-size: 11px; color: #999; margin-top: 2px; }
+  .job.on { border-color: #4F46E5; background: #EEF2FF; }
+  .job.on .n { color: #4F46E5; }
+  .dock {
+    display: none;
+    flex-shrink: 0;
+    background: #fff;
+    padding: 8px 16px 12px;
+    border-top: 1px solid #F0F0F0;
+  }
+  .dock.on { display: block; }
+  .dock-acts {
+    display: block;
+  }
+  .dock-acts .btn { width: 100%; }
+  .dock-tip {
+    margin: 0 0 8px;
+  }
+  #innerChannel .b-info .link {
+    margin: 0;
+    width: 100%;
+    height: 32px;
+    max-width: none;
+  }
+  .page-foot {
+    margin: 4px 0 0;
+    padding: 16px 16px 8px;
+  }
+  .page-foot .btn { width: 100%; margin: 10px 0 0; }
+  .act-hint, .dock-tip, .note-line {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 600;
+    color: #888;
+    line-height: 1.7;
+    text-align: center;
+    word-break: keep-all;
+    line-break: strict;
+  }
+  .note-line {
+    width: 100%;
+  }
+  .dock-tip { margin: 0 0 8px; }
+  #innerChannel .b-info .field.tint-file .lab { color: #1A6BB5; }
+  .need::after {
+    content: "*";
+    color: #4F46E5;
+    font-weight: 800;
+  }
+  .b-info .mark em {
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 700;
+    color: #4F46E5;
+    margin-left: 6px;
+  }
+  .iv-tip {
+    margin: 0 0 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #FFF4E8;
+    color: #C56A12;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .pop {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 18px;
+  }
+  .pop.on { display: flex; }
+  .pop-mask {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 12, 18, .46);
+  }
+  .pop-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    background: #fff;
+    border-radius: 16px;
+    padding: 22px 16px 16px;
+    text-align: center;
+  }
+  .pop-card .fail {
+    margin: 0 auto 12px;
+    background: #EEF2FF;
+    color: #4F46E5;
+  }
+  body.pub-ch .pop-card .fail {
+    background: #EEF2FF;
+    color: #4F46E5;
+  }
+  .pop-card h3 { font-size: 18px; font-weight: 800; }
+  .pop-card .desc { font-size: 13px; color: #888; margin-top: 6px; line-height: 1.5; }
+  #keepPop .desc .keep-hl {
+    font-style: normal;
+    font-weight: 800;
+    color: #4F46E5 !important;
+    background: #EEF2FF;
+    padding: 0 3px;
+    border-radius: 3px;
+  }
+  body.pub-ch #keepPop .desc .keep-hl,
+  .phone.pub-ch #keepPop .desc .keep-hl {
+    color: #4F46E5 !important;
+    background: #EEF2FF;
+  }
+  .pop-card .sms { margin-top: 12px; }
+  .pop-card .btn { width: 100%; margin: 14px 0 0; }
+  .keep-acts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .keep-acts .btn { width: 100%; margin: 0; }
+  .pop-load h3 { margin-top: 4px; font-size: 16px; }
+  .rail {
+    display: none;
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-42%);
+    z-index: 50;
+    flex-direction: column;
+    gap: 6px;
+    pointer-events: none;
+  }
+  .rail.on { display: flex !important; }
+  .side-fabs {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 34%;
+    z-index: 50;
+    flex-direction: column;
+    gap: 8px;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+  }
+  .side-fabs.on { display: flex; }
+  .side-fabs.dragging { cursor: grabbing; z-index: 80; }
+  .side-fabs.left { right: auto; left: 0; }
+  .side-fab {
+    width: 44px;
+    padding: 10px 5px 12px 7px;
+    border: 0;
+    border-radius: 12px 0 0 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font: inherit;
+  }
+  .side-fabs.left .side-fab { border-radius: 0 12px 12px 0; padding: 10px 7px 12px 5px; }
+  .side-fab.share { background: #4F46E5; color: #fff; }
+  .side-fab.book { background: #111; color: #fff; }
+  .side-fab.share .ico {
+    width: 24px;
+    height: 24px;
+    border: 1.6px solid #fff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .side-fab.book .ico {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .side-fab .ico svg { display: block; width: 16px; height: 16px; }
+  .side-fab.book .ico svg { width: 18px; height: 18px; }
+  .side-fab > span:last-child {
+    writing-mode: vertical-rl;
+    letter-spacing: .18em;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.15;
+  }
+  #book { padding: 12px 32px 28px; }
+  .ticket-ops {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 10px 10px 12px;
+    background: #fff;
+    border-bottom: 1px solid #EEE;
+    position: sticky;
+    top: 0;
+    z-index: 4;
+  }
+  .ticket-ops button {
+    height: 36px;
+    border: 1px solid #E8E8E8;
+    border-radius: 99px;
+    background: #fff;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    color: #555;
+    cursor: pointer;
+    padding: 0 6px;
+  }
+  .ticket-ops button.main {
+    border-color: #4F46E5;
+    background: #4F46E5;
+    color: #fff;
+  }
+  .ticket-ops button:disabled {
+    opacity: .4;
+    cursor: default;
+  }
+  .book-pack {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(40,16,32,.1);
+    position: relative;
+  }
+  .book-pack .ticket-top {
+    padding: 16px 64px 14px 16px;
+  }
+  .book-pack .ticket-top h3 {
+    font-size: 13px;
+    letter-spacing: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .book-pack .ticket-stamp {
+    z-index: 1;
+    width: 48px;
+    height: 48px;
+    font-size: 11px;
+    top: 14px;
+    right: 10px;
+  }
+  .book-pack .ticket-cut {
+    background-color: #fff;
+    background-image:
+      radial-gradient(circle at 0 50%, #F6F6F6 7px, transparent 8px),
+      radial-gradient(circle at 100% 50%, #F6F6F6 7px, transparent 8px),
+      repeating-linear-gradient(90deg, #E5E5E5 0 6px, transparent 6px 12px);
+  }
+  .book-pack .book-tb .book-sec td {
+    padding: 12px 12px 6px;
+    font-size: 12px;
+    font-weight: 800;
+    border-bottom: 0;
+  }
+  .book-pack .book-tb .book-sec.meet td { color: #4F46E5; }
+  .book-pack .book-tb .book-sec.info td { color: #0369A1; }
+  .book-pack .book-tb .book-sec.edu td { color: #6D28D9; }
+  .book-pack .book-tb .book-sec.wish td { color: #C2410C; }
+  .book-pack .book-tb .book-tip td {
+    padding: 4px 12px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #555;
+    line-height: 1.5;
+  }
+  .book-pack .book-tb .book-tip em {
+    font-style: normal;
+    color: #4F46E5;
+    font-weight: 800;
+  }
+  .book-pack .book-tb .book-addr {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .book-pack .book-tb .book-addr .txt { flex: 1; min-width: 0; }
+  .book-pack .book-tb .book-addr p { margin: 0; }
+  .book-pack .book-tb .spot-nav {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 8px;
+    background: #4F46E5;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 0;
+  }
+  .sum-hero {
+    margin: 4px 0 12px;
+  }
+  .sum-hero h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #4338CA;
+  }
+  .sum-hero p {
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+  }
+  .sum-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .sum-card h4 {
+    margin: 0;
+    padding: 10px 12px 8px;
+    font-size: 13px;
+    font-weight: 800;
+    border-bottom: 1px solid #F4F4F4;
+  }
+  .sum-card.info h4 { color: #0369A1; }
+  .sum-card.edu h4 { color: #6D28D9; }
+  .sum-card.wish h4 { color: #C2410C; }
+  .sum-card.meet h4 { color: #4F46E5; }
+  .book-tb {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .book-tb th,
+  .book-tb td {
+    padding: 9px 12px;
+    font-size: 12px;
+    vertical-align: top;
+    border-bottom: 1px solid #F4F4F4;
+  }
+  .book-tb tr:last-child th,
+  .book-tb tr:last-child td { border-bottom: 0; }
+  .book-tb th {
+    width: 86px;
+    font-weight: 700;
+    color: #999;
+    text-align: left;
+  }
+  .book-tb td {
+    font-weight: 800;
+    color: #222;
+    text-align: left;
+    line-height: 1.45;
+    word-break: break-word;
+  }
+  .toast {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 96px;
+    transform: translateX(-50%);
+    z-index: 70;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: rgba(26,26,26,.88);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .toast.on { display: block; }
+  .anchor {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    pointer-events: none;
+  }
+  .anchor button {
+    pointer-events: auto;
+    width: 26px;
+    padding: 8px 0;
+    border: 0;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    font: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    color: #888;
+    line-height: 1.2;
+    letter-spacing: 0;
+    cursor: pointer;
+    text-align: center;
+  }
+  .anchor button.on {
+    background: #4F46E5;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(79,70,229,.28);
+  }
+  body.inner-ch .phone { background: #fff; }
+  body.inner-ch .nav.inner-nav .ch-tag { background: #FFF0F6; color: #C2186A; }
+  body.inner-ch .hero {
+    background: linear-gradient(165deg, #F0428A 0%, #E21876 52%, #C2186A 100%);
+  }
+  body.inner-ch .hero-copy em,
+  body.inner-ch .hero-copy h1,
+  body.inner-ch .hero-copy h1.long {
+    color: #fff;
+    background: none;
+    box-shadow: none;
+  }
+  body.inner-ch .hero-copy em {
+    background: rgba(255,255,255,.16);
+    border-color: rgba(255,255,255,.28);
+  }
+  body.inner-ch .view-tabs { background: #fff; }
+  body.inner-ch .view-tabs button.on { color: #C2186A; }
+  body.inner-ch .hook-title em {
+    color: #C2186A;
+    box-shadow: none;
+  }
+  body.inner-ch .spec-board.hook-board {
+    background: #fff;
+    border-top: 0;
+  }
+  body.inner-ch .pain-list i {
+    background: #FCE7F3;
+    color: #C2186A;
+  }
+  body.inner-ch .pain-list li { border-right-color: #F3E8EE; border-bottom: 0; }
+  body.inner-ch .hook-end em { color: #C2186A; }
+  body.inner-ch .spec-board,
+  body.inner-ch .co-pack,
+  body.inner-ch .role-pack,
+  body.inner-ch .m-callout {
+    background: #fff;
+    border-top-color: #E21876;
+  }
+  body.inner-ch .role-pack h4,
+  body.inner-ch .role-pack li { color: #C2186A; }
+  body.inner-ch .role-pack li { background: #FCE7F3; }
+  body.inner-ch .bridge-banner {
+    background: linear-gradient(165deg, #F0428A 0%, #E21876 52%, #C2186A 100%);
+  }
+  body.inner-ch .info-dl > div { border-bottom-color: #EEE; }
+  body.inner-ch .hook-cols li,
+  body.inner-ch .co-grid span { border-color: #E8E8EA; }
+  body.inner-ch .story-sec:not(.method) > h3,
+  body.inner-ch .co-head h4,
+  body.inner-ch .info-dl dt,
+  body.inner-ch .m-block.spec-board .sub,
+  body.inner-ch .m-callout .sub {
+    color: #C2186A;
+    background: #F7F8FA;
+  }
+  body.inner-ch .m-block.spec-board.insight-board .sub {
+    color: #E21876;
+    background: transparent;
+  }
+  body.inner-ch .m-block.spec-board.insight-board .sub::before {
+    background: #E21876;
+  }
+  body.inner-ch .story-sec.method > h3 {
+    background: #E21876;
+    color: #fff;
+  }
+  body.inner-ch .why-nums strong { color: #C2186A; }
+  body.inner-ch .spec-dl dd b { color: #C2186A; }
+  body.inner-ch .m-block.spec-board.insight-board {
+    --py-ink: #E21876;
+    --py-edge: #E21876;
+    --py-fill: linear-gradient(180deg, #FFFFFF 0%, #FCE7F3 46%, #F9A8D4 100%);
+  }
+  body.inner-ch .iv-py .ico {
+    box-shadow: 0 2px 6px rgba(226,24,118,.18);
+  }
+  body.inner-ch .iv-n {
+    background: #F7F8FA;
+    border-color: #F3E8EE;
+  }
+  body.inner-ch .iv-n b { color: #C2186A; }
+  body.inner-ch .e5-list { --e5-ink: #E21876; }
+  body.inner-ch .e5-list .fx { background: none; }
+  body.inner-ch .tl-rail .n { color: #E21876; }
+  body.inner-ch .tl-caps > li.star strong { color: #C2186A; }
+  body.inner-ch .chip.on {
+    border-color: #E21876;
+    color: #C2186A;
+    background: #fff;
+  }
+  body.inner-ch .btn { background: #E21876; }
+  body.inner-ch .btn.ghost { color: #E21876; border-color: #E21876; }
+  body.inner-ch .side-fab.share { background: #E21876; }
+  body.inner-ch .ticket-ops button.main {
+    border-color: #E21876;
+    background: #E21876;
+    color: #fff;
+  }
+  body.inner-ch .cell.on { background: #E21876; border-color: #E21876; }
+  body.inner-ch .anchor button.on {
+    background: #E21876;
+    box-shadow: 0 2px 8px rgba(226,24,118,.28);
+  }
+  body.inner-ch .need::after { color: #E21876; }
+  body.inner-ch .ring {
+    border-color: #F3E8EE;
+    border-top-color: #E21876;
+  }
+  body.inner-ch .dir-tabs { border-color: #E8E8EA; }
+  body.inner-ch .dir-tabs button.on {
+    background: #E21876;
+    box-shadow: 0 2px 8px rgba(226,24,118,.25);
+  }
+  body.inner-ch .dir-sub .chip.on {
+    background: #fff;
+    color: #C2186A;
+  }
+  body.inner-ch .dir-sub .chip.on::before {
+    border-color: #E21876;
+    background: #E21876 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M2.5 6.2l2.4 2.4 4.6-5' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/10px no-repeat;
+  }
+  body.inner-ch .picked { border-color: #E8E8EA; }
+  body.inner-ch .picked-lab { color: #C2186A; }
+  body.inner-ch .picked-list button { background: #fff; color: #C2186A; }
+  body.inner-ch .link {
+    border-color: #E21876;
+    background: #fff;
+    color: #C2186A;
+  }
+  body.inner-ch .tab { background: #E21876; }
+  body.inner-ch .spot-nav,
+  body.inner-ch .ticket-addr .spot-nav,
+  body.inner-ch .book-pack .book-tb .spot-nav { background: #E21876; }
+  body.inner-ch .ticket-top {
+    background: linear-gradient(135deg, #E21876 0%, #EC4899 100%);
+  }
+  body.inner-ch .ticket-note em,
+  body.inner-ch .ticket-foot b,
+  body.inner-ch .sms .hit,
+  body.inner-ch .book-pack .book-tb .book-sec.meet td,
+  body.inner-ch .book-pack .book-tb .book-tip em,
+  body.inner-ch .sum-card.meet h4,
+  body.inner-ch .sum-hero h2 { color: #C2186A; }
+  body.inner-ch .sms .hit { background: #F7F8FA; }
+  body.inner-ch .job.on { border-color: #E21876; background: #fff; }
+  body.inner-ch .job.on .n { color: #E21876; }
+  body.inner-ch #keepPop .desc .keep-hl {
+    color: #C2186A !important;
+    background: #fff;
+  }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="status"><span>10:28</span><span>5G</span></div>
+  <div class="nav">
+    <button class="back" id="back" type="button">‹</button>
+    <span class="ch-tag" id="chTag">内部通道</span>
+    <span id="navTitle">中国海归艺术创意人才专场招聘会</span>
+    <span class="cap"></span>
+  </div>
+
+  <section class="screen on" id="form">
+    <div class="hero">
+      <div class="hero-copy">
+        <em id="heroEm">斯芬克首届 · 国内首个海归艺术专场</em>
+        <h1 id="heroTitle">中国海归艺术<br>创意人才专场招聘会</h1>
+        <span class="pass" id="heroPass" hidden>留学生秋招专属通道</span>
+      </div>
+    </div>
+    <div class="view-tabs" id="viewTabs">
+      <button type="button" class="on" data-view="intro">活动介绍</button>
+      <button type="button" data-view="apply">立即报名</button>
+    </div>
+    <div id="viewIntro">
+    <div class="story" id="fairStory">
+      <section class="story-sec intro">
+        <div class="spec-board hook-board">
+          <h2 class="hook-title">你缺的不是能力，<em>是被看见的通道</em></h2>
+          <ol class="pain-list">
+            <li>
+              <b>作品再好，<br>也可能输给关键词</b>
+              <span>机器海投筛不出来，<br>招聘官根本看不见</span>
+            </li>
+            <li>
+              <b>秋招已开跑，<br>毕业再找就晚了</b>
+              <span>你还在答辩，<br>国内应届岗已经在抢</span>
+            </li>
+            <li>
+              <b>想回国就业，<br>海外招聘会却帮不上</b>
+              <span>岗位、渠道、节奏都不同，<br>回国求职缺一个真正的入口</span>
+            </li>
+          </ol>
+          <p class="hook-end">本专场<em>跳过初筛</em>，直接对话招聘官</p>
+        </div>
+        <div class="spec-board">
+        <dl class="info-dl">
+          <div>
+            <dt>面向人群</dt>
+            <dd>27届应届及往届社招<br>在读可参加下午场实习面试<br>家长可到场代投</dd>
+          </div>
+          <div>
+            <dt>岗位类型</dt>
+            <dd>校招全职 · 社招全职 · 实习</dd>
+          </div>
+          <div>
+            <dt>举办城市</dt>
+            <dd>上海 · 广州 · 北京 · 成都 · 免费报名</dd>
+          </div>
+        </dl>
+        </div>
+        <div class="co-pack">
+        <div class="co-head">
+          <h4>企业阵容</h4>
+          <span>部分示例</span>
+        </div>
+        <div class="co-grid">
+          <span>东方甄选</span><span>银泰商业</span>
+          <span>阿里国际</span><span>百丽</span>
+          <span>JNBY</span><span>养生堂·农夫山泉</span>
+          <span>今日美术馆</span><span>摩登天空</span>
+          <span>华策影业</span><span>ARTPRO STUDIO</span>
+          <span>网龙游戏</span><span>……</span>
+        </div>
+        </div>
+        <div class="role-pack">
+          <h4>面试岗位</h4>
+          <ul>
+            <li>设计</li>
+            <li>产品</li>
+            <li>运营</li>
+            <li>市场营销</li>
+            <li>游戏</li>
+            <li>文化艺术</li>
+            <li>……</li>
+          </ul>
+        </div>
+        <div class="bridge-banner">
+          <strong>出国的桥梁，归国的彩虹</strong>
+          <p>从艺术名校到职场，斯芬克不止送你出国，更帮你接上就业</p>
+        </div>
+        <figure class="story-shot">
+          <img src="fair-scene.jpg" alt="招聘会现场一对一面试">
+        </figure>
+      </section>
+      <section class="story-sec">
+        <h3>完整求职时间线</h3>
+        <p class="lead">秋招是一条链。中间掉队，就要等春招补录。</p>
+        <div class="tl-board">
+          <div class="tl-hook">
+            <div class="tl-rail tl-rail-1">
+              <i class="n"></i>
+              <i class="n star"></i>
+              <i class="n"></i>
+            </div>
+            <ul class="tl-caps tl-caps-1">
+              <li>
+                <em>2026年8—10月</em>
+                <strong>秋招正式批</strong>
+              </li>
+              <li class="star">
+                <em>2026年10—11月</em>
+                <strong>笔试面试高峰期</strong>
+              </li>
+              <li>
+                <em>2026年12月—<br>2027年2月</em>
+                <strong>秋招补录</strong>
+              </li>
+            </ul>
+            <div class="tl-rail tl-rail-2">
+              <i class="n"></i>
+              <i class="n"></i>
+            </div>
+          </div>
+          <ul class="tl-caps tl-caps-2">
+            <li>
+              <em>2027年7月起</em>
+              <strong>毕业入职</strong>
+            </li>
+            <li>
+              <em>2027年2—5月</em>
+              <strong>春招补录</strong>
+              <span>岗位为秋招的30%-40%，部分核心岗位不开放春招招聘</span>
+            </li>
+          </ul>
+        </div>
+        <p class="story-note">时间节点以企业实际安排为准，建议尽早报名，岗位名额按场次分配。</p>
+      </section>
+      <section class="story-sec method">
+        <h3>斯芬克求职方法论</h3>
+        <div class="m-block spec-board">
+          <h4 class="sub">核心优势</h4>
+          <div class="why-nums">
+            <div><strong>66+</strong><span>国内高校合作</span></div>
+            <div><strong>600+</strong><span>海外院校合作</span></div>
+            <div><strong>50+</strong><span>头部企业合作</span></div>
+          </div>
+          <p class="lead one-line">将人才培养延伸至就业环节，对接真实岗位需求。</p>
+        </div>
+        <div class="m-block spec-board insight-board">
+          <h4 class="sub">问题诊断：三大求职洞察</h4>
+          <div class="iv-stage">
+            <ol class="iv-py">
+              <li class="t1">
+                <i class="shade" aria-hidden="true"></i>
+                <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="3.1"/><path d="M5.6 19c.7-3.1 3.2-4.9 6.4-4.9s5.7 1.8 6.4 4.9"/></svg></span>
+                <h5>拒绝标准化路径</h5>
+              </li>
+              <li class="t2">
+                <i class="shade" aria-hidden="true"></i>
+                <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.2 16.6L5.8 8.2l3.8 3.7L12 6.2l2.4 5.7 3.8-3.7 2.6 8.4H3.2z"/><rect x="4.2" y="17.4" width="15.6" height="1.7" rx=".4"/></svg></span>
+                <h5>创意岗三重错位</h5>
+              </li>
+              <li class="t3">
+                <i class="shade" aria-hidden="true"></i>
+                <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="13" width="3.2" height="7" rx=".55"/><rect x="10.4" y="8.2" width="3.2" height="11.8" rx=".55"/><rect x="16.8" y="4.2" width="3.2" height="15.8" rx=".55"/></svg></span>
+                <h5>从堆经历到沉淀能力</h5>
+              </li>
+            </ol>
+            <div class="iv-notes">
+              <p class="iv-n">艺术与设计没有<b>通用模板</b>，<br><b>方向</b>、<b>匹配</b>、<b>表达</b>都要按个人定制</p>
+              <p class="iv-n eq"><span>你以为的<b>岗位</b>&nbsp;≠&nbsp;<b>企业要的岗位</b></span><span>你准备的<b>作品</b>&nbsp;≠&nbsp;<b>企业看重的作品</b></span><span>你以为的<b>时间</b>&nbsp;≠&nbsp;<b>企业招聘的时间</b></span></p>
+              <p class="iv-n">实习不在多，<br>有效的经历要能<b>复盘</b>、<b>可表达</b>、<b>可验证</b></p>
+            </div>
+          </div>
+        </div>
+        <div class="m-block spec-board">
+          <h4 class="sub">评价标准：5E 人才评价模型</h4>
+          <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
+          <ul class="e5-list">
+            <li>
+              <div class="hd"><span class="tag">E1</span><div class="nm">教育背景<em>（Education）</em></div></div>
+              <p class="fx">院校底蕴 × 专业功底 × 学术素养</p>
+            </li>
+            <li>
+              <div class="hd"><span class="tag">E2</span><div class="nm">实践经验<em>（Experience）</em></div></div>
+              <p class="fx">实习历练 × 项目沉淀 × 业务实战</p>
+            </li>
+            <li>
+              <div class="hd"><span class="tag">E3</span><div class="nm">专业能力<em>（Expertise）</em></div></div>
+              <p class="fx">岗位硬技能 × 问题解决力 × AI应用力</p>
+            </li>
+            <li>
+              <div class="hd"><span class="tag">E4</span><div class="nm">执行力<em>（Execution）</em></div></div>
+              <p class="fx">结果导向 × 闭环思维 × 推进韧性</p>
+            </li>
+            <li>
+              <div class="hd"><span class="tag">E5</span><div class="nm">职业素养<em>（Employability）</em></div></div>
+              <p class="fx">主动沟通 × 高效协作 × 逻辑思辨</p>
+            </li>
+          </ul>
+        </div>
+        <div class="m-callout">
+          <h4 class="sub">现场评估机制</h4>
+          <p class="lead"><span class="one">现场招聘官依据 5E 人才评价模型审阅作品集和简历，</span>而非仅以院校背景为判断依据。<span class="tip">请携带简历和作品集到场</span></p>
+        </div>
+      </section>
+    </div>
+    </div>
+    <div id="viewApply" hidden>
+    <div id="publicChannel">
+      <div class="block b-info" id="sec-pub-info">
+        <div class="mark">基本信息</div>
+        <div class="sheet">
+          <div class="row tint tint-name"><span>姓名</span><input id="pubName" value="王同学" /></div>
+          <div class="row tint tint-school"><span>院校</span><input id="pubSchool" value="中央美术学院" /></div>
+          <div class="row tint tint-major"><span>专业</span><input id="pubMajor" value="视觉传达" /></div>
+          <div class="row tint tint-grade">
+            <span>年级</span>
+            <div class="opts g5" id="grade">
+              <button class="chip" type="button">大二</button>
+              <button class="chip on" type="button">大三</button>
+              <button class="chip" type="button">大四</button>
+              <button class="chip" type="button">研一</button>
+              <button class="chip" type="button">研二</button>
+            </div>
+          </div>
+          <div class="row tint tint-intern"><span>实习</span><input id="exp" value="新消费视觉实习 3 个月；大广赛优秀奖" /></div>
+          <div class="row tint tint-phone">
+            <span>手机</span>
+            <b class="val">138****8007</b>
+          </div>
+        </div>
+      </div>
+      <div class="block b-wish" id="sec-pub-jobs">
+        <div class="mark">投递岗位</div>
+        <div class="sheet">
+          <div class="sec tint tint-ind">
+            <div class="sec-h">期望行业</div>
+            <div class="tabs" id="tabs"></div>
+          </div>
+          <div class="sec tint tint-co">
+            <div class="sec-h">意向企业</div>
+            <div class="grid" id="cos"></div>
+            <div class="inner">
+              <div class="k">公司介绍</div>
+              <p id="introAbout"></p>
+            </div>
+          </div>
+          <div class="sec tint tint-job">
+            <div class="sec-h">
+              <span>热门岗位推荐</span>
+              <select class="city-pick" id="cityPick" aria-label="城市"></select>
+            </div>
+            <div class="jobs" id="jobs"></div>
+            <div class="inner">
+              <div class="k">职位描述</div>
+              <p id="introJd"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="innerChannel" hidden data-step="info">
+    <div class="perk only-inner" id="sfkPerk" data-gold="1">
+      <p class="perk-k">斯芬克学生及校友专属通道权益</p>
+      <ul>
+        <li>专属提前报名占位通道</li>
+        <li>专属优先入场场次</li>
+        <li>专属求职竞争力反馈</li>
+      </ul>
+    </div>
+    <div class="block b-info" id="sec-info">
+      <div class="mark">基本信息登记<em>必填</em></div>
+      <div class="sheet">
+        <p class="iv-tip">面试小贴士：请得体着装到场，并准备足量纸质简历（建议至少 10–15 份）</p>
+        <div class="field tint tint-name"><span class="lab need">学生的姓名全名</span><input id="name" placeholder="请填写全名" value="王乐言" /></div>
+        <div class="field tint tint-phone"><span class="lab need">您的手机号码<em>11位数字</em></span>
+          <input id="phone" type="tel" inputmode="numeric" maxlength="11" placeholder="请填写11位手机号" value="13800138007" />
+        </div>
+        <div class="field tint tint-mail">
+          <span class="lab need">您的邮箱号码<em>务必填写准确，用于后续通知面试结果</em></span>
+          <input id="email" type="email" placeholder="请填写邮箱" value="wangle@example.com" />
+        </div>
+        <div class="field tint tint-teacher only-inner" id="teacherRow"><span class="lab need">推荐您的教务老师全名</span><input id="teacher" placeholder="请填写全名" value="李敏" /></div>
+        <div class="field tint tint-alumni only-inner" id="alumniRow"><span class="lab">推荐的斯芬克校友全名</span><input id="alumni" placeholder="请填写全名" value="" /></div>
+        <div class="field tint tint-campus only-inner" id="campusRow">
+          <span class="lab need">所在斯芬克校区</span>
+          <select class="pick-full" id="campus">
+            <option>北京CBD</option>
+            <option>北京海淀</option>
+            <option>北京音乐</option>
+            <option>上海设计</option>
+            <option>上海音乐</option>
+            <option>成都</option>
+            <option>杭州</option>
+            <option>广州</option>
+            <option>深圳</option>
+            <option>南京</option>
+            <option>武汉</option>
+            <option>郑州</option>
+            <option>重庆</option>
+            <option>西安</option>
+            <option>苏州</option>
+          </select>
+        </div>
+        <div class="field tint tint-fair">
+          <span class="lab need">斯芬克独家招聘会·参会场次</span>
+          <div class="opts" id="fairCity">
+            <button class="chip" type="button" data-city="上海" data-date="10/24" data-val="上海"><b>上海</b><em>10/24</em></button>
+            <button class="chip" type="button" data-city="广州" data-date="10/25" data-val="广州"><b>广州</b><em>10/25</em></button>
+            <button class="chip on" type="button" data-city="北京" data-date="10/31" data-val="北京"><b>北京</b><em>10/31</em></button>
+            <button class="chip" type="button" data-city="成都" data-date="11/14" data-val="成都"><b>成都</b><em>11/14</em></button>
+          </div>
+          <div class="spot" id="passVenue">
+            <div class="spot-head">
+              <strong id="spotCity">北京站</strong>
+              <em id="spotDate">10月31日 · 上午</em>
+            </div>
+            <div class="spot-addr">
+              <p id="passAddr">北京市朝阳区酒仙桥路4号<br>798艺术中心展厅</p>
+              <button class="spot-nav" id="passNav" type="button" aria-label="导航">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l8.5 18-8.5-4.5L3.5 21 12 3z" fill="#fff"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="field tint tint-mode">
+          <span class="lab need">本次面试您的参与模式<em>请勾选</em></span>
+          <div class="opts g2" id="mode">
+            <button class="chip on" type="button">本人参与</button>
+            <button class="chip" type="button">家长代为参与</button>
+          </div>
+        </div>
+      </div>
+      <div class="page-foot" id="infoFoot">
+        <p class="note-line" id="noteLine">到场携带：纸质简历 10–15 份、纸质作品集</p>
+        <p class="act-hint">填写说明：* 为必填；<br>保存后可继续补充教育背景、求职意向</p>
+        <button class="btn" id="submitMini" type="button">保存进入下一页</button>
+      </div>
+    </div>
+
+    <div class="block b-edu" id="sec-edu">
+      <div class="mark">教育背景</div>
+      <div class="sheet">
+        <div class="field tint tint-edu">
+          <span class="lab">你目前是</span>
+          <div class="edu-filter" id="edu">
+            <button class="on" type="button" data-lv="ug">本科在读</button>
+            <button type="button" data-lv="ug-out">本科已毕业</button>
+            <button type="button" data-lv="pg">硕士在读</button>
+            <button type="button" data-lv="pg-out">硕士已毕业</button>
+            <button class="wide" type="button" data-lv="other">其他 · 专科 / 博士 / 博士后</button>
+          </div>
+        </div>
+        <div id="ugBox" class="edu-pack">
+          <div class="subhead">本科信息</div>
+          <div class="field"><span class="lab">国家/地区</span><input id="ugNation" value="中国" /></div>
+          <div class="field"><span class="lab">学校全称</span><input id="ugSchool" value="中央美术学院" /></div>
+          <div class="field"><span class="lab">所学专业</span><input id="ugMajor" value="视觉传达" /></div>
+          <div class="field">
+            <span class="lab">入学/毕业</span>
+            <div class="dates">
+              <input id="ugFrom" type="month" value="2023-09" />
+              <i>—</i>
+              <input id="ugTo" type="month" value="2027-06" />
+            </div>
+          </div>
+        </div>
+        <div id="masterBox" class="edu-pack pg" hidden>
+          <div class="subhead">硕士信息</div>
+          <div class="field"><span class="lab">国家/地区</span><input id="pgNation" value="" /></div>
+          <div class="field"><span class="lab">学校全称</span><input id="pgSchool" value="" /></div>
+          <div class="field"><span class="lab">所学专业</span><input id="pgMajor" value="" /></div>
+          <div class="field">
+            <span class="lab">入学/毕业</span>
+            <div class="dates">
+              <input id="pgFrom" type="month" />
+              <i>—</i>
+              <input id="pgTo" type="month" />
+            </div>
+          </div>
+        </div>
+        <div id="otherBox" class="edu-pack ot" hidden>
+          <div class="subhead">其他学历</div>
+          <div class="field" id="otherEdu">
+            <span class="lab">学历类型</span>
+            <div class="opts g3" id="otLv">
+              <button class="chip on" type="button">专科</button>
+              <button class="chip" type="button">博士</button>
+              <button class="chip" type="button">博士后</button>
+            </div>
+          </div>
+          <div class="field"><span class="lab">国家/地区</span><input id="otNation" placeholder="例如：中国" /></div>
+          <div class="field"><span class="lab">学校全称</span><input id="otSchool" placeholder="例如：××学院" /></div>
+          <div class="field"><span class="lab">所学专业</span><input id="otMajor" placeholder="例如：数字媒体" /></div>
+          <div class="field">
+            <span class="lab">入学/毕业</span>
+            <div class="dates">
+              <input id="otFrom" type="month" />
+              <i>—</i>
+              <input id="otTo" type="month" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block b-wish" id="sec-wish">
+      <div class="mark">求职意向</div>
+      <div class="sheet">
+        <div class="field tint tint-want">
+          <span class="lab">你现在主要想找<em>可多选</em></span>
+          <div class="opts g3" id="want">
+            <button class="chip on" type="button">校招/应届</button>
+            <button class="chip" type="button">社招/已毕业</button>
+            <button class="chip on" type="button">实习</button>
+          </div>
+        </div>
+        <div class="field tint tint-dir">
+          <span class="lab">意向求职方向<em>多选，至多 5 个</em></span>
+          <div class="dir-tabs" id="dirTabs">
+            <button class="on" type="button" data-dir="0">设计类</button>
+            <button type="button" data-dir="1">产品类</button>
+            <button type="button" data-dir="2">运营类</button>
+            <button type="button" data-dir="3">市场营销</button>
+            <button type="button" data-dir="4">游戏类</button>
+            <button type="button" data-dir="5">文化艺术</button>
+          </div>
+          <div class="dir-sub" id="dirs">
+            <div class="dir-group on">
+              <div class="opts g2">
+                <button class="chip" type="button">AIGC视觉设计</button>
+                <button class="chip" type="button">交互设计</button>
+                <button class="chip on" type="button">UI/UX</button>
+                <button class="chip on" type="button">产品设计</button>
+                <button class="chip" type="button">品牌设计</button>
+                <button class="chip" type="button">IP设计</button>
+                <button class="chip" type="button"><span>视频/<wbr>动效设计</span></button>
+              </div>
+            </div>
+            <div class="dir-group">
+              <div class="opts g2">
+                <button class="chip" type="button">产品经理</button>
+                <button class="chip" type="button">AI产品经理</button>
+                <button class="chip" type="button">产品策划</button>
+              </div>
+            </div>
+            <div class="dir-group">
+              <div class="opts g2">
+                <button class="chip" type="button">用户运营</button>
+                <button class="chip" type="button">内容运营</button>
+                <button class="chip" type="button">新媒体运营</button>
+                <button class="chip" type="button">电商运营</button>
+                <button class="chip" type="button">活动运营</button>
+                <button class="chip" type="button">直播运营</button>
+                <button class="chip" type="button">用户增长</button>
+              </div>
+            </div>
+            <div class="dir-group">
+              <div class="opts g2">
+                <button class="chip" type="button">整合营销</button>
+                <button class="chip" type="button">品牌营销</button>
+                <button class="chip" type="button">市场推广</button>
+                <button class="chip" type="button">广告创意</button>
+                <button class="chip" type="button">公关</button>
+                <button class="chip" type="button">商务拓展BD</button>
+                <button class="chip" type="button">海外营销</button>
+              </div>
+            </div>
+            <div class="dir-group">
+              <div class="opts g2">
+                <button class="chip" type="button">游戏策划</button>
+                <button class="chip" type="button"><span>游戏美术<wbr>（角色/场景）</span></button>
+                <button class="chip" type="button">游戏UI设计</button>
+                <button class="chip" type="button">技术美术TA</button>
+                <button class="chip" type="button">游戏运营</button>
+                <button class="chip" type="button">游戏美宣</button>
+              </div>
+            </div>
+            <div class="dir-group">
+              <div class="opts g2">
+                <button class="chip" type="button"><span>室内/<wbr>空间设计</span></button>
+                <button class="chip" type="button">服装设计</button>
+                <button class="chip" type="button">时尚买手</button>
+                <button class="chip" type="button">插画</button>
+                <button class="chip" type="button"><span>策展/<wbr>美术馆运营</span></button>
+                <button class="chip" type="button">文创开发</button>
+                <button class="chip" type="button"><span>音乐制作<wbr>（作词/作曲）</span></button>
+                <button class="chip" type="button">编剧</button>
+                <button class="chip" type="button">导演</button>
+                <button class="chip" type="button">制片</button>
+                <button class="chip" type="button"><span>AIGC制作/<wbr>导演</span></button>
+                <button class="chip" type="button">AI漫剧制作</button>
+              </div>
+            </div>
+          </div>
+          <div class="picked">
+            <span class="picked-lab">已选择 <em id="dirCount">0/5</em></span>
+            <div class="picked-list" id="dirPickedList"></div>
+          </div>
+        </div>
+        <div class="field tint tint-city">
+          <span class="lab">意向求职城市<em>可多选</em></span>
+          <div id="wishCity">
+            <div class="wish-row">
+              <span class="city-h">国内</span>
+              <div class="msel" id="wishCnBox">
+                <button class="msel-btn" id="wishCnBtn" type="button"><em>请选择，可多选</em></button>
+                <div class="msel-menu" id="wishCnMenu"></div>
+              </div>
+            </div>
+            <div class="wish-row">
+              <span class="city-h">海外</span>
+              <div class="opts" id="wishOs">
+                <button class="chip" type="button">英国</button>
+                <button class="chip" type="button">美国</button>
+              </div>
+            </div>
+            <div class="wish-row">
+              <span class="city-h">其他</span>
+              <input id="cityOther" placeholder="自行填写" />
+            </div>
+          </div>
+        </div>
+        <div class="field tint tint-pay">
+          <span class="lab">期望薪资</span>
+          <div class="opts g3" id="pay">
+            <button class="chip" type="button">6-8k</button>
+            <button class="chip" type="button">8-12k</button>
+            <button class="chip on" type="button">12-18k</button>
+            <button class="chip" type="button">18-25k</button>
+            <button class="chip" type="button">25k以上</button>
+          </div>
+        </div>
+        <div class="field tint tint-arrive">
+          <span class="lab">到岗 / 入职时间</span>
+          <div class="opts g2" id="arrive">
+            <button class="chip" type="button">随时</button>
+            <button class="chip on" type="button">1-3个月</button>
+            <button class="chip" type="button">3个月以上</button>
+            <button class="chip" type="button">毕业回国后</button>
+          </div>
+        </div>
+        <div class="field tint tint-intern">
+          <span class="lab">过往已有几段实习经历</span>
+          <div class="opts g3" id="intern">
+            <button class="chip" type="button">0段</button>
+            <button class="chip" type="button">1段</button>
+            <button class="chip on" type="button">2段</button>
+            <button class="chip" type="button">3段</button>
+            <button class="chip" type="button">4段</button>
+            <button class="chip" type="button">5段及以上</button>
+          </div>
+        </div>
+        <div class="field tint tint-artist">
+          <span class="lab">未来是否考虑做独立艺术家/设计师或创业</span>
+          <div class="opts g2" id="artist">
+            <button class="chip" type="button">是</button>
+            <button class="chip" type="button">否</button>
+            <button class="chip on" type="button" style="grid-column:1/-1">有意向，但暂未考虑</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="page-foot" id="eduFoot">
+        <p class="act-hint">完善后，点此提交整份报名</p>
+        <button class="btn" id="submit" type="button">提交报名</button>
+      </div>
+    </div>
+    </div>
+
+  </section>
+
+  <section class="screen" id="load">
+    <div class="load">
+      <div class="ring"></div>
+      <h3>正在筛选</h3>
+    </div>
+  </section>
+
+  <section class="screen" id="pass">
+    <div class="ticket" id="ticket">
+      <div class="ticket-stamp">已通过</div>
+      <div class="ticket-top">
+        <div class="k">入场凭证</div>
+        <h3 id="tkTitle">中国海归艺术创意人才专场招聘会</h3>
+      </div>
+      <div class="ticket-cut"></div>
+      <div class="ticket-body">
+        <div class="ticket-row">
+          <div><span class="lab">参展城市</span><b id="tkCity">北京站</b></div>
+          <div><span class="lab">到场时间</span><b id="tkWhen">10月31日上午</b></div>
+        </div>
+        <p class="ticket-note">请<em>持短信</em>到现场参加<em>斯芬克创意人才专场</em></p>
+        <div class="ticket-addr">
+          <div class="txt">
+            <span>展会地址</span>
+            <p id="tkAddr">北京市朝阳区酒仙桥路4号<br>798艺术中心展厅</p>
+          </div>
+          <button class="spot-nav" id="ticketNav" type="button" aria-label="导航">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l8.5 18-8.5-4.5L3.5 21 12 3z" fill="#fff"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="ticket-foot">短信已发送至 <b id="tkSms">138****8007</b></div>
+    </div>
+  </section>
+
+  <section class="screen" id="fail">
+    <div class="card" style="margin-top:20px;text-align:center;padding:22px 16px">
+      <div class="fail">!</div>
+      <h3 style="font-size:18px">暂未通过</h3>
+      <p style="font-size:13px;color:#888;margin-top:6px;line-height:1.6">未通过，可改投其他岗位。</p>
+    </div>
+    <button class="btn" id="again2" type="button">返回</button>
+  </section>
+
+  <section class="screen" id="book">
+    <div class="sum-page" id="bookTable"></div>
+  </section>
+
+  <div class="dock on" id="dock">
+    <p class="dock-tip" id="dockTip" hidden>完善后，点此提交整份报名</p>
+    <div class="dock-acts">
+      <button class="btn" id="goApply" type="button">活动报名</button>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <div class="pop" id="pop">
+    <div class="pop-mask" id="popMask"></div>
+    <div class="pop-card">
+      <div class="ok" id="popMarkOk">✓</div>
+      <div class="fail" id="popMarkFail" hidden>!</div>
+      <h3 id="popTitle">基本信息已提交</h3>
+      <p class="desc" id="popDesc">必填项已保存，可继续填写教育背景、求职意向。</p>
+      <div class="sms" id="popSms">短信已发送至 138****8007</div>
+      <button class="btn" id="popOk" type="button">继续填写</button>
+    </div>
+  </div>
+  <div class="pop" id="keepPop">
+    <div class="pop-mask" id="keepMask"></div>
+    <div class="pop-card">
+      <h3>温馨提示</h3>
+      <p class="desc" id="keepDesc">请在参加面试场次<span class="keep-hl">至少提前3天</span>完成剩余信息的登记与填写，建议<span class="keep-hl">继续填写完整</span>再离开哦</p>
+      <div class="keep-acts">
+        <button class="btn ghost" id="keepLeave" type="button">确认离开</button>
+        <button class="btn" id="keepStay" type="button">继续填写</button>
+      </div>
+    </div>
+  </div>
+  <div class="side-fabs on" id="sideFabs">
+    <button class="side-fab share" id="shareBtn" type="button" aria-label="分享">
+      <span class="ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M6.5 16.5c.6-4.4 3.6-7.2 8.4-7.2H18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M15 6.2 19.2 9.4 15 12.6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span>分享</span>
+    </button>
+    <button class="side-fab book" id="bookFab" type="button" aria-label="我的预约">
+      <span class="ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="3.5" y="5.5" width="13" height="13" rx="2" stroke="#4F46E5" stroke-width="1.8"/>
+          <path d="M7 4v3M13 4v3M3.5 10h13" stroke="#4F46E5" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="17.2" cy="17.2" r="4.2" fill="#111" stroke="#4F46E5" stroke-width="1.6"/>
+          <path d="M17.2 15.2v2.2l1.5.9" stroke="#4F46E5" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span>我的预约</span>
+    </button>
+  </div>
+  <div class="rail" id="rail">
+    <div class="anchor" id="anchor">
+      <button type="button" data-sec="sec-info" class="on">基<br>本<br>信<br>息</button>
+      <button type="button" data-sec="sec-edu">教<br>育<br>背<br>景</button>
+      <button type="button" data-sec="sec-wish">求<br>职<br>意<br>向</button>
+      <button type="button" data-sec="book">预<br>约<br>信<br>息</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const ABOUT = {
+  "东方甄选": "新东方体系电商直播品牌，内容与视觉向设计类学生开放。",
+  "阿里国际": "跨境电商业务，视觉设计服务全球市场商品与活动。",
+  "58同城": "本地生活平台，品牌与营销视觉岗位常年校招。",
+  "农夫山泉": "快消品牌，包装与物料设计要求完整作品集。",
+  "百丽": "时尚零售集团，鞋履与服饰视觉、陈列相关岗位。",
+  "银泰": "商业零售，商场美陈与活动视觉。",
+  "山下有松": "新消费家居品牌，产品与内容视觉。",
+  "小鹏汽车": "智能汽车，座舱界面与品牌视觉。",
+  "追觅": "智能硬件，工业设计与 CMF。",
+  "TCL": "消费电子，品牌视觉与终端物料。",
+  "justfoto": "影像科技，平面与影像设计。",
+  "十里芳菲": "空间与生活方式品牌，空间视觉。",
+  "TEA": "科技产品品牌，平面与包装。",
+  "今日美术馆": "当代艺术机构，展览视觉与物料。",
+  "摩登天空": "音乐厂牌，演出与宣发视觉。",
+  "完美世界": "游戏公司，原画与视觉概念。",
+  "wuhu 动画": "动画工作室，分镜与角色设计。",
+  "与光同尘": "品牌设计公司，全案视觉。",
+  "洛可可": "设计咨询，工业与平面设计。"
+};
+const JD = {
+  "内容视觉设计师": "负责直播间主 KV、短视频封面与活动主视觉；PS / AI 熟练，有电商视觉实习优先。",
+  "直播视觉实习生": "协助直播物料、字幕条与切片封面；能适应节奏，有作品即可。",
+  "电商视觉设计": "商品详情、大促主视觉；需跨境或电商相关作品。",
+  "品牌设计师": "品牌规范落地、投放物料；需完整品牌项目。",
+  "包装设计": "产品包装与礼盒；需结构或快消包装作品。",
+  "时尚视觉设计": "新品视觉与店铺物料。",
+  "商场美陈设计": "节庆美陈方案与现场物料。",
+  "产品视觉": "产品图与内容图，需静物或家居作品。",
+  "智能座舱 UI": "车机界面与交互视觉，需 UI 作品集。",
+  "工业设计助理": "外观与 CMF 辅助，需工业设计作品。",
+  "品牌视觉设计": "品牌系统与终端物料。",
+  "影像设计": "影像调性与平面延展。",
+  "空间视觉": "空间导视与装置视觉。",
+  "产品平面设计": "包装与平面物料。",
+  "展览视觉设计": "展览主视觉、导览与物料。",
+  "音乐视觉 / 物料": "演出主视觉、周边与宣发。",
+  "游戏原画实习": "角色或场景原画，需原画作品。",
+  "动画分镜": "分镜与动态预览。",
+  "品牌设计": "品牌全案与延展。",
+  "工业 / 平面设计": "产品外观或平面项目。"
+};
+const CATS = ["全部", "互联网 / 新消费", "科技 / 智能", "文化 / 创意"];
+const POSTS = [
+  { id: "dfzx-nj", co: "东方甄选", tag: "新东方体系", cat: "互联网 / 新消费", job: "内容视觉设计师", city: "北京", date: "10.31" },
+  { id: "dfzx-bj", co: "东方甄选", tag: "新东方体系", cat: "互联网 / 新消费", job: "直播视觉实习生", city: "北京", date: "10.31" },
+  { id: "ali-sh", co: "阿里国际", cat: "互联网 / 新消费", job: "电商视觉设计", city: "上海", date: "10.24" },
+  { id: "58-bj", co: "58同城", cat: "互联网 / 新消费", job: "品牌设计师", city: "北京", date: "10.31" },
+  { id: "nfsq-hz", co: "农夫山泉", cat: "互联网 / 新消费", job: "包装设计", city: "上海", date: "10.24" },
+  { id: "bl-gz", co: "百丽", cat: "互联网 / 新消费", job: "时尚视觉设计", city: "广州", date: "10.25" },
+  { id: "yt-hz", co: "银泰", cat: "互联网 / 新消费", job: "商场美陈设计", city: "上海", date: "10.24" },
+  { id: "xss-cd", co: "山下有松", cat: "互联网 / 新消费", job: "产品视觉", city: "成都", date: "11.14" },
+  { id: "xp-gz", co: "小鹏汽车", cat: "科技 / 智能", job: "智能座舱 UI", city: "广州", date: "10.25" },
+  { id: "zm-sz", co: "追觅", cat: "科技 / 智能", job: "工业设计助理", city: "广州", date: "10.25" },
+  { id: "tcl-sz", co: "TCL", cat: "科技 / 智能", job: "品牌视觉设计", city: "广州", date: "10.25" },
+  { id: "jft-sh", co: "justfoto", cat: "科技 / 智能", job: "影像设计", city: "上海", date: "10.24" },
+  { id: "slff-cd", co: "十里芳菲", cat: "科技 / 智能", job: "空间视觉", city: "成都", date: "11.14" },
+  { id: "tea-bj", co: "TEA", cat: "科技 / 智能", job: "产品平面设计", city: "北京", date: "10.31" },
+  { id: "jr-bj", co: "今日美术馆", cat: "文化 / 创意", job: "展览视觉设计", city: "北京", date: "10.31" },
+  { id: "md-bj", co: "摩登天空", cat: "文化 / 创意", job: "音乐视觉 / 物料", city: "北京", date: "10.31" },
+  { id: "wmsj-sh", co: "完美世界", cat: "文化 / 创意", job: "游戏原画实习", city: "上海", date: "10.24" },
+  { id: "wuhu-su", co: "wuhu 动画", cat: "文化 / 创意", job: "动画分镜", city: "广州", date: "10.25" },
+  { id: "yg-nj", co: "与光同尘", cat: "文化 / 创意", job: "品牌设计", city: "北京", date: "10.31" },
+  { id: "lk-sz", co: "洛可可", cat: "文化 / 创意", job: "工业 / 平面设计", city: "广州", date: "10.25" }
+];
+
+let cat = "互联网 / 新消费";
+let co = "东方甄选";
+let city = "北京";
+const WISH_CN = ["北京","上海","深圳","广州","杭州","成都","重庆","武汉","西安","南京","苏州"];
+let wishCn = ["北京"];
+let postId = "dfzx-bj";
+let file = false;
+let INNER = (() => {
+  const q = new URLSearchParams(location.search);
+  const hash = (location.hash || "").replace(/^#/, "");
+  if (q.get("pub") === "1" || q.get("inner") === "0" || hash === "pub" || hash.indexOf("pub=1") === 0) return false;
+  if (q.has("inner") && q.get("inner") !== "false") return true;
+  return true;
+})();
+const INNER_NAME = "中国海归艺术创意人才专场招聘会";
+const VENUES = {
+  北京: { nav: "北京市朝阳区酒仙桥路4号798艺术中心展厅", html: "北京市朝阳区酒仙桥路4号<br>798艺术中心展厅" },
+  上海: { nav: "上海市黄浦区南京东路100号国际饭店会议层", html: "上海市黄浦区南京东路100号<br>国际饭店会议层" },
+  广州: { nav: "广州市天河区天河路208号天河城酒店8层", html: "广州市天河区天河路208号<br>天河城酒店8层" },
+  成都: { nav: "成都市锦江区红星路三段1号成都国际饭店6层", html: "成都市锦江区红星路三段1号<br>成都国际饭店6层" }
+};
+(function () {
+  const q = new URLSearchParams(location.search).get("city");
+  if (!["北京", "上海", "广州", "成都"].includes(q)) return;
+  city = q;
+  const hit = POSTS.find(p => p.city === city);
+  if (hit) { cat = hit.cat; co = hit.co; postId = hit.id; }
+})();
+function fairGet() {
+  try { return JSON.parse(localStorage.getItem("sfk-fair-apply") || "{}"); } catch (e) { return {}; }
+}
+function collectForm() {
+  const val = id => { const el = document.getElementById(id); return el ? el.value : ""; };
+  const one = id => {
+    const c = document.querySelector("#" + id + " .chip.on");
+    if (!c) return "";
+    return (c.dataset.val || c.textContent || "").trim();
+  };
+  const many = sel => [...document.querySelectorAll(sel)].map(x => x.textContent.trim());
+  const js = document.querySelector(".js-up");
+  return {
+    inner: INNER,
+    file: file,
+    fileName: js ? js.textContent : "",
+    cat: cat,
+    co: co,
+    city: city,
+    postId: postId,
+    pubName: val("pubName"),
+    pubSchool: val("pubSchool"),
+    pubMajor: val("pubMajor"),
+    exp: val("exp"),
+    name: val("name"),
+    teacher: val("teacher"),
+    alumni: val("alumni"),
+    campus: val("campus"),
+    fairCity: one("fairCity"),
+    fairDate: ((document.querySelector("#fairCity .chip.on") || {}).dataset.date) || "",
+    phone: val("phone"),
+    email: val("email"),
+    ugNation: val("ugNation"),
+    ugSchool: val("ugSchool"),
+    ugMajor: val("ugMajor"),
+    ugFrom: val("ugFrom"),
+    ugTo: val("ugTo"),
+    pgNation: val("pgNation"),
+    pgSchool: val("pgSchool"),
+    pgMajor: val("pgMajor"),
+    pgFrom: val("pgFrom"),
+    pgTo: val("pgTo"),
+    otLv: one("otLv"),
+    otNation: val("otNation"),
+    otSchool: val("otSchool"),
+    otMajor: val("otMajor"),
+    otFrom: val("otFrom"),
+    otTo: val("otTo"),
+    otherEdu: [one("otLv"), val("otNation"), val("otSchool"), val("otMajor"), [val("otFrom"), val("otTo")].filter(Boolean).join("—")].filter(Boolean).join(" · "),
+    cityOther: val("cityOther"),
+    grade: one("grade"),
+    mode: one("mode"),
+    edu: (document.querySelector("#edu .on") || {}).dataset.lv || "ug",
+    pay: one("pay"),
+    arrive: one("arrive"),
+    intern: one("intern"),
+    artist: one("artist"),
+    want: many("#want .chip.on"),
+    wishCity: wishCn.concat(many("#wishOs .chip.on")),
+    dirs: many("#dirs .chip.on")
+  };
+}
+function applyForm(d) {
+  if (!d) return;
+  const set = (id, v) => { const el = document.getElementById(id); if (el && v != null) el.value = v; };
+  ["pubName","pubSchool","pubMajor","exp","name","teacher","alumni","campus","phone","email","ugNation","ugSchool","ugMajor","ugFrom","ugTo","pgNation","pgSchool","pgMajor","pgFrom","pgTo","otNation","otSchool","otMajor","otFrom","otTo","cityOther"].forEach(id => set(id, d[id]));
+  const pick = (id, text) => {
+    if (!text) return;
+    document.querySelectorAll("#" + id + " .chip").forEach(c => {
+      const v = (c.dataset.val || c.textContent || "").trim();
+      c.classList.toggle("on", v === text);
+    });
+  };
+  pick("grade", d.grade);
+  pick("mode", d.mode);
+  pick("otLv", d.otLv);
+  pick("fairCity", d.fairCity || d.city);
+  pick("pay", d.pay);
+  pick("arrive", d.arrive);
+  pick("intern", d.intern);
+  pick("artist", d.artist);
+  if (d.edu) {
+    document.querySelectorAll("#edu button").forEach(b => b.classList.toggle("on", b.dataset.lv === d.edu));
+    eduMode();
+  }
+  const multi = (sel, arr) => {
+    if (!arr) return;
+    document.querySelectorAll(sel).forEach(c => c.classList.toggle("on", arr.indexOf(c.textContent.trim()) >= 0));
+  };
+  multi("#want .chip", d.want);
+  multi("#wishOs .chip", d.wishCity);
+  multi("#dirs .chip", d.dirs);
+  if (d.wishCity) wishCn = d.wishCity.filter(c => WISH_CN.indexOf(c) >= 0);
+  if (typeof paintWishCn === "function") paintWishCn();
+  if (d.file) {
+    file = true;
+    document.querySelectorAll(".js-up").forEach(b => { b.textContent = d.fileName || b.textContent; });
+  }
+  if (d.cat) cat = d.cat;
+  if (d.co) co = d.co;
+  if (d.city) city = d.city;
+  if (d.postId) postId = d.postId;
+  if (typeof paintPicked === "function") paintPicked();
+  if (typeof paintBook === "function") paintBook();
+}
+function fairSave(status) {
+  const prev = fairGet();
+  const data = collectForm();
+  data.status = status || prev.status || "draft";
+  data.at = Date.now();
+  localStorage.setItem("sfk-fair-apply", JSON.stringify(data));
+}
+function paintEditBar() {
+  document.getElementById("submit").textContent = "提交报名";
+  document.getElementById("submitMini").textContent = "保存进入下一页";
+  paintAnchor();
+}
+function applyChannel() {
+  document.getElementById("publicChannel").hidden = true;
+  document.getElementById("innerChannel").hidden = false;
+  document.querySelectorAll(".only-inner").forEach(el => {
+    el.hidden = !INNER;
+    el.classList.toggle("off", !INNER);
+  });
+  const note = document.getElementById("noteLine");
+  if (note) {
+    note.innerHTML = INNER
+      ? "到场携带：纸质简历 10–15 份、纸质作品集<br>（也可请教务老师代交）"
+      : "到场携带：纸质简历 10–15 份、纸质作品集";
+  }
+  if (INNER) {
+    document.body.classList.remove("pub-ch");
+    document.body.classList.add("inner-ch");
+    document.querySelector(".phone").classList.remove("pub-ch");
+    const hero = document.querySelector(".hero");
+    hero.classList.add("inner");
+    hero.classList.remove("pub");
+    document.getElementById("heroEm").hidden = false;
+    document.getElementById("heroEm").textContent = "斯芬克首届 · 国内首个海归艺术专场";
+    const title = document.getElementById("heroTitle");
+    title.hidden = false;
+    title.classList.remove("long");
+    title.innerHTML = "中国海归艺术<br>创意人才专场招聘会";
+    const pass = document.getElementById("heroPass");
+    pass.hidden = true;
+    pass.classList.remove("long", "bubble");
+    document.querySelector(".hero-copy").appendChild(pass);
+    document.getElementById("chTag").textContent = "内部通道";
+    document.getElementById("navTitle").textContent = INNER_NAME;
+    const nav = document.querySelector(".nav");
+    nav.classList.add("long", "inner-nav");
+    nav.classList.remove("pub-nav");
+    document.title = INNER_NAME;
+    const teacherRow = document.getElementById("teacherRow");
+    const campusRow = document.getElementById("campusRow");
+    const alumniRow = document.getElementById("alumniRow");
+    if (teacherRow) { teacherRow.hidden = false; teacherRow.classList.remove("off"); }
+    if (campusRow) { campusRow.hidden = false; campusRow.classList.remove("off"); }
+    if (alumniRow) { alumniRow.hidden = false; alumniRow.classList.remove("off"); }
+  } else {
+    document.body.classList.add("pub-ch");
+    document.body.classList.remove("inner-ch");
+    document.querySelector(".phone").classList.add("pub-ch");
+    const hero = document.querySelector(".hero");
+    hero.classList.remove("inner");
+    hero.classList.add("pub");
+    document.getElementById("heroEm").hidden = false;
+    document.getElementById("heroEm").textContent = "斯芬克首届 · 国内首个海归艺术专场";
+    const title = document.getElementById("heroTitle");
+    title.hidden = false;
+    title.classList.remove("long");
+    title.innerHTML = "中国海归艺术<br>创意人才专场招聘会";
+    const pass = document.getElementById("heroPass");
+    pass.hidden = true;
+    pass.classList.remove("long", "bubble");
+    document.querySelector(".hero-copy").appendChild(pass);
+    document.getElementById("chTag").textContent = "公开通道";
+    document.getElementById("navTitle").textContent = "中国海归艺术创意人才专场招聘会";
+    const nav = document.querySelector(".nav");
+    nav.classList.add("long", "pub-nav");
+    nav.classList.remove("inner-nav");
+    document.title = "公开报名 · 海归艺术创意人才专场招聘会";
+    const name = document.getElementById("name");
+    if (name && name.value === "王乐言") name.value = "王同学";
+    ["teacherRow", "campusRow", "alumniRow"].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.hidden = true;
+      el.classList.add("off");
+    });
+  }
+  const sub = document.getElementById("submit");
+  if (sub) sub.textContent = "提交报名";
+  const tip = document.getElementById("dockTip");
+  if (tip) tip.hidden = false;
+  showFairView(fairView || "intro");
+}
+function paintAnchor(active) {
+  const formOn = document.getElementById("form").classList.contains("on");
+  const list = [
+    ["sec-info", "基本信息"],
+    ["sec-edu", "教育背景"],
+    ["sec-wish", "求职意向"],
+    ["book", "预约信息"]
+  ];
+  const on = active || ((document.querySelector("#anchor button.on") || {}).dataset.sec || list[0][0]);
+  document.getElementById("anchor").innerHTML = list.map(x =>
+    `<button type="button" data-sec="${x[0]}" class="${x[0] === on ? "on" : ""}">${x[1].split("").join("<br>")}</button>`
+  ).join("");
+  const id = show.id;
+  const rail = document.getElementById("rail");
+  rail.classList.toggle("on", (formOn && fairView === "apply") || id === "book");
+  rail.classList.remove("solo");
+}
+function setAnchorOn(id) {
+  const btns = document.querySelectorAll("#anchor button[data-sec]");
+  if (![...btns].some(b => b.dataset.sec === id)) return;
+  btns.forEach(b => b.classList.toggle("on", b.dataset.sec === id));
+}
+function spyAnchor() {
+  if (!document.getElementById("form").classList.contains("on") || fairView !== "apply") return;
+  if (applyStep !== "edu") {
+    setAnchorOn("sec-info");
+    return;
+  }
+  const form = document.getElementById("form");
+  const ids = ["sec-edu", "sec-wish"];
+  const line = form.getBoundingClientRect().top + 48;
+  let current = "sec-edu";
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (el.getBoundingClientRect().top <= line) current = id;
+  });
+  setAnchorOn(current);
+}
+let fairView = "intro";
+let applyStep = "info";
+function setApplyStep(step, scrollId) {
+  applyStep = step === "edu" ? "edu" : "info";
+  const wrap = document.getElementById("innerChannel");
+  if (wrap) wrap.setAttribute("data-step", applyStep);
+  const form = document.getElementById("form");
+  if (form && !scrollId) form.scrollTop = 0;
+  const map = { info: "sec-info", edu: "sec-edu" };
+  paintAnchor(scrollId || map[applyStep]);
+  syncDock();
+  if (scrollId) {
+    const el = document.getElementById(scrollId);
+    if (el) requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth", block: "start" }));
+  }
+}
+function syncDock() {
+  const onForm = document.getElementById("form").classList.contains("on");
+  const intro = fairView === "intro";
+  document.getElementById("dock").classList.toggle("on", onForm && intro);
+  document.querySelector(".phone").classList.toggle("has-dock", onForm && intro);
+  const go = document.getElementById("goApply");
+  const fabs = document.getElementById("sideFabs");
+  const tip = document.getElementById("dockTip");
+  if (go) go.hidden = !intro;
+  if (fabs) fabs.classList.toggle("on", onForm && intro);
+  if (tip) tip.hidden = true;
+}
+function showFairView(v) {
+  const next = v === "apply" ? "apply" : "intro";
+  const fromIntro = fairView !== "apply" && next === "apply";
+  fairView = next;
+  const intro = document.getElementById("viewIntro");
+  const apply = document.getElementById("viewApply");
+  if (intro) intro.hidden = fairView !== "intro";
+  if (apply) apply.hidden = fairView !== "apply";
+  document.querySelectorAll("#viewTabs [data-view]").forEach(b => {
+    b.classList.toggle("on", b.dataset.view === fairView);
+  });
+  const form = document.getElementById("form");
+  const formOn = form && form.classList.contains("on");
+  if (formOn) form.scrollTop = 0;
+  if (fromIntro) setApplyStep("info");
+  else syncDock();
+  const sid = show.id;
+  document.getElementById("rail").classList.toggle("on", (formOn && fairView === "apply") || sid === "book");
+  if (formOn) paintAnchor();
+}
+document.getElementById("viewTabs").addEventListener("click", e => {
+  const b = e.target.closest("[data-view]");
+  if (b) showFairView(b.dataset.view);
+});
+applyChannel();
+applyForm(fairGet());
+document.querySelectorAll("#fairCity .chip").forEach(c => c.classList.toggle("on", c.dataset.city === city));
+paintFairTip();
+let spyTick = 0;
+document.getElementById("form").addEventListener("scroll", () => {
+  if (spyTick) return;
+  spyTick = requestAnimationFrame(() => {
+    spyTick = 0;
+    spyAnchor();
+  });
+});
+document.getElementById("anchor").addEventListener("click", e => {
+  const b = e.target.closest("[data-sec]");
+  if (!b) return;
+  const sec = b.dataset.sec;
+  if (sec === "book") {
+    paintAnchor("book");
+    paintBook();
+    show("book");
+    return;
+  }
+  const jump = () => {
+    showFairView("apply");
+    if (sec === "sec-edu") setApplyStep("edu");
+    else if (sec === "sec-wish") setApplyStep("edu", "sec-wish");
+    else setApplyStep("info");
+  };
+  if (show.id !== "form") {
+    show("form");
+    requestAnimationFrame(() => requestAnimationFrame(jump));
+    return;
+  }
+  jump();
+});
+
+function inCat() {
+  return POSTS.filter(p => p.cat === cat);
+}
+function companies() {
+  const seen = [];
+  inCat().forEach(p => { if (!seen.includes(p.co)) seen.push(p.co); });
+  return seen;
+}
+function jobsOf() {
+  return POSTS.filter(p => p.cat === cat && p.co === co && p.city === city);
+}
+function citiesOf() {
+  const seen = [];
+  POSTS.filter(p => p.cat === cat && p.co === co).forEach(p => {
+    if (!seen.includes(p.city)) seen.push(p.city);
+  });
+  return seen;
+}
+function cur() {
+  return POSTS.find(p => p.id === postId) || jobsOf()[0];
+}
+function paint() {
+  document.getElementById("tabs").innerHTML = CATS.slice(1).map(c =>
+    `<button class="tab ${c === cat ? "on" : ""}" type="button" data-cat="${c}">${c}</button>`
+  ).join("");
+  const cos = companies();
+  if (!cos.includes(co)) co = cos[0];
+  document.getElementById("cos").innerHTML = cos.map(name =>
+    `<button class="cell ${name === co ? "on" : ""}" type="button" data-co="${name}"><span class="n">${name}</span></button>`
+  ).join("");
+  const cities = citiesOf();
+  if (!cities.includes(city)) city = cities[0] || "";
+  const pick = document.getElementById("cityPick");
+  pick.innerHTML = cities.map(c =>
+    `<option value="${c}" ${c === city ? "selected" : ""}>${c}站</option>`
+  ).join("");
+  pick.disabled = cities.length === 0;
+  const jobs = jobsOf();
+  if (!jobs.some(p => p.id === postId)) postId = jobs[0] ? jobs[0].id : "";
+  document.getElementById("jobs").innerHTML = jobs.map(p =>
+    `<button class="job ${p.id === postId ? "on" : ""}" type="button" data-id="${p.id}">
+      <span class="n">${p.job}</span>
+      <span class="d">${p.date}</span>
+    </button>`
+  ).join("");
+  const p = cur();
+  if (p) {
+    document.getElementById("introAbout").textContent = ABOUT[p.co] || "";
+    document.getElementById("introJd").textContent = JD[p.job] || "";
+  }
+}
+function phoneOk() {
+  return /^1\d{10}$/.test((document.getElementById("phone").value || "").trim());
+}
+function emailOk() {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((document.getElementById("email").value || "").trim());
+}
+function ready() {
+  const phone = document.getElementById("phone");
+  if (phone) phone.classList.toggle("err", phone.value.length > 0 && !phoneOk());
+  const email = document.getElementById("email");
+  if (email) email.classList.toggle("err", email.value.length > 0 && !emailOk());
+  const fairOn = document.querySelector("#fairCity .chip.on");
+  const ok = phoneOk() && emailOk()
+    && document.getElementById("name").value.trim()
+    && (!INNER || document.getElementById("teacher").value.trim())
+    && !!fairOn;
+  if (typeof paintBook === "function") paintBook();
+  return ok;
+}
+function requiredGaps() {
+  const gaps = [];
+  const name = (document.getElementById("name").value || "").trim();
+  const phone = (document.getElementById("phone").value || "").trim();
+  const email = (document.getElementById("email").value || "").trim();
+  const teacher = ((document.getElementById("teacher") || {}).value || "").trim();
+  const fairOn = document.querySelector("#fairCity .chip.on");
+  if (!name) gaps.push({ label: "姓名全名", el: document.getElementById("name") });
+  if (!phone) gaps.push({ label: "手机号码", el: document.getElementById("phone") });
+  else if (!phoneOk()) gaps.push({ label: "11位正确手机号", el: document.getElementById("phone") });
+  if (!email) gaps.push({ label: "邮箱号码", el: document.getElementById("email") });
+  else if (!emailOk()) gaps.push({ label: "正确邮箱格式", el: document.getElementById("email") });
+  if (INNER && !teacher) gaps.push({ label: "教务老师全名", el: document.getElementById("teacher") });
+  if (!fairOn) gaps.push({ label: "参会场次", el: document.getElementById("fairCity") });
+  return gaps;
+}
+function showNeedPop(gaps) {
+  const pop = document.getElementById("pop");
+  document.getElementById("popMarkOk").hidden = true;
+  document.getElementById("popMarkFail").hidden = false;
+  document.getElementById("popTitle").textContent = "请完善必填信息";
+  document.getElementById("popDesc").textContent = "还差：" + gaps.map(g => g.label).join("、");
+  document.getElementById("popSms").hidden = true;
+  document.getElementById("popOk").textContent = "去填写";
+  pop.dataset.mode = "need";
+  pop._needEl = gaps[0] && gaps[0].el;
+  pop.classList.add("on");
+}
+function eduMode() {
+  const lv = (document.querySelector("#edu .on") || {}).dataset.lv || "ug";
+  document.getElementById("ugBox").hidden = lv === "other";
+  document.getElementById("masterBox").hidden = lv !== "pg" && lv !== "pg-out";
+  document.getElementById("otherBox").hidden = lv !== "other";
+}
+function paintBook() {
+  const box = document.getElementById("bookTable");
+  if (!box) return;
+  const txt = id => {
+    const el = document.getElementById(id);
+    return el && String(el.value || "").trim() ? el.value.trim() : "未填";
+  };
+  const one = id => {
+    const c = document.querySelector("#" + id + " .chip.on");
+    return c ? (c.dataset.val || c.textContent || "").replace(/\s+/g, " ").trim() : "未填";
+  };
+  const many = sel => {
+    const a = [...document.querySelectorAll(sel)].map(x => x.textContent.replace(/\s+/g, " ").trim()).filter(Boolean);
+    return a.length ? a.join("、") : "未填";
+  };
+  const ym = id => {
+    const v = (document.getElementById(id) || {}).value || "";
+    return v ? v.replace("-", ".") : "";
+  };
+  const span = (a, b) => {
+    const x = ym(a);
+    const y = ym(b);
+    return x || y ? (x || "未填") + " — " + (y || "未填") : "未填";
+  };
+  const fair = document.querySelector("#fairCity .chip.on");
+  const cityName = fair ? fair.dataset.city + "站" : "未选站";
+  const date = fair
+    ? (fair.dataset.date || "").replace(/^0?(\d+)\/0?(\d+)$/, "$1月$2日") + "上午"
+    : "未选时间";
+  const addrEl = document.getElementById("passAddr");
+  const eduBtn = document.querySelector("#edu .on");
+  const eduLv = (eduBtn && eduBtn.dataset.lv) || "ug";
+  const eduLab = eduBtn ? eduBtn.textContent.trim() : "未填";
+  const os = [...document.querySelectorAll("#wishOs .chip.on")].map(x => x.textContent.trim());
+  const other = (document.getElementById("cityOther") || {}).value;
+  const wish = wishCn.concat(os).concat(other ? [String(other).trim()] : []).filter(Boolean);
+  const eduRows = [
+    ["目前身份", eduLab, "edu"]
+  ];
+  if (eduLv !== "other") {
+    eduRows.push(
+      ["本科国家", txt("ugNation"), "ugNation"],
+      ["本科学校", txt("ugSchool"), "ugSchool"],
+      ["本科专业", txt("ugMajor"), "ugMajor"],
+      ["本科时间", span("ugFrom", "ugTo"), "ugFrom"]
+    );
+  }
+  if (eduLv === "pg" || eduLv === "pg-out") {
+    eduRows.push(
+      ["硕士国家", txt("pgNation"), "pgNation"],
+      ["硕士学校", txt("pgSchool"), "pgSchool"],
+      ["硕士专业", txt("pgMajor"), "pgMajor"],
+      ["硕士时间", span("pgFrom", "pgTo"), "pgFrom"]
+    );
+  }
+  if (eduLv === "other") eduRows.push(
+    ["学历类型", one("otLv"), "otLv"],
+    ["国家/地区", txt("otNation"), "otNation"],
+    ["学校全称", txt("otSchool"), "otSchool"],
+    ["所学专业", txt("otMajor"), "otMajor"],
+    ["入学/毕业", span("otFrom", "otTo"), "otFrom"]
+  );
+  const venue = VENUES[(fair && fair.dataset.city) || "北京"] || VENUES["北京"];
+  const addrHtml = addrEl ? addrEl.innerHTML : venue.html;
+  const saved = fairGet();
+  const status = saved.status;
+  const stamp = saved.cancelled ? "已取消" : (saved.checkIn ? "已签到" : (status === "done" ? "已提交" : "已预约"));
+  const title = INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会";
+  const phoneDigits = ((document.getElementById("phone") || {}).value || "").replace(/\s/g, "");
+  const phoneMask = phoneDigits.length >= 7
+    ? phoneDigits.slice(0, 3) + "****" + phoneDigits.slice(-4)
+    : (phoneDigits || "未填");
+  const line = (k, v) => "<tr><th>" + k + "</th><td>" + v + "</td></tr>";
+  const sec = (cls, t) => "<tr class=\"book-sec " + cls + "\"><td colspan=\"2\">" + t + "</td></tr>";
+  const navBtn = "<button class=\"spot-nav\" id=\"bookNav\" type=\"button\" aria-label=\"导航\">" +
+    "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M12 3l8.5 18-8.5-4.5L3.5 21 12 3z\" fill=\"#fff\"/></svg>" +
+    "</button>";
+  const block = (cls, title, rows) =>
+    sec(cls, title) + rows.filter(Boolean).map(r => line(r[0], r[1])).join("");
+  box.innerHTML =
+    "<div class=\"book-pack\" id=\"bookTicket\" data-addr=\"" + venue.nav + "\">" +
+      "<div class=\"ticket-stamp\">" + stamp + "</div>" +
+      "<div class=\"ticket-top\">" +
+        "<div class=\"k\">预约信息票据</div>" +
+        "<h3>" + title + "</h3>" +
+      "</div>" +
+      "<div class=\"ticket-ops\">" +
+        "<button type=\"button\" class=\"main\" data-book=\"dl\">下载门票</button>" +
+        "<button type=\"button\" data-book=\"in\"" + (saved.cancelled || saved.checkIn ? " disabled" : "") + ">现场签到</button>" +
+        "<button type=\"button\" data-book=\"cancel\"" + (saved.cancelled ? " disabled" : "") + ">取消预约</button>" +
+      "</div>" +
+      "<div class=\"ticket-cut\"></div>" +
+      "<table class=\"book-tb\">" +
+        block("meet", "场次预约", [
+          ["学生姓名", txt("name")],
+          ["参展城市", cityName],
+          ["到场时间", date],
+          ["参与模式", one("mode")]
+        ]) +
+        "<tr><th>展会地址</th><td><div class=\"book-addr\"><div class=\"txt\">" + addrHtml + "</div>" + navBtn + "</div></td></tr>" +
+        "<tr class=\"book-tip\"><td colspan=\"2\">请<em>得体着装</em>到场，并准备足量纸质简历（<em>建议至少 10–15 份</em>）</td></tr>" +
+        block("info", "基本信息", [
+          ["手机号码", phoneMask],
+          ["邮箱", txt("email")],
+          INNER ? ["教务老师", txt("teacher")] : null,
+          INNER ? ["所在校区", txt("campus")] : null,
+          INNER ? ["斯芬克校友", txt("alumni")] : null
+        ]) +
+        block("edu", "教育背景", eduRows) +
+        block("wish", "求职意向", [
+          ["想找类型", many("#want .chip.on")],
+          ["求职方向", many("#dirs .chip.on")],
+          ["意向城市", wish.length ? wish.join("、") : "未填"],
+          ["期望薪资", one("pay")],
+          ["到岗时间", one("arrive")],
+          ["实习经历", one("intern")],
+          ["独立/创业", one("artist")]
+        ]) +
+      "</table>" +
+    "</div>";
+}
+function paintFairTip() {
+  const b = document.querySelector("#fairCity .chip.on");
+  if (!b) return;
+  const d = (b.dataset.date || "").replace(/^0?(\d+)\/0?(\d+)$/, "$1月$2日");
+  const cityEl = document.getElementById("spotCity");
+  const dateEl = document.getElementById("spotDate");
+  if (cityEl) cityEl.textContent = b.dataset.city + "站";
+  if (dateEl) dateEl.textContent = d + " · 上午";
+  const venue = VENUES[b.dataset.city] || VENUES["北京"];
+  const el = document.getElementById("passAddr");
+  const box = document.getElementById("passVenue");
+  if (el) el.innerHTML = venue.html;
+  if (box) box.dataset.addr = venue.nav;
+  if (typeof paintBook === "function") paintBook();
+}
+function bindChips() {
+  const root = document.querySelector(".phone");
+  if (!root || root.dataset.chipBound) return;
+  root.dataset.chipBound = "1";
+  root.addEventListener("click", e => {
+    const chip = e.target.closest(".chip");
+    if (!chip || chip.closest("#dirs, .msel-menu")) return;
+    const one = chip.closest("#mode, #fairCity, #grade, #pay, #arrive, #intern, #artist, #otLv");
+    if (one) {
+      one.querySelectorAll(".chip").forEach(c => c.classList.remove("on"));
+      chip.classList.add("on");
+      if (one.id === "fairCity" && chip.dataset.city) {
+        city = chip.dataset.city;
+        paintFairTip();
+      }
+      ready();
+      return;
+    }
+    if (chip.closest("#want, #wishOs")) chip.classList.toggle("on");
+  });
+}
+function show(id) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("on"));
+  document.getElementById(id).classList.add("on");
+  document.getElementById("navTitle").textContent = id === "book"
+    ? "预约信息"
+    : (INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会");
+  syncDock();
+  document.getElementById("rail").classList.toggle("on", (id === "form" && fairView === "apply") || id === "book");
+  show.id = id;
+  if (id === "book") paintAnchor("book");
+  else if (id === "form") paintAnchor();
+}
+
+bindChips();
+paint();
+ready();
+if (!fairGet().status) fairSave("draft");
+paintEditBar();
+
+document.getElementById("edu").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  document.querySelectorAll("#edu button").forEach(c => c.classList.remove("on"));
+  b.classList.add("on");
+  eduMode();
+});
+document.getElementById("dirTabs").addEventListener("click", e => {
+  const b = e.target.closest("[data-dir]");
+  if (!b) return;
+  document.querySelectorAll("#dirTabs button").forEach(c => c.classList.remove("on"));
+  b.classList.add("on");
+  document.querySelectorAll("#dirs .dir-group").forEach((g, i) => {
+    g.classList.toggle("on", String(i) === b.dataset.dir);
+  });
+});
+function paintWishCn() {
+  const menu = document.getElementById("wishCnMenu");
+  const btn = document.getElementById("wishCnBtn");
+  if (!menu || !btn) return;
+  menu.innerHTML = WISH_CN.map(c =>
+    "<button type=\"button\" data-cn=\"" + c + "\" class=\"" + (wishCn.indexOf(c) >= 0 ? "on" : "") + "\">" + c + "</button>"
+  ).join("");
+  btn.innerHTML = wishCn.length ? wishCn.join("、") : "<em>请选择，可多选</em>";
+  if (typeof paintBook === "function") paintBook();
+}
+document.getElementById("wishCnBtn").addEventListener("click", e => {
+  e.stopPropagation();
+  document.getElementById("wishCnBox").classList.toggle("open");
+});
+document.getElementById("wishCnMenu").addEventListener("click", e => {
+  const b = e.target.closest("[data-cn]");
+  if (!b) return;
+  e.stopPropagation();
+  const c = b.dataset.cn;
+  if (wishCn.indexOf(c) >= 0) wishCn = wishCn.filter(x => x !== c);
+  else wishCn.push(c);
+  paintWishCn();
+});
+document.addEventListener("click", e => {
+  const box = document.getElementById("wishCnBox");
+  if (box && !box.contains(e.target)) box.classList.remove("open");
+});
+paintWishCn();
+function paintPicked() {
+  const ons = [...document.querySelectorAll("#dirs .chip.on")];
+  document.getElementById("dirCount").textContent = ons.length + "/5";
+  const box = document.getElementById("dirPickedList");
+  if (!ons.length) {
+    box.innerHTML = "<em>还没选方向</em>";
+    return;
+  }
+  box.innerHTML = ons.map(c => "<button type=\"button\" data-pick=\"" + c.textContent + "\">" + c.textContent + "<i>×</i></button>").join("");
+}
+document.getElementById("dirs").addEventListener("click", e => {
+  const b = e.target.closest(".chip");
+  if (!b) return;
+  if (b.classList.contains("on")) b.classList.remove("on");
+  else if (document.querySelectorAll("#dirs .chip.on").length < 5) b.classList.add("on");
+  paintPicked();
+});
+document.getElementById("dirPickedList").addEventListener("click", e => {
+  const b = e.target.closest("[data-pick]");
+  if (!b) return;
+  document.querySelectorAll("#dirs .chip").forEach(c => {
+    if (c.textContent === b.dataset.pick) c.classList.remove("on");
+  });
+  paintPicked();
+});
+paintPicked();
+document.getElementById("phone").addEventListener("input", () => {
+  const el = document.getElementById("phone");
+  el.value = el.value.replace(/\D/g, "").slice(0, 11);
+  ready();
+});
+document.getElementById("email").addEventListener("input", ready);
+document.getElementById("name").addEventListener("input", ready);
+document.getElementById("teacher").addEventListener("input", ready);
+const campusEl = document.getElementById("campus");
+if (campusEl) campusEl.addEventListener("change", ready);
+eduMode();
+
+document.getElementById("tabs").addEventListener("click", e => {
+  const b = e.target.closest("[data-cat]");
+  if (!b) return;
+  cat = b.dataset.cat;
+  paint();
+});
+document.getElementById("cos").addEventListener("click", e => {
+  const b = e.target.closest("[data-co]");
+  if (!b) return;
+  co = b.dataset.co;
+  paint();
+  ready();
+});
+document.getElementById("cityPick").addEventListener("change", e => {
+  city = e.target.value;
+  paint();
+  ready();
+});
+document.getElementById("jobs").addEventListener("click", e => {
+  const b = e.target.closest("[data-id]");
+  if (!b) return;
+  postId = b.dataset.id;
+  paint();
+  ready();
+});
+function closePop() {
+  document.getElementById("pop").classList.remove("on");
+}
+function closeKeep() {
+  document.getElementById("keepPop").classList.remove("on");
+}
+function leavePage() {
+  if (fairGet().status && fairGet().status !== "done") fairSave("draft");
+  else if (fairGet().status === "done") fairSave("done");
+  location.href = "signup-preview.html";
+}
+function doSubmit(from) {
+  const gaps = requiredGaps();
+  if (gaps.length) {
+    showNeedPop(gaps);
+    return;
+  }
+  if (from === "mini") {
+    fairSave("draft");
+    paintEditBar();
+    setApplyStep("edu");
+    return;
+  }
+  show("load");
+  setTimeout(() => {
+    fairSave("done");
+    paintEditBar();
+    paintBook();
+    show("book");
+  }, 900);
+}
+document.getElementById("goApply").addEventListener("click", () => showFairView("apply"));
+(function bindShareFab() {
+  const wrap = document.getElementById("sideFabs");
+  const btn = document.getElementById("shareBtn");
+  const book = document.getElementById("bookFab");
+  const phone = document.querySelector(".phone");
+  if (!wrap || !btn || !phone) return;
+  let dragging = false;
+  let moved = false;
+  let startX = 0;
+  let startY = 0;
+  let origL = 0;
+  let origT = 0;
+  const THRESH = 8;
+  function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+  function onDown(e) {
+    if (!wrap.classList.contains("on")) return;
+    const p = phone.getBoundingClientRect();
+    const b = wrap.getBoundingClientRect();
+    const pt = e.touches ? e.touches[0] : e;
+    dragging = true;
+    moved = false;
+    startX = pt.clientX;
+    startY = pt.clientY;
+    origL = b.left - p.left;
+    origT = b.top - p.top;
+    wrap.style.right = "auto";
+    wrap.style.left = origL + "px";
+    wrap.style.top = origT + "px";
+    wrap.classList.add("dragging");
+  }
+  function onMove(e) {
+    if (!dragging) return;
+    const pt = e.touches ? e.touches[0] : e;
+    const dx = pt.clientX - startX;
+    const dy = pt.clientY - startY;
+    if (Math.abs(dx) > THRESH || Math.abs(dy) > THRESH) moved = true;
+    const p = phone.getBoundingClientRect();
+    const l = clamp(origL + dx, 0, p.width - wrap.offsetWidth);
+    const t = clamp(origT + dy, 88, p.height - wrap.offsetHeight - 84);
+    wrap.style.left = l + "px";
+    wrap.style.top = t + "px";
+    if (e.cancelable) e.preventDefault();
+  }
+  function onUp() {
+    if (!dragging) return;
+    dragging = false;
+    wrap.classList.remove("dragging");
+    const p = phone.getBoundingClientRect();
+    const b = wrap.getBoundingClientRect();
+    const left = (b.left - p.left + b.width / 2) < p.width / 2;
+    wrap.classList.toggle("left", left);
+    wrap.style.left = left ? "0px" : "auto";
+    wrap.style.right = left ? "auto" : "0px";
+  }
+  wrap.addEventListener("pointerdown", onDown);
+  window.addEventListener("pointermove", onMove);
+  window.addEventListener("pointerup", onUp);
+  wrap.addEventListener("click", (e) => {
+    if (moved) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      moved = false;
+    }
+  }, true);
+  btn.addEventListener("click", () => {
+    const url = location.href.split("#")[0];
+    const title = INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会";
+    if (navigator.share) {
+      navigator.share({ title, url }).catch(() => {});
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => toast("链接已复制")).catch(() => toast("请复制地址栏链接"));
+      return;
+    }
+    toast("请复制地址栏链接");
+  });
+  if (book) book.addEventListener("click", () => {
+    paintAnchor("book");
+    paintBook();
+    show("book");
+  });
+})();
+document.getElementById("submit").addEventListener("click", () => doSubmit("dock"));
+document.getElementById("submitMini").addEventListener("click", () => doSubmit("mini"));
+document.getElementById("popOk").addEventListener("click", () => {
+  const pop = document.getElementById("pop");
+  const needEl = pop._needEl;
+  const mode = pop.dataset.mode;
+  closePop();
+  if (mode === "need") {
+    if (needEl && needEl.scrollIntoView) {
+      needEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (typeof needEl.focus === "function") needEl.focus();
+    }
+    return;
+  }
+  const edu = document.getElementById("sec-edu");
+  if (edu) edu.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+document.getElementById("popMask").addEventListener("click", closePop);
+function toast(msg) {
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("on");
+  clearTimeout(toast.t);
+  toast.t = setTimeout(() => el.classList.remove("on"), 1800);
+}
+function openNav(addr) {
+  if (!addr) return;
+  location.href = "https://uri.amap.com/search?keyword=" + encodeURIComponent(addr) + "&callnative=1";
+}
+document.getElementById("passNav").addEventListener("click", () => {
+  openNav(document.getElementById("passVenue").dataset.addr);
+});
+function patchFair(extra) {
+  const data = Object.assign({}, fairGet(), extra, { at: Date.now() });
+  localStorage.setItem("sfk-fair-apply", JSON.stringify(data));
+}
+function downloadTicket() {
+  const pack = document.getElementById("bookTicket");
+  const text = pack ? pack.innerText.replace(/\n{3,}/g, "\n\n") : "预约信息";
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], { type: "text/plain;charset=utf-8" }));
+  a.download = "专场招聘会-入场凭证.txt";
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast("门票已下载");
+}
+function checkInBook() {
+  const saved = fairGet();
+  if (saved.cancelled || saved.checkIn) return;
+  patchFair({ checkIn: true });
+  paintBook();
+  toast("现场签到成功");
+}
+function cancelBook() {
+  if (fairGet().cancelled) return;
+  if (!window.confirm("确认取消本次预约？")) return;
+  patchFair({ cancelled: true, checkIn: false, status: "draft" });
+  paintBook();
+  toast("预约已取消");
+}
+document.getElementById("book").addEventListener("click", e => {
+  const act = e.target.closest("[data-book]");
+  if (act) {
+    const k = act.dataset.book;
+    if (k === "dl") downloadTicket();
+    else if (k === "in") checkInBook();
+    else if (k === "cancel") cancelBook();
+    return;
+  }
+  if (!e.target.closest("#bookNav")) return;
+  const t = document.getElementById("bookTicket");
+  if (t) openNav(t.dataset.addr);
+});
+document.getElementById("again2").addEventListener("click", () => show("form"));
+document.getElementById("back").addEventListener("click", () => {
+  if (document.getElementById("pop").classList.contains("on")) {
+    closePop();
+    return;
+  }
+  if (document.getElementById("keepPop").classList.contains("on")) {
+    closeKeep();
+    return;
+  }
+  if (show.id === "book") {
+    show("form");
+    return;
+  }
+  if (!show.id || show.id === "form") {
+    if (fairGet().status !== "done") {
+      document.getElementById("keepPop").classList.add("on");
+      return;
+    }
+  }
+  if (fairGet().status && fairGet().status !== "done") fairSave("draft");
+  else if (fairGet().status === "done") fairSave("done");
+  if (show.id && show.id !== "form") show("form");
+  else leavePage();
+});
+document.getElementById("keepStay").addEventListener("click", closeKeep);
+document.getElementById("keepLeave").addEventListener("click", leavePage);
+document.getElementById("keepMask").addEventListener("click", closeKeep);
+window.addEventListener("pagehide", () => {
+  const st = fairGet().status;
+  if (st === "done") fairSave("done");
+  else fairSave("draft");
+});
+</script>
+</body>
+</html>
