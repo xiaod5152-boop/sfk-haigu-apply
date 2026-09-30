@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="iv-e5-1453">
+<html lang="zh-CN" data-build="e5-1line-1458">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -922,6 +922,7 @@
     color: #4F46E5;
     white-space: nowrap;
   }
+  .m-block.spec-board:has(.e5-tb) { overflow: visible; }
   .e5-tb {
     width: 100%;
     border-collapse: separate;
@@ -930,19 +931,19 @@
     background: #fff;
     border: 1px solid #E8E8EA;
     border-radius: 10px;
-    overflow: hidden;
+    overflow: visible;
   }
   .e5-tb th,
   .e5-tb td {
     border: 0;
     border-bottom: 1px solid #EEE;
-    padding: 8px 8px;
+    padding: 7px 5px;
     vertical-align: middle;
   }
   .e5-tb tr:last-child th,
   .e5-tb tr:last-child td { border-bottom: 0; }
   .e5-tb th {
-    width: 32px;
+    width: 28px;
     font-size: 12px;
     font-weight: 800;
     color: #4F46E5;
@@ -951,41 +952,33 @@
     border-right: 1px solid #EEE;
   }
   .e5-tb .nm {
-    width: 108px;
+    width: 72px;
     font-size: 12px;
     font-weight: 800;
     color: #1A1A1A;
     text-align: left;
-    line-height: 1.25;
+    line-height: 1.2;
     border-right: 1px solid #EEE;
   }
   .e5-tb .nm em {
     display: block;
-    margin-top: 3px;
+    margin-top: 2px;
     font-style: normal;
-    font-size: 10px;
+    font-size: 8px;
     font-weight: 700;
     color: #999;
     white-space: nowrap;
+    letter-spacing: -0.02em;
   }
   .e5-tb .fx {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 1px;
-    font-size: 12px;
+    display: block;
+    font-size: 10px;
     font-weight: 800;
     color: #333;
-    line-height: 1.35;
-  }
-  .e5-tb .fx span { white-space: nowrap; }
-  .e5-tb .fx i {
-    margin: 0;
-    font-style: normal;
-    font-weight: 700;
-    color: #C4C4C4;
-    line-height: 1;
+    line-height: 1.4;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+    overflow: visible;
   }
   .why-nums {
     display: grid;
@@ -2852,17 +2845,17 @@
             <tr>
               <th>E1</th>
               <td class="nm">教育背景<em>（Education）</em></td>
-              <td class="fx"><span>院校底蕴</span><i>×</i><span>专业功底</span><i>×</i><span>学术素养</span></td>
+              <td class="fx">院校底蕴 × 专业功底 × 学术素养</td>
             </tr>
             <tr>
               <th>E2</th>
               <td class="nm">实践经验<em>（Experience）</em></td>
-              <td class="fx"><span>实习历练</span><i>×</i><span>项目沉淀</span><i>×</i><span>业务实战</span></td>
+              <td class="fx">实习历练 × 项目沉淀 × 业务实战</td>
             </tr>
             <tr>
               <th>E3</th>
               <td class="nm">专业能力<em>（Expertise）</em></td>
-              <td class="fx"><span>岗位硬技能</span><i>×</i><span>问题解决力</span><i>×</i><span>AI应用力</span></td>
+              <td class="fx">岗位硬技能 × 问题解决力 × AI应用力</td>
             </tr>
             <tr>
               <th>E4</th>
