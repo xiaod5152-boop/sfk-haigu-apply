@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="e5-span-1605">
+<html lang="zh-CN" data-build="py-tri-1708">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -881,45 +881,108 @@
     color: #4F46E5;
     white-space: nowrap;
   }
+  .m-block.spec-board.insight-board {
+    overflow: visible;
+    padding: 12px 8px 18px;
+    background: #fff;
+  }
+  .m-block.spec-board.insight-board .sub {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 4px 12px;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    color: #4F46E5;
+    font-size: 15px;
+    letter-spacing: 0;
+  }
+  .m-block.spec-board.insight-board .sub::before {
+    content: "";
+    flex: 0 0 4px;
+    width: 4px;
+    height: 16px;
+    border-radius: 2px;
+    background: #4F46E5;
+  }
   .iv-py {
+    --py-ink: #4F46E5;
+    --py-edge: #4F46E5;
+    --py-fill: linear-gradient(180deg, #FFFFFF 0%, #EEF2FF 46%, #C7D2FE 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 0;
     margin: 0;
-    padding: 0;
+    padding: 2px 0 10px;
     list-style: none;
   }
   .iv-py li {
-    padding: 12px 14px 13px;
-    background: #F4F5FC;
-    border: 1.5px solid #4F46E5;
-    border-radius: 14px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     box-sizing: border-box;
+    background: none;
+    border: 0;
+    text-align: center;
   }
-  .iv-py .t1 { width: 76%; }
-  .iv-py .t2 { width: 88%; }
-  .iv-py .t3 { width: 100%; }
+  .iv-py .shade {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: var(--py-fill);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    filter: drop-shadow(5px 7px 0 var(--py-edge));
+  }
+  .iv-py .ico,
+  .iv-py h5,
+  .iv-py p {
+    position: relative;
+    z-index: 1;
+  }
+  .iv-py .ico {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    margin: 0 0 6px;
+    color: var(--py-ink);
+    background: rgba(255,255,255,.92);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(79,70,229,.16);
+  }
+  .iv-py .ico svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+  .iv-py .t1 { width: 74%; padding: 50px 34px 16px; z-index: 3; }
+  .iv-py .t2 { width: 88%; padding: 44px 40px 16px; margin-top: -4px; z-index: 2; }
+  .iv-py .t3 { width: 100%; padding: 42px 28px 18px; margin-top: -4px; z-index: 1; }
   .iv-py h5 {
-    margin: 0 0 8px;
+    margin: 0 0 6px;
     font-size: 13px;
     font-weight: 800;
     color: #1A1A1A;
     text-align: center;
-    line-height: 1.35;
+    line-height: 1.3;
+    word-break: keep-all;
   }
   .iv-py p {
     margin: 0;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
-    color: #555;
-    line-height: 1.65;
+    color: #444;
+    line-height: 1.55;
     word-break: keep-all;
     text-align: center;
   }
   .iv-py p b {
     font-weight: 800;
-    color: #4F46E5;
+    color: var(--py-ink);
     white-space: nowrap;
   }
   .m-block.spec-board:has(.e5-tb) {
@@ -2624,17 +2687,28 @@
     color: #C2186A;
     background: #F7F8FA;
   }
+  body.inner-ch .m-block.spec-board.insight-board .sub {
+    color: #E21876;
+    background: transparent;
+  }
+  body.inner-ch .m-block.spec-board.insight-board .sub::before {
+    background: #E21876;
+  }
   body.inner-ch .story-sec.method > h3 {
     background: #E21876;
     color: #fff;
   }
   body.inner-ch .why-nums strong { color: #C2186A; }
-  body.inner-ch .spec-dl dd b,
-  body.inner-ch .iv-py p b { color: #C2186A; }
-  body.inner-ch .iv-py li {
-    background: #F7F8FA;
-    border-color: #E21876;
+  body.inner-ch .spec-dl dd b { color: #C2186A; }
+  body.inner-ch .iv-py {
+    --py-ink: #E21876;
+    --py-edge: #E21876;
+    --py-fill: linear-gradient(180deg, #FFFFFF 0%, #FCE7F3 46%, #F9A8D4 100%);
   }
+  body.inner-ch .iv-py .ico {
+    box-shadow: 0 2px 6px rgba(226,24,118,.18);
+  }
+  body.inner-ch .iv-py p b { color: #C2186A; }
   body.inner-ch .e5-tb th.en { color: #C2186A; }
   body.inner-ch .tl-rail .n { color: #E21876; }
   body.inner-ch .tl-caps > li.star strong { color: #C2186A; }
@@ -2828,18 +2902,24 @@
           </div>
           <p class="lead one-line">将人才培养延伸至就业环节，对接真实岗位需求。</p>
         </div>
-        <div class="m-block spec-board">
+        <div class="m-block spec-board insight-board">
           <h4 class="sub">问题诊断：三大求职洞察</h4>
           <ol class="iv-py">
             <li class="t1">
+              <i class="shade" aria-hidden="true"></i>
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="3.1"/><path d="M5.6 19c.7-3.1 3.2-4.9 6.4-4.9s5.7 1.8 6.4 4.9"/></svg></span>
               <h5>拒绝标准化求职路径</h5>
               <p>艺术与设计类专业没有<b>通用模板</b>，<br><b>作品集方向</b>、<b>岗位匹配</b>、<b>表达逻辑</b><br>都要按个人风格深度定制</p>
             </li>
             <li class="t2">
+              <i class="shade" aria-hidden="true"></i>
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.2 16.6L5.8 8.2l3.8 3.7L12 6.2l2.4 5.7 3.8-3.7 2.6 8.4H3.2z"/><rect x="4.2" y="17.4" width="15.6" height="1.7" rx=".4"/></svg></span>
               <h5>创意岗三重错位</h5>
               <p><b>职业认知</b>错位<br><b>用人标准</b>错位<br><b>时间窗口</b>错位</p>
             </li>
             <li class="t3">
+              <i class="shade" aria-hidden="true"></i>
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="13" width="3.2" height="7" rx=".55"/><rect x="10.4" y="8.2" width="3.2" height="11.8" rx=".55"/><rect x="16.8" y="4.2" width="3.2" height="15.8" rx=".55"/></svg></span>
               <h5>从堆砌转向能力沉淀</h5>
               <p>实习不是越多越好，<br>真正有效的经历要能<b>复盘</b>、<b>可表达</b>、<b>可验证</b></p>
             </li>
