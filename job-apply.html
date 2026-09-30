@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="05438f3-ticket-ops">
+<html lang="zh-CN" data-build="54c7424-ops-pill">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -2413,6 +2413,8 @@
   .ticket-ops {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 10px 10px 12px;
     background: #fff;
     border-bottom: 1px solid #EEE;
     position: sticky;
@@ -2420,20 +2422,21 @@
     z-index: 4;
   }
   .ticket-ops button {
-    height: 42px;
-    border: 0;
-    border-right: 1px solid #EEE;
+    height: 36px;
+    border: 1px solid #E8E8E8;
+    border-radius: 99px;
     background: #fff;
     font: inherit;
     font-size: 12px;
     font-weight: 700;
-    color: #666;
+    color: #555;
     cursor: pointer;
+    padding: 0 6px;
   }
-  .ticket-ops button:last-child { border-right: 0; }
   .ticket-ops button.main {
-    color: #4F46E5;
-    font-weight: 800;
+    border-color: #4F46E5;
+    background: #4F46E5;
+    color: #fff;
   }
   .ticket-ops button:disabled {
     opacity: .4;
