@@ -417,6 +417,11 @@
     font-weight: 800;
     color: #4338CA;
   }
+  .story-sec:not(.method) > h3 {
+    padding: 7px 10px;
+    background: #F4F5FC;
+    border-radius: 8px;
+  }
   .story-sec .lead {
     margin: 0 0 12px;
     font-size: 12px;
@@ -516,7 +521,7 @@
   }
   .info-dl > div {
     display: grid;
-    grid-template-columns: 72px 1fr;
+    grid-template-columns: 86px 1fr;
     gap: 10px;
     padding: 12px 0;
     align-items: start;
@@ -531,8 +536,11 @@
   .info-dl dt {
     font-size: 12px;
     font-weight: 800;
-    color: #1A1A1A;
+    color: #4338CA;
     line-height: 1.4;
+    padding: 6px 8px;
+    background: #F4F5FC;
+    border-radius: 8px;
   }
   .info-dl dd {
     margin: 0;
@@ -557,9 +565,12 @@
   }
   .co-head h4 {
     margin: 0;
+    padding: 7px 10px;
     font-size: 13px;
     font-weight: 800;
-    color: #1A1A1A;
+    color: #4338CA;
+    background: #F4F5FC;
+    border-radius: 8px;
   }
   .co-head span {
     font-size: 10px;
@@ -827,15 +838,17 @@
   .m-block:last-of-type { margin-bottom: 8px; }
   .m-block.spec-board .sub {
     margin: 0 0 10px;
-    padding: 0;
+    padding: 7px 10px;
     border: 0;
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 0;
-    color: #1A1A1A;
+    color: #4338CA;
     line-height: 1.3;
+    background: #F4F5FC;
+    border-radius: 8px;
   }
-  body.pub-ch .m-block .sub { color: #1A1A1A; }
+  body.pub-ch .m-block .sub { color: #4338CA; }
   .m-block .lead {
     margin: 0 0 10px;
     font-size: 12px;
@@ -1046,14 +1059,16 @@
   }
   .m-callout .sub {
     margin: 0 0 6px;
-    padding: 0;
+    padding: 7px 10px;
     border: 0;
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 0;
-    color: #1A1A1A;
+    color: #4338CA;
+    background: #EEF2FF;
+    border-radius: 8px;
   }
-  body.pub-ch .m-callout .sub { color: #1A1A1A; }
+  body.pub-ch .m-callout .sub { color: #4338CA; }
   .m-callout .lead {
     margin: 0;
     font-size: 12px;
@@ -2581,7 +2596,14 @@
   body.inner-ch .info-dl > div { border-bottom-color: #EEE; }
   body.inner-ch .hook-cols li,
   body.inner-ch .co-grid span { border-color: #E8E8EA; }
-  body.inner-ch .story-sec > h3 { color: #C2186A; }
+  body.inner-ch .story-sec:not(.method) > h3,
+  body.inner-ch .co-head h4,
+  body.inner-ch .info-dl dt,
+  body.inner-ch .m-block.spec-board .sub,
+  body.inner-ch .m-callout .sub {
+    color: #C2186A;
+    background: #F7F8FA;
+  }
   body.inner-ch .story-sec.method > h3 {
     background: #E21876;
     color: #fff;
