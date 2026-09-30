@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="e5-plain-1536">
+<html lang="zh-CN" data-build="e5-mid-1537">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -961,7 +961,7 @@
     font-size: 12px;
     font-weight: 800;
     color: #1A1A1A;
-    text-align: left;
+    text-align: center;
     line-height: 1.25;
     border-right: 1px solid #EEE;
     overflow: hidden;
@@ -984,15 +984,21 @@
     padding-right: 6px;
   }
   .e5-tb .fx {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
     font-size: 11px;
     font-weight: 800;
     color: #333;
-    line-height: 1.55;
+    line-height: 1.4;
     letter-spacing: 0;
     text-align: center;
-    word-break: keep-all;
-    overflow-wrap: break-word;
+  }
+  .e5-tb .fx span {
+    display: block;
+    white-space: nowrap;
   }
   .why-nums {
     display: grid;
@@ -2859,27 +2865,27 @@
             <tr>
               <th>E1</th>
               <td class="nm">教育背景<em>（Education）</em></td>
-              <td class="fx"><span>院校底蕴</span><i>×</i><span>专业功底</span><i>×</i><span>学术素养</span></td>
+              <td class="fx"><span>院校底蕴 × 专业功底</span><span>× 学术素养</span></td>
             </tr>
             <tr>
               <th>E2</th>
               <td class="nm">实践经验<em>（Experience）</em></td>
-              <td class="fx"><span>实习历练</span><i>×</i><span>项目沉淀</span><i>×</i><span>业务实战</span></td>
+              <td class="fx"><span>实习历练 × 项目沉淀</span><span>× 业务实战</span></td>
             </tr>
             <tr>
               <th>E3</th>
               <td class="nm">专业能力<em>（Expertise）</em></td>
-              <td class="fx"><span>岗位硬技能</span><i>×</i><span>问题解决力</span><i>×</i><span>AI应用力</span></td>
+              <td class="fx"><span>岗位硬技能 × 问题解决力</span><span>× AI应用力</span></td>
             </tr>
             <tr>
               <th>E4</th>
               <td class="nm">执行力<em>（Execution）</em></td>
-              <td class="fx"><span>结果导向</span><i>×</i><span>闭环思维</span><i>×</i><span>推进韧性</span></td>
+              <td class="fx">结果导向 × 闭环思维 × 推进韧性</td>
             </tr>
             <tr>
               <th>E5</th>
               <td class="nm">职业素养<em>（Employability）</em></td>
-              <td class="fx"><span>主动沟通</span><i>×</i><span>高效协作</span><i>×</i><span>逻辑思辨</span></td>
+              <td class="fx">主动沟通 × 高效协作 × 逻辑思辨</td>
             </tr>
           </table>
         </div>
