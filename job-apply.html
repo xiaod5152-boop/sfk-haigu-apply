@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="py-side-1756">
+<html lang="zh-CN" data-build="py-tidy-1812">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -910,99 +910,90 @@
     background: #4F46E5;
   }
   .iv-stage {
-    display: grid;
-    grid-template-columns: minmax(92px, 1fr) minmax(148px, 1.55fr) minmax(92px, 1fr);
-    grid-template-rows: auto auto auto;
-    column-gap: 4px;
-    row-gap: 0;
-    align-items: center;
-  }
-  .iv-py {
-    grid-column: 2;
-    grid-row: 1 / span 3;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 0;
-    margin: 0;
-    padding: 2px 0 8px;
-    list-style: none;
-    z-index: 1;
   }
-  .iv-py li {
+  .iv-row {
+    display: grid;
+    grid-template-columns: minmax(110px, 1fr) minmax(136px, 1.2fr) minmax(110px, 1fr);
+    column-gap: 8px;
+    align-items: center;
+    position: relative;
+  }
+  .iv-row.r1 { z-index: 3; }
+  .iv-row.r2 { margin-top: -8px; z-index: 2; }
+  .iv-row.r3 { margin-top: -8px; z-index: 1; }
+  .iv-tri {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
-    background: none;
-    border: 0;
+    width: 100%;
     text-align: center;
   }
-  .iv-py .shade {
+  .iv-tri .shade {
     position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
     background: var(--py-fill);
     clip-path: polygon(50% 0, 100% 100%, 0 100%);
-    filter: drop-shadow(5px 7px 0 var(--py-edge));
+    filter: drop-shadow(4px 6px 0 var(--py-edge));
   }
-  .iv-py .ico,
-  .iv-py h5 {
+  .iv-tri .ico,
+  .iv-tri h5 {
     position: relative;
     z-index: 1;
   }
-  .iv-py .ico {
+  .iv-tri .ico {
     display: grid;
     place-items: center;
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     margin: 0 0 6px;
     color: var(--py-ink);
-    background: rgba(255,255,255,.92);
+    background: rgba(255,255,255,.94);
     border-radius: 50%;
     box-shadow: 0 2px 6px rgba(79,70,229,.16);
   }
-  .iv-py .ico svg {
-    width: 16px;
-    height: 16px;
+  .iv-tri .ico svg {
+    width: 15px;
+    height: 15px;
     display: block;
   }
-  .iv-py .t1 { width: 84%; padding: 40px 16px 18px; z-index: 3; }
-  .iv-py .t2 { width: 94%; padding: 36px 14px 18px; margin-top: -4px; z-index: 2; }
-  .iv-py .t3 { width: 100%; padding: 34px 12px 20px; margin-top: -4px; z-index: 1; }
-  .iv-py h5 {
+  .iv-tri.t1 { padding: 36px 6px 14px; }
+  .iv-tri.t2 { padding: 38px 6px 16px; }
+  .iv-tri.t3 { padding: 40px 6px 18px; }
+  .iv-tri h5 {
     margin: 0;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 800;
     color: #1A1A1A;
     text-align: center;
-    line-height: 1.3;
+    line-height: 1.35;
     word-break: keep-all;
   }
   .iv-n {
-    z-index: 2;
     margin: 0;
-    padding: 8px 8px 9px;
+    padding: 8px 9px;
     background: #FAFAFC;
     border: 1px solid #E8EAF4;
     border-radius: 12px;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 500;
     color: #444;
-    line-height: 1.5;
+    line-height: 1.65;
     word-break: keep-all;
+    overflow-wrap: break-word;
     text-align: left;
   }
-  .iv-n.n1 { grid-column: 1; grid-row: 1; }
-  .iv-n.n2 { grid-column: 3; grid-row: 2; }
-  .iv-n.n3 { grid-column: 1; grid-row: 3; }
   .iv-n b {
     font-weight: 800;
     color: var(--py-ink);
-    white-space: nowrap;
   }
+  .iv-sp { display: block; }
   .m-block.spec-board:has(.e5-tb) {
     overflow: hidden;
     padding-left: 10px;
@@ -1057,29 +1048,30 @@
   }
   body.pub-ch .e5-tb td.nm em { color: #4338CA; }
   .e5-tb td.nm.cap {
-    padding: 6px 8px 2px;
+    padding: 4px 8px 2px;
     color: #fff;
     background: transparent;
   }
   .e5-tb td.nm.cap .cap-box {
-    display: block;
-    width: 100%;
-    padding: 6px 10px 7px;
+    display: inline-block;
+    width: auto;
+    max-width: 100%;
+    padding: 4px 12px 5px;
     box-sizing: border-box;
     background: #4F46E5;
     color: #fff;
-    border-radius: 14px;
+    border-radius: 10px;
     box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.32);
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 800;
     line-height: 1.3;
     letter-spacing: 0;
     text-align: center;
   }
   .e5-tb td.nm.cap em {
-    margin-top: 2px;
+    margin-top: 1px;
     color: #fff;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
     letter-spacing: 0;
   }
@@ -2754,7 +2746,7 @@
     --py-edge: #E21876;
     --py-fill: linear-gradient(180deg, #FFFFFF 0%, #FCE7F3 46%, #F9A8D4 100%);
   }
-  body.inner-ch .iv-py .ico {
+  body.inner-ch .iv-tri .ico {
     box-shadow: 0 2px 6px rgba(226,24,118,.18);
   }
   body.inner-ch .iv-n {
@@ -2963,26 +2955,33 @@
         <div class="m-block spec-board insight-board">
           <h4 class="sub">问题诊断：三大求职洞察</h4>
           <div class="iv-stage">
-          <ol class="iv-py">
-            <li class="t1">
-              <i class="shade" aria-hidden="true"></i>
-              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="3.1"/><path d="M5.6 19c.7-3.1 3.2-4.9 6.4-4.9s5.7 1.8 6.4 4.9"/></svg></span>
-              <h5>拒绝标准化求职路径</h5>
-            </li>
-            <li class="t2">
-              <i class="shade" aria-hidden="true"></i>
-              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.2 16.6L5.8 8.2l3.8 3.7L12 6.2l2.4 5.7 3.8-3.7 2.6 8.4H3.2z"/><rect x="4.2" y="17.4" width="15.6" height="1.7" rx=".4"/></svg></span>
-              <h5>创意岗三重错位</h5>
-            </li>
-            <li class="t3">
-              <i class="shade" aria-hidden="true"></i>
-              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="13" width="3.2" height="7" rx=".55"/><rect x="10.4" y="8.2" width="3.2" height="11.8" rx=".55"/><rect x="16.8" y="4.2" width="3.2" height="15.8" rx=".55"/></svg></span>
-              <h5>从堆砌转向能力沉淀</h5>
-            </li>
-          </ol>
-          <p class="iv-n n1">艺术与设计类专业没有<b>通用模板</b>，<br><b>作品集方向</b>、<b>岗位匹配</b>、<b>表达逻辑</b><br>都要按个人风格深度定制</p>
-          <p class="iv-n n2"><b>职业认知</b>错位<br><b>用人标准</b>错位<br><b>时间窗口</b>错位</p>
-          <p class="iv-n n3">实习不是越多越好，<br>真正有效的经历要能<b>复盘</b>、<b>可表达</b>、<b>可验证</b></p>
+            <div class="iv-row r1">
+              <p class="iv-n">艺术与设计类专业没有<b>通用模板</b>，<br><b>作品集方向</b>、<b>岗位匹配</b>、<b>表达逻辑</b><br>都要按个人风格深度定制</p>
+              <div class="iv-tri t1">
+                <i class="shade" aria-hidden="true"></i>
+                <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="3.1"/><path d="M5.6 19c.7-3.1 3.2-4.9 6.4-4.9s5.7 1.8 6.4 4.9"/></svg></span>
+                <h5>拒绝标准化求职路径</h5>
+              </div>
+              <span class="iv-sp"></span>
+            </div>
+            <div class="iv-row r2">
+              <span class="iv-sp"></span>
+              <div class="iv-tri t2">
+                <i class="shade" aria-hidden="true"></i>
+                <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.2 16.6L5.8 8.2l3.8 3.7L12 6.2l2.4 5.7 3.8-3.7 2.6 8.4H3.2z"/><rect x="4.2" y="17.4" width="15.6" height="1.7" rx=".4"/></svg></span>
+                <h5>创意岗三重错位</h5>
+              </div>
+              <p class="iv-n"><b>职业认知</b>错位<br><b>用人标准</b>错位<br><b>时间窗口</b>错位</p>
+            </div>
+            <div class="iv-row r3">
+              <p class="iv-n">实习不是越多越好，<br>真正有效的经历要能<b>复盘</b>、<b>可表达</b>、<b>可验证</b></p>
+              <div class="iv-tri t3">
+                <i class="shade" aria-hidden="true"></i>
+                <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="13" width="3.2" height="7" rx=".55"/><rect x="10.4" y="8.2" width="3.2" height="11.8" rx=".55"/><rect x="16.8" y="4.2" width="3.2" height="15.8" rx=".55"/></svg></span>
+                <h5>从堆砌转向能力沉淀</h5>
+              </div>
+              <span class="iv-sp"></span>
+            </div>
           </div>
         </div>
         <div class="m-block spec-board">
