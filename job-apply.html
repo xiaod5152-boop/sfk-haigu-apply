@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="copy-r2-1840">
+<html lang="zh-CN" data-build="copy-p2-1845">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -421,6 +421,7 @@
     margin: 0 0 14px;
     padding: 4px 0 0;
     align-items: start;
+    overflow: hidden;
   }
   .pain-list li {
     display: flex;
@@ -428,30 +429,35 @@
     align-items: center;
     text-align: center;
     margin: 0;
-    padding: 0 6px;
+    padding: 0 7px;
     border: 0;
     border-right: 1px solid #E8E8EE;
     min-width: 0;
+    overflow: hidden;
   }
   .pain-list li:last-child { border-right: 0; }
   .pain-list i { display: none; }
   .pain-list b {
     display: block;
+    width: 100%;
     font-size: 14px;
     font-weight: 900;
     color: #111;
     line-height: 1.35;
     letter-spacing: 0;
     word-break: keep-all;
+    overflow-wrap: break-word;
   }
   .pain-list span {
     display: block;
+    width: 100%;
     margin-top: 8px;
     font-size: 11px;
     font-weight: 500;
     color: #8B8B96;
     line-height: 1.55;
-    word-break: keep-all;
+    word-break: break-all;
+    overflow-wrap: anywhere;
   }
   body.pub-ch .pain-list i {
     background: #EEF2FF;
@@ -2904,11 +2910,11 @@
           <ol class="pain-list">
             <li>
               <b>好作品，<br>也过不了机器</b>
-              <span>海投只认关键词。<br>作品集再亮，<br>招聘官也看不见。</span>
+                <span>海投只认<br>关键词。<br>作品集再亮，<br>招聘官也看不见。</span>
             </li>
             <li>
               <b>秋招开跑，<br>你还在答辩</b>
-              <span>国内已经在抢应届岗。<br>等毕设收尾，<br>好位子先没了。</span>
+                <span>国内已经在<br>抢应届岗。<br>等毕设收尾，<br>好位子先没了。</span>
             </li>
             <li>
               <b>国外招聘会，<br>面向当地</b>
