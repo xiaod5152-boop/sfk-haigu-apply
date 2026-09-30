@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="e5-compact-1436">
+<html lang="zh-CN" data-build="e5-table-1445">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -921,49 +921,48 @@
     color: #4F46E5;
     white-space: nowrap;
   }
-  .m-block.spec-board:has(.e5-dl) { overflow: visible; }
-  .info-dl.e5-dl > div {
-    display: grid;
-    grid-template-columns: 78px 1fr;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 0;
-    overflow: visible;
+  .e5-tb {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background: #fff;
   }
-  .e5-dl dt {
-    width: auto;
-    padding: 6px 4px;
+  .e5-tb th,
+  .e5-tb td {
+    border: 1px solid #E8E8EA;
+    padding: 7px 6px;
+    vertical-align: middle;
+  }
+  .e5-tb th {
+    width: 34px;
     font-size: 11px;
     font-weight: 800;
-    line-height: 1.2;
+    color: #4F46E5;
     text-align: center;
+    background: #F7F8FA;
   }
-  .e5-dl dt span {
-    display: block;
-    margin-top: 2px;
+  .e5-tb .nm {
+    width: 78px;
     font-size: 12px;
     font-weight: 800;
+    color: #1A1A1A;
+    text-align: center;
+    line-height: 1.25;
   }
-  .e5-dl dt em {
+  .e5-tb .nm em {
     display: block;
-    margin-top: 1px;
+    margin-top: 2px;
     font-style: normal;
     font-size: 9px;
     font-weight: 700;
+    color: #888;
   }
-  .e5-dl .e5-fx {
-    display: block;
-    min-width: 0;
-    margin: 0;
+  .e5-tb .fx {
     font-size: 11px;
     font-weight: 800;
     color: #333;
-    line-height: 1.45;
-    letter-spacing: 0;
-    text-align: left;
-    white-space: normal;
+    line-height: 1.4;
     word-break: keep-all;
-    overflow: visible;
   }
   .why-nums {
     display: grid;
@@ -2609,6 +2608,7 @@
   body.inner-ch .why-nums strong { color: #C2186A; }
   body.inner-ch .spec-dl dd b,
   body.inner-ch .iv-py p b { color: #C2186A; }
+  body.inner-ch .e5-tb th { color: #C2186A; }
   body.inner-ch .tl-rail .n { color: #E21876; }
   body.inner-ch .tl-caps > li.star strong { color: #C2186A; }
   body.inner-ch .chip.on {
@@ -2821,28 +2821,33 @@
         <div class="m-block spec-board">
           <h4 class="sub">评价标准：5E 人才评价模型</h4>
           <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
-          <dl class="info-dl spec-dl e5-dl">
-            <div>
-              <dt>E1<span>教育背景</span><em>（Education）</em></dt>
-              <dd class="e5-fx">院校底蕴 × 专业功底 × 学术素养</dd>
-            </div>
-            <div>
-              <dt>E2<span>实践经验</span><em>（Experience）</em></dt>
-              <dd class="e5-fx">实习历练 × 项目沉淀 × 业务实战</dd>
-            </div>
-            <div>
-              <dt>E3<span>专业能力</span><em>（Expertise）</em></dt>
-              <dd class="e5-fx">岗位硬技能 × 问题解决力 × AI应用力</dd>
-            </div>
-            <div>
-              <dt>E4<span>执行力</span><em>（Execution）</em></dt>
-              <dd class="e5-fx">结果导向 × 闭环思维 × 推进韧性</dd>
-            </div>
-            <div>
-              <dt>E5<span>职业素养</span><em>（Employability）</em></dt>
-              <dd class="e5-fx">主动沟通 × 高效协作 × 逻辑思辨</dd>
-            </div>
-          </dl>
+          <table class="e5-tb">
+            <tr>
+              <th>E1</th>
+              <td class="nm">教育背景<em>（Education）</em></td>
+              <td class="fx">院校底蕴 × 专业功底 × 学术素养</td>
+            </tr>
+            <tr>
+              <th>E2</th>
+              <td class="nm">实践经验<em>（Experience）</em></td>
+              <td class="fx">实习历练 × 项目沉淀 × 业务实战</td>
+            </tr>
+            <tr>
+              <th>E3</th>
+              <td class="nm">专业能力<em>（Expertise）</em></td>
+              <td class="fx">岗位硬技能 × 问题解决力 × AI应用力</td>
+            </tr>
+            <tr>
+              <th>E4</th>
+              <td class="nm">执行力<em>（Execution）</em></td>
+              <td class="fx">结果导向 × 闭环思维 × 推进韧性</td>
+            </tr>
+            <tr>
+              <th>E5</th>
+              <td class="nm">职业素养<em>（Employability）</em></td>
+              <td class="fx">主动沟通 × 高效协作 × 逻辑思辨</td>
+            </tr>
+          </table>
         </div>
         <div class="m-callout">
           <h4 class="sub">现场评估机制</h4>
