@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="94f73ed-book-pills">
+<html lang="zh-CN" data-build="05438f3-ticket-ops">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -2410,40 +2410,32 @@
     line-height: 1.15;
   }
   #book { padding: 12px 32px 28px; }
-  .book-acts {
+  .ticket-ops {
     display: grid;
-    grid-template-columns: 1fr 1.15fr 1fr;
-    align-items: center;
-    gap: 8px;
-    margin: 0 0 12px;
-    padding: 8px 2px 12px;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: #fff;
+    border-bottom: 1px solid #EEE;
     position: sticky;
     top: 0;
     z-index: 4;
-    background: #F3F4F8;
   }
-  .book-act {
-    height: 40px;
+  .ticket-ops button {
+    height: 42px;
     border: 0;
-    border-radius: 99px;
+    border-right: 1px solid #EEE;
     background: #fff;
-    box-shadow: 0 4px 14px rgba(20, 24, 40, .08);
     font: inherit;
     font-size: 12px;
-    font-weight: 600;
-    color: #333;
-    cursor: pointer;
-    padding: 0 8px;
-  }
-  .book-act.main {
-    height: 44px;
-    background: #4F46E5;
-    color: #fff;
-    font-size: 13px;
     font-weight: 700;
-    box-shadow: 0 8px 18px rgba(79, 70, 229, .26);
+    color: #666;
+    cursor: pointer;
   }
-  .book-act:disabled {
+  .ticket-ops button:last-child { border-right: 0; }
+  .ticket-ops button.main {
+    color: #4F46E5;
+    font-weight: 800;
+  }
+  .ticket-ops button:disabled {
     opacity: .4;
     cursor: default;
   }
@@ -2692,12 +2684,7 @@
   body.inner-ch .btn { background: #E21876; }
   body.inner-ch .btn.ghost { color: #E21876; border-color: #E21876; }
   body.inner-ch .side-fab.share { background: #E21876; }
-  body.pub-ch .book-acts { background: #F3F4FB; }
-  body.inner-ch .book-acts { background: #fff; }
-  body.inner-ch .book-act.main {
-    background: #E21876;
-    box-shadow: 0 8px 20px rgba(226, 24, 118, .28);
-  }
+  body.inner-ch .ticket-ops button.main { color: #C2186A; }
   body.inner-ch .cell.on { background: #E21876; border-color: #E21876; }
   body.inner-ch .anchor button.on {
     background: #E21876;
@@ -4013,16 +4000,16 @@ function paintBook() {
   const block = (cls, title, rows) =>
     sec(cls, title) + rows.filter(Boolean).map(r => line(r[0], r[1])).join("");
   box.innerHTML =
-    "<div class=\"book-acts\">" +
-      "<button class=\"book-act\" type=\"button\" data-book=\"in\"" + (saved.cancelled || saved.checkIn ? " disabled" : "") + ">现场签到</button>" +
-      "<button class=\"book-act main\" type=\"button\" data-book=\"dl\">下载门票</button>" +
-      "<button class=\"book-act\" type=\"button\" data-book=\"cancel\"" + (saved.cancelled ? " disabled" : "") + ">取消预约</button>" +
-    "</div>" +
     "<div class=\"book-pack\" id=\"bookTicket\" data-addr=\"" + venue.nav + "\">" +
       "<div class=\"ticket-stamp\">" + stamp + "</div>" +
       "<div class=\"ticket-top\">" +
         "<div class=\"k\">预约信息票据</div>" +
         "<h3>" + title + "</h3>" +
+      "</div>" +
+      "<div class=\"ticket-ops\">" +
+        "<button type=\"button\" class=\"main\" data-book=\"dl\">下载门票</button>" +
+        "<button type=\"button\" data-book=\"in\"" + (saved.cancelled || saved.checkIn ? " disabled" : "") + ">现场签到</button>" +
+        "<button type=\"button\" data-book=\"cancel\"" + (saved.cancelled ? " disabled" : "") + ">取消预约</button>" +
       "</div>" +
       "<div class=\"ticket-cut\"></div>" +
       "<table class=\"book-tb\">" +
