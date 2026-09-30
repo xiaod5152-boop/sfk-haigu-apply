@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="9fe7113-eval-1line">
+<html lang="zh-CN" data-build="94f73ed-book-pills">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -2411,51 +2411,39 @@
   }
   #book { padding: 12px 32px 28px; }
   .book-acts {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1fr;
+    align-items: center;
     gap: 8px;
-    margin: 0 0 14px;
-    padding: 4px 0 10px;
+    margin: 0 0 12px;
+    padding: 8px 2px 12px;
     position: sticky;
     top: 0;
     z-index: 4;
     background: #F3F4F8;
   }
-  .book-acts .hint {
-    font-size: 11px;
-    font-weight: 600;
-    color: #999;
-    letter-spacing: .04em;
-  }
-  .book-act.main {
-    width: 100%;
-    height: 46px;
+  .book-act {
+    height: 40px;
     border: 0;
     border-radius: 99px;
-    background: #4F46E5;
-    color: #fff;
-    font: inherit;
-    font-size: 15px;
-    font-weight: 800;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(79, 70, 229, .28);
-  }
-  .book-more {
-    display: flex;
-    justify-content: center;
-    gap: 22px;
-  }
-  .book-link {
-    border: 0;
-    background: none;
-    padding: 2px 0;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(20, 24, 40, .08);
     font: inherit;
     font-size: 12px;
     font-weight: 600;
-    color: #999;
+    color: #333;
     cursor: pointer;
+    padding: 0 8px;
   }
-  .book-link:disabled {
+  .book-act.main {
+    height: 44px;
+    background: #4F46E5;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 8px 18px rgba(79, 70, 229, .26);
+  }
+  .book-act:disabled {
     opacity: .4;
     cursor: default;
   }
@@ -4026,12 +4014,9 @@ function paintBook() {
     sec(cls, title) + rows.filter(Boolean).map(r => line(r[0], r[1])).join("");
   box.innerHTML =
     "<div class=\"book-acts\">" +
-      "<p class=\"hint\">到场前请先下载门票</p>" +
+      "<button class=\"book-act\" type=\"button\" data-book=\"in\"" + (saved.cancelled || saved.checkIn ? " disabled" : "") + ">现场签到</button>" +
       "<button class=\"book-act main\" type=\"button\" data-book=\"dl\">下载门票</button>" +
-      "<div class=\"book-more\">" +
-        "<button class=\"book-link\" type=\"button\" data-book=\"in\"" + (saved.cancelled || saved.checkIn ? " disabled" : "") + ">现场签到</button>" +
-        "<button class=\"book-link\" type=\"button\" data-book=\"cancel\"" + (saved.cancelled ? " disabled" : "") + ">取消预约</button>" +
-      "</div>" +
+      "<button class=\"book-act\" type=\"button\" data-book=\"cancel\"" + (saved.cancelled ? " disabled" : "") + ">取消预约</button>" +
     "</div>" +
     "<div class=\"book-pack\" id=\"bookTicket\" data-addr=\"" + venue.nav + "\">" +
       "<div class=\"ticket-stamp\">" + stamp + "</div>" +
