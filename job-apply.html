@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="py-eq-2040">
+<html lang="zh-CN" data-build="copy-now-1838">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -76,113 +76,68 @@
   .phone.has-dock #form.screen { padding-bottom: 62px; }
   .hero {
     position: relative;
-    height: 186px;
+    height: 188px;
     overflow: hidden;
-    color: #1A1A1A;
+    color: #fff;
     flex-shrink: 0;
+    background: linear-gradient(165deg, #6D5EF7 0%, #4F46E5 48%, #3730A3 100%);
   }
-  .hero.inner {
-    height: 196px;
+  .hero.inner,
+  .hero.pub {
+    height: 188px;
   }
-  .hero-copy .pass.long {
-    font-size: 13px;
-    padding: 6px 14px;
+  .hero-copy .pass {
+    display: none;
   }
   body.inner-ch #innerChannel .b-info .field.only-inner {
     display: block !important;
   }
   .hero img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
+    display: none;
   }
   .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(238,242,255,.28) 100%);
+    display: none;
   }
   .hero-copy {
     position: relative;
     z-index: 1;
     height: 100%;
-    padding: 20px 20px 18px;
+    padding: 22px 20px 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 8px;
+    align-items: flex-start;
+    justify-content: flex-end;
+    text-align: left;
+    gap: 14px;
   }
   .hero-copy em {
+    display: inline-flex;
     font-style: normal;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .5px;
-    line-height: 1.4;
-    text-shadow: none;
-    color: #4F46E5;
-  }
-  .hero-copy h1 {
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: .5px;
-    line-height: 1.4;
-    text-shadow: none;
-  }
-  .hero.inner .hero-copy em {
-    display: block;
-    font-size: 16px;
-    font-weight: 800;
-    letter-spacing: .4px;
-  }
-  .hero.inner .hero-copy h1,
-  .hero.inner .hero-copy h1.long {
-    font-size: 13px;
-    letter-spacing: 0;
-    max-width: none;
-    white-space: nowrap;
-    background: #fff;
-    color: #4F46E5;
-    text-shadow: none;
-    border-radius: 10px;
-    padding: 8px 12px;
-    box-shadow: 0 4px 12px rgba(79,70,229,.16);
-  }
-  .hero.pub {
-    height: 200px;
-  }
-  .hero.pub::after {
-    background: linear-gradient(180deg, rgba(255,255,255,.1) 0%, rgba(238,242,255,.35) 100%);
-  }
-  .hero.pub .hero-copy {
-    gap: 12px;
-    padding: 22px 18px 20px;
-  }
-  .hero.pub .hero-copy em {
-    display: block;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 2.4px;
-    color: #4F46E5;
-    padding: 5px 12px;
-    border: 1px solid rgba(79,70,229,.28);
-    border-radius: 99px;
-    background: rgba(255,255,255,.62);
-  }
-  .hero.pub .hero-copy h1 {
-    font-size: 16px;
-    font-weight: 900;
-    max-width: none;
-    letter-spacing: .15px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .2px;
     line-height: 1.3;
-    white-space: nowrap;
+    color: #fff;
+    background: rgba(255,255,255,.16);
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 99px;
+    padding: 6px 12px;
   }
-  .hero.pub .hero-copy .pass {
-    color: #4338CA;
+  .hero-copy h1,
+  .hero-copy h1.long {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 1.28;
+    color: #fff;
+    white-space: normal;
+    word-break: keep-all;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    max-width: 12.2em;
   }
   .phone.pub-ch {
     background: #F3F4FB;
@@ -438,60 +393,71 @@
   }
   .hook { margin: 0 0 10px; }
   .hook-title {
-    margin: 0 0 12px;
-    padding: 0 2px;
-    font-size: 22px;
+    margin: 0 0 16px;
+    padding: 0;
+    font-size: 24px;
     font-weight: 900;
-    line-height: 1.4;
+    line-height: 1.35;
     color: #111;
-    letter-spacing: -.4px;
+    letter-spacing: -.6px;
     word-break: keep-all;
   }
   .hook-title em {
     font-style: normal;
     color: #4338CA;
-    box-shadow: inset 0 -.42em 0 #EEF2FF;
+    box-shadow: none;
   }
-  .hook-cols {
+  .spec-board.hook-board {
+    padding: 14px 0 12px;
+    border-top: 0;
+    overflow: visible;
+    background: #fff;
+  }
+  .pain-list {
     list-style: none;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 8px;
-    margin: 0 0 12px;
-    padding: 0;
+    gap: 0;
+    margin: 0 0 14px;
+    padding: 4px 0 0;
+    align-items: start;
   }
-  .hook-cols li {
-    margin: 0;
-    padding: 12px 8px 13px;
-    text-align: center;
-    background: #fff;
-    border: 1px solid #E6E8F0;
-    border-radius: 10px;
-    box-shadow: none;
+  .pain-list li {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 6px;
-    min-height: 84px;
+    text-align: center;
+    margin: 0;
+    padding: 0 6px;
+    border: 0;
+    border-right: 1px solid #E8E8EE;
+    min-width: 0;
   }
-  .hook-cols b {
-    display: block;
-    font-size: 11px;
-    font-weight: 700;
-    color: #8A8A90;
-    letter-spacing: .4px;
-    line-height: 1.2;
-  }
-  .hook-cols span {
+  .pain-list li:last-child { border-right: 0; }
+  .pain-list i { display: none; }
+  .pain-list b {
     display: block;
     font-size: 14px;
-    font-weight: 800;
-    color: #1A1A1A;
-    line-height: 1.3;
-    white-space: nowrap;
+    font-weight: 900;
+    color: #111;
+    line-height: 1.35;
+    letter-spacing: 0;
     word-break: keep-all;
   }
+  .pain-list span {
+    display: block;
+    margin-top: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #8B8B96;
+    line-height: 1.55;
+    word-break: keep-all;
+  }
+  body.pub-ch .pain-list i {
+    background: #EEF2FF;
+    color: #4338CA;
+  }
+  .hook-cols { display: none; }
   .hook-end {
     margin: 0;
     font-size: 13px;
@@ -592,6 +558,64 @@
     border: 1px solid #E6E8F0;
     border-radius: 10px;
     padding: 10px 6px;
+  }
+  .role-pack {
+    margin: 10px 0 0;
+    padding: 14px;
+    background: #F4F5FC;
+    border-radius: 14px;
+  }
+  .role-pack h4 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #4338CA;
+  }
+  .role-pack ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+  }
+  .role-pack li {
+    flex: 0 0 calc((100% - 16px) / 3);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 11px 6px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #4338CA;
+    background: #EEF2FF;
+    border-radius: 999px;
+  }
+  .bridge-banner {
+    margin: 12px 0 10px;
+    padding: 14px 12px 13px;
+    border-radius: 12px;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(165deg, #6D5EF7 0%, #4F46E5 52%, #3730A3 100%);
+  }
+  .bridge-banner strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  .bridge-banner p {
+    margin: 6px 0 0;
+    font-size: 10.5px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    color: rgba(255,255,255,.92);
+    white-space: nowrap;
+    word-break: keep-all;
   }
   .story-shot {
     display: block;
@@ -2699,27 +2723,48 @@
   }
   body.inner-ch .phone { background: #fff; }
   body.inner-ch .nav.inner-nav .ch-tag { background: #FFF0F6; color: #C2186A; }
-  body.inner-ch .hero::after {
-    background: linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,.28) 100%);
+  body.inner-ch .hero {
+    background: linear-gradient(165deg, #F0428A 0%, #E21876 52%, #C2186A 100%);
   }
-  body.inner-ch .hero-copy em { color: #C2186A; }
-  body.inner-ch .hero.inner .hero-copy h1,
-  body.inner-ch .hero.inner .hero-copy h1.long {
-    color: #E21876;
-    box-shadow: 0 4px 12px rgba(226,24,118,.16);
+  body.inner-ch .hero-copy em,
+  body.inner-ch .hero-copy h1,
+  body.inner-ch .hero-copy h1.long {
+    color: #fff;
+    background: none;
+    box-shadow: none;
+  }
+  body.inner-ch .hero-copy em {
+    background: rgba(255,255,255,.16);
+    border-color: rgba(255,255,255,.28);
   }
   body.inner-ch .view-tabs { background: #fff; }
   body.inner-ch .view-tabs button.on { color: #C2186A; }
   body.inner-ch .hook-title em {
     color: #C2186A;
-    box-shadow: inset 0 -.42em 0 #F3F0F1;
+    box-shadow: none;
   }
+  body.inner-ch .spec-board.hook-board {
+    background: #fff;
+    border-top: 0;
+  }
+  body.inner-ch .pain-list i {
+    background: #FCE7F3;
+    color: #C2186A;
+  }
+  body.inner-ch .pain-list li { border-right-color: #F3E8EE; border-bottom: 0; }
   body.inner-ch .hook-end em { color: #C2186A; }
   body.inner-ch .spec-board,
   body.inner-ch .co-pack,
+  body.inner-ch .role-pack,
   body.inner-ch .m-callout {
     background: #fff;
     border-top-color: #E21876;
+  }
+  body.inner-ch .role-pack h4,
+  body.inner-ch .role-pack li { color: #C2186A; }
+  body.inner-ch .role-pack li { background: #FCE7F3; }
+  body.inner-ch .bridge-banner {
+    background: linear-gradient(165deg, #F0428A 0%, #E21876 52%, #C2186A 100%);
   }
   body.inner-ch .info-dl > div { border-bottom-color: #EEE; }
   body.inner-ch .hook-cols li,
@@ -2841,11 +2886,10 @@
 
   <section class="screen on" id="form">
     <div class="hero">
-      <img src="fair-kv.png" alt="">
       <div class="hero-copy">
-        <em id="heroEm">2026 秋招季斯芬克专场 · 企业 HR 1v1</em>
-        <h1 id="heroTitle">中国海归艺术创意人才专场招聘会</h1>
-        <span class="pass" id="heroPass">留学生秋招专属通道</span>
+        <em id="heroEm">斯芬克首届 · 国内首个海归艺术专场</em>
+        <h1 id="heroTitle">中国海归艺术<br>创意人才专场招聘会</h1>
+        <span class="pass" id="heroPass" hidden>留学生秋招专属通道</span>
       </div>
     </div>
     <div class="view-tabs" id="viewTabs">
@@ -2855,13 +2899,22 @@
     <div id="viewIntro">
     <div class="story" id="fairStory">
       <section class="story-sec intro">
-        <div class="spec-board">
-          <h2 class="hook-title">你的简历，<em>可能一次都没被打开</em></h2>
-          <ul class="hook-cols">
-            <li><b>AI 初筛</b><span>HR见不到</span></li>
-            <li><b>国内生</b><span>专场抢破头</span></li>
-            <li><b>留学生</b><span>只能海投</span></li>
-          </ul>
+        <div class="spec-board hook-board">
+          <h2 class="hook-title">你缺的不是能力，<em>是被看见的通道</em></h2>
+          <ol class="pain-list">
+            <li>
+              <b>好作品，<br>也过不了机器</b>
+              <span>海投只认关键词。<br>作品集再亮，<br>招聘官也看不见。</span>
+            </li>
+            <li>
+              <b>秋招开跑，<br>你还在答辩</b>
+              <span>国内已经在抢应届岗。<br>等毕设收尾，<br>好位子先没了。</span>
+            </li>
+            <li>
+              <b>国外招聘会，<br>面向当地</b>
+              <span>想回国找工作，<br>它帮不上。</span>
+            </li>
+          </ol>
           <p class="hook-end">本专场<em>跳过初筛</em>，直接对话招聘官</p>
         </div>
         <div class="spec-board">
@@ -2893,6 +2946,22 @@
           <span>华策影业</span><span>ARTPRO STUDIO</span>
           <span>网龙游戏</span><span>……</span>
         </div>
+        </div>
+        <div class="role-pack">
+          <h4>面试岗位</h4>
+          <ul>
+            <li>设计</li>
+            <li>产品</li>
+            <li>运营</li>
+            <li>市场营销</li>
+            <li>游戏</li>
+            <li>文化艺术</li>
+            <li>……</li>
+          </ul>
+        </div>
+        <div class="bridge-banner">
+          <strong>出国的桥梁，归国的彩虹。</strong>
+          <p>斯芬克把学生送进艺术名校，也要把就业这一步接上。</p>
         </div>
         <figure class="story-shot">
           <img src="fair-scene.jpg" alt="招聘会现场一对一面试">
@@ -3721,11 +3790,11 @@ function applyChannel() {
     hero.classList.add("inner");
     hero.classList.remove("pub");
     document.getElementById("heroEm").hidden = false;
-    document.getElementById("heroEm").textContent = "海归艺术创意人才专场招聘会";
+    document.getElementById("heroEm").textContent = "斯芬克首届 · 国内首个海归艺术专场";
     const title = document.getElementById("heroTitle");
     title.hidden = false;
-    title.textContent = "内部专属通道-斯芬克学员报名通道";
-    title.classList.add("long");
+    title.classList.remove("long");
+    title.innerHTML = "中国海归艺术<br>创意人才专场招聘会";
     const pass = document.getElementById("heroPass");
     pass.hidden = true;
     pass.classList.remove("long", "bubble");
@@ -3750,11 +3819,11 @@ function applyChannel() {
     hero.classList.remove("inner");
     hero.classList.add("pub");
     document.getElementById("heroEm").hidden = false;
-    document.getElementById("heroEm").textContent = "2026 秋季 · 公开报名";
+    document.getElementById("heroEm").textContent = "斯芬克首届 · 国内首个海归艺术专场";
     const title = document.getElementById("heroTitle");
     title.hidden = false;
     title.classList.remove("long");
-    title.textContent = "海归艺术创意人才专场招聘会";
+    title.innerHTML = "中国海归艺术<br>创意人才专场招聘会";
     const pass = document.getElementById("heroPass");
     pass.hidden = true;
     pass.classList.remove("long", "bubble");
