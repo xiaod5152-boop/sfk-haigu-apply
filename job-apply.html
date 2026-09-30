@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="e5-center-1529">
+<html lang="zh-CN" data-build="e5-stack-1535">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -957,7 +957,7 @@
     border-right: 1px solid #EEE;
   }
   .e5-tb .nm {
-    width: 82px;
+    width: 88px;
     font-size: 12px;
     font-weight: 800;
     color: #1A1A1A;
@@ -973,10 +973,9 @@
     font-size: 8px;
     font-weight: 700;
     color: #999;
-    white-space: normal;
-    overflow-wrap: anywhere;
+    white-space: nowrap;
+    letter-spacing: -0.04em;
     line-height: 1.2;
-    letter-spacing: 0;
   }
   .e5-tb td.fx {
     overflow: hidden;
@@ -984,23 +983,26 @@
   }
   .e5-tb .fx {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
     min-width: 0;
     max-width: 100%;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 800;
     color: #333;
-    line-height: 1.45;
+    line-height: 1.35;
     letter-spacing: 0;
+    text-align: center;
   }
   .e5-tb .fx span { white-space: nowrap; }
   .e5-tb .fx i {
-    margin: 0 3px;
+    margin: 1px 0;
     font-style: normal;
     font-weight: 700;
     color: #C4C4C4;
+    line-height: 1;
   }
   .why-nums {
     display: grid;
