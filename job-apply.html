@@ -2395,6 +2395,33 @@
     line-height: 1.15;
   }
   #book { padding: 12px 32px 28px; }
+  .book-acts {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin: 12px 0 0;
+  }
+  .book-act {
+    height: 40px;
+    border-radius: 99px;
+    border: 1px solid #E5E5E5;
+    background: #fff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    cursor: pointer;
+    padding: 0 4px;
+  }
+  .book-act.main {
+    background: #4F46E5;
+    border-color: #4F46E5;
+    color: #fff;
+  }
+  .book-act:disabled {
+    opacity: .4;
+    cursor: default;
+  }
   .book-pack {
     background: #fff;
     border-radius: 14px;
@@ -2640,6 +2667,10 @@
   body.inner-ch .btn { background: #E21876; }
   body.inner-ch .btn.ghost { color: #E21876; border-color: #E21876; }
   body.inner-ch .side-fab.share { background: #E21876; }
+  body.inner-ch .book-act.main {
+    background: #E21876;
+    border-color: #E21876;
+  }
   body.inner-ch .cell.on { background: #E21876; border-color: #E21876; }
   body.inner-ch .anchor button.on {
     background: #E21876;
@@ -3939,8 +3970,9 @@ function paintBook() {
   );
   const venue = VENUES[(fair && fair.dataset.city) || "北京"] || VENUES["北京"];
   const addrHtml = addrEl ? addrEl.innerHTML : venue.html;
-  const status = fairGet().status;
-  const stamp = status === "done" ? "已提交" : "已预约";
+  const saved = fairGet();
+  const status = saved.status;
+  const stamp = saved.cancelled ? "已取消" : (saved.checkIn ? "已签到" : (status === "done" ? "已提交" : "已预约"));
   const title = INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会";
   const phoneDigits = ((document.getElementById("phone") || {}).value || "").replace(/\s/g, "");
   const phoneMask = phoneDigits.length >= 7
@@ -3988,6 +4020,11 @@ function paintBook() {
           ["独立/创业", one("artist")]
         ]) +
       "</table>" +
+    "</div>" +
+    "<div class=\"book-acts\">" +
+      "<button class=\"book-act\" type=\"button\" data-book=\"dl\">下载门票</button>" +
+      "<button class=\"book-act main\" type=\"button\" data-book=\"in\"" + (saved.cancelled || saved.checkIn ? " disabled" : "") + ">现场签到</button>" +
+      "<button class=\"book-act\" type=\"button\" data-book=\"cancel\"" + (saved.cancelled ? " disabled" : "") + ">取消预约</button>" +
     "</div>";
 }
 function paintFairTip() {
@@ -4299,7 +4336,43 @@ function openNav(addr) {
 document.getElementById("passNav").addEventListener("click", () => {
   openNav(document.getElementById("passVenue").dataset.addr);
 });
+function patchFair(extra) {
+  const data = Object.assign({}, fairGet(), extra, { at: Date.now() });
+  localStorage.setItem("sfk-fair-apply", JSON.stringify(data));
+}
+function downloadTicket() {
+  const pack = document.getElementById("bookTicket");
+  const text = pack ? pack.innerText.replace(/\n{3,}/g, "\n\n") : "预约信息";
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], { type: "text/plain;charset=utf-8" }));
+  a.download = "专场招聘会-入场凭证.txt";
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast("门票已下载");
+}
+function checkInBook() {
+  const saved = fairGet();
+  if (saved.cancelled || saved.checkIn) return;
+  patchFair({ checkIn: true });
+  paintBook();
+  toast("现场签到成功");
+}
+function cancelBook() {
+  if (fairGet().cancelled) return;
+  if (!window.confirm("确认取消本次预约？")) return;
+  patchFair({ cancelled: true, checkIn: false, status: "draft" });
+  paintBook();
+  toast("预约已取消");
+}
 document.getElementById("book").addEventListener("click", e => {
+  const act = e.target.closest("[data-book]");
+  if (act) {
+    const k = act.dataset.book;
+    if (k === "dl") downloadTicket();
+    else if (k === "in") checkInBook();
+    else if (k === "cancel") cancelBook();
+    return;
+  }
   if (!e.target.closest("#bookNav")) return;
   const t = document.getElementById("bookTicket");
   if (t) openNav(t.dataset.addr);
