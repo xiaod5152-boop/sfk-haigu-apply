@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="copy-v4-1808">
+<html lang="zh-CN" data-build="copy-v5-1826">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -408,7 +408,7 @@
     box-shadow: none;
   }
   .spec-board.hook-board {
-    padding: 16px 12px 14px;
+    padding: 14px 0 12px;
     border-top: 0;
     overflow: visible;
     background: #fff;
@@ -418,8 +418,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0;
-    margin: 0 0 12px;
-    padding: 0;
+    margin: 0 0 14px;
+    padding: 4px 0 0;
+    align-items: start;
   }
   .pain-list li {
     display: flex;
@@ -427,30 +428,30 @@
     align-items: center;
     text-align: center;
     margin: 0;
-    padding: 0 8px;
+    padding: 0 6px;
     border: 0;
-    border-right: 1px solid #EEEFF5;
+    border-right: 1px solid #E8E8EE;
     min-width: 0;
   }
   .pain-list li:last-child { border-right: 0; }
   .pain-list i {
     display: grid;
     place-items: center;
-    width: 26px;
-    height: 26px;
-    margin: 0 0 8px;
+    width: 34px;
+    height: 34px;
+    margin: 0 0 10px;
     border-radius: 50%;
-    background: #EEF2FF;
-    color: #4338CA;
+    background: #FCE7F3;
+    color: #E21876;
     font-style: normal;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 800;
     font-family: ui-sans-serif, system-ui, sans-serif;
   }
   .pain-list b {
     display: block;
-    font-size: 12px;
-    font-weight: 800;
+    font-size: 14px;
+    font-weight: 900;
     color: #111;
     line-height: 1.35;
     letter-spacing: 0;
@@ -458,12 +459,16 @@
   }
   .pain-list span {
     display: block;
-    margin-top: 6px;
-    font-size: 10px;
+    margin-top: 8px;
+    font-size: 11px;
     font-weight: 500;
-    color: #6B6B76;
-    line-height: 1.5;
+    color: #8B8B96;
+    line-height: 1.55;
     word-break: keep-all;
+  }
+  body.pub-ch .pain-list i {
+    background: #EEF2FF;
+    color: #4338CA;
   }
   .hook-cols { display: none; }
   .hook-end {
@@ -2909,22 +2914,22 @@
             <li>
               <i>1</i>
               <div>
-                <b>好作品，也过不了机器</b>
-                <span>海投只认关键词。作品集再亮，招聘官也看不见。</span>
+                <b>好作品，<br>也过不了机器</b>
+                <span>海投只认关键词。<br>作品集再亮，<br>招聘官也看不见。</span>
               </div>
             </li>
             <li>
               <i>2</i>
               <div>
-                <b>秋招开跑，你还在答辩</b>
-                <span>国内已经在抢应届岗。等毕设收尾，好位子先没了。</span>
+                <b>秋招开跑，<br>你还在答辩</b>
+                <span>国内已经在抢应届岗。<br>等毕设收尾，<br>好位子先没了。</span>
               </div>
             </li>
             <li>
               <i>3</i>
               <div>
-                <b>国外招聘会，面向当地</b>
-                <span>想回国找工作，它帮不上。</span>
+                <b>国外招聘会，<br>面向当地</b>
+                <span>想回国找工作，<br>它帮不上。</span>
               </div>
             </li>
           </ol>
