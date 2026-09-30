@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="insight-5e-3">
+<html lang="zh-CN" data-build="insight-5e-4">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -863,184 +863,25 @@
     white-space: nowrap;
     font-size: 11px;
   }
-  .iv-board {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  .spec-dl > div {
+    grid-template-columns: 92px 1fr;
+    align-items: center;
   }
-  .iv-board > li {
-    display: grid;
-    grid-template-columns: 28px 1fr;
-    gap: 10px;
-    margin: 0 0 12px;
-    padding: 0 0 12px;
-    border-bottom: 1px solid #EEE;
+  .spec-dl dt {
+    text-align: center;
   }
-  .iv-board > li:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: 0;
-  }
-  .iv-no {
+  .spec-dl dd {
     font-size: 12px;
-    font-weight: 800;
-    letter-spacing: .04em;
-    color: #4F46E5;
-    line-height: 1.2;
-    padding-top: 1px;
-  }
-  .iv-board h5 {
-    margin: 0 0 6px;
-    font-size: 14px;
-    font-weight: 800;
-    color: #1A1A1A;
-    line-height: 1.3;
-  }
-  .iv-board p {
-    margin: 0;
-    font-size: 12px;
-    font-weight: 500;
     color: #666;
-    line-height: 1.7;
     word-break: keep-all;
   }
-  .iv-board p b {
-    font-weight: 800;
-    color: #4F46E5;
-    white-space: nowrap;
-  }
-  .iv-mis {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 8px;
-    margin: 2px 0 0;
-    padding: 0;
-    list-style: none;
-  }
-  .iv-mis li {
-    padding: 7px 0 0;
-    text-align: center;
-    font-size: 11px;
-    font-weight: 600;
-    color: #666;
-    line-height: 1.4;
-    border-top: 1.5px solid #4F46E5;
-    background: none;
-  }
-  .iv-mis strong {
+  .spec-dl .en {
     display: block;
-    font-size: 12px;
-    font-weight: 800;
-    color: #1A1A1A;
-  }
-  .e5-board {
-    --c1: #4F46E5;
-    --c2: #6366F1;
-    --c3: #312E81;
-    --c4: #7C3AED;
-    --c5: #4338CA;
-    --ink: #4F46E5;
-  }
-  body.pub-ch .e5-board {
-    --c1: #4F46E5;
-    --c2: #6366F1;
-    --c3: #312E81;
-    --c4: #7C3AED;
-    --c5: #4338CA;
-    --ink: #4F46E5;
-  }
-  .e5-plaque {
-    margin: 0 0 10px;
-    padding: 14px 12px;
-    border-radius: 12px;
-    background: #4F46E5;
-    color: #fff;
-    text-align: center;
-  }
-  .e5-plaque strong {
-    display: block;
-    font-size: 20px;
-    font-weight: 900;
-    letter-spacing: .2em;
-    line-height: 1;
-  }
-  .e5-plaque span {
-    display: block;
-    margin-top: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .12em;
-    opacity: .88;
-  }
-  .e5-bar {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 3px;
-    margin: 0 0 10px;
-  }
-  .e5-bar i {
-    display: block;
-    height: 4px;
-    border-radius: 99px;
-    font-style: normal;
-  }
-  .e5-bar .n1 { background: var(--c1); }
-  .e5-bar .n2 { background: var(--c2); }
-  .e5-bar .n3 { background: var(--c3); }
-  .e5-bar .n4 { background: var(--c4); }
-  .e5-bar .n5 { background: var(--c5); }
-  .e5-spec {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    background: #fff;
-  }
-  .e5-spec li {
-    display: grid;
-    grid-template-columns: 32px 1fr;
-    column-gap: 8px;
-    padding: 10px 0 10px 10px;
-    border-bottom: 1px solid #EEE;
-    border-left: 3px solid var(--ink);
-  }
-  .e5-spec li:last-child { border-bottom: 0; }
-  .e5-spec li.n1 { border-left-color: var(--c1); }
-  .e5-spec li.n2 { border-left-color: var(--c2); }
-  .e5-spec li.n3 { border-left-color: var(--c3); }
-  .e5-spec li.n4 { border-left-color: var(--c4); }
-  .e5-spec li.n5 { border-left-color: var(--c5); }
-  .e5-spec li b {
-    align-self: center;
-    font-size: 11px;
-    font-weight: 800;
-    color: var(--ink);
-  }
-  .e5-spec li.n1 b { color: var(--c1); }
-  .e5-spec li.n2 b { color: var(--c2); }
-  .e5-spec li.n3 b { color: var(--c3); }
-  .e5-spec li.n4 b { color: var(--c4); }
-  .e5-spec li.n5 b { color: var(--c5); }
-  .e5-spec strong {
-    font-size: 13px;
-    font-weight: 800;
-    color: #1A1A1A;
-    line-height: 1.3;
-  }
-  .e5-spec strong i {
-    margin-left: 6px;
-    font-style: normal;
+    margin-top: 2px;
     font-size: 10px;
     font-weight: 600;
     color: #999;
-  }
-  .e5-spec span {
-    display: block;
-    margin-top: 2px;
-    font-size: 11px;
-    font-weight: 500;
-    color: #888;
-    line-height: 1.45;
-    white-space: nowrap;
+    letter-spacing: .02em;
   }
   .why-nums {
     display: grid;
@@ -1120,9 +961,6 @@
     color: #666;
     font-weight: 600;
     letter-spacing: .06em;
-  }
-  .story-sec.method .iv-board p b {
-    white-space: nowrap;
   }
   .iv-entry {
     display: block;
@@ -2686,20 +2524,7 @@
     background: #E21876;
     color: #fff;
   }
-  body.inner-ch .iv-no,
-  body.inner-ch .iv-board p b,
-  body.inner-ch .story-sec.method .iv-board p b { color: #C2186A !important; }
-  body.inner-ch .iv-mis li { border-top-color: #E21876; }
-  body.inner-ch .e5-plaque { background: #E21876; }
   body.inner-ch .why-nums strong { color: #C2186A; }
-  body.inner-ch .e5-board {
-    --c1: #E21876;
-    --c2: #EC4899;
-    --c3: #9D174D;
-    --c4: #DB2777;
-    --c5: #BE185D;
-    --ink: #C2186A;
-  }
   body.inner-ch .tl-rail .n { color: #E21876; }
   body.inner-ch .tl-caps > li.star strong { color: #C2186A; }
   body.inner-ch .chip.on {
@@ -2894,48 +2719,46 @@
         </div>
         <div class="m-block spec-board">
           <h4 class="sub">问题诊断：三大求职洞察</h4>
-          <ol class="iv-board">
-            <li>
-              <span class="iv-no">01</span>
-              <div>
-                <h5>拒绝标准化求职路径</h5>
-                <p>艺术与设计类专业没有<b>通用模板</b><br>作品集方向、岗位匹配、表达逻辑<br>都要按个人风格深度定制</p>
-              </div>
-            </li>
-            <li>
-              <span class="iv-no">02</span>
-              <div>
-                <h5>创意岗三重错位</h5>
-                <ul class="iv-mis">
-                  <li><strong>职业认知</strong>错位</li>
-                  <li><strong>用人标准</strong>错位</li>
-                  <li><strong>时间窗口</strong>错位</li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <span class="iv-no">03</span>
-              <div>
-                <h5>从堆砌转向能力沉淀</h5>
-                <p>实习不是越多越好<br>真正有效的经历要能<b>复盘</b>、<b>可表达</b>、<b>可验证</b></p>
-              </div>
-            </li>
-          </ol>
+          <dl class="info-dl spec-dl">
+            <div>
+              <dt>拒绝标准化<br>求职路径</dt>
+              <dd>艺术与设计类专业没有通用模板。作品集方向、岗位匹配、表达逻辑都要按个人风格深度定制。</dd>
+            </div>
+            <div>
+              <dt>创意岗<br>三重错位</dt>
+              <dd>职业认知错位 · 用人标准错位 · 时间窗口错位</dd>
+            </div>
+            <div>
+              <dt>从堆砌转向<br>能力沉淀</dt>
+              <dd>实习不是越多越好。真正有效的经历要能复盘、可表达、可验证。</dd>
+            </div>
+          </dl>
         </div>
         <div class="m-block spec-board">
           <h4 class="sub">评价标准：5E 人才评价模型</h4>
-          <div class="e5-board">
-            <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
-            <div class="e5-plaque" aria-hidden="true"><strong>5E</strong><span>综合竞争力</span></div>
-            <div class="e5-bar" aria-hidden="true"><i class="n1"></i><i class="n2"></i><i class="n3"></i><i class="n4"></i><i class="n5"></i></div>
-            <ol class="e5-spec">
-              <li class="n1"><b>E1</b><div><strong>教育背景<i>Education</i></strong><span>院校底蕴 × 专业功底 × 学术素养</span></div></li>
-              <li class="n2"><b>E2</b><div><strong>实践经验<i>Experience</i></strong><span>实习历练 × 项目沉淀 × 业务实战</span></div></li>
-              <li class="n3"><b>E3</b><div><strong>专业能力<i>Expertise</i></strong><span>岗位硬技能 × 问题解决力 × AI应用力</span></div></li>
-              <li class="n4"><b>E4</b><div><strong>执行力<i>Execution</i></strong><span>结果导向 × 闭环思维 × 推进韧性</span></div></li>
-              <li class="n5"><b>E5</b><div><strong>职业素养<i>Employability</i></strong><span>主动沟通 × 高效协作 × 逻辑思辨</span></div></li>
-            </ol>
-          </div>
+          <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
+          <dl class="info-dl spec-dl">
+            <div>
+              <dt>E1<br>教育背景</dt>
+              <dd>院校底蕴 × 专业功底 × 学术素养<span class="en">Education</span></dd>
+            </div>
+            <div>
+              <dt>E2<br>实践经验</dt>
+              <dd>实习历练 × 项目沉淀 × 业务实战<span class="en">Experience</span></dd>
+            </div>
+            <div>
+              <dt>E3<br>专业能力</dt>
+              <dd>岗位硬技能 × 问题解决力 × AI应用力<span class="en">Expertise</span></dd>
+            </div>
+            <div>
+              <dt>E4<br>执行力</dt>
+              <dd>结果导向 × 闭环思维 × 推进韧性<span class="en">Execution</span></dd>
+            </div>
+            <div>
+              <dt>E5<br>职业素养</dt>
+              <dd>主动沟通 × 高效协作 × 逻辑思辨<span class="en">Employability</span></dd>
+            </div>
+          </dl>
         </div>
         <div class="m-callout">
           <h4 class="sub">现场评估机制</h4>
