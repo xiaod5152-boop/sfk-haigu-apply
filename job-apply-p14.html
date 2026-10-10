@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="copy-p14-1415">
+<html lang="zh-CN" data-build="copy-p15-1420">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -707,28 +707,50 @@
     white-space: nowrap;
   }
   .bridge-banner {
+    position: relative;
     margin: 12px 0 10px;
-    padding: 14px 8px 13px;
-    border-radius: 12px;
+    padding: 16px 10px 14px;
+    border-radius: 16px;
     text-align: center;
-    color: #fff;
-    background: linear-gradient(165deg, #6D5EF7 0%, #4F46E5 52%, #3730A3 100%);
+    color: #222;
+    background: linear-gradient(180deg, #F5F4FF 0%, #FFFFFF 58%);
+    border: 1px solid #E4E2F6;
+    box-shadow: none;
   }
+  .bridge-banner .arcs {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 3px;
+    height: 16px;
+    margin: 0 0 8px;
+  }
+  .bridge-banner .arcs i {
+    display: block;
+    height: 100%;
+    border: 1.6px solid #4F46E5;
+    border-bottom: 0;
+    border-radius: 20px 20px 0 0;
+  }
+  .bridge-banner .arcs i:nth-child(1) { width: 18px; opacity: .35; }
+  .bridge-banner .arcs i:nth-child(2) { width: 28px; opacity: .65; }
+  .bridge-banner .arcs i:nth-child(3) { width: 38px; opacity: 1; }
   .bridge-banner strong {
     display: block;
-    font-size: 15px;
-    font-weight: 800;
+    font-size: 16px;
+    font-weight: 900;
     line-height: 1.35;
     letter-spacing: 0;
+    color: #4F46E5;
     white-space: nowrap;
   }
   .bridge-banner p {
-    margin: 6px 0 0;
+    margin: 7px 0 0;
     font-size: 9.5px;
     font-weight: 500;
     line-height: 1.4;
     letter-spacing: -0.04em;
-    color: rgba(255,255,255,.92);
+    color: #666;
     white-space: nowrap;
     word-break: keep-all;
   }
@@ -2903,8 +2925,11 @@
   body.inner-ch .role-pack li { color: #C2186A; }
   body.inner-ch .role-pack li { background: #FCE7F3; }
   body.inner-ch .bridge-banner {
-    background: linear-gradient(165deg, #F0428A 0%, #E21876 52%, #C2186A 100%);
+    background: linear-gradient(180deg, #FFF5F9 0%, #FFFFFF 58%);
+    border-color: #F3E0EA;
   }
+  body.inner-ch .bridge-banner .arcs i { border-color: #E21876; }
+  body.inner-ch .bridge-banner strong { color: #E21876; }
   body.inner-ch .info-tiles section { background: #F7F8FA; }
   body.inner-ch .info-tiles h4 { color: #C2186A; }
   body.inner-ch .info-tiles li::before { background: #E21876; }
@@ -3101,6 +3126,7 @@
           </ul>
         </div>
         <div class="bridge-banner">
+          <span class="arcs" aria-hidden="true"><i></i><i></i><i></i></span>
           <strong>出国的桥梁，归国的彩虹</strong>
           <p>从艺术名校到职场，斯芬克不止送你出国，更帮你接上就业</p>
         </div>
