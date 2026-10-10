@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="copy-p13-1410">
+<html lang="zh-CN" data-build="copy-p14-1415">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -1159,79 +1159,103 @@
   }
   .m-block.spec-board:has(.e5-list) {
     overflow: hidden;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 14px 10px 12px;
   }
   .e5-list {
     --e5-ink: #4F46E5;
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 8px;
   }
-  .e5-list li {
+  .e5-list > li {
     display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-areas:
-      "tag nm"
-      "tag fx";
-    column-gap: 10px;
-    row-gap: 4px;
-    align-items: center;
-    padding: 12px 12px 12px 10px;
-    background: #fff;
-    border: 1px solid #E8EAF0;
-    border-left: 3px solid var(--e5-ink);
-    border-radius: 12px;
-  }
-  .e5-list .hd {
-    display: contents;
-  }
-  .e5-list .tag {
-    grid-area: tag;
-    align-self: center;
-    min-width: 32px;
-    padding: 4px 7px;
-    border-radius: 7px;
-    background: var(--e5-ink);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 800;
-    text-align: center;
-    line-height: 1.3;
-  }
-  .e5-list .nm {
-    grid-area: nm;
-    min-width: 0;
-    font-size: 14px;
-    font-weight: 800;
-    color: #1A1A1A;
-    line-height: 1.25;
-    text-align: left;
-    word-break: keep-all;
-  }
-  .e5-list .nm em {
-    display: block;
-    margin-top: 2px;
-    font-style: normal;
-    font-size: 11px;
-    font-weight: 700;
-    color: #888;
-    white-space: nowrap;
-  }
-  .e5-list .fx {
-    grid-area: fx;
+    grid-template-columns: 72px 1fr;
+    min-height: 92px;
     margin: 0;
     padding: 0;
-    background: none;
-    border: 0;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #EEEFF4;
+    border-radius: 12px;
+  }
+  .e5-list > li.wide {
+    grid-column: 1 / -1;
+    min-height: 78px;
+    grid-template-columns: 80px 1fr;
+  }
+  .e5-list .lab {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 4px;
+    text-align: center;
+    background: var(--e5-ink);
+    color: #fff;
+  }
+  .e5-list .lab strong {
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+  .e5-list .lab b {
+    margin-top: 3px;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.25;
+    word-break: keep-all;
+  }
+  .e5-list .lab em {
+    margin-top: 2px;
+    font-style: normal;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0;
+    opacity: .82;
+    white-space: nowrap;
+  }
+  .e5-list .pts {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    margin: 0;
+    padding: 10px 8px 10px 12px;
+  }
+  .e5-list .pts li {
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #444;
+    line-height: 1.35;
+    word-break: keep-all;
+  }
+  .e5-list .pts li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--e5-ink);
+  }
+  .e5-list .line {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 10px 12px;
     font-size: 12px;
     font-weight: 700;
-    color: #555;
+    color: #444;
     line-height: 1.45;
-    text-align: left;
     word-break: keep-all;
   }
   .why-nums {
@@ -2927,7 +2951,6 @@
   }
   body.inner-ch .iv-n b { color: #C2186A; }
   body.inner-ch .e5-list { --e5-ink: #E21876; }
-  body.inner-ch .e5-list .fx { background: none; }
   body.inner-ch .tl-rail .n { color: #E21876; }
   body.inner-ch .tl-caps > li.star strong { color: #C2186A; }
   body.inner-ch .chip.on {
@@ -3171,24 +3194,24 @@
           <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
           <ul class="e5-list">
             <li>
-              <div class="hd"><span class="tag">E1</span><div class="nm">教育背景<em>（Education）</em></div></div>
-              <p class="fx">院校底蕴 × 专业功底 × 学术素养</p>
+              <div class="lab"><strong>E1</strong><b>教育背景</b><em>Education</em></div>
+              <ul class="pts"><li>院校底蕴</li><li>专业功底</li><li>学术素养</li></ul>
             </li>
             <li>
-              <div class="hd"><span class="tag">E2</span><div class="nm">实践经验<em>（Experience）</em></div></div>
-              <p class="fx">实习历练 × 项目沉淀 × 业务实战</p>
+              <div class="lab"><strong>E2</strong><b>实践经验</b><em>Experience</em></div>
+              <ul class="pts"><li>实习历练</li><li>项目沉淀</li><li>业务实战</li></ul>
             </li>
             <li>
-              <div class="hd"><span class="tag">E3</span><div class="nm">专业能力<em>（Expertise）</em></div></div>
-              <p class="fx">岗位硬技能 × 问题解决力 × AI应用力</p>
+              <div class="lab"><strong>E3</strong><b>专业能力</b><em>Expertise</em></div>
+              <ul class="pts"><li>岗位硬技能</li><li>问题解决力</li><li>AI应用力</li></ul>
             </li>
             <li>
-              <div class="hd"><span class="tag">E4</span><div class="nm">执行力<em>（Execution）</em></div></div>
-              <p class="fx">结果导向 × 闭环思维 × 推进韧性</p>
+              <div class="lab"><strong>E4</strong><b>执行力</b><em>Execution</em></div>
+              <ul class="pts"><li>结果导向</li><li>闭环思维</li><li>推进韧性</li></ul>
             </li>
-            <li>
-              <div class="hd"><span class="tag">E5</span><div class="nm">职业素养<em>（Employability）</em></div></div>
-              <p class="fx">主动沟通 × 高效协作 × 逻辑思辨</p>
+            <li class="wide">
+              <div class="lab"><strong>E5</strong><b>职业素养</b><em>Employability</em></div>
+              <p class="line">主动沟通 · 高效协作 · 逻辑思辨</p>
             </li>
           </ul>
         </div>
