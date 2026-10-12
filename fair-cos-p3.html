@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-build="fair-news-1518">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本场企业 · 资讯</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    background: #EDEDED;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 24px 12px 40px;
+    color: #1A1A1A;
+  }
+  .phone {
+    position: relative;
+    width: 390px;
+    height: 844px;
+    background: #EDEDED;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0,0,0,.1);
+  }
+  .status {
+    height: 44px; background: #EDEDED;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    padding: 0 16px 6px; font-size: 13px; font-weight: 600; flex-shrink: 0;
+  }
+  .phone.mp .status { background: #fff; }
+  .nav {
+    height: 44px; display: flex; align-items: center;
+    justify-content: center; font-size: 16px; font-weight: 600;
+    position: relative; flex-shrink: 0;
+  }
+  .wx-nav { background: #EDEDED; }
+  .wx-nav .back, .nav .back {
+    position: absolute; left: 10px; border: 0; background: none;
+    font-size: 22px; cursor: pointer; color: #111;
+  }
+  .wx-nav .more {
+    position: absolute; right: 14px; border: 0; background: none;
+    font-size: 18px; font-weight: 800; letter-spacing: 2px; cursor: pointer;
+  }
+  .mp-nav {
+    background: #fff;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .mp-nav #navTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111;
+  }
+  .nav .cap {
+    position: absolute; right: 10px; top: 7px;
+    width: 87px; height: 30px;
+    border: 1px solid #E5E5E5; border-radius: 15px;
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; background: #fff;
+  }
+  .nav .cap::before {
+    content: "···";
+    flex: 1;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #333;
+    line-height: 1;
+  }
+  .nav .cap::after {
+    content: "";
+    width: 17px; height: 17px;
+    margin-right: 7px;
+    border: 1.5px solid #333;
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+  .nav .cap i {
+    position: absolute;
+    left: 50%;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: #E5E5E5;
+    transform: translateX(-50%);
+  }
+  .screen { display: none; flex: 1; overflow-x: hidden; overflow-y: auto; }
+  .screen.on { display: block; }
+
+  .wx-time { text-align: center; font-size: 12px; color: #B1B1B1; padding: 8px 0 12px; }
+  .wx-row { display: flex; align-items: flex-start; gap: 10px; padding: 0 16px 20px; }
+  .wx-ava {
+    width: 40px; height: 40px; border-radius: 6px; background: #07C160; color: #fff;
+    font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center;
+    text-align: center; line-height: 1.15; flex-shrink: 0;
+  }
+  .wx-card {
+    flex: 1; background: #fff; border-radius: 8px; overflow: hidden; text-align: left;
+    border: 0; font: inherit; cursor: pointer; box-shadow: 0 1px 0 rgba(0,0,0,.04);
+  }
+  .wx-card header { padding: 12px 14px 8px; border-bottom: 1px solid #F4F4F4; }
+  .wx-card header b { display: block; font-size: 16px; font-weight: 800; color: #111; }
+  .wx-card header span { display: block; margin-top: 4px; font-size: 12px; color: #888; line-height: 1.45; }
+  .wx-card dl { padding: 10px 14px 8px; }
+  .wx-card div.row { display: flex; gap: 10px; padding: 5px 0; font-size: 13px; line-height: 1.45; }
+  .wx-card dt { width: 42px; flex-shrink: 0; color: #999; }
+  .wx-card dd { color: #333; font-weight: 600; }
+  .wx-card footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px 12px; border-top: 1px solid #F4F4F4;
+    font-size: 13px; font-weight: 700; color: #07C160;
+  }
+  .wx-card footer i { font-style: normal; color: #C8C8C8; font-weight: 400; }
+  .wx-hint { margin: 0 16px; font-size: 11px; color: #B1B1B1; text-align: center; line-height: 1.5; }
+
+  .news {
+    min-height: 100%;
+    background: #F7F8FA;
+    padding: 0 0 28px;
+  }
+  .news-head {
+    background: #fff;
+    padding: 14px 16px 12px;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .news-head .k {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .4px;
+    color: #4338CA;
+    background: #EEF2FF;
+    border-radius: 4px;
+    padding: 2px 6px;
+  }
+  body.inner-ch .news-head .k { color: #C2186A; background: #FFF0F6; }
+  .news-head h2 {
+    margin: 8px 0 4px;
+    font-size: 18px;
+    font-weight: 900;
+  }
+  .news-head p {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.5;
+    font-weight: 600;
+  }
+  .news-list { padding: 8px 0; background: #fff; margin-top: 8px; }
+  .news-item {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    padding: 12px 16px;
+    border: 0;
+    border-bottom: 1px solid #F5F5F5;
+    background: #fff;
+    font: inherit;
+    cursor: pointer;
+  }
+  .news-item:last-child { border-bottom: 0; }
+  .news-item .txt { flex: 1; min-width: 0; }
+  .news-item strong {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #111;
+  }
+  .news-item em {
+    display: block;
+    margin-top: 6px;
+    font-style: normal;
+    font-size: 12px;
+    color: #888;
+    line-height: 1.4;
+  }
+  .news-item .meta {
+    margin-top: 8px;
+    font-size: 11px;
+    color: #B0B0B0;
+    font-weight: 600;
+  }
+  .thumb {
+    width: 86px;
+    height: 64px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    background: linear-gradient(160deg, #EEF2FF, #C7D2FE);
+    color: #4338CA;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.25;
+    padding: 6px;
+  }
+  body.inner-ch .thumb { background: linear-gradient(160deg, #FCE7F3, #F9A8D4); color: #C2186A; }
+  .news-item.wait strong { color: #999; }
+  .news-item.wait .thumb { background: #F2F3F5; color: #AAA; }
+
+  .article { padding: 18px 18px 88px; background: #fff; min-height: 100%; }
+  .article h3 {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #111;
+    margin-bottom: 12px;
+  }
+  .article .by {
+    font-size: 12px;
+    color: #999;
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .article h4 {
+    margin: 22px 0 10px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #333;
+  }
+  .article p {
+    margin: 0 0 14px;
+    font-size: 15px;
+    font-weight: 400;
+    color: #333;
+    line-height: 1.85;
+  }
+  .article .wait-note {
+    padding: 14px 12px;
+    background: #F7F8FA;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #888;
+    line-height: 1.6;
+  }
+  .cs-fab {
+    display: none;
+    position: absolute;
+    right: 14px;
+    bottom: 28px;
+    z-index: 8;
+    width: 64px;
+    flex-direction: column;
+    align-items: center;
+    border: 0;
+    background: none;
+    font: inherit;
+    cursor: pointer;
+  }
+  .phone.mp.detail-on .cs-fab { display: flex; }
+  .cs-fab .ico {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(160deg, #FF7AB8, #E21876);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(226,24,118,.28);
+  }
+  .cs-fab .ico svg { display: block; }
+  .cs-fab span {
+    margin-top: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #E21876;
+    background: #fff;
+    border-radius: 99px;
+    padding: 2px 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  }
+</style>
+</head>
+<body>
+<div class="phone" id="phone">
+  <div class="status"><span>10:28</span><span>5G</span></div>
+  <div class="nav wx-nav" id="navWx">
+    <button class="back" id="backWx" type="button">‹</button>
+    <span>服务通知</span>
+    <button class="more" type="button" tabindex="-1">···</button>
+  </div>
+  <div class="nav mp-nav" id="navMp" hidden>
+    <button class="back" id="backMp" type="button">‹</button>
+    <span id="navTitle"></span>
+    <span class="cap"><i></i></span>
+  </div>
+  <button class="cs-fab" id="csFab" type="button" tabindex="-1">
+    <div class="ico" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M4 12a8 8 0 0116 0v2.2a2.2 2.2 0 01-2.2 2.2h-.6V12a5.2 5.2 0 10-10.4 0v4.4H6.2A2.2 2.2 0 014 14.2V12z" fill="#fff"/>
+        <path d="M9 18.5c.6 1.4 1.8 2.3 3 2.3s2.4-.9 3-2.3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span>在线客服</span>
+  </button>
+
+  <section class="screen on" id="wx">
+    <p class="wx-time">下午 2:16</p>
+    <div class="wx-row">
+      <div class="wx-ava">服务<br>通知</div>
+      <button class="wx-card" id="wxCard" type="button">
+        <header>
+          <b>报名成功通知</b>
+        </header>
+        <dl>
+          <div class="row"><dt>活动</dt><dd>中国海归艺术创意人才专场招聘会</dd></div>
+          <div class="row"><dt>场次</dt><dd id="nCity">上海站</dd></div>
+          <div class="row"><dt>时间</dt><dd id="nWhen">10月24日</dd></div>
+          <div class="row"><dt>地点</dt><dd id="nAddr">上海市黄浦区南京东路100号国际饭店会议层</dd></div>
+          <div class="row"><dt>备注</dt><dd>点击查看本场企业介绍</dd></div>
+        </dl>
+        <footer><span>详情</span><i>›</i></footer>
+      </button>
+    </div>
+  </section>
+
+  <section class="screen" id="list">
+    <div class="news">
+      <div class="news-head">
+        <span class="k">海归招聘会参展企业介绍.不公开</span>
+        <h2 id="colTitle">本场企业</h2>
+        <p id="colDesc"></p>
+      </div>
+      <div class="news-list" id="newsList"></div>
+    </div>
+  </section>
+
+  <section class="screen" id="detail">
+    <article class="article" id="article"></article>
+  </section>
+</div>
+<script>
+const INNER = (() => {
+  const q = new URLSearchParams(location.search);
+  const hash = (location.hash || "").replace(/^#/, "");
+  if (q.get("pub") === "1" || q.get("inner") === "0" || hash === "pub") return false;
+  if (q.has("inner") && q.get("inner") !== "false") return true;
+  return true;
+})();
+const VENUES = {
+  北京: "北京市朝阳区酒仙桥路4号798艺术中心展厅",
+  上海: "上海市黄浦区南京东路100号国际饭店会议层",
+  广州: "广州市天河区天河路208号天河城酒店8层",
+  成都: "成都市锦江区红星路三段1号成都国际饭店6层"
+};
+const FAIR_CITY_DATE = { 上海: "10月24日", 广州: "10月25日", 北京: "10月31日", 成都: "11月14日" };
+const FAIR_CO_HRJZ = {
+  id: "hrjz",
+  name: "华润江中制药集团",
+  tag: "中成药 · 保健食品",
+  ready: true,
+  sections: [
+    {
+      h: "企业介绍",
+      ps: [
+        "华润江中制药集团有限责任公司前身为1969年10月创立的江西中医药大学校办企业，2004年正式列为江西省省属国有重点企业。2019年2月，经华润医药战略重组后正式更名“华润江中”，成为华润集团一级利润中心，旗下拥有A股上市企业江中药业（股票代码：600750）。",
+        "公司主营中成药、保健食品的研发、生产与销售，拥有成熟完整的中医药科研体系与两大现代化智能制造生产基地。企业坐拥“江中”“初元”两大中国驰名商标，以及“杨济生”“桑海”两大江西省著名商标。其中“江中”品牌连续17年入选世界品牌实验室“中国500最具价值品牌”，2020年品牌价值达265.15亿元。核心明星产品涵盖江中牌健胃消食片、复方草珊瑚含片、利活乳酸菌素片、初元氨基酸口服液、参灵草口服液等多款国民级健康产品，广泛覆盖大众日常健康养护场景。"
+      ]
+    },
+    {
+      h: "品牌创意、视觉传播类企业荣誉",
+      ps: [
+        "华润江中长期重视品牌视觉、产品包装、IP插画、线下终端空间美学建设，在品牌创意、视觉传播、工业空间设计领域斩获多项行业权威荣誉，同时拥有大量外观设计专利、美术著作权，搭建面向全国艺术设计专业青年的创意共创平台。",
+        "企业创意项目《黄药师的“药”紧事》获得第八届中央企业优秀故事AIGC创意传播优秀奖；健胃消食片高校共创项目斩获ADMEN国际大赏实战金案，入选年度十大营销实战案例；在第31届中国国际广告节斩获“大学生喜爱的活力品牌”等多项创意传播大奖。",
+        "华润江中连续多年担任中国大学生广告艺术节学院奖核心命题企业，面向视觉传达、环境设计、艺术设计类高校学生征集产品包装、平面海报、品牌IP形象、线下门店终端视觉等方向创意作品，累计收到数万组青年设计作品，企业内部设计团队全程参与命题策划、作品评审，推动青年设计创意与品牌实际业务落地结合。",
+        "企业自主完成多款产品包装、品牌IP形象视觉开发，持有多项包装盒外观设计专利、猴姑系列IP美术著作权，实现包装版式、色彩、造型全流程自主设计。"
+      ]
+    },
+    {
+      h: "空间/环境美学相关",
+      ps: [
+        "旗下2800亩江中药谷制造基地，融合中式自然美学与工业建筑规划，厂区建筑、景观、导视系统一体化设计，获评“最美中国工厂”国家级绿色工厂，是国内工业空间环境设计的标杆项目。"
+      ]
+    }
+  ]
+};
+function pending(n) {
+  return { id: "slot-" + n, name: "本场席位 " + String(n).padStart(2, "0"), tag: "介绍待录入", ready: false, sections: [] };
+}
+const FAIR_SESSION_COS = {
+  上海: [FAIR_CO_HRJZ].concat([2,3,4,5,6,7,8,9,10].map(pending)),
+  广州: [FAIR_CO_HRJZ].concat([2,3,4,5,6,7,8,9,10].map(pending)),
+  北京: [FAIR_CO_HRJZ].concat([2,3,4,5,6,7,8,9,10].map(pending)),
+  成都: [FAIR_CO_HRJZ].concat([2,3,4,5,6,7,8,9,10].map(pending))
+};
+const q = new URLSearchParams(location.search);
+const CITY = ["北京", "上海", "广州", "成都"].includes(q.get("city")) ? q.get("city") : "上海";
+const SHOW_WX = q.get("page") === "wx";
+
+function escHtml(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
+  }[c]));
+}
+function setMp(on) {
+  document.getElementById("phone").classList.toggle("mp", on);
+  document.getElementById("navWx").hidden = on;
+  document.getElementById("navMp").hidden = !on;
+}
+function show(id) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("on"));
+  document.getElementById(id).classList.add("on");
+  setMp(id !== "wx");
+  document.getElementById("phone").classList.toggle("detail-on", id === "detail");
+  const navTitle = document.getElementById("navTitle");
+  navTitle.textContent = id === "detail" ? "资讯详情" : "";
+  show.id = id;
+}
+function paintNotice() {
+  document.getElementById("nCity").textContent = CITY + "站";
+  document.getElementById("nWhen").textContent = FAIR_CITY_DATE[CITY] || "";
+  document.getElementById("nAddr").textContent = VENUES[CITY] || "";
+}
+function paintList() {
+  const list = FAIR_SESSION_COS[CITY] || FAIR_SESSION_COS["上海"];
+  document.getElementById("colTitle").textContent = "本场企业 · " + CITY + "站";
+  document.getElementById("colDesc").textContent = "";
+  document.getElementById("colDesc").hidden = true;
+  document.getElementById("newsList").innerHTML = list.map(item =>
+    "<button type=\"button\" class=\"news-item" + (item.ready ? "" : " wait") + "\" data-co=\"" + escHtml(item.id) + "\">" +
+      "<div class=\"txt\">" +
+        "<strong>" + escHtml(item.ready ? item.name + "企业介绍" : item.name) + "</strong>" +
+        "<em>" + escHtml(item.ready ? item.tag : "资讯待发布，企业介绍录入后更新") + "</em>" +
+        "<div class=\"meta\">" + (item.ready ? "就业力 · 刚刚" : "未发布") + "</div>" +
+      "</div>" +
+      "<div class=\"thumb\">" + (item.ready ? "企业<br>资讯" : "待发") + "</div>" +
+    "</button>"
+  ).join("");
+}
+function paintDetail(id) {
+  const list = FAIR_SESSION_COS[CITY] || FAIR_SESSION_COS["上海"];
+  const item = list.find(x => x.id === id) || list[0];
+  const title = item.ready ? item.name + "企业介绍" : item.name;
+  const body = item.ready
+    ? item.sections.map(sec =>
+        "<h4>" + escHtml(sec.h) + "</h4>" + sec.ps.map(p => "<p>" + escHtml(p) + "</p>").join("")
+      ).join("")
+    : "<p class=\"wait-note\">该篇资讯尚未发布。企业介绍按场次录入后，报名学生可在此查看，不进入资讯首页。</p>";
+  document.getElementById("article").innerHTML =
+    "<h3>" + escHtml(title) + "</h3>" +
+    "<p class=\"by\">斯芬克国际艺术教育&nbsp;&nbsp;2026年10月12日 14:16</p>" +
+    body;
+  show("detail");
+}
+
+document.body.classList.add(INNER ? "inner-ch" : "pub-ch");
+paintNotice();
+paintList();
+if (SHOW_WX) show("wx");
+else show("list");
+
+document.getElementById("wxCard").addEventListener("click", () => show("list"));
+document.getElementById("newsList").addEventListener("click", e => {
+  const card = e.target.closest("[data-co]");
+  if (card) paintDetail(card.dataset.co);
+});
+document.getElementById("backWx").addEventListener("click", () => history.length > 1 && history.back());
+document.getElementById("backMp").addEventListener("click", () => {
+  if (show.id === "detail") {
+    show("list");
+    return;
+  }
+  if (SHOW_WX) {
+    show("wx");
+    return;
+  }
+  if (history.length > 1) history.back();
+});
+</script>
+</body>
+</html>
