@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="fair-news-1455">
+<html lang="zh-CN" data-build="fair-news-1500">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -50,28 +50,6 @@
     background: #fff;
     border-bottom: 1px solid #F0F0F0;
   }
-  .mp-nav .ch-tag {
-    display: none;
-  }
-  .mp-nav.long {
-    height: 52px;
-    font-size: 13px;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2px;
-  }
-  .mp-nav.long .ch-tag { display: inline-block; }
-  .ch-tag {
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: .4px;
-    border-radius: 4px;
-    padding: 1px 6px;
-    line-height: 1.4;
-    background: #EEF2FF;
-    color: #4338CA;
-  }
-  body.inner-ch .ch-tag { background: #FFF0F6; color: #C2186A; }
   .nav .cap {
     position: absolute; right: 12px; width: 84px; height: 30px;
     border: 1px solid #E5E5E5; border-radius: 15px;
@@ -240,10 +218,8 @@
     <span>服务通知</span>
     <button class="more" type="button" tabindex="-1">···</button>
   </div>
-  <div class="nav mp-nav long" id="navMp" hidden>
+  <div class="nav mp-nav" id="navMp" hidden>
     <button class="back" id="backMp" type="button">‹</button>
-    <span class="ch-tag" id="chTag">内部通道</span>
-    <span id="navTitle">资讯</span>
     <span class="cap"></span>
   </div>
 
@@ -355,7 +331,6 @@ function show(id, title) {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("on"));
   document.getElementById(id).classList.add("on");
   setMp(id !== "wx");
-  if (title) document.getElementById("navTitle").textContent = title;
   show.id = id;
 }
 function paintNotice() {
@@ -376,7 +351,7 @@ function paintList() {
         "<em>" + escHtml(item.ready ? item.tag : "资讯待发布，企业介绍录入后更新") + "</em>" +
         "<div class=\"meta\">" + (item.ready ? "就业力 · 刚刚" : "未发布") + "</div>" +
       "</div>" +
-      "<div class=\"thumb\">" + escHtml(item.ready ? "企业<br>资讯" : "待发") + "</div>" +
+      "<div class=\"thumb\">" + (item.ready ? "企业<br>资讯" : "待发") + "</div>" +
     "</button>"
   ).join("");
 }
@@ -397,7 +372,6 @@ function paintDetail(id) {
 }
 
 document.body.classList.add(INNER ? "inner-ch" : "pub-ch");
-document.getElementById("chTag").textContent = INNER ? "内部通道" : "公开通道";
 paintNotice();
 paintList();
 if (SKIP_WX) show("list", "资讯");
