@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="ai-iv-1730">
+<html lang="zh-CN" data-build="ai-iv-1735">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -440,6 +440,15 @@
     flex-shrink: 0;
   }
   .drill-card.done .st { color: #16A34A; }
+  #report {
+    overflow: hidden;
+  }
+  #report .report {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding-bottom: 16px;
+  }
   .report-acts {
     margin-top: 14px;
     background: #fff;
@@ -486,23 +495,25 @@
     align-items: center;
     gap: 2px;
   }
-  .act-row {
+  .act-dock {
+    flex-shrink: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border-top: 1px solid #F2F2F2;
+    background: #fff;
+    border-top: 1px solid #F0F0F0;
   }
-  .act-row button {
-    height: 46px;
+  .act-dock button {
+    height: 50px;
     border: 0;
     background: #fff;
     font: inherit;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
-    color: #555;
+    color: #444;
     cursor: pointer;
   }
-  .act-row button + button { border-left: 1px solid #F2F2F2; }
-  .act-row button:active { background: #FAFAFA; }
+  .act-dock button + button { border-left: 1px solid #F0F0F0; }
+  .act-dock button:active { background: #FAFAFA; }
 </style>
 </head>
 <body>
@@ -610,11 +621,11 @@
           </span>
           <span class="go">开始 ›</span>
         </button>
-        <div class="act-row">
-          <button type="button" id="dlReport">下载面试报告</button>
-          <button type="button" id="againFromReport">再来一次</button>
-        </div>
       </div>
+    </div>
+    <div class="act-dock">
+      <button type="button" id="dlReport">下载面试报告</button>
+      <button type="button" id="againFromReport">再来一次</button>
     </div>
   </section>
 
