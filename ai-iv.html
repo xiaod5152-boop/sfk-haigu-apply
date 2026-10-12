@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="ai-iv-1708">
+<html lang="zh-CN" data-build="ai-iv-1715">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -328,6 +328,76 @@
     color: #666;
     line-height: 1.55;
   }
+  .drill-hero {
+    background: linear-gradient(180deg, #FFF0F6 0%, #fff 100%);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+  }
+  .drill-hero em {
+    display: inline-block;
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 800;
+    color: #C2186A;
+    background: #FFE4F2;
+    border-radius: 4px;
+    padding: 2px 6px;
+  }
+  .drill-hero h3 {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 900;
+  }
+  .drill-hero p {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.55;
+  }
+  .drill-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #F0F0F0;
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 8px;
+    cursor: pointer;
+    font: inherit;
+  }
+  .drill-card.on {
+    border-color: #FFB3D4;
+    background: #FFF7FB;
+  }
+  .drill-card .n {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #FFE4F2;
+    color: #C2186A;
+    font-size: 13px;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .drill-card.on .n { background: #FF2D8A; color: #fff; }
+  .drill-card b { display: block; font-size: 14px; font-weight: 800; }
+  .drill-card span { display: block; margin-top: 3px; font-size: 12px; color: #888; line-height: 1.4; }
+  .drill-card .st {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 700;
+    color: #BBB;
+    flex-shrink: 0;
+  }
+  .drill-card.done .st { color: #16A34A; }
+  .report-acts { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .report-acts .ghost { margin-top: 0; }
 </style>
 </head>
 <body>
@@ -427,7 +497,34 @@
       </div>
       <div class="qtabs" id="qtabs"></div>
       <div class="block" id="qview"></div>
-      <button class="start" id="toJobs" type="button" style="margin:14px 0 0">查看岗位推荐</button>
+      <div class="report-acts">
+        <button class="start" id="toDrill" type="button">进入线上实战训练<small>针对薄弱点加练 8–10 分钟</small></button>
+        <button class="ghost" id="toJobs" type="button">查看相近岗位</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="drill">
+    <div class="report">
+      <div class="drill-hero">
+        <em>线上实战训练</em>
+        <h3 id="drillTitle">针对本轮薄弱点加练</h3>
+        <p id="drillDesc">在 AI 模拟面试之后，用更接近现场的短任务巩固表达。完成 3 项即可结束本轮。</p>
+      </div>
+      <div id="drillList"></div>
+      <button class="start" id="drillGo" type="button" style="margin-top:14px">开始第 1 项</button>
+      <button class="ghost" id="drillSkip" type="button">稍后再练，先看相近岗位</button>
+    </div>
+  </section>
+
+  <section class="screen" id="drillChat">
+    <div class="chat-bar"><span id="drillBarJob"></span><em id="drillBarStep">实战 1/1</em></div>
+    <div class="chat" id="drillLog"></div>
+    <div class="dock">
+      <textarea id="drillAns" placeholder="请输入你的回答"></textarea>
+      <div class="acts">
+        <button class="send" id="drillSend" type="button">提交</button>
+      </div>
     </div>
   </section>
 
@@ -460,7 +557,7 @@
         <p>本工具为展前练习，由 AI 按所选岗位出题并生成报告，不代表企业真实面试结果。</p>
         <p>请用文字作答。可点麦克风做语音转文字（浏览器不支持时会填入示例）。</p>
         <p>共 4 题，约 10–15 分钟。报告仅供参考，可再练一轮。</p>
-        <p>「面试实战训练」为后续独立能力，不在本流程内。</p>
+        <p>完成模拟面试后，可继续「线上实战训练」，针对薄弱点做短任务加练。</p>
       </div>
       <button class="start" id="noteOk" type="button" style="margin-top:16px">我知道了</button>
     </div>
@@ -537,6 +634,10 @@ let answers = [];
 let roundQs = [];
 let showId = "home";
 let viewingHist = false;
+let lastAvg = 0;
+let drillItems = [];
+let drillIx = 0;
+let drillDone = {};
 
 function qsFor(p) {
   return BASE_QS.concat([PACK_Q[(p && p.pack) || ""] || FALLBACK_Q]);
@@ -554,9 +655,86 @@ function show(id) {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("on"));
   document.getElementById(id).classList.add("on");
   showId = id;
-  document.getElementById("navTitle").textContent =
-    id === "report" || id === "jobs" ? "面试报告" : id === "histPage" ? "面试记录" : "职业AI模拟面试";
+  const title =
+    id === "drill" || id === "drillChat" ? "线上实战训练"
+    : id === "report" || id === "jobs" ? "面试报告"
+    : id === "histPage" ? "面试记录"
+    : "职业AI模拟面试";
+  document.getElementById("navTitle").textContent = title;
   document.getElementById("hist").style.display = id === "home" ? "block" : "none";
+}
+function buildDrill() {
+  const dims = dimScores(lastAvg || 80);
+  const weak = dims.slice().sort((a, b) => a.v - b.v)[0];
+  const weakName = weak ? weak.n : "表达力";
+  document.getElementById("drillTitle").textContent = `加练「${weakName}」· ${post.job}`;
+  document.getElementById("drillDesc").textContent =
+    `基于本轮报告，针对 ${post.cat} · ${post.job} 做 3 项线上短任务。建议按顺序完成，也可先跳过看相近岗位。`;
+  drillItems = [
+    {
+      id: "intro",
+      title: "60 秒自我介绍",
+      tip: "压缩到结论先行：学校/方向 → 一个项目 → 为什么适合这个岗",
+      q: `请用不超过 60 秒的口吻，介绍你为什么适合「${post.job}」。只保留最关键的三段信息。`,
+      look: "表达力 · 相关性"
+    },
+    {
+      id: "portfolio",
+      title: "作品集 3 分钟讲解",
+      tip: "只讲一个项目：问题—动作—结果，主动说取舍",
+      q: `假设面试官说「你有 3 分钟讲作品集」。请按「问题—动作—结果」讲一个与「${post.job}」最相关的项目。`,
+      look: "结构性 · 清晰度"
+    },
+    {
+      id: "pressure",
+      title: "压力追问回应",
+      tip: "先复述问题，再给改法，最后反问约束",
+      q: "面试官说：「你刚才的表达信息偏散。」请用 60 秒回应：你听到了什么、你会怎么改、你想确认什么约束。",
+      look: "自信度 · 临场"
+    }
+  ];
+  drillIx = 0;
+  drillDone = {};
+  paintDrillList();
+}
+function paintDrillList() {
+  const box = document.getElementById("drillList");
+  box.innerHTML = drillItems.map((d, i) => {
+    const done = !!drillDone[d.id];
+    const on = i === drillIx && !done;
+    return `<button type="button" class="drill-card${on ? " on" : ""}${done ? " done" : ""}" data-drill="${i}">
+      <i class="n">${i + 1}</i>
+      <span><b>${d.title}</b><span>${d.tip}</span></span>
+      <em class="st">${done ? "已完成" : on ? "进行中" : "待练习"}</em>
+    </button>`;
+  }).join("");
+  const next = drillItems.findIndex(d => !drillDone[d.id]);
+  drillIx = next < 0 ? drillItems.length : next;
+  const btn = document.getElementById("drillGo");
+  if (next < 0) {
+    btn.innerHTML = "完成实战，查看相近岗位";
+  } else {
+    btn.innerHTML = `开始第 ${next + 1} 项<small>${drillItems[next].title}</small>`;
+  }
+}
+function openDrillItem(i) {
+  const d = drillItems[i];
+  if (!d) return;
+  drillIx = i;
+  document.getElementById("drillLog").innerHTML = "";
+  document.getElementById("drillBarJob").textContent = `${post.cat} · ${post.job}`;
+  document.getElementById("drillBarStep").textContent = `实战 ${i + 1}/${drillItems.length}`;
+  document.getElementById("drillAns").value = "";
+  show("drillChat");
+  const log = document.getElementById("drillLog");
+  const look = document.createElement("div");
+  look.className = "look";
+  look.textContent = "本项考察：" + d.look;
+  log.appendChild(look);
+  const ai = document.createElement("div");
+  ai.className = "ai";
+  ai.innerHTML = `<em>实战教练</em>${d.q}`;
+  log.appendChild(ai);
 }
 function paintJob() {
   document.getElementById("jobName").textContent = `${post.cat} · ${post.job}`;
@@ -729,6 +907,7 @@ function dimScores(avg) {
   ];
 }
 function renderReport(avg) {
+  lastAvg = avg;
   document.getElementById("finalScore").textContent = avg;
   document.getElementById("finalRing").style.background =
     `conic-gradient(#FF2D8A 0 ${avg}%, #F1F1F1 ${avg}% 100%)`;
@@ -766,7 +945,7 @@ document.getElementById("qtabs").addEventListener("click", e => {
   b.classList.add("on");
   paintQview(+b.dataset.i);
 });
-document.getElementById("toJobs").addEventListener("click", () => {
+function paintNearJobs() {
   const list = POSTS.filter(p => p.cat === post.cat && p.id !== post.id).slice(0, 6);
   document.getElementById("jobList").innerHTML = list.map(p =>
     `<button class="rec" type="button" data-role="${p.id}">
@@ -774,7 +953,53 @@ document.getElementById("toJobs").addEventListener("click", () => {
       <span>${p.cat} · 与本轮面试方向接近</span>
     </button>`
   ).join("");
+}
+document.getElementById("toDrill").addEventListener("click", () => {
+  buildDrill();
+  show("drill");
+});
+document.getElementById("toJobs").addEventListener("click", () => {
+  paintNearJobs();
   show("jobs");
+});
+document.getElementById("drillList").addEventListener("click", e => {
+  const b = e.target.closest("[data-drill]");
+  if (!b) return;
+  openDrillItem(+b.dataset.drill);
+});
+document.getElementById("drillGo").addEventListener("click", () => {
+  const next = drillItems.findIndex(d => !drillDone[d.id]);
+  if (next < 0) {
+    paintNearJobs();
+    show("jobs");
+    return;
+  }
+  openDrillItem(next);
+});
+document.getElementById("drillSkip").addEventListener("click", () => {
+  paintNearJobs();
+  show("jobs");
+});
+document.getElementById("drillSend").addEventListener("click", () => {
+  const t = document.getElementById("drillAns").value.trim();
+  if (!t) return;
+  const d = drillItems[drillIx];
+  const me = document.createElement("div");
+  me.className = "me";
+  me.textContent = t;
+  document.getElementById("drillLog").appendChild(me);
+  document.getElementById("drillAns").value = "";
+  const tip = document.createElement("div");
+  tip.className = "ai";
+  tip.innerHTML = `<em>实战教练</em>${t.length >= 40
+    ? "这一轮比模拟面试更紧。记住：先结论，再证据。可以进入下一项。"
+    : "偏短。现场版请补一句「结果/判断标准」，再进入下一项。"}`;
+  document.getElementById("drillLog").appendChild(tip);
+  if (d) drillDone[d.id] = true;
+  setTimeout(() => {
+    paintDrillList();
+    show("drill");
+  }, 700);
 });
 document.getElementById("jobList").addEventListener("click", e => {
   const b = e.target.closest("[data-role]");
@@ -815,6 +1040,14 @@ document.getElementById("histList").addEventListener("click", e => {
   show("report");
 });
 document.getElementById("back").addEventListener("click", () => {
+  if (showId === "drillChat") {
+    show("drill");
+    return;
+  }
+  if (showId === "drill") {
+    show("report");
+    return;
+  }
   if (showId === "chat" || showId === "report" || showId === "jobs" || showId === "histPage" || showId === "load") {
     show("home");
     return;
