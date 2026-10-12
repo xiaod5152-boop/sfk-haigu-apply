@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="fair-news-1516">
+<html lang="zh-CN" data-build="fair-news-1518">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -397,7 +397,7 @@ const FAIR_SESSION_COS = {
 };
 const q = new URLSearchParams(location.search);
 const CITY = ["北京", "上海", "广州", "成都"].includes(q.get("city")) ? q.get("city") : "上海";
-const SKIP_WX = q.get("from") === "apply" || q.get("page") === "list";
+const SHOW_WX = q.get("page") === "wx";
 
 function escHtml(s) {
   return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({
@@ -458,8 +458,8 @@ function paintDetail(id) {
 document.body.classList.add(INNER ? "inner-ch" : "pub-ch");
 paintNotice();
 paintList();
-if (SKIP_WX) show("list");
-else show("wx");
+if (SHOW_WX) show("wx");
+else show("list");
 
 document.getElementById("wxCard").addEventListener("click", () => show("list"));
 document.getElementById("newsList").addEventListener("click", e => {
@@ -472,7 +472,7 @@ document.getElementById("backMp").addEventListener("click", () => {
     show("list");
     return;
   }
-  if (!SKIP_WX) {
+  if (SHOW_WX) {
     show("wx");
     return;
   }
