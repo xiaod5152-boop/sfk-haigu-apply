@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="ai-iv-1735">
+<html lang="zh-CN" data-build="ai-iv-1740">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -574,7 +574,7 @@
         <button type="button" id="editJob">修改岗位</button>
       </div>
       <p id="jobName">设计类 · UI/UX</p>
-      <small>已按岗位类型生成专属面试方案，不绑定具体企业与场次</small>
+      <small>通用 4 题面试，结合所选岗位作答；不绑定具体企业与场次</small>
     </div>
     <div class="foot">
       <p class="hint">查看《职业AI模拟面试须知》</p>
@@ -679,9 +679,9 @@
     <div class="sheet">
       <h4>职业AI模拟面试须知</h4>
       <div class="note-body">
-        <p>本工具为展前练习，由 AI 按所选岗位出题并生成报告，不代表企业真实面试结果。</p>
+        <p>本工具为展前练习。题库为设计/产品/运营等岗位通用面试题，并结合你所选岗位作答，不代表企业真实面试结果。</p>
         <p>请用文字作答。可点麦克风做语音转文字（浏览器不支持时会填入示例）。</p>
-        <p>共 4 题，约 10–15 分钟。报告仅供参考，可再练一轮。</p>
+        <p>共 4 题：自我介绍、项目过程、结果复盘、临场取舍，约 10–15 分钟。</p>
         <p>完成模拟面试后，可继续「线上实战训练」，针对薄弱点做短任务加练。</p>
       </div>
       <button class="start" id="noteOk" type="button" style="margin-top:16px">我知道了</button>
@@ -735,23 +735,6 @@ const POSTS = [
   { id: "aigcdir", cat: "文化艺术", job: "AIGC制作/导演", pack: "anim" },
   { id: "comic", cat: "文化艺术", job: "AI漫剧制作", pack: "anim" }
 ];
-const BASE_QS = [
-  { look: "沟通表达 · 自我介绍", q: "先请你简单介绍一下自己吧。包括学校、专业、代表项目，以及为什么投这个岗位。" },
-  { look: "作品深度 · 过程", q: "选一个最能代表你的项目。你当时要解决什么问题？你具体做了哪三步？" },
-  { look: "结果意识 · 量化", q: "这个项目上线或交付后，有什么可被验证的结果？如果没有数据，现场老师会怎么判断好坏？" }
-];
-const PACK_Q = {
-  content: { look: "转化意识", q: "这条主图你希望用户停下来的理由是什么？标题、商品、利益点你怎么排？" },
-  visual: { look: "品牌规范", q: "请说一次你改过的「品牌不让用」的情况。你怎么在规范里做出差异？" },
-  ui: { look: "场景与安全", q: "座舱或 App 里这个界面，用户一手操作时，你最怕哪三个误触？" },
-  exhibit: { look: "空间阅读", q: "观众从进门到主展墙，你希望他在第几秒读懂这场展览的主题？用什么视觉手段？" },
-  anim: { look: "叙事功能", q: "这三格分镜各自要完成什么叙事任务？如果只能砍一格，你砍哪格？" },
-  game: { look: "世界观约束", q: "给一个已有世界观，你如何保证原画能进管线而不是只当插画？" },
-  pm: { look: "需求与取舍", q: "需求很多、周期很紧时，你怎么排优先级？举一个你砍掉需求或改方案的例子。" },
-  ops: { look: "目标与复盘", q: "请说一个你负责过的运营/增长动作：目标是什么、你做了哪三步、最后怎么复盘？" }
-};
-const FALLBACK_Q = { look: "临场追问 · 岗位匹配", q: "如果让你为该方向做一版秋招主视觉或方案，你第一周会先对齐哪些信息和风格？" };
-
 let cat = "设计类";
 let post = POSTS.find(p => p.id === "uiux") || POSTS[0];
 let qi = 0;
@@ -764,8 +747,28 @@ let drillItems = [];
 let drillIx = 0;
 let drillDone = {};
 
+/** 面向招聘会岗位（设计/产品/运营/营销/游戏/文化）的通用 4 题；题目带入所选岗位名 */
 function qsFor(p) {
-  return BASE_QS.concat([PACK_Q[(p && p.pack) || ""] || FALLBACK_Q]);
+  const job = (p && p.job) || "这个岗位";
+  const catName = (p && p.cat) || "该方向";
+  return [
+    {
+      look: "沟通表达 · 岗位匹配",
+      q: `请用 1 分钟介绍自己：学校与专业、一段最相关经历，以及你为什么适合「${catName} · ${job}」。`
+    },
+    {
+      look: "项目深度 · 过程",
+      q: `选一个和「${job}」最相关的作品或项目。当时要解决什么问题？你具体做了哪三步？哪一步是你独立负责的？`
+    },
+    {
+      look: "结果意识 · 复盘",
+      q: "这个项目交付后，怎么判断它好不好？有数据更好；没有数据，请说你的判断标准，以及如果重做你会改哪一点。"
+    },
+    {
+      look: "临场取舍 · 协作",
+      q: `假设你入职后负责「${job}」相关事项，同时接到 3 个紧急需求且只能先做 1 个。你怎么排优先级？需要先对齐哪些信息？`
+    }
+  ];
 }
 function histGet() {
   try { return JSON.parse(localStorage.getItem("sfk-iv-hist") || "[]"); } catch (e) { return []; }
