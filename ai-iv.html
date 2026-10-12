@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="ai-iv-1620">
+<html lang="zh-CN" data-build="ai-iv-1655">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -362,11 +362,11 @@
     </div>
     <div class="jobbox">
       <div class="hd">
-        <span>选择面试职位</span>
-        <button type="button" id="editJob">修改职位</button>
+        <span>选择面试岗位</span>
+        <button type="button" id="editJob">修改岗位</button>
       </div>
-      <p id="jobName">东方甄选 · 内容视觉设计师</p>
-      <small>已根据您的求职意向生成专属面试方案</small>
+      <p id="jobName">设计类 · UI/UX</p>
+      <small>已按岗位类型生成专属面试方案，不绑定具体企业与场次</small>
     </div>
     <div class="foot">
       <p class="hint">查看《职业AI模拟面试须知》</p>
@@ -412,8 +412,8 @@
   <section class="screen" id="jobs">
     <div class="report">
       <div class="block">
-        <h4>岗位推荐</h4>
-        <p>根据本轮面试表现，优先推荐这些秋招岗位。</p>
+        <h4>相近岗位</h4>
+        <p>根据本轮面试表现，可继续练习这些相近方向。</p>
       </div>
       <div id="jobList"></div>
       <button class="ghost" id="again" type="button">再练一轮</button>
@@ -426,7 +426,7 @@
 
   <div class="mask" id="mask">
     <div class="sheet">
-      <h4>选择面试职位</h4>
+      <h4>选择面试岗位</h4>
       <div class="pills" id="pills"></div>
       <div id="picks"></div>
     </div>
@@ -446,17 +446,50 @@
 </div>
 
 <script>
-const CATS = ["互联网 / 新消费", "科技 / 智能", "文化 / 创意"];
+const CATS = ["设计类", "产品类", "运营类", "市场营销", "游戏类", "文化艺术"];
 const POSTS = [
-  { id: "dfzx", cat: "互联网 / 新消费", co: "东方甄选", job: "内容视觉设计师", city: "北京", pack: "content" },
-  { id: "ali", cat: "互联网 / 新消费", co: "阿里国际", job: "电商视觉设计", city: "上海", pack: "content" },
-  { id: "belle", cat: "互联网 / 新消费", co: "百丽", job: "时尚视觉设计", city: "广州", pack: "visual" },
-  { id: "xss", cat: "互联网 / 新消费", co: "山下有松", job: "产品视觉", city: "成都", pack: "visual" },
-  { id: "xp", cat: "科技 / 智能", co: "小鹏汽车", job: "智能座舱 UI", city: "广州", pack: "ui" },
-  { id: "tcl", cat: "科技 / 智能", co: "TCL", job: "品牌视觉设计", city: "广州", pack: "visual" },
-  { id: "jr", cat: "文化 / 创意", co: "今日美术馆", job: "展览视觉设计", city: "北京", pack: "exhibit" },
-  { id: "md", cat: "文化 / 创意", co: "摩登天空", job: "音乐视觉 / 物料", city: "北京", pack: "visual" },
-  { id: "wuhu", cat: "文化 / 创意", co: "wuhu 动画", job: "动画分镜", city: "广州", pack: "anim" }
+  { id: "aigc", cat: "设计类", job: "AIGC视觉设计", pack: "content" },
+  { id: "ixd", cat: "设计类", job: "交互设计", pack: "ui" },
+  { id: "uiux", cat: "设计类", job: "UI/UX", pack: "ui" },
+  { id: "pd", cat: "设计类", job: "产品设计", pack: "visual" },
+  { id: "brand", cat: "设计类", job: "品牌设计", pack: "visual" },
+  { id: "ip", cat: "设计类", job: "IP设计", pack: "visual" },
+  { id: "motion", cat: "设计类", job: "视频/动效设计", pack: "anim" },
+  { id: "pm", cat: "产品类", job: "产品经理", pack: "pm" },
+  { id: "aipm", cat: "产品类", job: "AI产品经理", pack: "pm" },
+  { id: "ppc", cat: "产品类", job: "产品策划", pack: "pm" },
+  { id: "uo", cat: "运营类", job: "用户运营", pack: "ops" },
+  { id: "co", cat: "运营类", job: "内容运营", pack: "ops" },
+  { id: "nmo", cat: "运营类", job: "新媒体运营", pack: "ops" },
+  { id: "eco", cat: "运营类", job: "电商运营", pack: "content" },
+  { id: "act", cat: "运营类", job: "活动运营", pack: "ops" },
+  { id: "live", cat: "运营类", job: "直播运营", pack: "content" },
+  { id: "growth", cat: "运营类", job: "用户增长", pack: "ops" },
+  { id: "im", cat: "市场营销", job: "整合营销", pack: "ops" },
+  { id: "bm", cat: "市场营销", job: "品牌营销", pack: "visual" },
+  { id: "mkt", cat: "市场营销", job: "市场推广", pack: "ops" },
+  { id: "ad", cat: "市场营销", job: "广告创意", pack: "content" },
+  { id: "pr", cat: "市场营销", job: "公关", pack: "ops" },
+  { id: "bd", cat: "市场营销", job: "商务拓展BD", pack: "ops" },
+  { id: "om", cat: "市场营销", job: "海外营销", pack: "ops" },
+  { id: "gp", cat: "游戏类", job: "游戏策划", pack: "game" },
+  { id: "gart", cat: "游戏类", job: "游戏美术（角色/场景）", pack: "game" },
+  { id: "gui", cat: "游戏类", job: "游戏UI设计", pack: "ui" },
+  { id: "ta", cat: "游戏类", job: "技术美术TA", pack: "game" },
+  { id: "gop", cat: "游戏类", job: "游戏运营", pack: "ops" },
+  { id: "gpromo", cat: "游戏类", job: "游戏美宣", pack: "visual" },
+  { id: "space", cat: "文化艺术", job: "室内/空间设计", pack: "exhibit" },
+  { id: "fashion", cat: "文化艺术", job: "服装设计", pack: "visual" },
+  { id: "buyer", cat: "文化艺术", job: "时尚买手", pack: "ops" },
+  { id: "illust", cat: "文化艺术", job: "插画", pack: "visual" },
+  { id: "curate", cat: "文化艺术", job: "策展/美术馆运营", pack: "exhibit" },
+  { id: "culture", cat: "文化艺术", job: "文创开发", pack: "visual" },
+  { id: "music", cat: "文化艺术", job: "音乐制作（作词/作曲）", pack: "anim" },
+  { id: "writer", cat: "文化艺术", job: "编剧", pack: "anim" },
+  { id: "director", cat: "文化艺术", job: "导演", pack: "anim" },
+  { id: "producer", cat: "文化艺术", job: "制片", pack: "ops" },
+  { id: "aigcdir", cat: "文化艺术", job: "AIGC制作/导演", pack: "anim" },
+  { id: "comic", cat: "文化艺术", job: "AI漫剧制作", pack: "anim" }
 ];
 const BASE_QS = [
   { look: "沟通表达 · 自我介绍", q: "先请你简单介绍一下自己吧。包括学校、专业、代表项目，以及为什么投这个岗位。" },
@@ -469,12 +502,14 @@ const PACK_Q = {
   ui: { look: "场景与安全", q: "座舱或 App 里这个界面，用户一手操作时，你最怕哪三个误触？" },
   exhibit: { look: "空间阅读", q: "观众从进门到主展墙，你希望他在第几秒读懂这场展览的主题？用什么视觉手段？" },
   anim: { look: "叙事功能", q: "这三格分镜各自要完成什么叙事任务？如果只能砍一格，你砍哪格？" },
-  game: { look: "世界观约束", q: "给一个已有世界观，你如何保证原画能进管线而不是只当插画？" }
+  game: { look: "世界观约束", q: "给一个已有世界观，你如何保证原画能进管线而不是只当插画？" },
+  pm: { look: "需求与取舍", q: "需求很多、周期很紧时，你怎么排优先级？举一个你砍掉需求或改方案的例子。" },
+  ops: { look: "目标与复盘", q: "请说一个你负责过的运营/增长动作：目标是什么、你做了哪三步、最后怎么复盘？" }
 };
-const FALLBACK_Q = { look: "临场追问 · 岗位匹配", q: "如果让你为该品牌做一版秋招主视觉，你第一周会先对齐哪些信息和风格？" };
+const FALLBACK_Q = { look: "临场追问 · 岗位匹配", q: "如果让你为该方向做一版秋招主视觉或方案，你第一周会先对齐哪些信息和风格？" };
 
-let cat = CATS[0];
-let post = POSTS[0];
+let cat = "设计类";
+let post = POSTS.find(p => p.id === "uiux") || POSTS[0];
 let qi = 0;
 let answers = [];
 let roundQs = [];
@@ -502,7 +537,7 @@ function show(id) {
   document.getElementById("hist").style.display = id === "home" ? "block" : "none";
 }
 function paintJob() {
-  document.getElementById("jobName").textContent = `${post.co} · ${post.job}`;
+  document.getElementById("jobName").textContent = `${post.cat} · ${post.job}`;
 }
 function paintPills() {
   document.getElementById("pills").innerHTML = CATS.map(c =>
@@ -511,13 +546,13 @@ function paintPills() {
   document.getElementById("picks").innerHTML = POSTS.filter(p => p.cat === cat).map(p =>
     `<button class="pick ${p.id === post.id ? "on" : ""}" type="button" data-id="${p.id}">
       <i class="dot"></i>
-      <span><b>${p.co} · ${p.job}</b><span>${p.city}站 · 海归创意专场</span></span>
+      <span><b>${p.job}</b><span>${p.cat}</span></span>
     </button>`
   ).join("");
 }
 function paintStep() {
   document.getElementById("chatStep").textContent = `${Math.min(qi + 1, roundQs.length)} / ${roundQs.length}`;
-  document.getElementById("chatJob").textContent = `${post.co} · ${post.job}`;
+  document.getElementById("chatJob").textContent = `${post.cat} · ${post.job}`;
 }
 function addAi(text, look) {
   const log = document.getElementById("log");
@@ -587,7 +622,7 @@ document.getElementById("go").addEventListener("click", () => {
   document.getElementById("log").innerHTML = "";
   show("chat");
   paintStep();
-  addAi(`本场面试针对「${post.co} · ${post.job} · ${post.city}站」。您好，欢迎来到今天的面试。`, "");
+  addAi(`本场面试针对「${post.cat} · ${post.job}」。您好，欢迎来到今天的面试。`, "");
   addAi(roundQs[0].q, roundQs[0].look);
 });
 let rec = null;
@@ -648,9 +683,8 @@ document.getElementById("send").addEventListener("click", () => {
       renderReport(avg);
       histSave({
         at: Date.now(),
-        co: post.co,
+        cat: post.cat,
         job: post.job,
-        city: post.city,
         pack: post.pack,
         score: avg,
         answers: answers
@@ -711,19 +745,24 @@ document.getElementById("qtabs").addEventListener("click", e => {
   paintQview(+b.dataset.i);
 });
 document.getElementById("toJobs").addEventListener("click", () => {
-  const list = POSTS.filter(p => p.cat === post.cat);
+  const list = POSTS.filter(p => p.cat === post.cat && p.id !== post.id).slice(0, 6);
   document.getElementById("jobList").innerHTML = list.map(p =>
-    `<button class="rec" type="button" data-go="${p.city}">
-      <b>${p.co} · ${p.job}</b>
-      <span>${p.city}站 · 与本轮面试方向接近</span>
+    `<button class="rec" type="button" data-role="${p.id}">
+      <b>${p.job}</b>
+      <span>${p.cat} · 与本轮面试方向接近</span>
     </button>`
   ).join("");
   show("jobs");
 });
 document.getElementById("jobList").addEventListener("click", e => {
-  const b = e.target.closest("[data-go]");
+  const b = e.target.closest("[data-role]");
   if (!b) return;
-  location.href = "job-apply.html?pub=1&city=" + encodeURIComponent(b.dataset.go);
+  const hit = POSTS.find(p => p.id === b.dataset.role);
+  if (!hit) return;
+  post = hit;
+  cat = hit.cat;
+  paintJob();
+  show("home");
 });
 document.getElementById("again").addEventListener("click", () => show("home"));
 document.getElementById("hist").addEventListener("click", () => {
@@ -734,8 +773,8 @@ document.getElementById("hist").addEventListener("click", () => {
   } else {
     box.innerHTML = list.map((h, i) =>
       `<button class="rec" type="button" data-hist="${i}">
-        <b>${h.co} · ${h.job} · ${h.score} 分</b>
-        <span>${new Date(h.at).toLocaleString("zh-CN", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" })} · ${h.city}站</span>
+        <b>${h.job || h.co || "岗位"} · ${h.score} 分</b>
+        <span>${new Date(h.at).toLocaleString("zh-CN", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" })} · ${h.cat || "岗位练习"}</span>
       </button>`
     ).join("");
   }
@@ -748,7 +787,8 @@ document.getElementById("histList").addEventListener("click", e => {
   if (!h) return;
   viewingHist = true;
   answers = h.answers || [];
-  post = POSTS.find(p => p.co === h.co && p.job === h.job) || post;
+  post = POSTS.find(p => p.job === h.job && (!h.cat || p.cat === h.cat)) || post;
+  cat = post.cat;
   renderReport(h.score);
   show("report");
 });
@@ -776,10 +816,15 @@ document.getElementById("ans").addEventListener("keydown", e => {
 
 (function boot() {
   const q = new URLSearchParams(location.search);
-  const city = q.get("city");
-  if (city) {
-    const hit = POSTS.find(p => p.city === city);
+  const role = q.get("role") || q.get("job");
+  const type = q.get("cat");
+  if (role) {
+    const hit = POSTS.find(p => p.id === role || p.job === role);
     if (hit) { post = hit; cat = hit.cat; }
+  } else if (type && CATS.includes(type)) {
+    cat = type;
+    const hit = POSTS.find(p => p.cat === cat);
+    if (hit) post = hit;
   }
   paintJob();
 })();
