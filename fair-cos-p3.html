@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="fair-news-1518">
+<html lang="zh-CN" data-build="fair-news-1520">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -284,14 +284,14 @@
 </style>
 </head>
 <body>
-<div class="phone" id="phone">
+<div class="phone mp" id="phone">
   <div class="status"><span>10:28</span><span>5G</span></div>
-  <div class="nav wx-nav" id="navWx">
+  <div class="nav wx-nav" id="navWx" hidden>
     <button class="back" id="backWx" type="button">‹</button>
     <span>服务通知</span>
     <button class="more" type="button" tabindex="-1">···</button>
   </div>
-  <div class="nav mp-nav" id="navMp" hidden>
+  <div class="nav mp-nav" id="navMp">
     <button class="back" id="backMp" type="button">‹</button>
     <span id="navTitle"></span>
     <span class="cap"><i></i></span>
@@ -306,7 +306,7 @@
     <span>在线客服</span>
   </button>
 
-  <section class="screen on" id="wx">
+  <section class="screen" id="wx">
     <p class="wx-time">下午 2:16</p>
     <div class="wx-row">
       <div class="wx-ava">服务<br>通知</div>
@@ -326,12 +326,11 @@
     </div>
   </section>
 
-  <section class="screen" id="list">
+  <section class="screen on" id="list">
     <div class="news">
       <div class="news-head">
         <span class="k">海归招聘会参展企业介绍.不公开</span>
         <h2 id="colTitle">本场企业</h2>
-        <p id="colDesc"></p>
       </div>
       <div class="news-list" id="newsList"></div>
     </div>
@@ -426,8 +425,6 @@ function paintNotice() {
 function paintList() {
   const list = FAIR_SESSION_COS[CITY] || FAIR_SESSION_COS["上海"];
   document.getElementById("colTitle").textContent = "本场企业 · " + CITY + "站";
-  document.getElementById("colDesc").textContent = "";
-  document.getElementById("colDesc").hidden = true;
   document.getElementById("newsList").innerHTML = list.map(item =>
     "<button type=\"button\" class=\"news-item" + (item.ready ? "" : " wait") + "\" data-co=\"" + escHtml(item.id) + "\">" +
       "<div class=\"txt\">" +
