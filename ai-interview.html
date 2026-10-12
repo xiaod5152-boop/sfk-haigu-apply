@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-build="ai-iv-1620">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI 模拟面试</title>
+<title>职业AI模拟面试</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -275,6 +276,36 @@
   .note-body { font-size: 13px; color: #555; line-height: 1.7; }
   .note-body p { margin-bottom: 8px; }
   .hint { cursor: pointer; }
+  .dims {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 12px 0 4px;
+  }
+  .dims div {
+    background: #FAFAFA;
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .dims b {
+    display: block;
+    font-size: 12px;
+    color: #888;
+    font-weight: 600;
+  }
+  .dims strong {
+    display: block;
+    margin-top: 4px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #FF2D8A;
+  }
+  .sum-tip {
+    margin: 10px 0 0;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.55;
+  }
 </style>
 </head>
 <body>
@@ -282,22 +313,22 @@
   <div class="status"><span>10:28</span><span>5G</span></div>
   <div class="nav">
     <button class="back" id="back" type="button">‹</button>
-    <span id="navTitle">模拟面试训练</span>
+    <span id="navTitle">职业AI模拟面试</span>
     <button class="hist" id="hist" type="button">面试记录</button>
   </div>
 
   <section class="screen on" id="home">
     <div class="hero">
       <div class="copy">
-        <h1>模拟面试训练<em>免费</em></h1>
-        <p>助你拿下满意<u>Offer</u></p>
+        <h1>职业AI模拟面试<em>免费</em></h1>
+        <p>展前练表达，助你拿下满意<u>Offer</u></p>
       </div>
       <div class="ai-mark">AI</div>
     </div>
     <div class="pts">
       <div class="sec">体验亮点</div>
       <article><h4>出题准</h4><p>匹配目标岗位，按你选的职位出题</p></article>
-      <article><h4>体验真</h4><p>模拟真实面试节奏，现场追问</p></article>
+      <article><h4>体验真</h4><p>文字问答模拟真实面试节奏，现场追问</p></article>
       <article><h4>提升快</h4><p>报告定位问题，指出可改的表达</p></article>
     </div>
     <div class="demo">
@@ -338,8 +369,8 @@
       <small>已根据您的求职意向生成专属面试方案</small>
     </div>
     <div class="foot">
-      <p class="hint">查看《AI模拟面试须知》协议</p>
-      <button class="start" id="go" type="button">即刻开始<small>平均 10–15 分钟完成</small></button>
+      <p class="hint">查看《职业AI模拟面试须知》</p>
+      <button class="start" id="go" type="button">即刻开始<small>平均 10–15 分钟 · 共 4 题</small></button>
     </div>
   </section>
 
@@ -366,6 +397,11 @@
       <div class="meter">
         <div class="ring" id="finalRing"><i id="finalScore">86</i></div>
         <p style="margin-top:8px;font-size:13px;color:#888" id="finalHint">超过 80% 的同学</p>
+      </div>
+      <div class="block">
+        <h4>能力维度</h4>
+        <div class="dims" id="dims"></div>
+        <p class="sum-tip" id="sumTip"></p>
       </div>
       <div class="qtabs" id="qtabs"></div>
       <div class="block" id="qview"></div>
@@ -397,11 +433,12 @@
   </div>
   <div class="mask" id="noteMask">
     <div class="sheet">
-      <h4>AI模拟面试须知</h4>
+      <h4>职业AI模拟面试须知</h4>
       <div class="note-body">
-        <p>本工具为展前练习，内容由规则演示生成，不代表企业真实面试结果。</p>
+        <p>本工具为展前练习，由 AI 按所选岗位出题并生成报告，不代表企业真实面试结果。</p>
         <p>请用文字作答。可点麦克风做语音转文字（浏览器不支持时会填入示例）。</p>
         <p>共 4 题，约 10–15 分钟。报告仅供参考，可再练一轮。</p>
+        <p>「面试实战训练」为后续独立能力，不在本流程内。</p>
       </div>
       <button class="start" id="noteOk" type="button" style="margin-top:16px">我知道了</button>
     </div>
@@ -461,7 +498,7 @@ function show(id) {
   document.getElementById(id).classList.add("on");
   showId = id;
   document.getElementById("navTitle").textContent =
-    id === "report" || id === "jobs" ? "面试报告" : id === "histPage" ? "面试记录" : "模拟面试训练";
+    id === "report" || id === "jobs" ? "面试报告" : id === "histPage" ? "面试记录" : "职业AI模拟面试";
   document.getElementById("hist").style.display = id === "home" ? "block" : "none";
 }
 function paintJob() {
@@ -624,11 +661,30 @@ document.getElementById("send").addEventListener("click", () => {
   }
   setTimeout(() => addAi(roundQs[qi].q, roundQs[qi].look), 400);
 });
+function dimScores(avg) {
+  const base = answers.map(x => x.s);
+  const pick = i => base[i] != null ? base[i] : avg;
+  return [
+    { n: "相关性", v: pick(3) },
+    { n: "表达力", v: pick(0) },
+    { n: "结构性", v: pick(1) },
+    { n: "清晰度", v: Math.round((pick(0) + pick(1)) / 2) },
+    { n: "自信度", v: pick(2) }
+  ];
+}
 function renderReport(avg) {
   document.getElementById("finalScore").textContent = avg;
   document.getElementById("finalRing").style.background =
     `conic-gradient(#FF2D8A 0 ${avg}%, #F1F1F1 ${avg}% 100%)`;
   document.getElementById("finalHint").textContent = avg >= 80 ? "超过 80% 的同学" : "还有提升空间，建议再练一轮作品讲解";
+  const dims = dimScores(avg);
+  document.getElementById("dims").innerHTML = dims.map(d =>
+    `<div><b>${d.n}</b><strong>${d.v}</strong></div>`
+  ).join("");
+  const weak = dims.slice().sort((a, b) => a.v - b.v)[0];
+  document.getElementById("sumTip").textContent = weak
+    ? `本轮相对薄弱：${weak.n}。建议下一轮重点练「问题—动作—结果」三段表达。`
+    : "";
   document.getElementById("qtabs").innerHTML = answers.map((_, i) =>
     `<button type="button" class="${i === 0 ? "on" : ""}" data-i="${i}">问题${["一","二","三","四"][i]}</button>`
   ).join("");
