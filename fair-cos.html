@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="fair-news-1515">
+<html lang="zh-CN" data-build="fair-news-1516">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -425,10 +425,9 @@ function paintNotice() {
 }
 function paintList() {
   const list = FAIR_SESSION_COS[CITY] || FAIR_SESSION_COS["上海"];
-  const readyN = list.filter(x => x.ready).length;
   document.getElementById("colTitle").textContent = "本场企业 · " + CITY + "站";
-  document.getElementById("colDesc").textContent =
-    FAIR_CITY_DATE[CITY] + " · " + list.length + " 篇资讯 · 已发布 " + readyN + " 篇 · 不进入资讯首页与搜索";
+  document.getElementById("colDesc").textContent = "";
+  document.getElementById("colDesc").hidden = true;
   document.getElementById("newsList").innerHTML = list.map(item =>
     "<button type=\"button\" class=\"news-item" + (item.ready ? "" : " wait") + "\" data-co=\"" + escHtml(item.id) + "\">" +
       "<div class=\"txt\">" +
