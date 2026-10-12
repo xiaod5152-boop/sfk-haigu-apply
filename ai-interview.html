@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="ai-iv-1745">
+<html lang="zh-CN" data-build="ai-iv-1748">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -282,27 +282,39 @@
     border-radius: 8px; padding: 8px 10px; margin-bottom: 10px;
   }
   .dock {
-    flex-shrink: 0; background: #fff; padding: 8px 12px 14px;
-    display: flex; gap: 8px; align-items: flex-end;
+    flex-shrink: 0; background: #fff; padding: 10px 12px 14px;
+    display: flex; flex-direction: column; gap: 10px;
     border-top: 1px solid #F0F0F0;
   }
-  .dock textarea {
-    flex: 1; height: 72px; resize: none; border: 1px solid #E5E5E5;
-    border-radius: 10px; padding: 8px 10px; font: inherit; font-size: 13px;
+  .dock .opts-hint {
+    font-size: 11px; color: #999; font-weight: 600;
   }
-  .acts { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+  .dock .opts {
+    display: flex; flex-direction: column; gap: 8px;
+    max-height: 248px; overflow: auto;
+  }
+  .dock .opt {
+    display: block; width: 100%; text-align: left;
+    border: 1.5px solid #E8E8E8; background: #FAFAFA;
+    border-radius: 10px; padding: 10px 12px; cursor: pointer;
+    font: inherit; color: #1A1A1A;
+  }
+  .dock .opt:hover { border-color: #FFB6D5; background: #FFF7FB; }
+  .dock .opt.on {
+    border-color: #FF2D8A; background: #FFF0F6;
+  }
+  .dock .opt b {
+    display: block; font-size: 12px; color: #FF2D8A; margin-bottom: 4px;
+  }
+  .dock .opt span {
+    display: block; font-size: 12.5px; line-height: 1.5; color: #333;
+  }
+  .dock .opt.on b { color: #FF2D8A; }
   .dock .send {
-    height: 36px; padding: 0 14px; border: 0; border-radius: 8px;
-    background: #FF2D8A; color: #fff; font-weight: 700; cursor: pointer;
+    height: 40px; width: 100%; border: 0; border-radius: 8px;
+    background: #FF2D8A; color: #fff; font-weight: 700; cursor: pointer; font-size: 14px;
   }
-  .dock .send:disabled { background: #F3C2DA; }
-  .dock .mic {
-    width: 36px; height: 36px; padding: 0; border: 0;
-    border-radius: 18px; background: #FFF0F6; color: #FF2D8A;
-    display: grid; place-items: center; cursor: pointer;
-  }
-  .dock .mic.on { background: #FF2D8A; color: #fff; }
-  .dock .mic svg { display: block; }
+  .dock .send:disabled { background: #F3C2DA; cursor: not-allowed; }
 
   .report { padding: 12px 16px 24px; }
   .meter { text-align: center; background: #fff; border-radius: 12px; padding: 16px; }
@@ -574,11 +586,11 @@
         <button type="button" id="editJob">修改岗位</button>
       </div>
       <p id="jobName">设计类 · UI/UX</p>
-      <small>通用 4 题面试，结合所选岗位作答；不绑定具体企业与场次</small>
+      <small>通用 4 题 · 每题选最接近你的答法；不绑定具体企业与场次</small>
     </div>
     <div class="foot">
       <p class="hint">查看《职业AI模拟面试须知》</p>
-      <button class="start" id="go" type="button">即刻开始<small>平均 10–15 分钟 · 共 4 题</small></button>
+      <button class="start" id="go" type="button">即刻开始<small>平均 8–12 分钟 · 共 4 题 · 选项作答</small></button>
     </div>
   </section>
 
@@ -586,13 +598,9 @@
     <div class="chat-bar"><span id="chatJob"></span><em id="chatStep">1 / 4</em></div>
     <div class="chat" id="log"></div>
     <div class="dock">
-      <textarea id="ans" placeholder="请输入你的回答"></textarea>
-      <div class="acts">
-        <button class="mic" id="mic" type="button" aria-label="语音转文字">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="2"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        </button>
-        <button class="send" id="send" type="button">提交</button>
-      </div>
+      <div class="opts-hint">请选择最接近你真实情况的答法</div>
+      <div class="opts" id="opts"></div>
+      <button class="send" id="send" type="button" disabled>提交所选</button>
     </div>
   </section>
 
@@ -646,10 +654,9 @@
     <div class="chat-bar"><span id="drillBarJob"></span><em id="drillBarStep">实战 1/1</em></div>
     <div class="chat" id="drillLog"></div>
     <div class="dock">
-      <textarea id="drillAns" placeholder="请输入你的回答"></textarea>
-      <div class="acts">
-        <button class="send" id="drillSend" type="button">提交</button>
-      </div>
+      <div class="opts-hint">请选择最接近你的回应</div>
+      <div class="opts" id="drillOpts"></div>
+      <button class="send" id="drillSend" type="button" disabled>提交所选</button>
     </div>
   </section>
 
@@ -680,9 +687,9 @@
       <h4>职业AI模拟面试须知</h4>
       <div class="note-body">
         <p>本工具为展前练习。题库为设计/产品/运营等岗位通用面试题，并结合你所选岗位作答，不代表企业真实面试结果。</p>
-        <p>请用文字作答。可点麦克风做语音转文字（浏览器不支持时会填入示例）。</p>
-        <p>共 4 题：自我介绍、项目过程、结果复盘、临场取舍，约 10–15 分钟。</p>
-        <p>完成模拟面试后，可继续「线上实战训练」，针对薄弱点做短任务加练。</p>
+        <p>每题给出若干参考答法，请选择最接近你真实情况的一项，无需自行填写文字。</p>
+        <p>共 4 题：自我介绍、项目过程、结果复盘、临场取舍，约 8–12 分钟。</p>
+        <p>完成模拟面试后，可继续「线上实战训练」，针对薄弱点做短任务加练（同样为选项作答）。</p>
       </div>
       <button class="start" id="noteOk" type="button" style="margin-top:16px">我知道了</button>
     </div>
@@ -746,27 +753,109 @@ let lastAvg = 0;
 let drillItems = [];
 let drillIx = 0;
 let drillDone = {};
+let pickIx = -1;
+let drillPickIx = -1;
 
-/** 面向招聘会岗位（设计/产品/运营/营销/游戏/文化）的通用 4 题；题目带入所选岗位名 */
+/** 面向招聘会岗位的通用 4 题；每题 3 个参考答法（优/中/弱），点选作答 */
 function qsFor(p) {
   const job = (p && p.job) || "这个岗位";
   const catName = (p && p.cat) || "该方向";
   return [
     {
       look: "沟通表达 · 岗位匹配",
-      q: `请用 1 分钟介绍自己：学校与专业、一段最相关经历，以及你为什么适合「${catName} · ${job}」。`
+      q: `请用 1 分钟介绍自己：学校与专业、一段最相关经历，以及你为什么适合「${catName} · ${job}」。`,
+      opts: [
+        {
+          label: "答法 A",
+          text: `我是××学校××专业。最近做过一个与「${job}」相关的项目：先明确目标受众，再落地方案并跟进反馈。我适合这个岗，是因为经历里已经练过「目标—动作—结果」这条链路。`,
+          s: 90,
+          tip: "结构完整：学校/经历/岗位匹配都有。现场可再补一句可验证结果。"
+        },
+        {
+          label: "答法 B",
+          text: `我是××专业的，平时比较关注「${catName}」，做过一些课程作业和比赛。我对「${job}」很有兴趣，希望能在实习里继续学习。`,
+          s: 72,
+          tip: "有专业与兴趣，但经历偏泛、岗位匹配不够具体。建议换成一个可讲清的项目。"
+        },
+        {
+          label: "答法 C",
+          text: `我叫××，性格开朗、沟通能力强，什么都能学。我觉得「${job}」挺适合我的。`,
+          s: 55,
+          tip: "缺少学校/经历/岗位对应信息，现场说服力弱。请按「学校—一段经历—为什么适合」重选练。"
+        }
+      ]
     },
     {
       look: "项目深度 · 过程",
-      q: `选一个和「${job}」最相关的作品或项目。当时要解决什么问题？你具体做了哪三步？哪一步是你独立负责的？`
+      q: `选一个和「${job}」最相关的作品或项目。当时要解决什么问题？你具体做了哪三步？哪一步是你独立负责的？`,
+      opts: [
+        {
+          label: "答法 A",
+          text: `问题是××（用户/业务痛点）。我做了三步：①调研与拆解目标；②出方案并和同学/老师对齐；③落地并收集反馈。其中第②步方案与取舍是我独立负责的。`,
+          s: 92,
+          tip: "问题—动作—独立负责清楚。可再点出哪一步最难、你怎么判断做对了。"
+        },
+        {
+          label: "答法 B",
+          text: `我做过一个相关项目，主要用了常见工具和流程，跟团队一起完成。我负责其中一部分执行，整体还算顺利。`,
+          s: 74,
+          tip: "有项目但步骤与独立贡献偏模糊。建议把「三步」和「独立负责的一步」说死。"
+        },
+        {
+          label: "答法 C",
+          text: `我比较熟悉常用软件和模板，平时也会看很多案例，所以这类项目我都能做。`,
+          s: 58,
+          tip: "只谈工具/案例，没有问题定义与过程。面试官听不到你的判断力。"
+        }
+      ]
     },
     {
       look: "结果意识 · 复盘",
-      q: "这个项目交付后，怎么判断它好不好？有数据更好；没有数据，请说你的判断标准，以及如果重做你会改哪一点。"
+      q: "这个项目交付后，怎么判断它好不好？有数据更好；没有数据，请说你的判断标准，以及如果重做你会改哪一点。",
+      opts: [
+        {
+          label: "答法 A",
+          text: `我用××指标或现场反馈来判断（如完成率/选用/老师评分）。如果重做，我会先改「××」这一环，因为当时证据最弱、影响最大。`,
+          s: 90,
+          tip: "有判断标准 + 可改点。数据再具体一点会更稳。"
+        },
+        {
+          label: "答法 B",
+          text: `交付后反响还可以，大家觉得能用。如果重做，我可能会把细节再打磨一下。`,
+          s: 72,
+          tip: "有结果感，但标准偏主观。建议换成可核对的标准，并只改一点、说清为什么。"
+        },
+        {
+          label: "答法 C",
+          text: `我觉得整体挺好的，没有特别要改的地方。`,
+          s: 56,
+          tip: "缺少判断依据与复盘。面试里几乎等于没有结果意识。"
+        }
+      ]
     },
     {
       look: "临场取舍 · 协作",
-      q: `假设你入职后负责「${job}」相关事项，同时接到 3 个紧急需求且只能先做 1 个。你怎么排优先级？需要先对齐哪些信息？`
+      q: `假设你入职后负责「${job}」相关事项，同时接到 3 个紧急需求且只能先做 1 个。你怎么排优先级？需要先对齐哪些信息？`,
+      opts: [
+        {
+          label: "答法 A",
+          text: `先对齐：业务目标、受众、截止时间、可用资源与风险。再按「影响面 × 紧急度 / 成本」排，只先做 1 个，并同步另外两项的预计时间。`,
+          s: 92,
+          tip: "有对齐项与排序逻辑，且会同步预期。这是协作向的加分答法。"
+        },
+        {
+          label: "答法 B",
+          text: `我会先做最紧急的那个，其他的稍后再说。如果老板指定，我就按老板说的来。`,
+          s: 74,
+          tip: "有排序意识，但缺少对齐信息与沟通预期。建议先问目标/截止再动手。"
+        },
+        {
+          label: "答法 C",
+          text: `三个都很急，我会尽量一起做，或者先做我最拿手的。`,
+          s: 55,
+          tip: "没有取舍逻辑。现场更需要「只能先做 1 个」的决策与对齐。"
+        }
+      ]
     }
   ];
 }
@@ -804,21 +893,81 @@ function buildDrill() {
       title: "60 秒自我介绍",
       tip: "压缩到结论先行：学校/方向 → 一个项目 → 为什么适合这个岗",
       q: `请用不超过 60 秒的口吻，介绍你为什么适合「${post.job}」。只保留最关键的三段信息。`,
-      look: "表达力 · 相关性"
+      look: "表达力 · 相关性",
+      opts: [
+        {
+          label: "回应 A",
+          text: `我适合「${post.job}」：①××专业；②一个项目（目标→动作→结果）；③这段经历证明我能把岗位关键交付做清楚。`,
+          ok: true,
+          tip: "结论先行、三段完整。现场照这个节奏说即可。"
+        },
+        {
+          label: "回应 B",
+          text: `我对「${post.job}」很感兴趣，平时也有关注，希望贵司能给我机会学习成长。`,
+          ok: false,
+          tip: "偏意愿、缺证据。请改成「学校—项目—为什么适合」。"
+        },
+        {
+          label: "回应 C",
+          text: `我什么都会一点，沟通也还行，所以这个岗我都能胜任。`,
+          ok: false,
+          tip: "太空洞。请只保留与岗位相关的一段经历。"
+        }
+      ]
     },
     {
       id: "portfolio",
       title: "作品集 3 分钟讲解",
       tip: "只讲一个项目：问题—动作—结果，主动说取舍",
       q: `假设面试官说「你有 3 分钟讲作品集」。请按「问题—动作—结果」讲一个与「${post.job}」最相关的项目。`,
-      look: "结构性 · 清晰度"
+      look: "结构性 · 清晰度",
+      opts: [
+        {
+          label: "回应 A",
+          text: `只讲一个项目：问题是××；我做了××与××（含一次取舍）；结果用××标准验证。其他作品可扫一眼。`,
+          ok: true,
+          tip: "结构对：问题—动作—结果，并主动说取舍。"
+        },
+        {
+          label: "回应 B",
+          text: `我作品挺多的，我按时间顺序每个讲一点，工具和效果都介绍一下。`,
+          ok: false,
+          tip: "信息过散。请只讲一个项目，并按三段结构。"
+        },
+        {
+          label: "回应 C",
+          text: `主要是课堂作业，界面/视觉看起来还可以，老师也说还行。`,
+          ok: false,
+          tip: "缺问题与动作。请补「解决什么、你做了什么」。"
+        }
+      ]
     },
     {
       id: "pressure",
       title: "压力追问回应",
       tip: "先复述问题，再给改法，最后反问约束",
       q: "面试官说：「你刚才的表达信息偏散。」请用 60 秒回应：你听到了什么、你会怎么改、你想确认什么约束。",
-      look: "自信度 · 临场"
+      look: "自信度 · 临场",
+      opts: [
+        {
+          label: "回应 A",
+          text: `我听到了：信息偏散。我会改成「结论→证据→结果」三段，每段不超过两句。想确认：您更想听岗位匹配，还是项目过程细节？`,
+          ok: true,
+          tip: "复述 + 改法 + 反问约束，临场加分。"
+        },
+        {
+          label: "回应 B",
+          text: `抱歉，那我再重新说一遍，把刚才内容讲细一点。`,
+          ok: false,
+          tip: "有态度但缺改法。请说明你会怎么压缩结构。"
+        },
+        {
+          label: "回应 C",
+          text: `我觉得我讲得已经比较清楚了，可能是时间不够。`,
+          ok: false,
+          tip: "争辩会扣分。先接住反馈，再给可执行的改法。"
+        }
+      ]
     }
   ];
   drillIx = 0;
@@ -849,10 +998,10 @@ function openDrillItem(i) {
   const d = drillItems[i];
   if (!d) return;
   drillIx = i;
+  drillPickIx = -1;
   document.getElementById("drillLog").innerHTML = "";
   document.getElementById("drillBarJob").textContent = `${post.cat} · ${post.job}`;
   document.getElementById("drillBarStep").textContent = `实战 ${i + 1}/${drillItems.length}`;
-  document.getElementById("drillAns").value = "";
   show("drillChat");
   const log = document.getElementById("drillLog");
   const look = document.createElement("div");
@@ -860,6 +1009,23 @@ function openDrillItem(i) {
   look.textContent = "本项考察：" + d.look;
   log.appendChild(look);
   addBubble("drillLog", "ai", "实战教练", d.q, "练");
+  paintDrillOpts();
+}
+function paintDrillOpts() {
+  const d = drillItems[drillIx];
+  const box = document.getElementById("drillOpts");
+  const btn = document.getElementById("drillSend");
+  if (!d || !d.opts) {
+    box.innerHTML = "";
+    btn.disabled = true;
+    return;
+  }
+  box.innerHTML = d.opts.map((o, i) =>
+    `<button type="button" class="opt${i === drillPickIx ? " on" : ""}" data-di="${i}">
+      <b>${o.label}</b><span>${o.text}</span>
+    </button>`
+  ).join("");
+  btn.disabled = drillPickIx < 0;
 }
 function paintJob() {
   document.getElementById("jobName").textContent = `${post.cat} · ${post.job}`;
@@ -902,33 +1068,28 @@ function addAi(text, look) {
 function addMe(text) {
   addBubble("log", "me", "", text, "我");
 }
-function isThinAnswer(text) {
-  const t = (text || "").trim();
-  if (t.length < 20) return true;
-  const uniq = new Set(t.replace(/\s/g, "").split("")).size;
-  if (t.length >= 4 && uniq <= 2) return true;
-  if (/^[\d\s]+$/.test(t)) return true;
-  if (/^(.)\1{3,}$/.test(t.replace(/\s/g, ""))) return true;
-  return false;
-}
-function scoreOf(text) {
-  const t = (text || "").trim();
-  if (isThinAnswer(t)) return 48;
-  const n = t.length;
-  if (n < 40) return 68;
-  if (n < 80) return 78;
-  if (n < 120) return 86;
-  return 90;
-}
 function feedbackOf(x) {
   if (!x) return "";
-  if (isThinAnswer(x.a) || x.s < 55) {
-    return "本次几乎未有效作答（过短或随意填写）。请按题目把「经历/动作/结果」写清楚，再练一轮才会有参考价值。";
+  if (x.tip) return x.tip;
+  if (x.s >= 82) return "结构清楚，有项目动作。下一步把结果写成可验证的数字或现场反馈。";
+  if (x.s < 60) return "该答法参考价值偏低。建议改选更完整的结构，再练一轮。";
+  return "信息偏散。建议按「问题—动作—结果」三段表达，每段不超过两句。";
+}
+function paintOpts() {
+  const q = roundQs[qi];
+  const box = document.getElementById("opts");
+  const btn = document.getElementById("send");
+  if (!q || !q.opts) {
+    box.innerHTML = "";
+    btn.disabled = true;
+    return;
   }
-  if (x.s >= 82) {
-    return "结构清楚，有项目动作。下一步把结果写成可验证的数字或现场反馈。";
-  }
-  return "信息偏散。建议按「问题—动作—结果」三段写，每段不超过两句。";
+  box.innerHTML = q.opts.map((o, i) =>
+    `<button type="button" class="opt${i === pickIx ? " on" : ""}" data-oi="${i}">
+      <b>${o.label}</b><span>${o.text}</span>
+    </button>`
+  ).join("");
+  btn.disabled = pickIx < 0;
 }
 
 document.getElementById("editJob").addEventListener("click", () => {
@@ -966,63 +1127,35 @@ document.getElementById("go").addEventListener("click", () => {
   viewingHist = false;
   qi = 0;
   answers = [];
+  pickIx = -1;
   roundQs = qsFor(post);
   document.getElementById("log").innerHTML = "";
   show("chat");
   paintStep();
-  addAi(`本场面试针对「${post.cat} · ${post.job}」。您好，欢迎来到今天的面试。`, "");
+  addAi(`本场面试针对「${post.cat} · ${post.job}」。您好，欢迎来到今天的面试。每题请选择最接近你的答法。`, "");
   addAi(roundQs[0].q, roundQs[0].look);
+  paintOpts();
 });
-let rec = null;
-let recBase = "";
-function stopVoice() {
-  if (rec) {
-    rec.onend = null;
-    rec.stop();
-    rec = null;
-  }
-  document.getElementById("mic").classList.remove("on");
-}
-document.getElementById("mic").addEventListener("click", () => {
-  const box = document.getElementById("ans");
-  const btn = document.getElementById("mic");
-  if (rec) {
-    stopVoice();
-    return;
-  }
-  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!Rec) {
-    btn.classList.add("on");
-    setTimeout(() => {
-      const demo = "我在中央美院读视觉传达，代表项目是品牌主视觉，这次想投内容设计岗。";
-      box.value = (box.value ? box.value.replace(/\s+$/, "") + " " : "") + demo;
-      btn.classList.remove("on");
-    }, 800);
-    return;
-  }
-  recBase = box.value;
-  rec = new Rec();
-  rec.lang = "zh-CN";
-  rec.continuous = true;
-  rec.interimResults = true;
-  rec.onresult = e => {
-    let out = recBase ? recBase.replace(/\s+$/, "") + " " : "";
-    for (let i = 0; i < e.results.length; i++) out += e.results[i][0].transcript;
-    box.value = out;
-  };
-  rec.onend = () => stopVoice();
-  rec.onerror = () => stopVoice();
-  btn.classList.add("on");
-  rec.start();
+document.getElementById("opts").addEventListener("click", e => {
+  const b = e.target.closest("[data-oi]");
+  if (!b) return;
+  pickIx = +b.dataset.oi;
+  paintOpts();
 });
 document.getElementById("send").addEventListener("click", () => {
-  stopVoice();
-  const t = document.getElementById("ans").value.trim();
-  if (!t) return;
-  if (isThinAnswer(t) && !window.confirm("当前回答偏短或像随意填写，报告参考价值较低。仍要提交吗？")) return;
-  addMe(t);
-  answers.push({ q: roundQs[qi].q, look: roundQs[qi].look, a: t, s: scoreOf(t) });
-  document.getElementById("ans").value = "";
+  const q = roundQs[qi];
+  const o = q && q.opts && q.opts[pickIx];
+  if (!o) return;
+  addMe(o.text);
+  answers.push({
+    q: q.q,
+    look: q.look,
+    a: o.text,
+    label: o.label,
+    s: o.s,
+    tip: o.tip
+  });
+  pickIx = -1;
   qi += 1;
   paintStep();
   if (qi >= roundQs.length) {
@@ -1042,7 +1175,10 @@ document.getElementById("send").addEventListener("click", () => {
     }, 1000);
     return;
   }
-  setTimeout(() => addAi(roundQs[qi].q, roundQs[qi].look), 400);
+  setTimeout(() => {
+    addAi(roundQs[qi].q, roundQs[qi].look);
+    paintOpts();
+  }, 400);
 });
 function dimScores(avg) {
   const base = answers.map(x => x.s);
@@ -1060,9 +1196,9 @@ function renderReport(avg) {
   document.getElementById("finalScore").textContent = avg;
   document.getElementById("finalRing").style.background =
     `conic-gradient(#FF2D8A 0 ${avg}%, #F1F1F1 ${avg}% 100%)`;
-  const thinN = answers.filter(x => isThinAnswer(x.a) || x.s < 55).length;
-  document.getElementById("finalHint").textContent = thinN >= 2
-    ? "多题未有效作答，建议认真重练后再看报告"
+  const weakN = answers.filter(x => x.s < 65).length;
+  document.getElementById("finalHint").textContent = weakN >= 2
+    ? "多题选择偏弱，建议对照「答法 A」结构再练一轮"
     : (avg >= 80 ? "超过 80% 的同学" : "还有提升空间，建议再练一轮作品讲解");
   const dims = dimScores(avg);
   document.getElementById("dims").innerHTML = dims.map(d =>
@@ -1080,13 +1216,13 @@ function renderReport(avg) {
 function paintQview(i) {
   const x = answers[i];
   if (!x) return;
-  const thin = isThinAnswer(x.a) || x.s < 55;
+  const weak = x.s < 65;
   document.getElementById("qview").innerHTML =
     `<h4>问题回顾 · 内容由 AI 生成</h4>
      <p>${x.q}</p>
      <h5>面试官要考察的是</h5>
      <p>${x.look}</p>
-     <h5>你的回答 · ${x.s} 分${thin ? " · 未有效作答" : ""}</h5>
+     <h5>你的选择 · ${x.s} 分${x.label ? " · " + x.label : ""}${weak ? " · 偏弱" : ""}</h5>
      <p>${x.a}</p>
      <h5>优缺点分析</h5>
      <p>${feedbackOf(x)}</p>`;
@@ -1149,22 +1285,26 @@ document.getElementById("drillSkip").addEventListener("click", () => {
   paintNearJobs();
   show("jobs");
 });
+document.getElementById("drillOpts").addEventListener("click", e => {
+  const b = e.target.closest("[data-di]");
+  if (!b) return;
+  drillPickIx = +b.dataset.di;
+  paintDrillOpts();
+});
 document.getElementById("drillSend").addEventListener("click", () => {
-  const t = document.getElementById("drillAns").value.trim();
-  if (!t) return;
   const d = drillItems[drillIx];
-  addBubble("drillLog", "me", "", t, "我");
-  document.getElementById("drillAns").value = "";
+  const o = d && d.opts && d.opts[drillPickIx];
+  if (!o) return;
+  addBubble("drillLog", "me", "", o.text, "我");
   addBubble(
     "drillLog",
     "ai",
     "实战教练",
-    t.length >= 40
-      ? "这一轮比模拟面试更紧。记住：先结论，再证据。可以进入下一项。"
-      : "偏短。现场版请补一句「结果/判断标准」，再进入下一项。",
+    o.tip || (o.ok ? "这一轮比模拟面试更紧。记住：先结论，再证据。可以进入下一项。" : "这一版偏弱，对照更完整的回应再练一次。"),
     "练"
   );
-  if (d) drillDone[d.id] = true;
+  drillDone[d.id] = true;
+  drillPickIx = -1;
   setTimeout(() => {
     paintDrillList();
     show("drill");
@@ -1231,13 +1371,6 @@ document.getElementById("back").addEventListener("click", () => {
   }
   location.href = "signup-preview.html";
 });
-document.getElementById("ans").addEventListener("keydown", e => {
-  if (e.key === "Enter" && !e.shiftKey) {
-    e.preventDefault();
-    document.getElementById("send").click();
-  }
-});
-
 (function boot() {
   const q = new URLSearchParams(location.search);
   const role = q.get("role") || q.get("job");
