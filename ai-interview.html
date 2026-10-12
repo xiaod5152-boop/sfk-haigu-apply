@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="ai-iv-1715">
+<html lang="zh-CN" data-build="ai-iv-1720">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -397,7 +397,16 @@
   }
   .drill-card.done .st { color: #16A34A; }
   .report-acts { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
-  .report-acts .ghost { margin-top: 0; }
+  .report-acts .row2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .report-acts .ghost {
+    margin-top: 0;
+    height: 44px;
+    font-size: 13px;
+  }
 </style>
 </head>
 <body>
@@ -498,8 +507,11 @@
       <div class="qtabs" id="qtabs"></div>
       <div class="block" id="qview"></div>
       <div class="report-acts">
-        <button class="start" id="toDrill" type="button">进入线上实战训练<small>针对薄弱点加练 8–10 分钟</small></button>
-        <button class="ghost" id="toJobs" type="button">查看相近岗位</button>
+        <button class="start" id="toDrill" type="button">进入实战训练<small>针对薄弱点加练 8–10 分钟</small></button>
+        <div class="row2">
+          <button class="ghost" id="dlReport" type="button">下载面试报告</button>
+          <button class="ghost" id="againFromReport" type="button">再来一次</button>
+        </div>
       </div>
     </div>
   </section>
@@ -958,9 +970,25 @@ document.getElementById("toDrill").addEventListener("click", () => {
   buildDrill();
   show("drill");
 });
-document.getElementById("toJobs").addEventListener("click", () => {
-  paintNearJobs();
-  show("jobs");
+document.getElementById("againFromReport").addEventListener("click", () => show("home"));
+document.getElementById("dlReport").addEventListener("click", () => {
+  const dims = dimScores(lastAvg || 0).map(d => `${d.n}：${d.v}`).join("\n");
+  const qs = answers.map((x, i) =>
+    `【问题${i + 1}】${x.q}\n考察：${x.look}\n回答：${x.a}\n得分：${x.s}`
+  ).join("\n\n");
+  const text =
+    `职业AI模拟面试报告\n` +
+    `岗位：${post.cat} · ${post.job}\n` +
+    `总分：${lastAvg}\n` +
+    `时间：${new Date().toLocaleString("zh-CN")}\n\n` +
+    `能力维度\n${dims}\n\n` +
+    `题目回顾\n${qs}\n`;
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `面试报告-${post.job}-${lastAvg}分.txt`;
+  a.click();
+  URL.revokeObjectURL(a.href);
 });
 document.getElementById("drillList").addEventListener("click", e => {
   const b = e.target.closest("[data-drill]");
