@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="ai-iv-1720">
+<html lang="zh-CN" data-build="ai-iv-1725">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -226,13 +226,57 @@
   .pick b { display: block; font-size: 14px; font-weight: 700; color: #222; }
 
   .chat { flex: 1; overflow: auto; padding: 12px 14px 8px; }
-  .ai, .me {
-    max-width: 82%; padding: 10px 12px; border-radius: 12px;
-    font-size: 13px; line-height: 1.55; margin-bottom: 10px;
+  .msg {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 12px;
   }
-  .ai { background: #fff; }
-  .ai em { display: block; font-style: normal; font-size: 11px; color: #FF2D8A; margin-bottom: 4px; font-weight: 700; }
-  .me { background: #FF2D8A; color: #fff; margin-left: auto; }
+  .msg.me-row {
+    flex-direction: row-reverse;
+  }
+  .msg .ava {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    font-size: 11px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .msg.ai-row .ava {
+    background: linear-gradient(145deg, #7C5CFC, #FF4FA0);
+  }
+  .msg.me-row .ava {
+    background: #FF2D8A;
+  }
+  .msg .bubble {
+    max-width: calc(82% - 8px);
+    padding: 10px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .msg.ai-row .bubble {
+    background: #fff;
+    border-top-left-radius: 4px;
+  }
+  .msg.me-row .bubble {
+    background: #FF2D8A;
+    color: #fff;
+    border-top-right-radius: 4px;
+  }
+  .msg .bubble em {
+    display: block;
+    font-style: normal;
+    font-size: 11px;
+    color: #FF2D8A;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  .msg.me-row .bubble em { color: rgba(255,255,255,.85); }
   .look {
     background: #FFF7E8; color: #9A4B12; font-size: 12px;
     border-radius: 8px; padding: 8px 10px; margin-bottom: 10px;
@@ -743,10 +787,7 @@ function openDrillItem(i) {
   look.className = "look";
   look.textContent = "本项考察：" + d.look;
   log.appendChild(look);
-  const ai = document.createElement("div");
-  ai.className = "ai";
-  ai.innerHTML = `<em>实战教练</em>${d.q}`;
-  log.appendChild(ai);
+  addBubble("drillLog", "ai", "实战教练", d.q, "练");
 }
 function paintJob() {
   document.getElementById("jobName").textContent = `${post.cat} · ${post.job}`;
@@ -766,6 +807,16 @@ function paintStep() {
   document.getElementById("chatStep").textContent = `${Math.min(qi + 1, roundQs.length)} / ${roundQs.length}`;
   document.getElementById("chatJob").textContent = `${post.cat} · ${post.job}`;
 }
+function addBubble(logId, side, name, text, ava) {
+  const log = document.getElementById(logId);
+  const row = document.createElement("div");
+  row.className = "msg " + (side === "me" ? "me-row" : "ai-row");
+  row.innerHTML =
+    `<div class="ava" aria-hidden="true">${ava}</div>` +
+    `<div class="bubble">${name ? `<em>${name}</em>` : ""}${text}</div>`;
+  log.appendChild(row);
+  log.scrollTop = log.scrollHeight;
+}
 function addAi(text, look) {
   const log = document.getElementById("log");
   if (look) {
@@ -774,18 +825,10 @@ function addAi(text, look) {
     l.textContent = "面试官会考察：" + look;
     log.appendChild(l);
   }
-  const d = document.createElement("div");
-  d.className = "ai";
-  d.innerHTML = `<em>AI 面试官</em>${text}`;
-  log.appendChild(d);
-  log.scrollTop = log.scrollHeight;
+  addBubble("log", "ai", "AI 面试官", text, "AI");
 }
 function addMe(text) {
-  const d = document.createElement("div");
-  d.className = "me";
-  d.textContent = text;
-  document.getElementById("log").appendChild(d);
-  document.getElementById("log").scrollTop = 9999;
+  addBubble("log", "me", "", text, "我");
 }
 function scoreOf(text) {
   const n = (text || "").trim().length;
@@ -1012,17 +1055,17 @@ document.getElementById("drillSend").addEventListener("click", () => {
   const t = document.getElementById("drillAns").value.trim();
   if (!t) return;
   const d = drillItems[drillIx];
-  const me = document.createElement("div");
-  me.className = "me";
-  me.textContent = t;
-  document.getElementById("drillLog").appendChild(me);
+  addBubble("drillLog", "me", "", t, "我");
   document.getElementById("drillAns").value = "";
-  const tip = document.createElement("div");
-  tip.className = "ai";
-  tip.innerHTML = `<em>实战教练</em>${t.length >= 40
-    ? "这一轮比模拟面试更紧。记住：先结论，再证据。可以进入下一项。"
-    : "偏短。现场版请补一句「结果/判断标准」，再进入下一项。"}`;
-  document.getElementById("drillLog").appendChild(tip);
+  addBubble(
+    "drillLog",
+    "ai",
+    "实战教练",
+    t.length >= 40
+      ? "这一轮比模拟面试更紧。记住：先结论，再证据。可以进入下一项。"
+      : "偏短。现场版请补一句「结果/判断标准」，再进入下一项。",
+    "练"
+  );
   if (d) drillDone[d.id] = true;
   setTimeout(() => {
     paintDrillList();
