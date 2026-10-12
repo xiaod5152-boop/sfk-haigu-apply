@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="fair-news-1512">
+<html lang="zh-CN" data-build="fair-news-1515">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -50,9 +50,44 @@
     background: #fff;
     border-bottom: 1px solid #F0F0F0;
   }
+  .mp-nav #navTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111;
+  }
   .nav .cap {
-    position: absolute; right: 12px; width: 84px; height: 30px;
+    position: absolute; right: 10px; top: 7px;
+    width: 87px; height: 30px;
     border: 1px solid #E5E5E5; border-radius: 15px;
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; background: #fff;
+  }
+  .nav .cap::before {
+    content: "···";
+    flex: 1;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #333;
+    line-height: 1;
+  }
+  .nav .cap::after {
+    content: "";
+    width: 17px; height: 17px;
+    margin-right: 7px;
+    border: 1.5px solid #333;
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+  .nav .cap i {
+    position: absolute;
+    left: 50%;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: #E5E5E5;
+    transform: translateX(-50%);
   }
   .screen { display: none; flex: 1; overflow-x: hidden; overflow-y: auto; }
   .screen.on { display: block; }
@@ -174,31 +209,32 @@
   .news-item.wait strong { color: #999; }
   .news-item.wait .thumb { background: #F2F3F5; color: #AAA; }
 
-  .article { padding: 16px 18px 32px; background: #fff; min-height: 100%; }
+  .article { padding: 18px 18px 88px; background: #fff; min-height: 100%; }
   .article h3 {
-    font-size: 20px;
-    font-weight: 900;
-    line-height: 1.35;
-    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #111;
+    margin-bottom: 12px;
   }
   .article .by {
     font-size: 12px;
     color: #999;
-    font-weight: 600;
-    margin-bottom: 16px;
+    font-weight: 500;
+    margin-bottom: 18px;
   }
   .article h4 {
-    margin: 16px 0 8px;
-    font-size: 15px;
+    margin: 22px 0 10px;
+    font-size: 16px;
     font-weight: 800;
-    color: #111;
+    color: #333;
   }
   .article p {
-    margin: 0 0 10px;
-    font-size: 14px;
-    font-weight: 500;
+    margin: 0 0 14px;
+    font-size: 15px;
+    font-weight: 400;
     color: #333;
-    line-height: 1.8;
+    line-height: 1.85;
   }
   .article .wait-note {
     padding: 14px 12px;
@@ -207,6 +243,43 @@
     font-size: 13px;
     color: #888;
     line-height: 1.6;
+  }
+  .cs-fab {
+    display: none;
+    position: absolute;
+    right: 14px;
+    bottom: 28px;
+    z-index: 8;
+    width: 64px;
+    flex-direction: column;
+    align-items: center;
+    border: 0;
+    background: none;
+    font: inherit;
+    cursor: pointer;
+  }
+  .phone.mp.detail-on .cs-fab { display: flex; }
+  .cs-fab .ico {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(160deg, #FF7AB8, #E21876);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(226,24,118,.28);
+  }
+  .cs-fab .ico svg { display: block; }
+  .cs-fab span {
+    margin-top: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #E21876;
+    background: #fff;
+    border-radius: 99px;
+    padding: 2px 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
   }
 </style>
 </head>
@@ -220,8 +293,18 @@
   </div>
   <div class="nav mp-nav" id="navMp" hidden>
     <button class="back" id="backMp" type="button">‹</button>
-    <span class="cap"></span>
+    <span id="navTitle"></span>
+    <span class="cap"><i></i></span>
   </div>
+  <button class="cs-fab" id="csFab" type="button" tabindex="-1">
+    <div class="ico" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M4 12a8 8 0 0116 0v2.2a2.2 2.2 0 01-2.2 2.2h-.6V12a5.2 5.2 0 10-10.4 0v4.4H6.2A2.2 2.2 0 014 14.2V12z" fill="#fff"/>
+        <path d="M9 18.5c.6 1.4 1.8 2.3 3 2.3s2.4-.9 3-2.3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span>在线客服</span>
+  </button>
 
   <section class="screen on" id="wx">
     <p class="wx-time">下午 2:16</p>
@@ -326,10 +409,13 @@ function setMp(on) {
   document.getElementById("navWx").hidden = on;
   document.getElementById("navMp").hidden = !on;
 }
-function show(id, title) {
+function show(id) {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("on"));
   document.getElementById(id).classList.add("on");
   setMp(id !== "wx");
+  document.getElementById("phone").classList.toggle("detail-on", id === "detail");
+  const navTitle = document.getElementById("navTitle");
+  navTitle.textContent = id === "detail" ? "资讯详情" : "";
   show.id = id;
 }
 function paintNotice() {
@@ -365,18 +451,18 @@ function paintDetail(id) {
     : "<p class=\"wait-note\">该篇资讯尚未发布。企业介绍按场次录入后，报名学生可在此查看，不进入资讯首页。</p>";
   document.getElementById("article").innerHTML =
     "<h3>" + escHtml(title) + "</h3>" +
-    "<p class=\"by\">就业力 · " + CITY + "站 · " + (FAIR_CITY_DATE[CITY] || "") + (item.ready ? " · 已发布" : " · 未发布") + "</p>" +
+    "<p class=\"by\">斯芬克国际艺术教育&nbsp;&nbsp;2026年10月12日 14:16</p>" +
     body;
-  show("detail", "资讯");
+  show("detail");
 }
 
 document.body.classList.add(INNER ? "inner-ch" : "pub-ch");
 paintNotice();
 paintList();
-if (SKIP_WX) show("list", "资讯");
+if (SKIP_WX) show("list");
 else show("wx");
 
-document.getElementById("wxCard").addEventListener("click", () => show("list", "资讯"));
+document.getElementById("wxCard").addEventListener("click", () => show("list"));
 document.getElementById("newsList").addEventListener("click", e => {
   const card = e.target.closest("[data-co]");
   if (card) paintDetail(card.dataset.co);
@@ -384,7 +470,7 @@ document.getElementById("newsList").addEventListener("click", e => {
 document.getElementById("backWx").addEventListener("click", () => history.length > 1 && history.back());
 document.getElementById("backMp").addEventListener("click", () => {
   if (show.id === "detail") {
-    show("list", "资讯");
+    show("list");
     return;
   }
   if (!SKIP_WX) {
