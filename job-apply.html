@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-build="copy-now-1838">
+<html lang="zh-CN" data-build="copy-p17-1440">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -393,13 +393,13 @@
   }
   .hook { margin: 0 0 10px; }
   .hook-title {
-    margin: 0 0 16px;
-    padding: 0;
-    font-size: 24px;
+    margin: 0 0 14px;
+    padding: 0 4px;
+    font-size: 22px;
     font-weight: 900;
-    line-height: 1.35;
+    line-height: 1.4;
     color: #111;
-    letter-spacing: -.6px;
+    letter-spacing: -.4px;
     word-break: keep-all;
   }
   .hook-title em {
@@ -407,8 +407,12 @@
     color: #4338CA;
     box-shadow: none;
   }
+  .story-sec.intro {
+    padding: 16px 6px 16px;
+  }
   .spec-board.hook-board {
-    padding: 14px 0 12px;
+    margin: 0 -4px;
+    padding: 12px 0 10px;
     border-top: 0;
     overflow: visible;
     background: #fff;
@@ -417,10 +421,11 @@
     list-style: none;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 0;
-    margin: 0 0 14px;
-    padding: 4px 0 0;
-    align-items: start;
+    column-gap: 0;
+    margin: 0 0 12px;
+    padding: 0;
+    align-items: stretch;
+    overflow: visible;
   }
   .pain-list li {
     display: flex;
@@ -430,34 +435,81 @@
     margin: 0;
     padding: 0 6px;
     border: 0;
-    border-right: 1px solid #E8E8EE;
+    border-right: 1px solid #EDEDF2;
     min-width: 0;
+    overflow: visible;
   }
-  .pain-list li:last-child { border-right: 0; }
+  .pain-list li:last-child { border-right: 0; padding-right: 2px; }
+  .pain-list li:first-child { padding-left: 2px; }
   .pain-list i { display: none; }
   .pain-list b {
     display: block;
-    font-size: 14px;
+    width: 100%;
+    min-height: 2.9em;
+    font-size: 11px;
     font-weight: 900;
     color: #111;
-    line-height: 1.35;
-    letter-spacing: 0;
+    line-height: 1.4;
+    letter-spacing: -0.05em;
     word-break: keep-all;
+    overflow-wrap: normal;
   }
   .pain-list span {
     display: block;
+    width: 100%;
     margin-top: 8px;
-    font-size: 11px;
+    min-height: 3.4em;
+    font-size: 9.5px;
     font-weight: 500;
     color: #8B8B96;
     line-height: 1.55;
+    letter-spacing: -0.05em;
     word-break: keep-all;
+    overflow-wrap: normal;
   }
   body.pub-ch .pain-list i {
     background: #EEF2FF;
     color: #4338CA;
   }
-  .hook-cols { display: none; }
+  .hook-cols {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin: 0 0 12px;
+    padding: 0 4px;
+  }
+  .hook-cols li {
+    margin: 0;
+    padding: 12px 6px 13px;
+    text-align: center;
+    background: #FAFAFC;
+    border: 1px solid #EEEFF4;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    min-height: 78px;
+  }
+  .hook-cols b {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #8A8A90;
+    line-height: 1.2;
+  }
+  .hook-cols span {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    color: #1A1A1A;
+    line-height: 1.3;
+    white-space: nowrap;
+    word-break: keep-all;
+  }
+  .pain-list { display: none; }
   .hook-end {
     margin: 0;
     font-size: 13px;
@@ -480,12 +532,75 @@
     overflow: hidden;
     border-top: 1.5px solid #4F46E5;
   }
-  .info-dl {
-    margin: 0;
+  .spec-board.info-board {
+    padding: 6px 8px 8px;
+    border-top: 0;
+    background: transparent;
+  }
+  .info-tiles {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 6px;
   }
+  .info-tiles section {
+    margin: 0;
+    padding: 8px 10px 8px;
+    background: #F7F8FC;
+    border-radius: 12px;
+  }
+  .info-tiles h4 {
+    margin: 0 0 5px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #4338CA;
+    letter-spacing: 0;
+  }
+  .info-tiles ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .info-tiles li {
+    position: relative;
+    margin: 0;
+    padding: 1px 0 1px 11px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+    line-height: 1.4;
+  }
+  .info-tiles li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #4338CA;
+  }
+  .info-tiles .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 0;
+  }
+  .info-tiles .chips span {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #333;
+    background: #fff;
+    border-radius: 999px;
+    border: 1px solid #E6E8F0;
+  }
+  .info-tiles .chips span.free {
+    color: #4338CA;
+    background: #EEF2FF;
+    border-color: #E0E7FF;
+  }
+  .info-dl { display: none; }
   .info-dl > div {
     display: grid;
     grid-template-columns: 86px 1fr;
@@ -573,47 +688,69 @@
   }
   .role-pack ul {
     list-style: none;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 8px;
     margin: 0;
     padding: 0;
   }
   .role-pack li {
-    flex: 0 0 calc((100% - 16px) / 3);
     box-sizing: border-box;
     margin: 0;
-    padding: 11px 6px;
+    padding: 10px 4px;
     text-align: center;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     color: #4338CA;
     background: #EEF2FF;
     border-radius: 999px;
+    white-space: nowrap;
   }
   .bridge-banner {
+    position: relative;
     margin: 12px 0 10px;
-    padding: 14px 12px 13px;
-    border-radius: 12px;
+    padding: 16px 10px 14px;
+    border-radius: 16px;
     text-align: center;
-    color: #fff;
-    background: linear-gradient(165deg, #6D5EF7 0%, #4F46E5 52%, #3730A3 100%);
+    color: #222;
+    background: linear-gradient(180deg, #F5F4FF 0%, #FFFFFF 58%);
+    border: 1px solid #E4E2F6;
+    box-shadow: none;
   }
+  .bridge-banner .arcs {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 3px;
+    height: 16px;
+    margin: 0 0 8px;
+  }
+  .bridge-banner .arcs i {
+    display: block;
+    height: 100%;
+    border: 1.6px solid #4F46E5;
+    border-bottom: 0;
+    border-radius: 20px 20px 0 0;
+  }
+  .bridge-banner .arcs i:nth-child(1) { width: 18px; opacity: .35; }
+  .bridge-banner .arcs i:nth-child(2) { width: 28px; opacity: .65; }
+  .bridge-banner .arcs i:nth-child(3) { width: 38px; opacity: 1; }
   .bridge-banner strong {
     display: block;
-    font-size: 15px;
-    font-weight: 800;
+    font-size: 16px;
+    font-weight: 900;
     line-height: 1.35;
     letter-spacing: 0;
+    color: #4F46E5;
     white-space: nowrap;
   }
   .bridge-banner p {
-    margin: 6px 0 0;
-    font-size: 10.5px;
+    margin: 7px 0 0;
+    font-size: 9.5px;
     font-weight: 500;
     line-height: 1.4;
-    letter-spacing: -0.02em;
-    color: rgba(255,255,255,.92);
+    letter-spacing: -0.04em;
+    color: #666;
     white-space: nowrap;
     word-break: keep-all;
   }
@@ -1042,82 +1179,136 @@
     word-break: keep-all;
     overflow: visible;
   }
-  .m-block.spec-board:has(.e5-list) {
+  .m-block.spec-board:has(.craft-board) {
     overflow: hidden;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 14px 10px 12px;
   }
-  .e5-list {
-    --e5-ink: #4F46E5;
+  .craft-board { --craft-ink: #4F46E5; --craft-soft: #EEF2FF; }
+  .craft-wheel {
+    margin: 4px auto 12px;
+    width: 100%;
+    max-width: 320px;
+  }
+  .craft-wheel svg { display: block; width: 100%; height: auto; }
+  .craft-wheel .base-ring { fill: var(--craft-ink); opacity: .18; }
+  .craft-wheel .seg { fill: var(--craft-soft); stroke: #fff; stroke-width: 2; }
+  .craft-wheel .core { fill: var(--craft-ink); }
+  .craft-wheel text {
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    fill: #1A1220;
+  }
+  .craft-wheel .core-t { fill: #fff; font-weight: 800; }
+  .craft-wheel .letter { fill: var(--craft-ink); font-weight: 800; }
+  .craft-wheel .base-lab { fill: var(--craft-ink); font-weight: 800; font-size: 11px; }
+  .craft-wheel .orbit { fill: #666; font-size: 9px; font-weight: 700; }
+  .craft-chain {
+    margin: 0 0 10px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--craft-ink);
+    letter-spacing: 0.02em;
+  }
+  .craft-list {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 8px;
   }
-  .e5-list li {
+  .craft-list > li {
     display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-areas:
-      "tag nm"
-      "tag fx";
-    column-gap: 10px;
-    row-gap: 4px;
-    align-items: center;
-    padding: 12px 12px 12px 10px;
-    background: #fff;
-    border: 1px solid #E8EAF0;
-    border-left: 3px solid var(--e5-ink);
-    border-radius: 12px;
-  }
-  .e5-list .hd {
-    display: contents;
-  }
-  .e5-list .tag {
-    grid-area: tag;
-    align-self: center;
-    min-width: 32px;
-    padding: 4px 7px;
-    border-radius: 7px;
-    background: var(--e5-ink);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 800;
-    text-align: center;
-    line-height: 1.3;
-  }
-  .e5-list .nm {
-    grid-area: nm;
-    min-width: 0;
-    font-size: 14px;
-    font-weight: 800;
-    color: #1A1A1A;
-    line-height: 1.25;
-    text-align: left;
-    word-break: keep-all;
-  }
-  .e5-list .nm em {
-    display: block;
-    margin-top: 2px;
-    font-style: normal;
-    font-size: 11px;
-    font-weight: 700;
-    color: #888;
-    white-space: nowrap;
-  }
-  .e5-list .fx {
-    grid-area: fx;
+    grid-template-columns: 72px 1fr;
+    min-height: 92px;
     margin: 0;
     padding: 0;
-    background: none;
-    border: 0;
-    font-size: 12px;
-    font-weight: 700;
-    color: #555;
-    line-height: 1.45;
-    text-align: left;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #EEEFF4;
+    border-radius: 12px;
+  }
+  .craft-list > li.wide {
+    grid-column: 1 / -1;
+    min-height: 72px;
+    grid-template-columns: 80px 1fr;
+  }
+  .craft-list .lab {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 4px;
+    text-align: center;
+    background: var(--craft-ink);
+    color: #fff;
+  }
+  .craft-list .lab strong {
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .craft-list .lab b {
+    margin-top: 3px;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.25;
     word-break: keep-all;
+  }
+  .craft-list .lab em {
+    margin-top: 2px;
+    font-style: normal;
+    font-size: 8px;
+    font-weight: 600;
+    opacity: .85;
+    white-space: nowrap;
+  }
+  .craft-list .pts {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    margin: 0;
+    padding: 10px 8px 10px 12px;
+  }
+  .craft-list .pts li {
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #444;
+    line-height: 1.35;
+    word-break: keep-all;
+  }
+  .craft-list .pts li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--craft-ink);
+  }
+  .craft-list .line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+    margin: 0;
+    padding: 10px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #444;
+    line-height: 1.45;
+    word-break: keep-all;
+  }
+  .craft-list .line i {
+    font-style: normal;
+    color: var(--craft-ink);
+    font-weight: 800;
   }
   .why-nums {
     display: grid;
@@ -2515,9 +2706,85 @@
     line-height: 1.15;
   }
   #book { padding: 12px 32px 28px; }
+  #fairCos { padding: 12px 32px 28px; }
+  .cos-page { padding-bottom: 8px; }
+  .cos-tip {
+    margin: 0 0 8px;
+    padding: 8px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #888;
+    line-height: 1.5;
+    background: #F7F8FA;
+    border-radius: 10px;
+  }
+  .cos-meta {
+    margin: 0 0 10px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #111;
+  }
+  .cos-list { display: flex; flex-direction: column; gap: 8px; }
+  .cos-card {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px 12px 11px;
+    border: 1px solid #EEEFF4;
+    border-radius: 12px;
+    background: #fff;
+    font: inherit;
+    cursor: pointer;
+  }
+  .cos-card strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    color: #111;
+  }
+  .cos-card em {
+    display: block;
+    margin-top: 4px;
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 600;
+    color: #888;
+  }
+  .cos-card[disabled] { cursor: default; opacity: 1; }
+  .cos-detail h3 {
+    margin: 0 0 10px;
+    font-size: 17px;
+    font-weight: 900;
+    color: #111;
+  }
+  .cos-detail h4 {
+    margin: 14px 0 6px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #4338CA;
+  }
+  .cos-detail p {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #444;
+    line-height: 1.7;
+  }
+  .cos-back {
+    margin: 0 0 12px;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: #4338CA;
+    cursor: pointer;
+  }
+  body.inner-ch .cos-detail h4,
+  body.inner-ch .cos-back { color: #C2186A; }
   .ticket-ops {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 8px;
     padding: 10px 10px 12px;
     background: #fff;
@@ -2764,9 +3031,20 @@
   body.inner-ch .role-pack li { color: #C2186A; }
   body.inner-ch .role-pack li { background: #FCE7F3; }
   body.inner-ch .bridge-banner {
-    background: linear-gradient(165deg, #F0428A 0%, #E21876 52%, #C2186A 100%);
+    background: linear-gradient(180deg, #FFF5F9 0%, #FFFFFF 58%);
+    border-color: #F3E0EA;
   }
-  body.inner-ch .info-dl > div { border-bottom-color: #EEE; }
+  body.inner-ch .bridge-banner .arcs i { border-color: #E21876; }
+  body.inner-ch .bridge-banner strong { color: #E21876; }
+  body.inner-ch .info-tiles section { background: #F7F8FA; }
+  body.inner-ch .info-tiles h4 { color: #C2186A; }
+  body.inner-ch .info-tiles li::before { background: #E21876; }
+  body.inner-ch .info-tiles .chips span { border-color: #F3E8EE; }
+  body.inner-ch .info-tiles .chips span.free {
+    color: #C2186A;
+    background: #FCE7F3;
+    border-color: #F9D0E3;
+  }
   body.inner-ch .hook-cols li,
   body.inner-ch .co-grid span { border-color: #E8E8EA; }
   body.inner-ch .story-sec:not(.method) > h3,
@@ -2803,8 +3081,7 @@
     border-color: #F3E8EE;
   }
   body.inner-ch .iv-n b { color: #C2186A; }
-  body.inner-ch .e5-list { --e5-ink: #E21876; }
-  body.inner-ch .e5-list .fx { background: none; }
+  body.inner-ch .craft-board { --craft-ink: #E21876; --craft-soft: #FFF0F6; }
   body.inner-ch .tl-rail .n { color: #E21876; }
   body.inner-ch .tl-caps > li.star strong { color: #C2186A; }
   body.inner-ch .chip.on {
@@ -2900,38 +3177,33 @@
     <div class="story" id="fairStory">
       <section class="story-sec intro">
         <div class="spec-board hook-board">
-          <h2 class="hook-title">你缺的不是能力，<em>是被看见的通道</em></h2>
-          <ol class="pain-list">
-            <li>
-              <b>好作品，<br>也过不了机器</b>
-              <span>海投只认关键词。<br>作品集再亮，<br>招聘官也看不见。</span>
-            </li>
-            <li>
-              <b>秋招开跑，<br>你还在答辩</b>
-              <span>国内已经在抢应届岗。<br>等毕设收尾，<br>好位子先没了。</span>
-            </li>
-            <li>
-              <b>国外招聘会，<br>面向当地</b>
-              <span>想回国找工作，<br>它帮不上。</span>
-            </li>
-          </ol>
+          <h2 class="hook-title">你的简历，<em>可能一次都没被打开</em></h2>
+          <ul class="hook-cols">
+            <li><b>AI初筛</b><span>HR看不到</span></li>
+            <li><b>国内求职</b><span>专场抢破头</span></li>
+            <li><b>国外求职</b><span>内推够不着</span></li>
+          </ul>
           <p class="hook-end">本专场<em>跳过初筛</em>，直接对话招聘官</p>
         </div>
-        <div class="spec-board">
-        <dl class="info-dl">
-          <div>
-            <dt>面向人群</dt>
-            <dd>27届应届及往届社招<br>在读可参加下午场实习面试<br>家长可到场代投</dd>
-          </div>
-          <div>
-            <dt>岗位类型</dt>
-            <dd>校招全职 · 社招全职 · 实习</dd>
-          </div>
-          <div>
-            <dt>举办城市</dt>
-            <dd>上海 · 广州 · 北京 · 成都 · 免费报名</dd>
-          </div>
-        </dl>
+        <div class="spec-board info-board">
+        <div class="info-tiles">
+          <section>
+            <h4>面向人群</h4>
+            <ul>
+              <li>27届应届及往届社招</li>
+              <li>在读可参加下午场实习面试</li>
+              <li>家长可到场代投</li>
+            </ul>
+          </section>
+          <section>
+            <h4>岗位类型</h4>
+            <p class="chips"><span>校招全职</span><span>社招全职</span><span>实习</span></p>
+          </section>
+          <section>
+            <h4>举办城市</h4>
+            <p class="chips"><span>上海</span><span>广州</span><span>北京</span><span>成都</span><span class="free">免费报名</span></p>
+          </section>
+        </div>
         </div>
         <div class="co-pack">
         <div class="co-head">
@@ -2960,8 +3232,9 @@
           </ul>
         </div>
         <div class="bridge-banner">
-          <strong>出国的桥梁，归国的彩虹。</strong>
-          <p>斯芬克把学生送进艺术名校，也要把就业这一步接上。</p>
+          <span class="arcs" aria-hidden="true"><i></i><i></i><i></i></span>
+          <strong>出国的桥梁，归国的彩虹</strong>
+          <p>从艺术名校到职场，斯芬克不止送你出国，更帮你接上就业</p>
         </div>
         <figure class="story-shot">
           <img src="fair-scene.jpg" alt="招聘会现场一对一面试">
@@ -3049,34 +3322,70 @@
           </div>
         </div>
         <div class="m-block spec-board">
-          <h4 class="sub">评价标准：5E 人才评价模型</h4>
-          <p class="lead">企业依据综合竞争力评价，而非单一学历。</p>
-          <ul class="e5-list">
-            <li>
-              <div class="hd"><span class="tag">E1</span><div class="nm">教育背景<em>（Education）</em></div></div>
-              <p class="fx">院校底蕴 × 专业功底 × 学术素养</p>
-            </li>
-            <li>
-              <div class="hd"><span class="tag">E2</span><div class="nm">实践经验<em>（Experience）</em></div></div>
-              <p class="fx">实习历练 × 项目沉淀 × 业务实战</p>
-            </li>
-            <li>
-              <div class="hd"><span class="tag">E3</span><div class="nm">专业能力<em>（Expertise）</em></div></div>
-              <p class="fx">岗位硬技能 × 问题解决力 × AI应用力</p>
-            </li>
-            <li>
-              <div class="hd"><span class="tag">E4</span><div class="nm">执行力<em>（Execution）</em></div></div>
-              <p class="fx">结果导向 × 闭环思维 × 推进韧性</p>
-            </li>
-            <li>
-              <div class="hd"><span class="tag">E5</span><div class="nm">职业素养<em>（Employability）</em></div></div>
-              <p class="fx">主动沟通 × 高效协作 × 逻辑思辨</p>
-            </li>
-          </ul>
+          <h4 class="sub">评价标准：C.R.A.F.T 全球胜任力模型</h4>
+          <p class="lead">四力 + 一心 + 一底座。企业依据综合胜任力评价，而非单一学历。</p>
+          <div class="craft-board">
+            <div class="craft-wheel" aria-hidden="true">
+              <svg viewBox="0 0 320 336" role="img">
+                <circle class="base-ring" cx="160" cy="168" r="140"/>
+                <path class="seg" d="M160 168 L160 64 A104 104 0 0 0 56 168 Z"/>
+                <path class="seg" d="M160 168 L264 168 A104 104 0 0 0 160 64 Z"/>
+                <path class="seg" d="M160 168 L160 272 A104 104 0 0 0 264 168 Z"/>
+                <path class="seg" d="M160 168 L56 168 A104 104 0 0 0 160 272 Z"/>
+                <circle class="core" cx="160" cy="168" r="40"/>
+                <text class="core-t" x="160" y="162" text-anchor="middle" font-size="20">T</text>
+                <text class="core-t" x="160" y="180" text-anchor="middle" font-size="9">创意判断力</text>
+                <text class="letter" x="100" y="112" text-anchor="middle" font-size="17">C</text>
+                <text x="100" y="128" text-anchor="middle" font-size="10" font-weight="800">商业感知力</text>
+                <text x="100" y="142" text-anchor="middle" font-size="8" fill="#666">懂客户</text>
+                <text class="letter" x="220" y="112" text-anchor="middle" font-size="17">R</text>
+                <text x="220" y="128" text-anchor="middle" font-size="10" font-weight="800">文化共鸣力</text>
+                <text x="220" y="142" text-anchor="middle" font-size="8" fill="#666">懂语境</text>
+                <text class="letter" x="100" y="220" text-anchor="middle" font-size="17">A</text>
+                <text x="100" y="236" text-anchor="middle" font-size="10" font-weight="800">审美表达力</text>
+                <text x="100" y="250" text-anchor="middle" font-size="8" fill="#666">懂自己</text>
+                <text class="letter" x="220" y="220" text-anchor="middle" font-size="17">F</text>
+                <text x="220" y="236" text-anchor="middle" font-size="10" font-weight="800">技术驾驭力</text>
+                <text x="220" y="250" text-anchor="middle" font-size="8" fill="#666">懂工具</text>
+                <text class="base-lab" x="160" y="304" text-anchor="middle">全球职业素养</text>
+                <text class="orbit" x="160" y="36" text-anchor="middle">自主学习</text>
+                <text class="orbit" x="300" y="172" text-anchor="middle">职业韧性</text>
+                <text class="orbit" x="160" y="326" text-anchor="middle">伦理责任</text>
+                <text class="orbit" x="22" y="172" text-anchor="middle">跨文化协作</text>
+              </svg>
+            </div>
+            <p class="craft-chain">内在逻辑：C → R → A → F → T（判断贯穿全程）</p>
+            <ul class="craft-list">
+              <li>
+                <div class="lab"><strong>C</strong><b>商业感知力</b><em>Commercial</em></div>
+                <ul class="pts"><li>需求洞察</li><li>商业逻辑</li><li>商业交付</li></ul>
+              </li>
+              <li>
+                <div class="lab"><strong>R</strong><b>文化共鸣力</b><em>Resonance</em></div>
+                <ul class="pts"><li>本土文化根脉</li><li>跨文化理解</li><li>文化转译</li></ul>
+              </li>
+              <li>
+                <div class="lab"><strong>A</strong><b>审美表达力</b><em>Aesthetic</em></div>
+                <ul class="pts"><li>审美判断</li><li>艺术表达</li><li>公共展示与传播</li></ul>
+              </li>
+              <li>
+                <div class="lab"><strong>F</strong><b>技术驾驭力</b><em>Fluency</em></div>
+                <ul class="pts"><li>前沿技术应用</li><li>技术学习敏捷度</li><li>人机协作</li></ul>
+              </li>
+              <li class="wide">
+                <div class="lab"><strong>T</strong><b>创意判断力</b><em>Thinking · 核心</em></div>
+                <p class="line"><i>定义问题</i>·<i>取舍决策</i>·<i>创作主体性</i>（贯穿四力，不单独打分）</p>
+              </li>
+              <li class="wide">
+                <div class="lab"><strong>底</strong><b>全球职业素养</b><em>Foundation</em></div>
+                <p class="line"><i>跨文化协作</i>·<i>自主学习</i>·<i>职业韧性</i>·<i>伦理责任</i></p>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="m-callout">
           <h4 class="sub">现场评估机制</h4>
-          <p class="lead"><span class="one">现场招聘官依据 5E 人才评价模型审阅作品集和简历，</span>而非仅以院校背景为判断依据。<span class="tip">请携带简历和作品集到场</span></p>
+          <p class="lead"><span class="one">现场招聘官依据 C.R.A.F.T 全球胜任力模型审阅作品集和简历，</span>看商业、文化、审美、技术四维判断，而非仅以院校背景为依据。<span class="tip">请携带简历和作品集到场</span></p>
         </div>
       </section>
     </div>
@@ -3479,6 +3788,7 @@
         </div>
       </div>
       <div class="ticket-foot">短信已发送至 <b id="tkSms">138****8007</b></div>
+      <button class="btn" id="tkCos" type="button" style="margin:12px 16px 16px;width:calc(100% - 32px)">查看本场企业</button>
     </div>
   </section>
 
@@ -3493,6 +3803,15 @@
 
   <section class="screen" id="book">
     <div class="sum-page" id="bookTable"></div>
+  </section>
+
+  <section class="screen" id="fairCos">
+    <div class="cos-page">
+      <p class="cos-tip">仅报名本场学生可见，不对外展示。本场约 10 家企业，介绍将按场次更新。</p>
+      <p class="cos-meta" id="cosMeta"></p>
+      <div class="cos-list" id="cosList"></div>
+      <div class="cos-detail" id="cosDetail" hidden></div>
+    </div>
   </section>
 
   <div class="dock on" id="dock">
@@ -3644,6 +3963,46 @@ const VENUES = {
   上海: { nav: "上海市黄浦区南京东路100号国际饭店会议层", html: "上海市黄浦区南京东路100号<br>国际饭店会议层" },
   广州: { nav: "广州市天河区天河路208号天河城酒店8层", html: "广州市天河区天河路208号<br>天河城酒店8层" },
   成都: { nav: "成都市锦江区红星路三段1号成都国际饭店6层", html: "成都市锦江区红星路三段1号<br>成都国际饭店6层" }
+};
+const FAIR_CITY_DATE = { 上海: "10/24", 广州: "10/25", 北京: "10/31", 成都: "11/14" };
+const FAIR_CO_HRJZ = {
+  id: "hrjz",
+  name: "华润江中制药集团",
+  tag: "中成药 · 保健食品",
+  ready: true,
+  sections: [
+    {
+      h: "企业介绍",
+      ps: [
+        "华润江中制药集团有限责任公司前身为1969年10月创立的江西中医药大学校办企业，2004年正式列为江西省省属国有重点企业。2019年2月，经华润医药战略重组后正式更名“华润江中”，成为华润集团一级利润中心，旗下拥有A股上市企业江中药业（股票代码：600750）。",
+        "公司主营中成药、保健食品的研发、生产与销售，拥有成熟完整的中医药科研体系与两大现代化智能制造生产基地。企业坐拥“江中”“初元”两大中国驰名商标，以及“杨济生”“桑海”两大江西省著名商标。其中“江中”品牌连续17年入选世界品牌实验室“中国500最具价值品牌”，2020年品牌价值达265.15亿元。核心明星产品涵盖江中牌健胃消食片、复方草珊瑚含片、利活乳酸菌素片、初元氨基酸口服液、参灵草口服液等多款国民级健康产品，广泛覆盖大众日常健康养护场景。"
+      ]
+    },
+    {
+      h: "品牌创意、视觉传播类企业荣誉",
+      ps: [
+        "华润江中长期重视品牌视觉、产品包装、IP插画、线下终端空间美学建设，在品牌创意、视觉传播、工业空间设计领域斩获多项行业权威荣誉，同时拥有大量外观设计专利、美术著作权，搭建面向全国艺术设计专业青年的创意共创平台。",
+        "企业创意项目《黄药师的“药”紧事》获得第八届中央企业优秀故事AIGC创意传播优秀奖；健胃消食片高校共创项目斩获ADMEN国际大赏实战金案，入选年度十大营销实战案例；在第31届中国国际广告节斩获“大学生喜爱的活力品牌”等多项创意传播大奖。",
+        "华润江中连续多年担任中国大学生广告艺术节学院奖核心命题企业，面向视觉传达、环境设计、艺术设计类高校学生征集产品包装、平面海报、品牌IP形象、线下门店终端视觉等方向创意作品，累计收到数万组青年设计作品，企业内部设计团队全程参与命题策划、作品评审，推动青年设计创意与品牌实际业务落地结合。",
+        "企业自主完成多款产品包装、品牌IP形象视觉开发，持有多项包装盒外观设计专利、猴姑系列IP美术著作权，实现包装版式、色彩、造型全流程自主设计。"
+      ]
+    },
+    {
+      h: "空间/环境美学相关",
+      ps: [
+        "旗下2800亩江中药谷制造基地，融合中式自然美学与工业建筑规划，厂区建筑、景观、导视系统一体化设计，获评“最美中国工厂”国家级绿色工厂，是国内工业空间环境设计的标杆项目。"
+      ]
+    }
+  ]
+};
+function fairCosPending(n) {
+  return { id: "slot-" + n, name: "本场席位 " + String(n).padStart(2, "0"), tag: "介绍待录入", ready: false, sections: [] };
+}
+const FAIR_SESSION_COS = {
+  上海: [FAIR_CO_HRJZ].concat([2,3,4,5,6,7,8,9,10].map(fairCosPending)),
+  广州: [FAIR_CO_HRJZ].concat([2,3,4,5,6,7,8,9,10].map(fairCosPending)),
+  北京: [FAIR_CO_HRJZ].concat([2,3,4,5,6,7,8,9,10].map(fairCosPending)),
+  成都: [FAIR_CO_HRJZ].concat([2,3,4,5,6,7,8,9,10].map(fairCosPending))
 };
 (function () {
   const q = new URLSearchParams(location.search).get("city");
@@ -4168,6 +4527,7 @@ function paintBook() {
       "</div>" +
       "<div class=\"ticket-ops\">" +
         "<button type=\"button\" class=\"main\" data-book=\"dl\">下载门票</button>" +
+        "<button type=\"button\" data-book=\"cos\">本场企业</button>" +
         "<button type=\"button\" data-book=\"in\"" + (saved.cancelled || saved.checkIn ? " disabled" : "") + ">现场签到</button>" +
         "<button type=\"button\" data-book=\"cancel\"" + (saved.cancelled ? " disabled" : "") + ">取消预约</button>" +
       "</div>" +
@@ -4200,6 +4560,63 @@ function paintBook() {
         ]) +
       "</table>" +
     "</div>";
+}
+function escHtml(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
+  }[c]));
+}
+function fairSessionCity() {
+  const chip = document.querySelector("#fairCity .chip.on");
+  if (chip) return (chip.dataset.val || chip.textContent || "").replace(/\s+/g, " ").trim();
+  return String(fairGet().fairCity || "").trim();
+}
+function canSeeFairCos() {
+  const s = fairGet();
+  return s.status === "done" || !!s.checkIn || !!s.cancelled;
+}
+function openFairCos() {
+  if (!canSeeFairCos()) {
+    toast("报名成功后可查看本场企业");
+    return;
+  }
+  const cityName = fairSessionCity() || "北京";
+  const ch = INNER ? "inner=1" : "pub=1";
+  location.href = "fair-cos.html?" + ch + "&city=" + encodeURIComponent(cityName) + "&from=apply&v=1445";
+}
+function paintFairCos(coId) {
+  const cityName = fairSessionCity() || "北京";
+  const list = FAIR_SESSION_COS[cityName] || FAIR_SESSION_COS["北京"];
+  const date = FAIR_CITY_DATE[cityName] || "";
+  const meta = document.getElementById("cosMeta");
+  const listEl = document.getElementById("cosList");
+  const detailEl = document.getElementById("cosDetail");
+  if (meta) meta.textContent = cityName + "站" + (date ? " · " + date : "") + " · " + list.length + " 家企业";
+  if (coId) {
+    const item = list.find(x => x.id === coId) || list[0];
+    listEl.hidden = true;
+    detailEl.hidden = false;
+    const body = item.ready
+      ? item.sections.map(sec =>
+          "<h4>" + escHtml(sec.h) + "</h4>" + sec.ps.map(p => "<p>" + escHtml(p) + "</p>").join("")
+        ).join("")
+      : "<p>该企业介绍待录入，报名后将按场次更新。</p>";
+    detailEl.innerHTML =
+      "<button type=\"button\" class=\"cos-back\" id=\"cosBack\">返回企业列表</button>" +
+      "<h3>" + escHtml(item.name) + "</h3>" +
+      (item.tag ? "<p>" + escHtml(item.tag) + "</p>" : "") +
+      body;
+    return;
+  }
+  detailEl.hidden = true;
+  detailEl.innerHTML = "";
+  listEl.hidden = false;
+  listEl.innerHTML = list.map(item =>
+    "<button type=\"button\" class=\"cos-card\" data-co=\"" + escHtml(item.id) + "\">" +
+      "<strong>" + escHtml(item.name) + "</strong>" +
+      "<em>" + escHtml(item.tag || (item.ready ? "" : "介绍待录入")) + "</em>" +
+    "</button>"
+  ).join("");
 }
 function paintFairTip() {
   const b = document.querySelector("#fairCity .chip.on");
@@ -4242,7 +4659,7 @@ function show(id) {
   document.getElementById(id).classList.add("on");
   document.getElementById("navTitle").textContent = id === "book"
     ? "预约信息"
-    : (INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会");
+    : (id === "fairCos" ? "本场企业" : (INNER ? INNER_NAME : "中国海归艺术创意人才专场招聘会"));
   syncDock();
   document.getElementById("rail").classList.toggle("on", (id === "form" && fairView === "apply") || id === "book");
   show.id = id;
@@ -4545,11 +4962,23 @@ document.getElementById("book").addEventListener("click", e => {
     if (k === "dl") downloadTicket();
     else if (k === "in") checkInBook();
     else if (k === "cancel") cancelBook();
+    else if (k === "cos") openFairCos("book");
     return;
   }
   if (!e.target.closest("#bookNav")) return;
   const t = document.getElementById("bookTicket");
   if (t) openNav(t.dataset.addr);
+});
+const tkCos = document.getElementById("tkCos");
+if (tkCos) tkCos.addEventListener("click", () => openFairCos("pass"));
+document.getElementById("cosList").addEventListener("click", e => {
+  const card = e.target.closest("[data-co]");
+  if (!card) return;
+  paintFairCos(card.dataset.co);
+});
+document.getElementById("cosDetail").addEventListener("click", e => {
+  if (!e.target.closest("#cosBack")) return;
+  paintFairCos();
 });
 document.getElementById("again2").addEventListener("click", () => show("form"));
 document.getElementById("back").addEventListener("click", () => {
@@ -4559,6 +4988,15 @@ document.getElementById("back").addEventListener("click", () => {
   }
   if (document.getElementById("keepPop").classList.contains("on")) {
     closeKeep();
+    return;
+  }
+  if (show.id === "fairCos") {
+    const detail = document.getElementById("cosDetail");
+    if (detail && !detail.hidden) {
+      paintFairCos();
+      return;
+    }
+    show(openFairCos.from === "pass" ? "pass" : "book");
     return;
   }
   if (show.id === "book") {
