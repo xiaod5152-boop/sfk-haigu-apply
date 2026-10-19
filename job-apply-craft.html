@@ -1181,134 +1181,205 @@
   }
   .m-block.spec-board:has(.craft-board) {
     overflow: hidden;
-    padding: 14px 10px 12px;
+    padding: 14px 12px 12px;
   }
-  .craft-board { --craft-ink: #4F46E5; --craft-soft: #EEF2FF; }
-  .craft-wheel {
-    margin: 4px auto 12px;
-    width: 100%;
-    max-width: 320px;
+  .craft-board { --craft-ink: #4F46E5; --craft-soft: #EEF2FF; --craft-line: #E8EAF4; }
+  .craft-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 12px;
   }
-  .craft-wheel svg { display: block; width: 100%; height: auto; }
-  .craft-wheel .base-ring { fill: var(--craft-ink); opacity: .18; }
-  .craft-wheel .seg { fill: var(--craft-soft); stroke: #fff; stroke-width: 2; }
-  .craft-wheel .core { fill: var(--craft-ink); }
-  .craft-wheel text {
-    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-    fill: #1A1220;
-  }
-  .craft-wheel .core-t { fill: #fff; font-weight: 800; }
-  .craft-wheel .letter { fill: var(--craft-ink); font-weight: 800; }
-  .craft-wheel .base-lab { fill: var(--craft-ink); font-weight: 800; font-size: 11px; }
-  .craft-wheel .orbit { fill: #666; font-size: 9px; font-weight: 700; }
-  .craft-chain {
-    margin: 0 0 10px;
-    text-align: center;
+  .craft-meta span {
     font-size: 11px;
     font-weight: 800;
     color: var(--craft-ink);
-    letter-spacing: 0.02em;
+    background: var(--craft-soft);
+    border-radius: 999px;
+    padding: 4px 10px;
+    line-height: 1.3;
   }
-  .craft-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .craft-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
+    margin: 0 0 8px;
   }
-  .craft-list > li {
-    display: grid;
-    grid-template-columns: 72px 1fr;
-    min-height: 92px;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  .craft-cell {
     background: #fff;
-    border: 1px solid #EEEFF4;
+    border: 1px solid var(--craft-line);
     border-radius: 12px;
+    padding: 10px 10px 9px;
+    min-height: 0;
   }
-  .craft-list > li.wide {
-    grid-column: 1 / -1;
-    min-height: 72px;
-    grid-template-columns: 80px 1fr;
-  }
-  .craft-list .lab {
+  .craft-cell .top {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 8px 4px;
-    text-align: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .craft-cell .letter {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--craft-ink);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .craft-cell .name {
+    min-width: 0;
+  }
+  .craft-cell .name b {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.25;
+    color: #1A1220;
+  }
+  .craft-cell .name em {
+    display: block;
+    margin-top: 1px;
+    font-style: normal;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--craft-ink);
+  }
+  .craft-cell .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .craft-cell .tags i {
+    font-style: normal;
+    font-size: 10px;
+    font-weight: 700;
+    color: #555;
+    background: #F6F7FB;
+    border-radius: 6px;
+    padding: 3px 6px;
+    line-height: 1.3;
+  }
+  .craft-core {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 0;
+    margin: 0 0 8px;
+    border-radius: 12px;
+    overflow: hidden;
     background: var(--craft-ink);
     color: #fff;
   }
-  .craft-list .lab strong {
-    font-size: 15px;
-    font-weight: 800;
-    line-height: 1.2;
+  .craft-core .side {
+    display: grid;
+    place-items: center;
+    padding: 12px 6px;
+    background: rgba(0,0,0,.12);
+    text-align: center;
   }
-  .craft-list .lab b {
-    margin-top: 3px;
-    font-size: 11px;
+  .craft-core .side strong {
+    font-size: 22px;
     font-weight: 800;
-    line-height: 1.25;
-    word-break: keep-all;
+    line-height: 1;
   }
-  .craft-list .lab em {
-    margin-top: 2px;
+  .craft-core .side em {
+    display: block;
+    margin-top: 4px;
     font-style: normal;
-    font-size: 8px;
-    font-weight: 600;
-    opacity: .85;
-    white-space: nowrap;
-  }
-  .craft-list .pts {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 3px;
-    margin: 0;
-    padding: 10px 8px 10px 12px;
-  }
-  .craft-list .pts li {
-    position: relative;
-    margin: 0;
-    padding: 0 0 0 10px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
-    color: #444;
-    line-height: 1.35;
-    word-break: keep-all;
+    opacity: .9;
   }
-  .craft-list .pts li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 6px;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--craft-ink);
+  .craft-core .body {
+    padding: 10px 12px;
   }
-  .craft-list .line {
+  .craft-core .body b {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .craft-core .body p {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.45;
+    opacity: .92;
+  }
+  .craft-base {
+    border: 1px solid var(--craft-line);
+    border-radius: 12px;
+    background: #fff;
+    padding: 10px 12px;
+    margin: 0 0 10px;
+  }
+  .craft-base .hd {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .craft-base .hd b {
+    font-size: 13px;
+    font-weight: 800;
+    color: #1A1220;
+  }
+  .craft-base .hd em {
+    font-style: normal;
+    font-size: 10px;
+    font-weight: 700;
+    color: #888;
+  }
+  .craft-base .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .craft-base .pills span {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--craft-ink);
+    background: var(--craft-soft);
+    border-radius: 999px;
+    padding: 5px 10px;
+  }
+  .craft-flow {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 4px 8px;
+    gap: 4px;
     margin: 0;
-    padding: 10px 12px;
+    padding: 8px 4px 0;
     font-size: 11px;
-    font-weight: 700;
-    color: #444;
-    line-height: 1.45;
-    word-break: keep-all;
-  }
-  .craft-list .line i {
-    font-style: normal;
-    color: var(--craft-ink);
     font-weight: 800;
+    color: var(--craft-ink);
+  }
+  .craft-flow i {
+    font-style: normal;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: var(--craft-soft);
+    display: inline-grid;
+    place-items: center;
+  }
+  .craft-flow em {
+    font-style: normal;
+    color: #BBB;
+    font-weight: 700;
+  }
+  .craft-flow .tip {
+    width: 100%;
+    text-align: center;
+    margin-top: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #888;
   }
   .why-nums {
     display: grid;
@@ -3323,69 +3394,71 @@
         </div>
         <div class="m-block spec-board">
           <h4 class="sub">评价标准：C.R.A.F.T 全球胜任力模型</h4>
-          <p class="lead">四力 + 一心 + 一底座。企业依据综合胜任力评价，而非单一学历。</p>
+          <p class="lead">机器能生产，人的手艺在于四维判断。企业看综合胜任力，不只看学历。</p>
           <div class="craft-board">
-            <div class="craft-wheel" aria-hidden="true">
-              <svg viewBox="0 0 320 336" role="img">
-                <circle class="base-ring" cx="160" cy="168" r="140"/>
-                <path class="seg" d="M160 168 L160 64 A104 104 0 0 0 56 168 Z"/>
-                <path class="seg" d="M160 168 L264 168 A104 104 0 0 0 160 64 Z"/>
-                <path class="seg" d="M160 168 L160 272 A104 104 0 0 0 264 168 Z"/>
-                <path class="seg" d="M160 168 L56 168 A104 104 0 0 0 160 272 Z"/>
-                <circle class="core" cx="160" cy="168" r="40"/>
-                <text class="core-t" x="160" y="162" text-anchor="middle" font-size="20">T</text>
-                <text class="core-t" x="160" y="180" text-anchor="middle" font-size="9">创意判断力</text>
-                <text class="letter" x="100" y="112" text-anchor="middle" font-size="17">C</text>
-                <text x="100" y="128" text-anchor="middle" font-size="10" font-weight="800">商业感知力</text>
-                <text x="100" y="142" text-anchor="middle" font-size="8" fill="#666">懂客户</text>
-                <text class="letter" x="220" y="112" text-anchor="middle" font-size="17">R</text>
-                <text x="220" y="128" text-anchor="middle" font-size="10" font-weight="800">文化共鸣力</text>
-                <text x="220" y="142" text-anchor="middle" font-size="8" fill="#666">懂语境</text>
-                <text class="letter" x="100" y="220" text-anchor="middle" font-size="17">A</text>
-                <text x="100" y="236" text-anchor="middle" font-size="10" font-weight="800">审美表达力</text>
-                <text x="100" y="250" text-anchor="middle" font-size="8" fill="#666">懂自己</text>
-                <text class="letter" x="220" y="220" text-anchor="middle" font-size="17">F</text>
-                <text x="220" y="236" text-anchor="middle" font-size="10" font-weight="800">技术驾驭力</text>
-                <text x="220" y="250" text-anchor="middle" font-size="8" fill="#666">懂工具</text>
-                <text class="base-lab" x="160" y="304" text-anchor="middle">全球职业素养</text>
-                <text class="orbit" x="160" y="36" text-anchor="middle">自主学习</text>
-                <text class="orbit" x="300" y="172" text-anchor="middle">职业韧性</text>
-                <text class="orbit" x="160" y="326" text-anchor="middle">伦理责任</text>
-                <text class="orbit" x="22" y="172" text-anchor="middle">跨文化协作</text>
-              </svg>
+            <div class="craft-meta">
+              <span>四力 C·R·A·F</span>
+              <span>一心 T</span>
+              <span>一底座 全球职业素养</span>
             </div>
-            <p class="craft-chain">内在逻辑：C → R → A → F → T（判断贯穿全程）</p>
-            <ul class="craft-list">
-              <li>
-                <div class="lab"><strong>C</strong><b>商业感知力</b><em>Commercial</em></div>
-                <ul class="pts"><li>需求洞察</li><li>商业逻辑</li><li>商业交付</li></ul>
-              </li>
-              <li>
-                <div class="lab"><strong>R</strong><b>文化共鸣力</b><em>Resonance</em></div>
-                <ul class="pts"><li>本土文化根脉</li><li>跨文化理解</li><li>文化转译</li></ul>
-              </li>
-              <li>
-                <div class="lab"><strong>A</strong><b>审美表达力</b><em>Aesthetic</em></div>
-                <ul class="pts"><li>审美判断</li><li>艺术表达</li><li>公共展示与传播</li></ul>
-              </li>
-              <li>
-                <div class="lab"><strong>F</strong><b>技术驾驭力</b><em>Fluency</em></div>
-                <ul class="pts"><li>前沿技术应用</li><li>技术学习敏捷度</li><li>人机协作</li></ul>
-              </li>
-              <li class="wide">
-                <div class="lab"><strong>T</strong><b>创意判断力</b><em>Thinking · 核心</em></div>
-                <p class="line"><i>定义问题</i>·<i>取舍决策</i>·<i>创作主体性</i>（贯穿四力，不单独打分）</p>
-              </li>
-              <li class="wide">
-                <div class="lab"><strong>底</strong><b>全球职业素养</b><em>Foundation</em></div>
-                <p class="line"><i>跨文化协作</i>·<i>自主学习</i>·<i>职业韧性</i>·<i>伦理责任</i></p>
-              </li>
-            </ul>
+            <div class="craft-grid">
+              <article class="craft-cell">
+                <div class="top">
+                  <span class="letter">C</span>
+                  <div class="name"><b>商业感知力</b><em>懂客户</em></div>
+                </div>
+                <div class="tags"><i>需求洞察</i><i>商业逻辑</i><i>商业交付</i></div>
+              </article>
+              <article class="craft-cell">
+                <div class="top">
+                  <span class="letter">R</span>
+                  <div class="name"><b>文化共鸣力</b><em>懂语境</em></div>
+                </div>
+                <div class="tags"><i>本土根脉</i><i>跨文化理解</i><i>文化转译</i></div>
+              </article>
+              <article class="craft-cell">
+                <div class="top">
+                  <span class="letter">A</span>
+                  <div class="name"><b>审美表达力</b><em>懂自己</em></div>
+                </div>
+                <div class="tags"><i>审美判断</i><i>艺术表达</i><i>公共展示</i></div>
+              </article>
+              <article class="craft-cell">
+                <div class="top">
+                  <span class="letter">F</span>
+                  <div class="name"><b>技术驾驭力</b><em>懂工具</em></div>
+                </div>
+                <div class="tags"><i>前沿应用</i><i>学习敏捷</i><i>人机协作</i></div>
+              </article>
+            </div>
+            <div class="craft-core">
+              <div class="side"><strong>T</strong><em>核心</em></div>
+              <div class="body">
+                <b>创意判断力</b>
+                <p>定义问题 · 取舍决策 · 创作主体性<br>贯穿四力全程，评估做质性记录</p>
+              </div>
+            </div>
+            <div class="craft-base">
+              <div class="hd">
+                <b>全球职业素养</b>
+                <em>Foundation</em>
+              </div>
+              <div class="pills">
+                <span>跨文化协作</span>
+                <span>自主学习</span>
+                <span>职业韧性</span>
+                <span>伦理责任</span>
+              </div>
+            </div>
+            <p class="craft-flow" aria-label="内在逻辑">
+              <i>C</i><em>→</em><i>R</i><em>→</em><i>A</i><em>→</em><i>F</i><em>→</em><i>T</i>
+              <span class="tip">为谁做 → 在何处做 → 审美判断 → 技术实现 → 判断贯穿</span>
+            </p>
           </div>
         </div>
         <div class="m-callout">
           <h4 class="sub">现场评估机制</h4>
-          <p class="lead"><span class="one">现场招聘官依据 C.R.A.F.T 全球胜任力模型审阅作品集和简历，</span>看商业、文化、审美、技术四维判断，而非仅以院校背景为依据。<span class="tip">请携带简历和作品集到场</span></p>
+          <p class="lead"><span class="one">现场招聘官依据 C.R.A.F.T 审阅作品集和简历，</span>看商业、文化、审美、技术四维判断，而非仅以院校背景为依据。<span class="tip">请携带简历和作品集到场</span></p>
         </div>
       </section>
     </div>
