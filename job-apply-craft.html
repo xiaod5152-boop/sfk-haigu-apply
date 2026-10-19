@@ -1203,187 +1203,165 @@
     height: auto;
     margin: 0 auto;
   }
-  .craft-grid {
+  .craft-rows {
+    list-style: none;
+    margin: 0 0 12px;
+    padding: 0;
+    border-top: 1px solid var(--craft-line);
+  }
+  .craft-rows > li {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin: 0 0 8px;
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+    padding: 11px 2px;
+    border-bottom: 1px solid var(--craft-line);
   }
-  .craft-cell {
-    background: #fff;
-    border: 1px solid var(--craft-line);
-    border-radius: 12px;
-    padding: 10px 10px 9px;
-    min-height: 0;
-  }
-  .craft-cell .top {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 6px;
-  }
-  .craft-cell .letter {
+  .craft-rows .letter {
     width: 28px;
     height: 28px;
-    border-radius: 8px;
+    border-radius: 50%;
     background: var(--craft-ink);
     color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+    margin-top: 1px;
+  }
+  .craft-rows .hd {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 8px;
+    margin-bottom: 4px;
+  }
+  .craft-rows .hd b {
     font-size: 14px;
+    font-weight: 800;
+    color: #1A1220;
+    line-height: 1.3;
+  }
+  .craft-rows .hd em {
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--craft-ink);
+  }
+  .craft-rows .pts {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    line-height: 1.45;
+  }
+  .craft-rows .pts span + span::before {
+    content: " · ";
+    color: #CCC;
+    font-weight: 700;
+  }
+  .craft-note {
+    margin: 0 0 12px;
+    padding: 12px 12px 11px;
+    border-radius: 12px;
+    background: var(--craft-soft);
+  }
+  .craft-note .k {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .craft-note .k strong {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--craft-ink);
+    color: #fff;
+    font-size: 12px;
     font-weight: 800;
     display: grid;
     place-items: center;
     flex-shrink: 0;
   }
-  .craft-cell .name {
-    min-width: 0;
-  }
-  .craft-cell .name b {
-    display: block;
-    font-size: 13px;
+  .craft-note .k b {
+    font-size: 14px;
     font-weight: 800;
-    line-height: 1.25;
     color: #1A1220;
   }
-  .craft-cell .name em {
-    display: block;
-    margin-top: 1px;
-    font-style: normal;
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--craft-ink);
+  .craft-note p {
+    margin: 0 0 0 30px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+    line-height: 1.5;
   }
-  .craft-cell .tags {
+  .craft-foot {
+    margin: 0;
+    padding-top: 2px;
+  }
+  .craft-foot .lab {
+    margin: 0 0 6px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #1A1220;
+  }
+  .craft-foot .labs {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
-  }
-  .craft-cell .tags i {
-    font-style: normal;
-    font-size: 10px;
+    gap: 6px 14px;
+    margin: 0 0 12px;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
     font-weight: 700;
     color: #555;
-    background: #F6F7FB;
-    border-radius: 6px;
-    padding: 3px 6px;
-    line-height: 1.3;
   }
-  .craft-core {
-    display: grid;
-    grid-template-columns: 56px 1fr;
-    gap: 0;
-    margin: 0 0 8px;
-    border-radius: 12px;
-    overflow: hidden;
+  .craft-foot .labs li {
+    position: relative;
+    padding-left: 10px;
+  }
+  .craft-foot .labs li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
     background: var(--craft-ink);
-    color: #fff;
   }
-  .craft-core .side {
+  .craft-steps {
     display: grid;
-    place-items: center;
-    padding: 12px 6px;
-    background: rgba(0,0,0,.12);
-    text-align: center;
-  }
-  .craft-core .side strong {
-    font-size: 22px;
-    font-weight: 800;
-    line-height: 1;
-  }
-  .craft-core .side em {
-    display: block;
-    margin-top: 4px;
-    font-style: normal;
-    font-size: 10px;
-    font-weight: 700;
-    opacity: .9;
-  }
-  .craft-core .body {
-    padding: 10px 12px;
-  }
-  .craft-core .body b {
-    display: block;
-    font-size: 13px;
-    font-weight: 800;
-    margin-bottom: 4px;
-  }
-  .craft-core .body p {
-    margin: 0;
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 1.45;
-    opacity: .92;
-  }
-  .craft-base {
-    border: 1px solid var(--craft-line);
-    border-radius: 12px;
-    background: #fff;
-    padding: 10px 12px;
-    margin: 0 0 10px;
-  }
-  .craft-base .hd {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-  .craft-base .hd b {
-    font-size: 13px;
-    font-weight: 800;
-    color: #1A1220;
-  }
-  .craft-base .hd em {
-    font-style: normal;
-    font-size: 10px;
-    font-weight: 700;
-    color: #888;
-  }
-  .craft-base .pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .craft-base .pills span {
-    font-size: 11px;
-    font-weight: 800;
-    color: var(--craft-ink);
-    background: var(--craft-soft);
-    border-radius: 999px;
-    padding: 5px 10px;
-  }
-  .craft-flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 4px;
     margin: 0;
-    padding: 8px 4px 0;
+    padding: 0;
+    list-style: none;
+  }
+  .craft-steps li {
+    text-align: center;
+    min-width: 0;
+  }
+  .craft-steps .n {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    margin: 0 auto 4px;
+    border-radius: 50%;
+    background: var(--craft-ink);
+    color: #fff;
     font-size: 11px;
     font-weight: 800;
-    color: var(--craft-ink);
   }
-  .craft-flow i {
-    font-style: normal;
-    min-width: 22px;
-    height: 22px;
-    border-radius: 6px;
-    background: var(--craft-soft);
-    display: inline-grid;
-    place-items: center;
-  }
-  .craft-flow em {
-    font-style: normal;
-    color: #BBB;
-    font-weight: 700;
-  }
-  .craft-flow .tip {
-    width: 100%;
-    text-align: center;
-    margin-top: 4px;
+  .craft-steps span {
+    display: block;
     font-size: 10px;
     font-weight: 700;
-    color: #888;
+    color: #666;
+    line-height: 1.3;
+    word-break: keep-all;
   }
   .why-nums {
     display: grid;
@@ -3402,59 +3380,56 @@
             <figure class="craft-hero">
               <img src="assets/craft-model.png" alt="C.R.A.F.T 创意艺术人才全球胜任力模型：中心T创意判断力，四周C商业感知力、R文化共鸣力、A审美表达力、F技术驾驭力，外环全球职业素养" width="640" height="640" loading="lazy">
             </figure>
-            <div class="craft-grid">
-              <article class="craft-cell">
-                <div class="top">
-                  <span class="letter">C</span>
-                  <div class="name"><b>商业感知力</b><em>懂客户</em></div>
+            <ul class="craft-rows">
+              <li>
+                <span class="letter">C</span>
+                <div>
+                  <div class="hd"><b>商业感知力</b><em>懂客户</em></div>
+                  <p class="pts"><span>需求洞察</span><span>商业逻辑</span><span>商业交付</span></p>
                 </div>
-                <div class="tags"><i>需求洞察</i><i>商业逻辑</i><i>商业交付</i></div>
-              </article>
-              <article class="craft-cell">
-                <div class="top">
-                  <span class="letter">R</span>
-                  <div class="name"><b>文化共鸣力</b><em>懂语境</em></div>
+              </li>
+              <li>
+                <span class="letter">R</span>
+                <div>
+                  <div class="hd"><b>文化共鸣力</b><em>懂语境</em></div>
+                  <p class="pts"><span>本土根脉</span><span>跨文化理解</span><span>文化转译</span></p>
                 </div>
-                <div class="tags"><i>本土根脉</i><i>跨文化理解</i><i>文化转译</i></div>
-              </article>
-              <article class="craft-cell">
-                <div class="top">
-                  <span class="letter">A</span>
-                  <div class="name"><b>审美表达力</b><em>懂自己</em></div>
+              </li>
+              <li>
+                <span class="letter">A</span>
+                <div>
+                  <div class="hd"><b>审美表达力</b><em>懂自己</em></div>
+                  <p class="pts"><span>审美判断</span><span>艺术表达</span><span>公共展示</span></p>
                 </div>
-                <div class="tags"><i>审美判断</i><i>艺术表达</i><i>公共展示</i></div>
-              </article>
-              <article class="craft-cell">
-                <div class="top">
-                  <span class="letter">F</span>
-                  <div class="name"><b>技术驾驭力</b><em>懂工具</em></div>
+              </li>
+              <li>
+                <span class="letter">F</span>
+                <div>
+                  <div class="hd"><b>技术驾驭力</b><em>懂工具</em></div>
+                  <p class="pts"><span>前沿应用</span><span>学习敏捷</span><span>人机协作</span></p>
                 </div>
-                <div class="tags"><i>前沿应用</i><i>学习敏捷</i><i>人机协作</i></div>
-              </article>
+              </li>
+            </ul>
+            <div class="craft-note">
+              <div class="k"><strong>T</strong><b>创意判断力</b></div>
+              <p>定义问题 · 取舍决策 · 创作主体性。贯穿全程，评估做质性记录。</p>
             </div>
-            <div class="craft-core">
-              <div class="side"><strong>T</strong><em>核心</em></div>
-              <div class="body">
-                <b>创意判断力</b>
-                <p>定义问题 · 取舍决策 · 创作主体性<br>贯穿四力全程，评估做质性记录</p>
-              </div>
+            <div class="craft-foot">
+              <p class="lab">全球职业素养</p>
+              <ul class="labs">
+                <li>跨文化协作</li>
+                <li>自主学习</li>
+                <li>职业韧性</li>
+                <li>伦理责任</li>
+              </ul>
+              <ol class="craft-steps" aria-label="内在逻辑">
+                <li><span class="n">C</span><span>为谁做</span></li>
+                <li><span class="n">R</span><span>在何处做</span></li>
+                <li><span class="n">A</span><span>审美判断</span></li>
+                <li><span class="n">F</span><span>技术实现</span></li>
+                <li><span class="n">T</span><span>判断贯穿</span></li>
+              </ol>
             </div>
-            <div class="craft-base">
-              <div class="hd">
-                <b>全球职业素养</b>
-                <em>Foundation</em>
-              </div>
-              <div class="pills">
-                <span>跨文化协作</span>
-                <span>自主学习</span>
-                <span>职业韧性</span>
-                <span>伦理责任</span>
-              </div>
-            </div>
-            <p class="craft-flow" aria-label="内在逻辑">
-              <i>C</i><em>→</em><i>R</i><em>→</em><i>A</i><em>→</em><i>F</i><em>→</em><i>T</i>
-              <span class="tip">为谁做 → 在何处做 → 审美判断 → 技术实现 → 判断贯穿</span>
-            </p>
           </div>
         </div>
         <div class="m-callout">
