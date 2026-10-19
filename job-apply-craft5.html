@@ -1203,9 +1203,20 @@
     height: auto;
     margin: 0 auto;
   }
+  .craft-sec {
+    margin: 0 0 14px;
+  }
+  .craft-sec:last-child { margin-bottom: 0; }
+  .craft-sec > .tit {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--craft-ink);
+    letter-spacing: 0.04em;
+  }
   .craft-rows {
     list-style: none;
-    margin: 0 0 12px;
+    margin: 0;
     padding: 0;
     border-top: 1px solid var(--craft-line);
   }
@@ -1261,7 +1272,7 @@
     font-weight: 700;
   }
   .craft-note {
-    margin: 0 0 12px;
+    margin: 0;
     padding: 12px 12px 11px;
     border-radius: 12px;
     background: var(--craft-soft);
@@ -1298,13 +1309,6 @@
   }
   .craft-foot {
     margin: 0;
-    padding-top: 2px;
-  }
-  .craft-foot .lab {
-    margin: 0 0 6px;
-    font-size: 12px;
-    font-weight: 800;
-    color: #1A1220;
   }
   .craft-foot .labs {
     display: flex;
@@ -1336,7 +1340,8 @@
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 4px;
     margin: 0;
-    padding: 0;
+    padding: 10px 0 0;
+    border-top: 1px solid var(--craft-line);
     list-style: none;
   }
   .craft-steps li {
@@ -3380,56 +3385,64 @@
             <figure class="craft-hero">
               <img src="assets/craft-model.png" alt="C.R.A.F.T 创意艺术人才全球胜任力模型：中心T创意判断力，四周C商业感知力、R文化共鸣力、A审美表达力、F技术驾驭力，外环全球职业素养" width="640" height="640" loading="lazy">
             </figure>
-            <ul class="craft-rows">
-              <li>
-                <span class="letter">C</span>
-                <div>
-                  <div class="hd"><b>商业感知力</b><em>懂客户</em></div>
-                  <p class="pts"><span>需求洞察</span><span>商业逻辑</span><span>商业交付</span></p>
-                </div>
-              </li>
-              <li>
-                <span class="letter">R</span>
-                <div>
-                                    <div class="hd"><b>文化共鸣力</b><em>懂语境</em></div>
-                  <p class="pts"><span>本土根脉</span><span>跨文化理解</span><span>文化转译</span></p>
-                </div>
-              </li>
-              <li>
-                <span class="letter">A</span>
-                <div>
-                  <div class="hd"><b>审美表达力</b><em>懂自己</em></div>
-                  <p class="pts"><span>审美判断</span><span>艺术表达</span><span>公共展示</span></p>
-                </div>
-              </li>
-              <li>
-                <span class="letter">F</span>
-                <div>
-                  <div class="hd"><b>技术驾驭力</b><em>懂工具</em></div>
-                  <p class="pts"><span>前沿应用</span><span>学习敏捷</span><span>人机协作</span></p>
-                </div>
-              </li>
-            </ul>
-            <div class="craft-note">
-              <div class="k"><strong>T</strong><b>创意判断力</b></div>
-              <p>定义问题 · 取舍决策 · 创作主体性。贯穿全程，评估做质性记录。</p>
-            </div>
-            <div class="craft-foot">
-              <p class="lab">全球职业素养</p>
-              <ul class="labs">
-                <li>跨文化协作</li>
-                <li>自主学习</li>
-                <li>职业韧性</li>
-                <li>伦理责任</li>
+            <section class="craft-sec">
+              <h5 class="tit">四大支柱</h5>
+              <ul class="craft-rows">
+                <li>
+                  <span class="letter">C</span>
+                  <div>
+                    <div class="hd"><b>商业感知力</b><em>懂客户</em></div>
+                    <p class="pts"><span>需求洞察</span><span>商业逻辑</span><span>商业交付</span></p>
+                  </div>
+                </li>
+                <li>
+                  <span class="letter">R</span>
+                  <div>
+                    <div class="hd"><b>文化共鸣力</b><em>懂语境</em></div>
+                    <p class="pts"><span>本土根脉</span><span>跨文化理解</span><span>文化转译</span></p>
+                  </div>
+                </li>
+                <li>
+                  <span class="letter">A</span>
+                  <div>
+                    <div class="hd"><b>审美表达力</b><em>懂自己</em></div>
+                    <p class="pts"><span>审美判断</span><span>艺术表达</span><span>公共展示</span></p>
+                  </div>
+                </li>
+                <li>
+                  <span class="letter">F</span>
+                  <div>
+                    <div class="hd"><b>技术驾驭力</b><em>懂工具</em></div>
+                    <p class="pts"><span>前沿应用</span><span>学习敏捷</span><span>人机协作</span></p>
+                  </div>
+                </li>
               </ul>
-              <ol class="craft-steps" aria-label="内在逻辑">
-                <li><span class="n">C</span><span>为谁做</span></li>
-                <li><span class="n">R</span><span>在何处做</span></li>
-                <li><span class="n">A</span><span>审美判断</span></li>
-                <li><span class="n">F</span><span>技术实现</span></li>
-                <li><span class="n">T</span><span>判断贯穿</span></li>
-              </ol>
-            </div>
+            </section>
+            <section class="craft-sec">
+              <h5 class="tit">内核</h5>
+              <div class="craft-note">
+                <div class="k"><strong>T</strong><b>创意判断力</b></div>
+                <p>定义问题 · 取舍决策 · 创作主体性。贯穿全程，评估做质性记录。</p>
+              </div>
+            </section>
+            <section class="craft-sec">
+              <h5 class="tit">底座</h5>
+              <div class="craft-foot">
+                <ul class="labs">
+                  <li>跨文化协作</li>
+                  <li>自主学习</li>
+                  <li>职业韧性</li>
+                  <li>伦理责任</li>
+                </ul>
+              </div>
+            </section>
+            <ol class="craft-steps" aria-label="内在逻辑">
+              <li><span class="n">C</span><span>为谁做</span></li>
+              <li><span class="n">R</span><span>在何处做</span></li>
+              <li><span class="n">A</span><span>审美判断</span></li>
+              <li><span class="n">F</span><span>技术实现</span></li>
+              <li><span class="n">T</span><span>判断贯穿</span></li>
+            </ol>
           </div>
         </div>
         <div class="m-callout">
